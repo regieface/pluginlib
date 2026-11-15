@@ -1,4 +1,4 @@
-// PluginLib — interface. Les données vivent dans data/*.json (mises à jour chaque nuit par GitHub Actions).
+// PluginLib — interface. Les données vivent dans data/*.json (mises à jour chaque mois par GitHub Actions).
 import { shortDescription } from './descriptions.mjs';
 const $ = (s) => document.querySelector(s);
 const STATUS_KEY = 'pluginlib.status.v2';
@@ -48,7 +48,7 @@ function stats() {
   $('#linkstat').textContent = fmt(DATA.filter((p) => p.url).length);
   if (META.generatedAt) {
     const d = new Date(META.generatedAt);
-    $('#headright').innerHTML = `Mise à jour automatique chaque nuit<br>Dernière : ${d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} à ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
+    $('#headright').innerHTML = `Mise à jour automatique chaque mois<br>Dernière : ${d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} à ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
   }
   $('#sources').innerHTML = '<tr><th>Fabricant</th><th>État</th><th>Méthode</th><th>Plugins</th></tr>' +
     META.sources.map((s) => `<tr><td><a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.vendor)}</a></td><td class="${s.ok ? 'ok' : 'ko'}">${s.ok ? 'À jour' : 'Échec' + (s.kept ? ' — données précédentes conservées' : '')}</td><td>${esc(s.via)}</td><td>${s.kept}</td></tr>`).join('') +

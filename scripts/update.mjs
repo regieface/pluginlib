@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// PluginLib — collecte quotidienne des données.
+// PluginLib — collecte mensuelle des données.
 // Lit sources/vendors.json, interroge les sites constructeurs, et écrit :
 //   data/plugins.json  (le catalogue)
 //   data/meta.json     (date, état de chaque source, libellés des filtres)
@@ -14,7 +14,7 @@ import { parseWavesLatency, matchWaves, norm } from './waves.mjs';
 import { extractPage, parseSitemap, stripHtml, slug } from './parse.mjs';
 
 const ROOT = new URL('..', import.meta.url);
-const UA = 'PluginLibBot/1.0 (+https://github.com/regieface/pluginlib; catalogue personnel, 1 passage/jour)';
+const UA = 'PluginLibBot/1.0 (+https://github.com/regieface/pluginlib; catalogue personnel, 1 passage/mois)';
 const MAX_PAGES = Number(process.env.MAX_PAGES || 800);
 const ONLY = process.env.ONLY_VENDOR || '';
 const LATENCY_URL = 'https://www.waves.com/support/tech-specs/plugin-latency';
