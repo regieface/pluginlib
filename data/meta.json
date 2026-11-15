@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-15T16:19:49.611Z",
- "count": 1233,
+ "generatedAt": "2026-11-15T16:48:34.130Z",
+ "count": 1182,
  "latency": {
   "ok": true,
   "rows": 255,
@@ -17,25 +17,25 @@
    "via": "sitemap",
    "found": 248,
    "kept": 227,
-   "ms": 50186
+   "ms": 48458
   },
   {
    "vendor": "Plugin Alliance",
    "site": "https://www.plugin-alliance.com",
    "ok": true,
    "via": "sitemap",
-   "found": 221,
-   "kept": 209,
-   "ms": 9442
+   "found": 162,
+   "kept": 155,
+   "ms": 8068
   },
   {
    "vendor": "Slate Digital",
    "site": "https://slatedigital.com",
    "ok": true,
    "via": "sitemap",
-   "found": 150,
-   "kept": 140,
-   "ms": 16550
+   "found": 157,
+   "kept": 146,
+   "ms": 18888
   },
   {
    "vendor": "Universal Audio",
@@ -44,7 +44,7 @@
    "via": "shopify",
    "found": 300,
    "kept": 186,
-   "ms": 362
+   "ms": 458
   },
   {
    "vendor": "Softube",
@@ -53,7 +53,7 @@
    "via": "sitemap",
    "found": 532,
    "kept": 479,
-   "ms": 49440
+   "ms": 44342
   },
   {
    "vendor": "FabFilter",
@@ -62,7 +62,7 @@
    "via": "sitemap",
    "found": 15,
    "kept": 12,
-   "ms": 2960
+   "ms": 3739
   },
   {
    "vendor": "MeldaProduction",
@@ -71,7 +71,7 @@
    "via": "sitemap",
    "found": 121,
    "kept": 113,
-   "ms": 51926
+   "ms": 59528
   },
   {
    "vendor": "Solid State Logic",
@@ -81,7 +81,7 @@
    "found": 0,
    "kept": 1,
    "error": "aucun produit lu",
-   "ms": 1579
+   "ms": 1425
   },
   {
    "vendor": "sonible",
@@ -90,16 +90,16 @@
    "via": "sitemap",
    "found": 69,
    "kept": 35,
-   "ms": 91784
+   "ms": 68895
   },
   {
    "vendor": "IK Multimedia",
    "site": "https://www.ikmultimedia.com",
    "ok": true,
    "via": "sitemap",
-   "found": 71,
-   "kept": 71,
-   "ms": 6058
+   "found": 70,
+   "kept": 67,
+   "ms": 6260
   },
   {
    "vendor": "Harrison",
@@ -108,7 +108,7 @@
    "via": "sitemap",
    "found": 12,
    "kept": 8,
-   "ms": 54692
+   "ms": 50181
   },
   {
    "vendor": "Empirical Labs",
@@ -117,7 +117,7 @@
    "via": "woocommerce",
    "found": 9,
    "kept": 4,
-   "ms": 9443
+   "ms": 5874
   },
   {
    "vendor": "Analog Obsession",
@@ -127,7 +127,7 @@
    "found": 13,
    "kept": 4,
    "error": "tout filtré (hors périmètre)",
-   "ms": 21627
+   "ms": 24432
   },
   {
    "vendor": "Acustica Audio",
@@ -137,7 +137,7 @@
    "found": 0,
    "kept": 0,
    "error": "aucun produit lu",
-   "ms": 3940
+   "ms": 3909
   },
   {
    "vendor": "Kiive Audio",
@@ -146,7 +146,7 @@
    "via": "shopify",
    "found": 58,
    "kept": 27,
-   "ms": 351
+   "ms": 365
   },
   {
    "vendor": "Tokyo Dawn Records",
@@ -155,7 +155,7 @@
    "via": "sitemap",
    "found": 117,
    "kept": 117,
-   "ms": 28738
+   "ms": 27109
   },
   {
    "vendor": "Klanghelm",
@@ -164,7 +164,7 @@
    "via": "sitemap",
    "found": 9,
    "kept": 9,
-   "ms": 2237
+   "ms": 2293
   },
   {
    "vendor": "Oeksound",
@@ -173,7 +173,7 @@
    "via": "sitemap",
    "found": 16,
    "kept": 16,
-   "ms": 386
+   "ms": 1282
   },
   {
    "vendor": "Eventide",
@@ -182,7 +182,7 @@
    "via": "sitemap",
    "found": 246,
    "kept": 243,
-   "ms": 302351
+   "ms": 296412
   },
   {
    "vendor": "Soundtoys",
@@ -191,7 +191,7 @@
    "via": "sitemap",
    "found": 676,
    "kept": 572,
-   "ms": 29980
+   "ms": 26719
   },
   {
    "vendor": "iZotope",
@@ -200,7 +200,7 @@
    "via": "sitemap",
    "found": 58,
    "kept": 46,
-   "ms": 4405
+   "ms": 4659
   },
   {
    "vendor": "Arturia",
@@ -209,7 +209,7 @@
    "via": "sitemap",
    "found": 41,
    "kept": 40,
-   "ms": 8037
+   "ms": 8529
   },
   {
    "vendor": "Valhalla DSP",
@@ -218,7 +218,7 @@
    "via": "woocommerce",
    "found": 10,
    "kept": 10,
-   "ms": 3100
+   "ms": 2958
   },
   {
    "vendor": "Black Rooster Audio",
@@ -227,7 +227,7 @@
    "via": "sitemap",
    "found": 35,
    "kept": 29,
-   "ms": 51547
+   "ms": 48314
   },
   {
    "vendor": "Positive Grid",
@@ -236,7 +236,7 @@
    "via": "sitemap",
    "found": 139,
    "kept": 6,
-   "ms": 65895
+   "ms": 64889
   }
  ],
  "labels": {

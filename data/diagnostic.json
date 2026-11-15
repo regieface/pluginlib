@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-15T16:19:49.611Z",
+ "generatedAt": "2026-11-15T16:48:34.130Z",
  "vendors": [
   {
    "vendor": "Waves",
@@ -292,8 +292,8 @@
    ],
    "pass1": {
     "fetched": 259,
-    "products": 221,
-    "discovered": 4
+    "products": 162,
+    "discovered": 1
    }
   },
   {
@@ -450,12 +450,12 @@
    ],
    "pass1": {
     "fetched": 286,
-    "products": 57,
-    "discovered": 4849
+    "products": 64,
+    "discovered": 4925
    },
    "pass2": {
     "fetched": 514,
-    "products": 150,
+    "products": 157,
     "discovered": 0
    }
   },
@@ -919,7 +919,7 @@
     "discovered": 4525
    },
    "pass2": {
-    "fetched": 357,
+    "fetched": 358,
     "products": 121,
     "discovered": 0
    }
@@ -1245,8 +1245,8 @@
    ],
    "pass1": {
     "fetched": 136,
-    "products": 71,
-    "discovered": 443
+    "products": 70,
+    "discovered": 455
    }
   },
   {
@@ -1642,10 +1642,10 @@
    "pass1": {
     "fetched": 22,
     "products": 20,
-    "discovered": 105
+    "discovered": 106
    },
    "pass2": {
-    "fetched": 105,
+    "fetched": 106,
     "products": 117,
     "discovered": 0
    }
