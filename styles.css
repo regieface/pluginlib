@@ -11,7 +11,7 @@ header { background: var(--navy); color: #fff; border-bottom: 4px solid #02a5b7;
 .symbol { width: 48px; height: 48px; background: #05a4b4; border-radius: 13px; display: flex; align-items: center; justify-content: center; gap: 3px; }
 .symbol i { display: block; background: #fff; border-radius: 10px; width: 4px; height: 18px; }
 .symbol i:nth-child(2) { height: 31px; } .symbol i:nth-child(3) { height: 24px; } .symbol i:nth-child(4) { height: 37px; } .symbol i:nth-child(5) { height: 15px; }
-h1 { font-size: 28px; letter-spacing: -.9px; margin: 0; line-height: 1.1; }
+h1 { font-family: "Avenir Next", Avenir, "Trebuchet MS", sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -.9px; margin: 0; line-height: 1.1; }
 .tagline { margin: 4px 0 0; color: #b9d7de; font-size: 12px; }
 .headright { font-size: 12px; color: #c7dfe3; text-align: right; }
 
