@@ -1,0 +1,123 @@
+{
+ "generatedAt": "2026-11-15T12:55:15.748Z",
+ "count": 0,
+ "latency": {
+  "ok": false
+ },
+ "sources": [],
+ "labels": {
+  "categories": {
+   "channel": "Tranche console / Channel strip",
+   "deesser": "De-esser",
+   "limiter": "Limiteur / Maximiseur",
+   "multiband": "Dynamique multibande",
+   "comp": "Compresseur",
+   "gate": "Gate / Expandeur",
+   "transient": "Transitoires",
+   "eq": "Égaliseur",
+   "resonance": "Suppresseur de résonances",
+   "saturation": "Saturation / Distorsion",
+   "tape": "Bande / Émulation magnétique",
+   "reverb": "Réverbération",
+   "delay": "Délai / Écho",
+   "modulation": "Modulation",
+   "pitch": "Pitch / Correction vocale",
+   "stereo": "Image stéréo",
+   "analysis": "Mesure / Analyse",
+   "restoration": "Restauration / Débruitage",
+   "mastering": "Suite de mastering",
+   "amp": "Ampli / Guitare & basse",
+   "utility": "Utilitaire",
+   "other": "Autre / non classé"
+  },
+  "facets": {
+   "techno": {
+    "label": "Technologie",
+    "for": [
+     "comp",
+     "limiter",
+     "channel",
+     "multiband"
+    ],
+    "values": {
+     "fet": "FET",
+     "vca": "VCA",
+     "opto": "Optique",
+     "varimu": "Vari-Mu / Lampes",
+     "diode": "Diode bridge",
+     "pwm": "PWM",
+     "digital": "Numérique / transparent"
+    }
+   },
+   "vitesse": {
+    "label": "Attaque",
+    "for": [
+     "comp",
+     "limiter",
+     "transient"
+    ],
+    "values": {
+     "rapide": "Rapide",
+     "lente": "Lente / douce",
+     "reglable": "Réglable"
+    }
+   },
+   "eqtype": {
+    "label": "Type d'EQ",
+    "for": [
+     "eq",
+     "channel",
+     "resonance"
+    ],
+    "values": {
+     "dynamique": "Dynamique",
+     "fixe": "Paramétrique fixe",
+     "passif": "Passif",
+     "graphique": "Graphique",
+     "linphase": "Phase linéaire",
+     "console": "Couleur console",
+     "resonance": "Suppression de résonances",
+     "ms": "Mid/Side"
+    }
+   },
+   "saturation": {
+    "label": "Caractère",
+    "for": [
+     "saturation",
+     "tape",
+     "channel"
+    ],
+    "values": {
+     "lampe": "Lampe",
+     "bande": "Bande",
+     "transfo": "Transformateur",
+     "console": "Console",
+     "exciter": "Exciter / aigus"
+    }
+   },
+   "espace": {
+    "label": "Type",
+    "for": [
+     "reverb",
+     "delay"
+    ],
+    "values": {
+     "plate": "Plate",
+     "hall": "Hall",
+     "room": "Room",
+     "chambre": "Chambre",
+     "spring": "Ressort",
+     "convolution": "Convolution",
+     "bande": "Écho à bande",
+     "algorithmique": "Algorithmique"
+    }
+   }
+  },
+  "common": {
+   "sidechain": "Side-chain externe",
+   "ms": "Mid/Side",
+   "live": "Mode / version Live",
+   "zl": "« Zero latency » annoncé"
+  }
+ }
+}

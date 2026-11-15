@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PluginLib — bibliothèque de plugins mix & mastering</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e8a33d'/><circle cx='16' cy='16' r='8' fill='none' stroke='%23161311' stroke-width='3'/><path d='M16 16 L21 11' stroke='%23161311' stroke-width='3' stroke-linecap='round'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--bg)" stroke-width="3"/><path d="M16 16 L21 11" stroke="var(--bg)" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>Plugin<b>Lib</b></span>
+    </div>
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Rechercher un plugin, un constructeur, un modèle (1176, Pultec…)" autocomplete="off">
+    </label>
+    <button id="toggleFilters" class="ghost only-mobile">Filtres</button>
+  </header>
+
+  <div class="layout">
+    <aside id="filters" class="filters">
+      <section>
+        <h3>Ma collection</h3>
+        <div class="seg" id="own">
+          <button data-v="all" class="on">Tout</button>
+          <button data-v="mine">Les miens</button>
+          <button data-v="notmine">À découvrir</button>
+        </div>
+      </section>
+
+      <section>
+        <h3>Catégorie</h3>
+        <div id="cats" class="cats"></div>
+      </section>
+
+      <section id="facets"></section>
+
+      <section>
+        <h3>Latence <small>(chiffres officiels Waves)</small></h3>
+        <div class="seg" id="rate">
+          <button data-v="48" class="on">48 kHz</button>
+          <button data-v="96">96 kHz</button>
+        </div>
+        <label class="check"><input type="checkbox" id="zl"> Zero latency (0 sample)</label>
+        <label class="check"><input type="checkbox" id="zlv"> … y compris via une variante (Live, etc.)</label>
+        <label class="check"><input type="checkbox" id="haslat"> Seulement les plugins dont la latence est publiée</label>
+      </section>
+
+      <section>
+        <h3>Options</h3>
+        <div id="common"></div>
+      </section>
+
+      <section>
+        <h3>Constructeur</h3>
+        <select id="vendor"><option value="">Tous</option></select>
+      </section>
+
+      <section class="small-actions">
+        <button id="reset" class="ghost">Réinitialiser les filtres</button>
+        <button id="export" class="ghost">Exporter ma collection</button>
+        <label class="ghost file">Importer…<input type="file" id="import" accept="application/json"></label>
+      </section>
+    </aside>
+
+    <main>
+      <div class="bar">
+        <p id="count" aria-live="polite"></p>
+        <select id="sort" aria-label="Trier">
+          <option value="name">Nom A→Z</option>
+          <option value="vendor">Constructeur</option>
+          <option value="latency">Latence croissante</option>
+        </select>
+      </div>
+      <div id="grid" class="grid"></div>
+      <p id="empty" class="empty" hidden>Aucun plugin ne correspond à ces filtres.</p>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <details>
+      <summary id="updated">Données…</summary>
+      <div class="about">
+        <p>Les données sont collectées automatiquement chaque nuit sur les sites des constructeurs (pages produit, boutiques, sitemaps). Un lien n'est affiché que si la page a répondu correctement lors de la dernière collecte. Les latences proviennent du <a id="latSrc" href="https://www.waves.com/support/tech-specs/plugin-latency" target="_blank" rel="noopener">tableau officiel Waves</a> ; les autres constructeurs ne publient pas de tableau équivalent.</p>
+        <p>La catégorie et les critères (FET, VCA, dynamique, side-chain…) sont <b>déduits automatiquement</b> des mots employés par le constructeur : ils peuvent être incomplets. Corrections possibles dans <code>data/overrides.json</code>.</p>
+        <table id="sources"></table>
+      </div>
+    </details>
+  </footer>
+
+  <template id="card">
+    <article class="card">
+      <div class="thumb"><img loading="lazy" referrerpolicy="no-referrer" alt=""><span class="initials"></span></div>
+      <div class="body">
+        <div class="head">
+          <div>
+            <h4 class="name"></h4>
+            <p class="vendor"></p>
+          </div>
+          <button class="own" aria-pressed="false" title="Je possède ce plugin">
+            <svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
+          </button>
+        </div>
+        <p class="cat"></p>
+        <p class="tags"></p>
+        <p class="lat"></p>
+        <a class="link" target="_blank" rel="noopener"></a>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

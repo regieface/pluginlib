@@ -1,0 +1,230 @@
+{
+  "_doc": "Liste des constructeurs collectés chaque nuit. 'mode' = auto (essaie Shopify, puis WooCommerce, puis sitemap) | shopify | woocommerce | sitemap. 'include' / 'exclude' = motifs (expressions régulières) appliqués à l'URL des pages produit en mode sitemap. Ajoute ou retire un constructeur ici, sans toucher au code. En mode sitemap, une page n'est retenue que si elle se déclare comme produit (JSON-LD Product/SoftwareApplication ou og:type=product), sauf si 'trustInclude' est vrai (motif d'URL jugé assez précis).",
+  "vendors": [
+    {
+      "name": "Waves",
+      "site": "https://www.waves.com",
+      "mode": "sitemap",
+      "include": [
+        "/plugins/[a-z0-9-]+$"
+      ],
+      "exclude": [
+        "/plugins/(all|new|on-sale)"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Plugin Alliance",
+      "site": "https://www.plugin-alliance.com",
+      "mode": "sitemap",
+      "include": [
+        "/en/products/[a-z0-9_-]+\\.html$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Slate Digital",
+      "site": "https://slatedigital.com",
+      "mode": "auto",
+      "include": [
+        "/[a-z0-9-]+/?$"
+      ],
+      "exclude": [
+        "/(blog|news|support|about|contact|cart|account|tag|category|page|author|legal|privacy|terms|careers|press|faq|education|artists?|bundles?|all-access|complete-access)(/|$)"
+      ]
+    },
+    {
+      "name": "Universal Audio",
+      "site": "https://www.uaudio.com",
+      "mode": "auto",
+      "include": [
+        "/products/[a-z0-9-]+"
+      ]
+    },
+    {
+      "name": "Softube",
+      "site": "https://www.softube.com",
+      "mode": "auto",
+      "include": [
+        "/plug-ins/[a-z0-9-]+$",
+        "/products/[a-z0-9-]+$"
+      ]
+    },
+    {
+      "name": "FabFilter",
+      "site": "https://www.fabfilter.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/[a-z0-9-]+$"
+      ],
+      "exclude": [
+        "/(bundles|compare)"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "MeldaProduction",
+      "site": "https://www.meldaproduction.com",
+      "mode": "sitemap",
+      "include": [
+        "/M[A-Za-z0-9]+$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Solid State Logic",
+      "site": "https://www.solidstatelogic.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/plug-ins/[a-z0-9-]+$",
+        "/products/[a-z0-9-]+-plug-in$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "sonible",
+      "site": "https://www.sonible.com",
+      "mode": "sitemap",
+      "include": [
+        "/(en/)?[a-z0-9-]+/?$"
+      ],
+      "require": [
+        "smart|pure|true:|prox|entropy|frei:raum|neo|unpack"
+      ]
+    },
+    {
+      "name": "IK Multimedia",
+      "site": "https://www.ikmultimedia.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/(tr|tr6|trs|trx)[a-z0-9-]*/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Harrison",
+      "site": "https://harrisonaudio.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Empirical Labs",
+      "site": "https://www.empiricallabs.com",
+      "mode": "auto",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ]
+    },
+    {
+      "name": "Analog Obsession",
+      "site": "https://www.analogobsession.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Acustica Audio",
+      "site": "https://www.acustica-audio.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Kiive Audio",
+      "site": "https://www.kiiveaudio.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Tokyo Dawn Records",
+      "site": "https://www.tokyodawn.net",
+      "mode": "sitemap",
+      "include": [
+        "/tdr-[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Klanghelm",
+      "site": "https://klanghelm.com",
+      "mode": "sitemap",
+      "include": [
+        "/contents/products/[A-Za-z0-9-]+/[A-Za-z0-9-]+\\.php$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Oeksound",
+      "site": "https://oeksound.com",
+      "mode": "auto",
+      "include": [
+        "/plugins/[a-z0-9-]+/?$"
+      ]
+    },
+    {
+      "name": "Eventide",
+      "site": "https://www.eventideaudio.com",
+      "mode": "sitemap",
+      "include": [
+        "/plug-ins/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Soundtoys",
+      "site": "https://www.soundtoys.com",
+      "mode": "sitemap",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "iZotope",
+      "site": "https://www.izotope.com",
+      "mode": "sitemap",
+      "include": [
+        "/en/products/[a-z0-9-]+\\.html$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Arturia",
+      "site": "https://www.arturia.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/(audio-effects|software-effects)/[a-z0-9-]+/overview$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Native Instruments",
+      "site": "https://www.native-instruments.com",
+      "mode": "sitemap",
+      "include": [
+        "/en/products/komplete/effects/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Valhalla DSP",
+      "site": "https://valhalladsp.com",
+      "mode": "auto",
+      "include": [
+        "/shop/[a-z0-9-]+/[a-z0-9-]+/?$"
+      ]
+    },
+    {
+      "name": "Black Rooster Audio",
+      "site": "https://www.blackroosteraudio.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Kush Audio",
+      "site": "https://www.kushaudio.com",
+      "mode": "auto"
+    },
+    {
+      "name": "Positive Grid",
+      "site": "https://www.positivegrid.com",
+      "mode": "auto",
+      "require": [
+        "pro series|eq|comp|limiter|reverb|delay"
+      ]
+    }
+  ]
+}
