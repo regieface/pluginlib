@@ -1,6 +1,6 @@
 # PluginLib
 
-Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni de synthés), consultable dans le navigateur, avec des données mises à jour automatiquement chaque nuit.
+Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni de synthés), consultable dans le navigateur, avec des données mises à jour automatiquement toutes les deux semaines.
 
 ## Comment ça marche
 
@@ -12,14 +12,19 @@ Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni d
 | `data/overrides.json` | **Tes corrections manuelles** (conservées à chaque mise à jour) |
 | `sources/vendors.json` | La liste des constructeurs collectés |
 | `scripts/update.mjs` | Le script de collecte (Node 22, aucune dépendance) |
-| `.github/workflows/update-data.yml` | Lance la collecte chaque nuit (03:17 UTC) et publie le résultat |
+| `.github/workflows/update-data.yml` | Lance la collecte toutes les deux semaines (03:17 UTC) et publie le résultat |
+
+La collecte a lieu un dimanche sur deux, avec pour ancrage le 15 novembre 2026
+(puis le 29 novembre, le 13 décembre, etc.). GitHub Actions vérifie le calendrier
+chaque dimanche et saute la collecte les semaines intermédiaires. Les pushs ne
+déclenchent pas de collecte. Un lancement manuel reste disponible dans l’onglet Actions.
 
 ### D'où viennent les données
 
 - **Fiches et visuels** : lus directement sur le site de chaque constructeur (API de boutique Shopify / WooCommerce, ou sitemap + balises de la page produit). Un lien n'est publié que si la page a répondu correctement lors de la collecte, sans rediriger vers l'accueil.
 - **Latences** : tableau officiel Waves (<https://www.waves.com/support/tech-specs/plugin-latency>). Les autres constructeurs ne publient pas de tableau équivalent : leur latence reste vide plutôt qu'estimée.
 - **Catégories et critères** (FET, VCA, EQ dynamique, side-chain…) : déduits des mots employés par le constructeur. C'est automatique, donc imparfait → corrige via `data/overrides.json`.
-- Si une source tombe en panne une nuit, les données de la veille sont conservées et l'échec est indiqué en bas de l'application.
+- Si une source tombe en panne lors d’une collecte, les données de la collecte précédente sont conservées et l'échec est indiqué en bas de l'application.
 
 ### Ta collection (« Les miens »)
 

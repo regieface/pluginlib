@@ -2,15 +2,13 @@ name: Mise à jour des données
 
 on:
   schedule:
-    - cron: '17 3 * * *'   # chaque nuit à 03:17 UTC
+    - cron: '17 3 * * 0'   # dimanche à 03:17 UTC ; collecte une semaine sur deux
   workflow_dispatch:
     inputs:
       vendor:
         description: "Ne collecter qu'un constructeur (nom exact, vide = tous)"
         required: false
         default: ''
-  push:
-    paths: ['scripts/**', 'sources/**', 'data/overrides.json']
 
 permissions:
   contents: write
@@ -20,7 +18,32 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  cadence:
+    runs-on: ubuntu-latest
+    outputs:
+      collect: ${{ steps.calendar.outputs.collect }}
+    steps:
+      - name: Vérifier la quinzaine
+        id: calendar
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from datetime import date, datetime, timezone
+
+          # Ancrage fixe : dimanches 15/11, 29/11, 13/12, etc.
+          today = datetime.now(timezone.utc).date()
+          weeks = (today - date(2026, 11, 15)).days // 7
+          collect = os.environ['EVENT_NAME'] == 'workflow_dispatch' or weeks % 2 == 0
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'collect={str(collect).lower()}\n')
+          print('Collecte autorisée.' if collect else 'Semaine sans collecte.')
+          PY
+
   update:
+    needs: cadence
+    if: needs.cadence.outputs.collect == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:

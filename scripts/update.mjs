@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// PluginLib — collecte quotidienne des données.
+// PluginLib — collecte des données toutes les deux semaines.
 // Lit sources/vendors.json, interroge les sites constructeurs, et écrit :
 //   data/plugins.json  (le catalogue)
 //   data/meta.json     (date, état de chaque source, libellés des filtres)
