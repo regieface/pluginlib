@@ -3,112 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PluginLib — bibliothèque de plugins mix & mastering</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23e8a33d'/><circle cx='16' cy='16' r='8' fill='none' stroke='%23161311' stroke-width='3'/><path d='M16 16 L21 11' stroke='%23161311' stroke-width='3' stroke-linecap='round'/></svg>">
+  <title>PluginLib — Mix & Master</title>
+  <meta name="description" content="Bibliothèque de plugins de mixage et de mastering, mise à jour automatiquement chaque nuit.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' rx='13' fill='%2305a4b4'/><g fill='white'><rect x='11' y='15' width='4' height='18' rx='2'/><rect x='18' y='9' width='4' height='31' rx='2'/><rect x='25' y='12' width='4' height='24' rx='2'/><rect x='32' y='6' width='4' height='37' rx='2'/></g></svg>">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="top">
+  <header>
     <div class="brand">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--accent)"/><circle cx="16" cy="16" r="8" fill="none" stroke="var(--bg)" stroke-width="3"/><path d="M16 16 L21 11" stroke="var(--bg)" stroke-width="3" stroke-linecap="round"/></svg>
-      <span>Plugin<b>Lib</b></span>
+      <div class="symbol" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div>
+        <h1>PluginLib</h1>
+        <p class="tagline">Bibliothèque d’effets · Mixage live & mastering</p>
+      </div>
     </div>
-    <label class="search">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-      <input id="q" type="search" placeholder="Rechercher un plugin, un constructeur, un modèle (1176, Pultec…)" autocomplete="off">
-    </label>
-    <button id="toggleFilters" class="ghost only-mobile">Filtres</button>
+    <div class="headright" id="headright">Mise à jour automatique chaque nuit</div>
   </header>
 
-  <div class="layout">
-    <aside id="filters" class="filters">
-      <section>
-        <h3>Ma collection</h3>
-        <div class="seg" id="own">
-          <button data-v="all" class="on">Tout</button>
-          <button data-v="mine">Les miens</button>
-          <button data-v="notmine">À découvrir</button>
+  <main>
+    <div class="summary">
+      <div class="stat"><div class="n" id="total">—</div><div class="s">Plugins de mixage & mastering</div></div>
+      <div class="stat"><div class="n" id="makers">—</div><div class="s">Fabricants</div></div>
+      <div class="stat"><div class="n" id="latstat">—</div><div class="s">Latences officielles Waves</div></div>
+      <div class="stat"><div class="n" id="linkstat">—</div><div class="s">Fiches constructeur vérifiées</div></div>
+    </div>
+
+    <section class="panel">
+      <div class="upper">
+        <div class="scope" id="scope">
+          <button data-scope="all" class="active">Toute la bibliothèque</button>
+          <button data-scope="owned">Ma collection</button>
+          <button data-scope="wishlist">Liste d’envies</button>
+          <button data-scope="discover">À découvrir</button>
         </div>
-      </section>
-
-      <section>
-        <h3>Catégorie</h3>
-        <div id="cats" class="cats"></div>
-      </section>
-
-      <section id="facets"></section>
-
-      <section>
-        <h3>Latence <small>(chiffres officiels Waves)</small></h3>
-        <div class="seg" id="rate">
-          <button data-v="48" class="on">48 kHz</button>
-          <button data-v="96">96 kHz</button>
+        <div class="actions">
+          <button class="outline" id="reset">Réinitialiser</button>
+          <button class="outline" id="import">Importer ma collection</button>
+          <button class="outline" id="export">Exporter ma collection</button>
+          <input id="importFile" type="file" accept="application/json,.json">
         </div>
-        <label class="check"><input type="checkbox" id="zl"> Zero latency (0 sample)</label>
-        <label class="check"><input type="checkbox" id="zlv"> … y compris via une variante (Live, etc.)</label>
-        <label class="check"><input type="checkbox" id="haslat"> Seulement les plugins dont la latence est publiée</label>
-      </section>
+      </div>
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 5 5"></path></svg>
+        <input id="query" placeholder="Rechercher un effet, un fabricant, un modèle (1176, Pultec…)" autocomplete="off">
+      </div>
+      <div class="filters">
+        <div class="field"><label for="family">Famille</label><select id="family"></select></div>
+        <div class="field"><label for="maker">Fabricant</label><select id="maker"></select></div>
+        <div class="field"><label for="c1" id="label1">Critère 1</label><select id="c1"></select></div>
+        <div class="field"><label for="c2" id="label2">Critère 2</label><select id="c2"></select></div>
+        <div class="field"><label for="c3" id="label3">Critère 3</label><select id="c3"></select></div>
+        <div class="field"><label for="option">Fonction</label><select id="option"></select></div>
+        <div class="field"><label for="zl">Zero Latency</label>
+          <select id="zl">
+            <option value="all">Indifférent</option>
+            <option value="zero">0 sample (mode standard)</option>
+            <option value="zeromode">0 sample, y compris selon mode</option>
+            <option value="announced">Annoncé par le fabricant</option>
+            <option value="known">Latence publiée</option>
+          </select></div>
+        <div class="field"><label for="rate">Fréquence</label>
+          <select id="rate"><option value="96">96 kHz</option><option value="48">48 kHz</option></select></div>
+        <div class="field"><label for="links">Fiche constructeur</label>
+          <select id="links"><option value="all">Indifférent</option><option value="yes">Fiche vérifiée</option><option value="no">Sans fiche</option></select></div>
+        <div class="field"><label for="visual">Visuels</label>
+          <select id="visual"><option value="all">Tous</option><option value="yes">Avec visuel</option><option value="no">Sans visuel</option></select></div>
+      </div>
+    </section>
 
-      <section>
-        <h3>Options</h3>
-        <div id="common"></div>
-      </section>
-
-      <section>
-        <h3>Constructeur</h3>
-        <select id="vendor"><option value="">Tous</option></select>
-      </section>
-
-      <section class="small-actions">
-        <button id="reset" class="ghost">Réinitialiser les filtres</button>
-        <button id="export" class="ghost">Exporter ma collection</button>
-        <label class="ghost file">Importer…<input type="file" id="import" accept="application/json"></label>
-      </section>
-    </aside>
-
-    <main>
-      <div class="bar">
-        <p id="count" aria-live="polite"></p>
-        <select id="sort" aria-label="Trier">
-          <option value="name">Nom A→Z</option>
-          <option value="vendor">Constructeur</option>
+    <div class="resulthead">
+      <div>
+        <h2><span id="matched">0</span> résultats</h2>
+        <small id="hint">Choisis une famille pour afficher les critères adaptés. Les filtres sont cumulables.</small>
+      </div>
+      <div class="resultsort">
+        <label for="sort">Trier :</label>
+        <select id="sort">
+          <option value="az">Plugin A–Z</option>
+          <option value="brand">Fabricant A–Z</option>
+          <option value="images">Visuels en premier</option>
           <option value="latency">Latence croissante</option>
         </select>
       </div>
-      <div id="grid" class="grid"></div>
-      <p id="empty" class="empty" hidden>Aucun plugin ne correspond à ces filtres.</p>
-    </main>
-  </div>
+    </div>
 
-  <footer class="foot">
-    <details>
-      <summary id="updated">Données…</summary>
-      <div class="about">
-        <p>Les données sont collectées automatiquement chaque nuit sur les sites des constructeurs (pages produit, boutiques, sitemaps). Un lien n'est affiché que si la page a répondu correctement lors de la dernière collecte. Les latences proviennent du <a id="latSrc" href="https://www.waves.com/support/tech-specs/plugin-latency" target="_blank" rel="noopener">tableau officiel Waves</a> ; les autres constructeurs ne publient pas de tableau équivalent.</p>
-        <p>La catégorie et les critères (FET, VCA, dynamique, side-chain…) sont <b>déduits automatiquement</b> des mots employés par le constructeur : ils peuvent être incomplets. Corrections possibles dans <code>data/overrides.json</code>.</p>
-        <table id="sources"></table>
-      </div>
+    <div class="cards" id="cards"></div>
+    <button class="loadmore" id="more" hidden>Afficher plus de plugins</button>
+
+    <details class="panel coverage">
+      <summary><b>Sources et état de la dernière mise à jour</b></summary>
+      <p class="about">Les données sont lues chaque nuit sur les sites des fabricants. Un lien n’est affiché que si la page a répondu lors de la dernière collecte. Les latences proviennent du <a href="https://www.waves.com/support/tech-specs/plugin-latency" target="_blank" rel="noopener">tableau officiel Waves</a>. Famille et critères sont déduits des mots employés par le fabricant : ils peuvent être incomplets.</p>
+      <div class="tablewrap"><table id="sources"></table></div>
     </details>
-  </footer>
+    <div class="smallprint">PluginLib · Les données inconnues restent inconnues : rien n’est estimé. Ta collection est enregistrée dans ce navigateur — pense à l’exporter.</div>
+  </main>
 
-  <template id="card">
+  <template id="tpl">
     <article class="card">
-      <div class="thumb"><img loading="lazy" referrerpolicy="no-referrer" alt=""><span class="initials"></span></div>
-      <div class="body">
-        <div class="head">
-          <div>
-            <h4 class="name"></h4>
-            <p class="vendor"></p>
-          </div>
-          <button class="own" aria-pressed="false" title="Je possède ce plugin">
-            <svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>
-          </button>
-        </div>
-        <p class="cat"></p>
-        <p class="tags"></p>
-        <p class="lat"></p>
-        <a class="link" target="_blank" rel="noopener"></a>
+      <div class="art"><div class="fallback"><b></b><span></span></div><img loading="lazy" referrerpolicy="no-referrer" alt=""><span class="ribbon"></span></div>
+      <div class="info">
+        <div class="maker"></div>
+        <div class="plugin"></div>
+        <div class="description"></div>
+        <div class="badges"></div>
+        <div class="latbox"></div>
+        <div class="own"><label>Ma licence</label><select></select></div>
       </div>
+      <div class="footer"><span class="footnote"></span><a class="productlink" target="_blank" rel="noopener"></a></div>
     </article>
   </template>
 
