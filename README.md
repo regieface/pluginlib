@@ -51,3 +51,4 @@ ONLY_VENDOR=Waves node scripts/update.mjs
 node --test scripts/parsers.test.mjs
 python -m http.server              # puis http://localhost:8000
 ```
+# pluginlib
