@@ -64,4 +64,9 @@ jobs:
           git add data/plugins.json data/meta.json data/diagnostic.json
           if git diff --cached --quiet; then echo "Aucun changement."; exit 0; fi
           git commit -m "données : mise à jour du $(date -u +%Y-%m-%d)"
-          git push
+          # Si quelqu'un a poussé pendant la collecte, on se remet à jour avant d'envoyer
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep 5
+          done
+          exit 1
