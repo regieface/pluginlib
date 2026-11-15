@@ -14,7 +14,7 @@ import { parseWavesLatency, matchWaves, norm } from './waves.mjs';
 import { extractPage, parseSitemap, stripHtml, slug } from './parse.mjs';
 
 const ROOT = new URL('..', import.meta.url);
-const UA = 'PluginLibBot/1.0 (+https://github.com/AlineCoatanoan/pluginlib; catalogue personnel, 1 passage/jour)';
+const UA = 'PluginLibBot/1.0 (+https://github.com/alexandrelegrand/pluginlib; catalogue personnel, 1 passage/jour)';
 const MAX_PAGES = Number(process.env.MAX_PAGES || 800);
 const ONLY = process.env.ONLY_VENDOR || '';
 const LATENCY_URL = 'https://www.waves.com/support/tech-specs/plugin-latency';
