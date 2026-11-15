@@ -1,34 +1,45 @@
 // Résumés français pour les cartes. Les textes constructeur restent dans les données.
 // Les précisions viennent uniquement du nom et du descriptif du produit.
 export function shortDescription(plugin) {
+  if(plugin.recordType==='instrument')return 'Instrument virtuel pour jouer et créer des sons.';
+  if(plugin.recordType==='module')return 'Module ou extension nécessitant un environnement hôte.';
+  if(plugin.recordType==='application')return 'Application audio ou outil de gestion des installations.';
+  if(plugin.recordType==='bundle')return 'Pack réunissant plusieurs plugins.';
+  if (plugin.category === 'other' || !plugin.category) return 'Fonction principale à vérifier sur la fiche constructeur.';
+  if (plugin.category === 'tuner') return 'Accordeur pour vérifier la justesse des instruments.';
+  if (plugin.category === 'feedback') return 'Simulation de larsen acoustique pour enrichir le jeu de guitare.';
+  if (plugin.category === 'filter') return 'Filtre pour façonner le spectre et le mouvement du son.';
+  if (plugin.category === 'preamp') return 'Préampli pour régler le gain et la couleur du signal.';
+  if (plugin.category === 'multi') return 'Plusieurs traitements ou effets réunis dans un seul outil.';
   const text = `${plugin.name || ''} ${plugin.description || ''}`;
   const has = (pattern) => pattern.test(text);
+  const documented = tag => plugin.tags?.includes(tag);
 
   // Fonctions explicites prioritaires : certaines familles automatiques sont imprécises.
-  if (has(/tape (delay|echo)|delay tape|space echo/i)) return 'Écho à bande pour des répétitions au caractère vintage.';
-  if (has(/de-?ess|sibilan/i)) return 'Atténue les sifflantes pour adoucir les voix.';
-  if (has(/dynamic eq|dynamic equali/i)) return 'Égaliseur dynamique pour corriger le son selon son niveau.';
-  if (has(/channel ?strip/i)) return 'Tranche de console pour traiter une piste dans un seul outil.';
+  if (plugin.category === 'delay' && documented('espace:bande')) return 'Écho à bande pour des répétitions au caractère vintage.';
+  if (plugin.category === 'deesser') return 'Atténue les sifflantes pour adoucir les voix.';
+  if (plugin.category === 'eq' && plugin.tags?.includes('eqtype:dynamique')) return 'Égaliseur dynamique pour corriger le son selon son niveau.';
+  if (plugin.category === 'channel') return 'Tranche de console pour traiter une piste dans un seul outil.';
 
   switch (plugin.category) {
     case 'comp':
-      if (has(/\bfet\b|\b1176\b|cla-?76/i)) return 'Compresseur FET pour maîtriser les crêtes et ajouter du punch.';
-      if (has(/\bopto|\bla-?2a\b/i)) return 'Compresseur optique pour lisser la dynamique en douceur.';
-      if (has(/diode|33609/i)) return 'Compresseur à pont de diodes pour contrôler la dynamique.';
-      if (has(/vari-?mu|fairchild|\btube\b|\bvalve\b/i)) return 'Compresseur à lampes pour contrôler et colorer la dynamique.';
-      if (has(/\bvca\b/i)) return 'Compresseur VCA pour maîtriser la dynamique des pistes et bus.';
+      if (documented('techno:fet')) return 'Compresseur FET pour maîtriser les crêtes et ajouter du punch.';
+      if (documented('techno:opto')) return 'Compresseur optique pour lisser la dynamique en douceur.';
+      if (documented('techno:diode')) return 'Compresseur à pont de diodes pour contrôler la dynamique.';
+      if (documented('techno:varimu')) return 'Compresseur Vari-Mu pour contrôler la dynamique.';
+      if (documented('techno:vca')) return 'Compresseur VCA pour maîtriser la dynamique des pistes et bus.';
       return 'Compresseur pour maîtriser les écarts de niveau du signal.';
     case 'eq':
-      if (has(/passive|pultec|eqp-?1a/i)) return 'Égaliseur passif pour sculpter la couleur du son.';
-      if (has(/linear[- ]phase/i)) return 'Égaliseur à phase linéaire pour ajuster le spectre sonore.';
-      if (has(/graphic eq/i)) return 'Égaliseur graphique pour ajuster les bandes de fréquences.';
-      if (has(/parametric/i)) return 'Égaliseur paramétrique pour cibler les fréquences à corriger.';
+      if (documented('eqtype:passif')) return 'Égaliseur passif pour sculpter la couleur du son.';
+      if (documented('eqtype:linphase')) return 'Égaliseur à phase linéaire pour ajuster le spectre sonore.';
+      if (documented('eqtype:graphique')) return 'Égaliseur graphique pour ajuster les bandes de fréquences.';
+      if (documented('eqtype:fixe')) return 'Égaliseur paramétrique pour cibler les fréquences à corriger.';
       return 'Égaliseur pour ajuster les graves, les médiums et les aigus.';
     case 'reverb':
-      if (has(/convolution|impulse response/i)) return 'Réverbération à convolution pour recréer des espaces sonores.';
-      if (has(/\bspring\b/i)) return 'Réverbération à ressort pour donner un caractère vintage.';
-      if (has(/\bplate\b/i)) return 'Réverbération à plaque pour ajouter de la profondeur au son.';
-      if (has(/\bchamber/i)) return 'Réverbération de chambre pour placer le son dans un espace.';
+      if (documented('espace:convolution')) return 'Réverbération à convolution pour recréer des espaces sonores.';
+      if (documented('espace:spring')) return 'Réverbération à ressort pour donner un caractère vintage.';
+      if (documented('espace:plate')) return 'Réverbération à plaque pour ajouter de la profondeur au son.';
+      if (documented('espace:chambre')) return 'Réverbération de chambre pour placer le son dans un espace.';
       return 'Réverbération pour ajouter de l’espace et de la profondeur.';
     case 'delay': return 'Délai pour créer des échos et des répétitions rythmiques.';
     case 'modulation':
@@ -58,7 +69,9 @@ export function shortDescription(plugin) {
     case 'mastering': return 'Traitement de mastering pour finaliser le mixage.';
     case 'amp': return 'Simulation d’amplification pour façonner le son instrumental.';
     case 'resonance': return 'Atténue les résonances pour équilibrer le spectre sonore.';
-    case 'utility': return 'Utilitaire audio pour les réglages techniques du signal.';
+    case 'utility':
+      if (has(/(?:latency|compensation) delay|(?:time|phase|sample) align|sub-sample delay/i)) return 'Décalage précis du signal pour l’alignement ou la compensation.';
+      return 'Utilitaire audio pour les réglages techniques du signal.';
     default: return 'Fonction à préciser : consulter la fiche constructeur.';
   }
 }

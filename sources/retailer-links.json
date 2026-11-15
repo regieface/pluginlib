@@ -1,0 +1,549 @@
+{
+  "_doc": "Prix de repli pour la même version du plugin uniquement. L'éditeur reste prioritaire. Les recherches sans correspondance exacte, upgrades, bundles et éditions scolaires ne sont pas retenues. Ajouter des revendeurs ou URL vérifiés ici.",
+  "retailers": [
+    {
+      "name": "Thomann",
+      "hosts": [
+        "www.thomann.de",
+        "thomann.de"
+      ],
+      "searchURL": "https://www.thomann.de/fr/search_dir.html?sw="
+    },
+    {
+      "name": "Plugin Boutique",
+      "hosts": [
+        "www.pluginboutique.com",
+        "pluginboutique.com"
+      ],
+      "manufacturerIndexURL": "https://www.pluginboutique.com/manufacturers",
+      "catalogs": {
+        "Eventide": "https://www.pluginboutique.com/manufacturers/186-Eventide"
+      }
+    }
+  ],
+  "products": {
+    "eventide--sp2016-reverb": [
+      "https://www.thomann.de/fr/eventide_sp2016_reverb.htm",
+      "https://www.pluginboutique.com/products/4747-SP2016-Reverb"
+    ],
+    "audio-damage--ascent": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/17443-Ascent"
+    ],
+    "audio-damage--descent": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/17442-Descent"
+    ],
+    "audio-damage--filterstation-2": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/5645-Filterstation2"
+    ],
+    "audio-damage--ratshack-reverb-3": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8851-Ratshack-Reverb-3"
+    ],
+    "audio-damage--traverse": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/17402-Traverse"
+    ],
+    "eventide--anthology-27": [
+      "https://www.pluginboutique.com/product/81-Bundles/89-Complete-Collection/18281-Anthology-27"
+    ],
+    "eventide--blackhole-immersive": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/11474-Blackhole-Immersive"
+    ],
+    "eventide--blackhole": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/2855-Blackhole"
+    ],
+    "eventide--crushstation": [
+      "https://www.pluginboutique.com/product/2-Effects/30-Distortion/6313-CrushStation"
+    ],
+    "eventide--crystals": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/6473-Crystals"
+    ],
+    "eventide--deboom": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/11691-DeBoom"
+    ],
+    "eventide--echannel": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/10567-EChannel"
+    ],
+    "eventide--eq45": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/10568-EQ45"
+    ],
+    "eventide--eq65": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/10569-EQ65"
+    ],
+    "eventide--h3000-band-delays-mk-ii": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/12198-H3000-Band-Delays-Mk-II"
+    ],
+    "eventide--h3000-factory-mk-ii": [
+      "https://www.pluginboutique.com/product/2-Effects/91-Harmonizer/12197-H3000-Factory-Mk-II"
+    ],
+    "eventide--h910-harmonizer": [
+      "https://www.pluginboutique.com/product/2-Effects/35-Pitch-Shifter/2854-H910-Harmonizer"
+    ],
+    "eventide--h949-harmonizer": [
+      "https://www.pluginboutique.com/product/2-Effects/91-Harmonizer/7947-H949-Harmonizer"
+    ],
+    "eventide--instant-flanger-mk-ii": [
+      "https://www.pluginboutique.com/product/2-Effects/12-Flanger/5216-Instant-Flanger-Mk-II"
+    ],
+    "eventide--instant-phaser-mk-ii": [
+      "https://www.pluginboutique.com/product/2-Effects/29-Phaser/5027-Instant-Phaser-Mk-II"
+    ],
+    "eventide--mangledverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/3909-MangledVerb"
+    ],
+    "eventide--micropitch": [
+      "https://www.pluginboutique.com/product/2-Effects/35-Pitch-Shifter/6350-MicroPitch"
+    ],
+    "eventide--micropitch-immersive": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/11475-MicroPitch-Immersive"
+    ],
+    "eventide--octavox": [
+      "https://www.pluginboutique.com/product/2-Effects/91-Harmonizer/3065-Octavox"
+    ],
+    "eventide--omnipressor": [
+      "https://www.pluginboutique.com/product/2-Effects/71-Dynamics-Processor/2856-Omnipressor"
+    ],
+    "eventide--precision-time-align": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/3403-Precision-Time-Align"
+    ],
+    "eventide--quadravox": [
+      "https://www.pluginboutique.com/product/2-Effects/35-Pitch-Shifter/2853-Quadravox"
+    ],
+    "eventide--rotary-mod": [
+      "https://www.pluginboutique.com/product/2-Effects/33-Modulator/6422-Rotary-Mod"
+    ],
+    "eventide--sheen-machine": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/11692-Sheen-Machine"
+    ],
+    "eventide--shimmerverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/6656-ShimmerVerb"
+    ],
+    "eventide--spliteq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/8345-SplitEQ"
+    ],
+    "eventide--spring": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/6077-Spring"
+    ],
+    "eventide--tricerachorus": [
+      "https://www.pluginboutique.com/product/2-Effects/11-Chorus/6931-TriceraChorus"
+    ],
+    "eventide--tverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/2916-Tverb"
+    ],
+    "eventide--ultrachannel": [
+      "https://www.pluginboutique.com/product/2-Effects/21-Channel-Strip/3064-UltraChannel"
+    ],
+    "eventide--ultrareverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/3061-UltraReverb"
+    ],
+    "eventide--ultratap": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/3671-UltraTap"
+    ],
+    "eventide--undulator": [
+      "https://www.pluginboutique.com/product/2-Effects/40-Tremolo/17331-Undulator"
+    ],
+    "mcdsp--futzverb": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/16192-FutzVerb"
+    ],
+    "mcdsp--sa-3-spectral-processor": [
+      "https://www.pluginboutique.com/product/2-Effects/25-Spectral-Analysis/11638-SA-3-Spectral-Processor"
+    ],
+    "nugen-audio--ab-assist-2": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/72-Utility/11422-AB-Assist-2"
+    ],
+    "nugen-audio--aligner": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/22-Sound-Editor/10619-Aligner"
+    ],
+    "nugen-audio--dialogcheck": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/14878-DialogCheck"
+    ],
+    "nugen-audio--halo-downmix": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/3335-Halo-Downmix"
+    ],
+    "nugen-audio--halo-suite": [
+      "https://www.pluginboutique.com/product/81-Bundles/58-Instrument-Bundles/12170-Halo-Suite"
+    ],
+    "nugen-audio--halo-upmix": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/1790-Halo-Upmix"
+    ],
+    "nugen-audio--halo-vision": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/79-Metering/9680-Halo-Vision"
+    ],
+    "nugen-audio--jotter": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/72-Utility/10476-Jotter"
+    ],
+    "nugen-audio--loudness-toolkit": [
+      "https://www.pluginboutique.com/product/81-Bundles/39-Effects-Bundles/18290-Loudness-Toolkit"
+    ],
+    "nugen-audio--monofilter": [
+      "https://www.pluginboutique.com/product/2-Effects/50-Mastering-/1712-Monofilter-"
+    ],
+    "nugen-audio--monofilter-elements": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/7894-Monofilter-Elements"
+    ],
+    "nugen-audio--paragon": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/6979-Paragon"
+    ],
+    "nugen-audio--paragon-st": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8148-Paragon-ST"
+    ],
+    "nugen-audio--seq-s": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1692-SEQ-S-"
+    ],
+    "nugen-audio--seq-st": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1899-SEQ-ST"
+    ],
+    "nugen-audio--sigmod": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/72-Utility/4434-SigMod"
+    ],
+    "nugen-audio--stereoizer": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/1709-Stereoizer-"
+    ],
+    "nugen-audio--stereoizer-elements": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/7536-Stereoizer-Elements"
+    ],
+    "nugen-audio--stereoplacer": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1710-Stereoplacer-"
+    ],
+    "nugen-audio--stereoplacer-elements": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/7895-Stereoplacer-Elements"
+    ],
+    "nugen-audio--visualizer": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/79-Metering/1708-Visualizer-"
+    ],
+    "pulsar-audio--echorec": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/5663-Echorec"
+    ],
+    "pulsar-audio--mp-eq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/9101-MP-EQ"
+    ],
+    "pulsar-audio--poseidon": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/13148-Poseidon"
+    ],
+    "pulsar-audio--primavera": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/12011-Primavera"
+    ],
+    "soundtoys--crystallizer": [
+      "https://www.pluginboutique.com/product/2-Effects/49-Echo/1799-Crystallizer"
+    ],
+    "soundtoys--decapitator": [
+      "https://www.pluginboutique.com/product/2-Effects/44-Saturation/1801-Decapitator"
+    ],
+    "soundtoys--devil-loc-deluxe": [
+      "https://www.pluginboutique.com/product/2-Effects/9-Limiter/1803-Devil-Loc-Deluxe"
+    ],
+    "soundtoys--echoboy": [
+      "https://www.pluginboutique.com/product/2-Effects/49-Echo/1798-EchoBoy"
+    ],
+    "soundtoys--filterfreak": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/1800-FilterFreak"
+    ],
+    "soundtoys--little-alterboy": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/1807-Little-AlterBoy"
+    ],
+    "soundtoys--microshift": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/1809-MicroShift"
+    ],
+    "soundtoys--panman": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/1806-PanMan"
+    ],
+    "soundtoys--phasemistress": [
+      "https://www.pluginboutique.com/product/2-Effects/29-Phaser/1808-PhaseMistress"
+    ],
+    "soundtoys--primaltap": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/1857-PrimalTap"
+    ],
+    "soundtoys--radiator": [
+      "https://www.pluginboutique.com/product/2-Effects/44-Saturation/1802-Radiator"
+    ],
+    "soundtoys--sie-q": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/4717-Sie-Q"
+    ],
+    "soundtoys--spaceblender": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/14961-SpaceBlender"
+    ],
+    "soundtoys--superplate": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/10583-SuperPlate"
+    ],
+    "soundtoys--tremolator": [
+      "https://www.pluginboutique.com/product/2-Effects/40-Tremolo/1810-Tremolator"
+    ],
+    "sonible--smart-chain": [
+      "https://www.pluginboutique.com/product/2-Effects/21-Channel-Strip/17748-smart-chain"
+    ],
+    "sonible--smart-deess": [
+      "https://www.pluginboutique.com/product/2-Effects/59-De-Esser/11480-smart-deess"
+    ],
+    "sonible--smart-gate": [
+      "https://www.pluginboutique.com/product/2-Effects/20-Gate/10898-smart-gate"
+    ],
+    "sonible--smart-limit": [
+      "https://www.pluginboutique.com/product/2-Effects/9-Limiter/8476-smart-limit"
+    ],
+    "sonible--smart-reverb-2": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/15044-smart-reverb-2"
+    ],
+    "acon-digital--acon-digital-equalize": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1287-Equalize"
+    ],
+    "acon-digital--acon-digital-mix-and-mastering-suite": [
+      "https://www.pluginboutique.com/product/81-Bundles/84-Mix-Master/4821-Mix-Mastering-Suite"
+    ],
+    "acon-digital--defilter": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1532-DeFilter"
+    ],
+    "baby-audio--hyperwarp": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/17963-HyperWarp"
+    ],
+    "boz-digital-labs--gatey-watey": [
+      "https://www.pluginboutique.com/product/2-Effects/20-Gate/3367-Gatey-Watey"
+    ],
+    "boz-digital-labs--imperial-delay": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/2146-Imperial-Delay"
+    ],
+    "boz-digital-labs--little-foot": [
+      "https://www.pluginboutique.com/product/2-Effects/42-Enhancer/2144-Little-Foot"
+    ],
+    "boz-digital-labs--new-york-l-1991": [
+      "https://www.pluginboutique.com/product/1-Instruments/64-Virtual-Instruments/11643-New-York-L-1991"
+    ],
+    "boz-digital-labs--pan-knob": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/72-Utility/4802-Pan-Knob"
+    ],
+    "boz-digital-labs--the-wall": [
+      "https://www.pluginboutique.com/product/2-Effects/9-Limiter/2822-The-Wall"
+    ],
+    "cableguys--filtershaper-xl": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/11111-FilterShaper-XL"
+    ],
+    "cableguys--halftime": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/3952-HalfTime"
+    ],
+    "cableguys--liquidshaper": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/9833-LiquidShaper"
+    ],
+    "cableguys--midishaper": [
+      "https://www.pluginboutique.com/product/2-Effects/33-Modulator/14122-MidiShaper"
+    ],
+    "cableguys--pitchshaper": [
+      "https://www.pluginboutique.com/product/2-Effects/35-Pitch-Shifter/15914-PitchShaper"
+    ],
+    "cableguys--reverbshaper": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/11623-ReverbShaper"
+    ],
+    "cableguys--snapback": [
+      "https://www.pluginboutique.com/product/2-Effects/13-Drum-FX/13655-Snapback"
+    ],
+    "cableguys--timestop": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/18052-TimeStop"
+    ],
+    "kilohearts--kilohearts-carve-eq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/3914-Carve-EQ"
+    ],
+    "kilohearts--kilohearts-convolver": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8218-Convolver"
+    ],
+    "kilohearts--kilohearts-disperser": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/611-Disperser"
+    ],
+    "kilohearts--kilohearts-faturator": [
+      "https://www.pluginboutique.com/product/2-Effects/30-Distortion/337-Faturator"
+    ],
+    "kilohearts--kilohearts-filter-table": [
+      "https://www.pluginboutique.com/product/2-Effects/19-Filter/14112-Filter-Table"
+    ],
+    "kilohearts--kilohearts-multipass": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/2313-Multipass"
+    ],
+    "kilohearts--kilohearts-shaper-table": [
+      "https://www.pluginboutique.com/product/2-Effects/30-Distortion/12131-Shaper-Table"
+    ],
+    "kilohearts--kilohearts-slice-eq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/3992-Slice-EQ"
+    ],
+    "kilohearts--kilohearts-snap-heap": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/2397-Snap-Heap"
+    ],
+    "klevgrand--altitude": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/17392-Altitude"
+    ],
+    "klevgrand--altitude-harmony": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/18214-Altitude-Harmony"
+    ],
+    "klevgrand--borsta": [
+      "https://www.pluginboutique.com/product/1-Instruments/64-Virtual-Instruments/8819-Borsta"
+    ],
+    "klevgrand--brusfri": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/51-Audio-Restoration-/8694-Brusfri"
+    ],
+    "klevgrand--daw-cassette": [
+      "https://www.pluginboutique.com/product/2-Effects/96-Tape-Emulation/8697-DAW-Cassette"
+    ],
+    "klevgrand--daw-lp": [
+      "https://www.pluginboutique.com/product/2-Effects/44-Saturation/8699-DAW-LP"
+    ],
+    "klevgrand--degrader": [
+      "https://www.pluginboutique.com/product/2-Effects/32-Bit-Crusher/8700-Degrader"
+    ],
+    "klevgrand--elpiano": [
+      "https://www.pluginboutique.com/product/1-Instruments/64-Virtual-Instruments/14570-Elpiano"
+    ],
+    "klevgrand--esspresso": [
+      "https://www.pluginboutique.com/product/2-Effects/59-De-Esser/8702-Esspresso"
+    ],
+    "klevgrand--fosfat": [
+      "https://www.pluginboutique.com/product/2-Effects/36-Transient-Shaper/9232-Fosfat"
+    ],
+    "klevgrand--freeamp": [
+      "https://www.pluginboutique.com/product/2-Effects/44-Saturation/8703-FreeAMP"
+    ],
+    "klevgrand--gaffel": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/72-Utility/8704-Gaffel"
+    ],
+    "klevgrand--gotoeq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/8705-GotoEQ"
+    ],
+    "klevgrand--grand-finale": [
+      "https://www.pluginboutique.com/product/2-Effects/50-Mastering-/8706-Grand-Finale"
+    ],
+    "klevgrand--haaze-2": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/3363-Haaze-2"
+    ],
+    "klevgrand--kleverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8708-Kleverb"
+    ],
+    "klevgrand--knorr": [
+      "https://www.pluginboutique.com/product/2-Effects/62-Exciter/8709-Knorr"
+    ],
+    "klevgrand--korvpressor": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/8710-Korvpressor"
+    ],
+    "klevgrand--kuvert": [
+      "https://www.pluginboutique.com/product/2-Effects/63-Envelope-Shaper/8711-Kuvert"
+    ],
+    "klevgrand--luxe": [
+      "https://www.pluginboutique.com/product/2-Effects/42-Enhancer/8712-LUXE"
+    ],
+    "klevgrand--modley": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/8713-Modley"
+    ],
+    "klevgrand--pana": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/8714-Pana"
+    ],
+    "klevgrand--parrot": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/16590-Parrot"
+    ],
+    "klevgrand--reamp": [
+      "https://www.pluginboutique.com/product/2-Effects/44-Saturation/8717-REAMP"
+    ],
+    "klevgrand--revolv": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/13205-Revolv"
+    ],
+    "klevgrand--richter": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/10643-Richter"
+    ],
+    "klevgrand--rum": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8720-Rum"
+    ],
+    "klevgrand--r-verb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/8719-R-verb"
+    ],
+    "klevgrand--spinn": [
+      "https://www.pluginboutique.com/product/2-Effects/33-Modulator/8724-Spinn"
+    ],
+    "klevgrand--squashit": [
+      "https://www.pluginboutique.com/product/2-Effects/30-Distortion/8726-SquashIt"
+    ],
+    "klevgrand--stark": [
+      "https://www.pluginboutique.com/product/2-Effects/18-Amp-Simulator/8728-STARK"
+    ],
+    "klevgrand--walls": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/15146-Walls"
+    ],
+    "pspaudioware--lexicon-psp42": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/125-Lexicon-PSP-42"
+    ],
+    "pspaudioware--psp-285": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/10859-PSP-285"
+    ],
+    "pspaudioware--psp-classicq": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/1169-PSP-ClassicQ"
+    ],
+    "pspaudioware--psp-drc": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/14920-PSP-DRC"
+    ],
+    "pspaudioware--psp-fetpressor": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/3067-PSP-FETpressor"
+    ],
+    "pspaudioware--psp-flare": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/12278-PSP-Flare"
+    ],
+    "pspaudioware--psp-levelizer": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/17450-PSP-Levelizer"
+    ],
+    "pspaudioware--psp-l-otary2": [
+      "https://www.pluginboutique.com/product/2-Effects/33-Modulator/1894-PSP-L-otary-2"
+    ],
+    "pspaudioware--psp-microwarmer": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/15947-PSP-MicroWarmer"
+    ],
+    "pspaudioware--psp-stepdelay": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/17590-PSP-stepDelay"
+    ],
+    "softube--bus-processor-670": [
+      "https://www.pluginboutique.com/product/2-Effects/8-Compressor/17382-Bus-Processor-670"
+    ],
+    "softube--deesser": [
+      "https://www.pluginboutique.com/product/2-Effects/59-De-Esser/14616-Deesser"
+    ],
+    "softube--echoes": [
+      "https://www.pluginboutique.com/product/2-Effects/10-Delay/14114-Echoes"
+    ],
+    "softube--layers": [
+      "https://www.pluginboutique.com/product/2-Effects/27-Stereo-Width/13427-Layers"
+    ],
+    "softube--reference-1956-equalizer": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/17689-Reference-1956-Equalizer"
+    ],
+    "softube--reference-1998-equalizer": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/17690-Reference-1998-Equalizer"
+    ],
+    "softube--vocal-tuner": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/14612-Vocal-Tuner"
+    ],
+    "universal-audio--lexicon-224-digital-reverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/10174-Lexicon-224-Digital-Reverb"
+    ],
+    "universal-audio--ssl-4000-g-bus-compressor": [
+      "https://www.pluginboutique.com/product/2-Effects/21-Channel-Strip/13325-SSL-4000-G-Bus-Compressor"
+    ],
+    "universal-audio--studio-d-chorus": [
+      "https://www.pluginboutique.com/product/2-Effects/11-Chorus/10186-Studio-D-Chorus"
+    ],
+    "universal-audio--topline-vocal-suite": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/13320-Topline-Vocal-Suite"
+    ],
+    "universal-audio--topline-vocal-tune": [
+      "https://www.pluginboutique.com/product/2-Effects/54-Vocal-Processing/17399-Topline-Vocal-Tune"
+    ],
+    "universal-audio--uad-mix-tape-pro": [
+      "https://www.pluginboutique.com/product/81-Bundles/39-Effects-Bundles/17197-UAD-Mix-Tape-Pro"
+    ],
+    "universal-audio--vibe-analog-machines": [
+      "https://www.pluginboutique.com/product/2-Effects/53-Multi-Effect-/17163-Vibe-Analog-Machines"
+    ],
+    "zynaptiq--adaptiverb": [
+      "https://www.pluginboutique.com/product/2-Effects/17-Reverb/2710-ADAPTIVERB"
+    ],
+    "zynaptiq--balance": [
+      "https://www.pluginboutique.com/product/2-Effects/16-EQ/14488-BALANCE"
+    ],
+    "zynaptiq--pitchmap": [
+      "https://www.pluginboutique.com/product/2-Effects/35-Pitch-Shifter/2701-PITCHMAP"
+    ],
+    "zynaptiq--unfilter": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/51-Audio-Restoration-/2704-UNFILTER-"
+    ],
+    "zynaptiq--unveil": [
+      "https://www.pluginboutique.com/product/3-Studio-Tools/51-Audio-Restoration-/2702-UNVEIL"
+    ]
+  }
+}

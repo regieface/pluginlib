@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseWavesLatency, matchWaves, parseCell } from './waves.mjs';
-import { extractPage, parseSitemap } from './parse.mjs';
+import { extractPage, parseSitemap, cleanTitle } from './parse.mjs';
 import { classify, isOutOfScope } from './classify.mjs';
 
 test('latences Waves : JSON embarqué', () => {
@@ -40,6 +40,9 @@ test('sitemap index et urlset', () => {
 });
 
 test('classement contextuel', () => {
+  assert.equal(cleanTitle('DigiTape: Free Digital Tape Plugin', 'Pulsar Audio'), 'DigiTape');
+  assert.equal(classify({ name: 'StandardCLIP' }).category, 'limiter');
+  assert.equal(classify({ name: 'StandardCompressor' }).category, 'comp');
   const c = classify({ name: 'CLA-76 Compressor / Limiter', text: 'FET compressor with ultra-fast attack. External sidechain.' });
   assert.equal(c.category, 'comp');
   assert.ok(c.tags.includes('techno:fet'));
@@ -50,6 +53,21 @@ test('classement contextuel', () => {
   assert.ok(!e.tags.some((t) => t.startsWith('techno:')));
   assert.ok(isOutOfScope('Analog Lab V Synthesizer')); assert.ok(isOutOfScope('Reverb Plugins')); assert.ok(isOutOfScope('KStrip | Free Trial'));
   assert.ok(!isOutOfScope('SSL Bus Compressor'));
+});
+
+test('visuel McDSP : interface préférée aux boutons du panier et logos', () => {
+  const html = '<meta property="og:image" content="https://mcdsp.com/cart-300x300.png"><img src="/mcdsp_typeonly_white.png"><img src="/McDSP_MC2000v7_App1.jpg"><img src="/MC2000_ArtistSection_square.png"><img src="/MC2000_Fullsize.png">';
+  assert.equal(extractPage(html, 'https://mcdsp.com/plugin-index/mc2000/', 'McDSP').image, 'https://mcdsp.com/MC2000_Fullsize.png');
+});
+
+test('visuel McDSP : interface complète, pas un gros plan App1 ni une miniature promo', () => {
+  const html = '<img src="/McDSP_MC2000v7_App1.jpg"><img src="/McDSP_MC2000v7_Thumbnail_sale.jpg"><img src="/McDSP_SPC2000v7_Feature_Phone.png"><img src="/McDSP_MC2000v7_Feature.jpg">';
+  assert.equal(extractPage(html, 'https://mcdsp.com/plugin-index/mc2000/', 'McDSP').image, 'https://mcdsp.com/McDSP_MC2000v7_Feature.jpg');
+});
+
+test('un nom de plugin contenant icon, comme Lexicon, reste un visuel admissible', () => {
+  const p = extractPage('<img src="/lexicon-224-gui.png" alt="Lexicon 224 plugin UI">', 'https://x.com/lexicon-224', 'UA');
+  assert.equal(p.image, 'https://x.com/lexicon-224-gui.png');
 });
 
 test('visuel : attributs sans guillemets et capture GUI préférée (structure Waves)', () => {

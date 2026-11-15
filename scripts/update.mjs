@@ -11,19 +11,34 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { classify, isOutOfScope, labels } from './classify.mjs';
 import { parseWavesLatency, matchWaves, norm } from './waves.mjs';
-import { extractPage, parseSitemap, stripHtml, slug } from './parse.mjs';
+import { extractPage, parseSitemap, stripHtml, slug, extractLinks } from './parse.mjs';
+import { inferCatalogMetadata, mergeVendorProducts, resolveReplacements, applyCatalogOverride } from '../catalog.mjs';
+import { pathToFileURL } from 'node:url';
+import { parseDownloadTable, parseLSP, parseChow, parseAirwindowsPosts, parseWavesfactoryFree } from './catalog-parsers.mjs';
+import { normalizePricing, extractPublishedLatency, fullLicenseVariant } from './product-facts.mjs';
+import { applyColorationMetadata } from '../coloration.mjs';
+import { auditFeatureEvidence } from './feature-evidence.mjs';
+import { auditCategoryEvidence } from './category-evidence.mjs';
+import { auditRecordType } from '../record-types.mjs';
 
 const ROOT = new URL('..', import.meta.url);
 const UA = 'PluginLibBot/1.0 (+https://github.com/regieface/pluginlib; catalogue personnel, 1 passage/14 jours)';
 const MAX_PAGES = Number(process.env.MAX_PAGES || 800);
-const ONLY = process.env.ONLY_VENDOR || '';
+const argument = (name) => { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : ''; };
+const ONLY = process.env.ONLY_VENDOR || argument('--vendors') || '';
+const selectedVendors = new Set(ONLY.split(',').map((s) => s.trim()).filter(Boolean));
+const selected = (name) => !selectedVendors.size || selectedVendors.has(name);
 const LATENCY_URL = 'https://www.waves.com/support/tech-specs/plugin-latency';
 
 const LANG = /\/(de|fr|es|it|ja|jp|zh|cn|ko|pt|ru|nl|pl|tr|au|gb|eu|uk|ca)(-[a-z]{2})?\//i;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const cacheDirectory = process.env.PLUGINLIB_HTTP_CACHE || argument('--cache');
 
 let DIAG = null; // journal des requêtes du constructeur en cours (diagnostic)
-async function get(url, { tries = 2, timeout = 25000, accept, log = false } = {}) {
+export async function get(url, { tries = 2, timeout = 25000, accept, log = false } = {}) {
+  const cachePath = cacheDirectory ? `${cacheDirectory}/${Buffer.from(url).toString('base64url')}.json` : null;
+  if (cachePath) { try { return JSON.parse(await readFile(cachePath, 'utf8')); } catch { /* première lecture */ } }
+  if (process.argv.includes('--offline')) return { status: 0, url, text: '', error: 'Page absente du cache hors ligne' };
   let last;
   for (let i = 0; i < tries; i++) {
     try {
@@ -33,6 +48,7 @@ async function get(url, { tries = 2, timeout = 25000, accept, log = false } = {}
         headers: { 'user-agent': UA, 'accept-language': 'en,fr;q=0.8', ...(accept ? { accept } : {}) }
       });
       const out = { status: res.status, url: res.url, text: res.ok ? await res.text() : '' };
+      if (cachePath && res.ok) { await mkdir(cacheDirectory, { recursive: true }); await writeFile(cachePath, JSON.stringify(out)); }
       if (log && DIAG) DIAG.requests.push(`${res.status} ${url}${res.url !== url ? ' → ' + res.url : ''}`);
       return out;
     } catch (e) { last = e; await sleep(1500 * (i + 1)); }
@@ -49,7 +65,7 @@ async function pool(items, n, fn) {
   return out;
 }
 
-const isHome = (u) => { try { const p = new URL(u).pathname; return p === '/' || /^\/[a-z]{2}(-[a-z]{2})?\/?$/i.test(p); } catch { return true; } };
+export const isHome = (u) => { try { const p = new URL(u).pathname; return p === '/' || /^\/(?:en|fr|de|es|it|ja|zh|ko|pt|ru|nl|pl)(?:-(?:us|gb|ca|fr|de|br|cn|jp))?\/?$/i.test(p); } catch { return true; } };
 const re = (list) => (list || []).map((s) => new RegExp(s, 'i'));
 
 // ---------- Adaptateurs ----------
@@ -68,7 +84,8 @@ async function viaShopify(v) {
         name: p.title, url: `${new URL(r.url).origin}/products/${p.handle}`,
         image: p.images?.[0]?.src || null,
         text: [p.product_type, (p.tags || []).join(' '), stripHtml(p.body_html || '')].join('\n'),
-        description: stripHtml(p.body_html || '').slice(0, 220), productType: p.product_type || '', source: 'shopify'
+        description: stripHtml(p.body_html || '').slice(0, 220), productType: p.product_type || '',
+        metadata: { ...inferCatalogMetadata({ text: stripHtml(p.body_html || ''), price: fullLicenseVariant(p)?.price ?? null, url: `${v.site}/products/${p.handle}`, checkedAt: new Date().toISOString(), listed: true }), ...extractPublishedLatency(stripHtml(p.body_html || ''), `${v.site}/products/${p.handle}`, new Date().toISOString()) }, source: 'shopify'
       });
     }
   }
@@ -88,7 +105,10 @@ async function viaWoo(v) {
       items.push({
         name: stripHtml(p.name), url: p.permalink, image: p.images?.[0]?.src || null,
         text: [(p.categories || []).map((c) => c.name).join(' '), desc, stripHtml(p.description || '')].join('\n'),
-        description: desc.slice(0, 220), source: 'woocommerce'
+        description: desc.slice(0, 220), productType: (p.categories || []).map((c) => c.name).join(' '),
+        metadata: { ...inferCatalogMetadata({ text: stripHtml(p.description || '') + '\n' + desc, price: p.prices?.price ? Number(p.prices.price) / 10 ** (p.prices.currency_minor_unit ?? 2) : null, url: p.permalink, checkedAt: new Date().toISOString(), listed: true }),
+          pricing: normalizePricing({ current: Number(p.prices?.price) / 10 ** (p.prices?.currency_minor_unit ?? 2), regular: Number(p.prices?.regular_price) / 10 ** (p.prices?.currency_minor_unit ?? 2), currency: p.prices?.currency_code, url: p.permalink, checkedAt: new Date().toISOString() }),
+          ...extractPublishedLatency(stripHtml(p.description || ''), p.permalink, new Date().toISOString()) }, source: 'woocommerce'
       });
     }
   }
@@ -100,7 +120,7 @@ async function sitemapUrls(v) {
   const robots = await get(`${v.site}/robots.txt`, { log: true });
   for (const m of robots.text.matchAll(/^\s*sitemap:\s*(\S+)/gim)) seeds.add(m[1]);
   const queue = [...seeds], seen = new Set(), urls = new Set();
-  while (queue.length && seen.size < 120) {
+  while (queue.length && seen.size < 25) {
     const sm = queue.shift(); if (seen.has(sm)) continue; seen.add(sm);
     try { if (LANG.test(new URL(sm).pathname)) continue; } catch { continue; }
     const r = await get(sm, { log: true }); if (r.status !== 200) continue;
@@ -116,24 +136,27 @@ async function sitemapUrls(v) {
 async function viaSitemap(v) {
   const inc = re(v.include), exc = re(v.exclude);
   const keep = (u) => { try { const x = new URL(u); return x.hostname.replace(/^www\./, '') === new URL(v.site).hostname.replace(/^www\./, '') && (!inc.length || inc.some((r) => r.test(u))) && !exc.some((r) => r.test(u)) && !LANG.test(x.pathname); } catch { return false; } };
-  const all = await sitemapUrls(v);
+  const all = v.mode === 'links' ? [] : await sitemapUrls(v);
   if (DIAG) { const pref = {}; all.forEach((u) => { try { const k = new URL(u).pathname.split('/').slice(0, 3).join('/'); pref[k] = (pref[k] || 0) + 1; } catch { /* */ } }); DIAG.prefixes = Object.entries(pref).sort((a, b) => b[1] - a[1]).slice(0, 25); DIAG.sitemapUrls = all.length; DIAG.sample = all.filter((u) => /(product|plug)/i.test(u)).slice(0, 25); if (!DIAG.sample.length) DIAG.sample = all.slice(0, 25); }
   // Point de départ : sitemap filtré, ou à défaut les pages d'entrée déclarées (v.start)
-  const starts = (v.start || []).map((x) => new URL(x, v.site).href.replace(/\/$/, ''));
+  const starts = (v.start || (v.mode === 'links' ? ['/'] : [])).map((x) => new URL(x, v.site).href.replace(/\/$/, ''));
   let queue = v.productsFrom === 'start' ? [...starts] : [...new Set(all.filter(keep)), ...starts];
   if (!queue.length) return all.length ? [] : null;
   const seen = new Set(), out = [];
   // Deux passes : les pages "liste" (catégories) servent à découvrir d'autres fiches produit
-  for (let pass = 0; pass < 2 && queue.length; pass++) {
-    const batch = queue.filter((u) => !seen.has(u)).slice(0, MAX_PAGES - seen.size);
+  for (let pass = 0; pass < (v.discoveryPasses || 2) && queue.length; pass++) {
+    const batch = [...new Set(queue.map((u) => u.replace(/\/$/, '')))].filter((u) => !seen.has(u)).slice(0, MAX_PAGES - seen.size);
     batch.forEach((u) => seen.add(u));
     queue = [];
     if (!batch.length) break;
     const pages = await pool(batch, 6, async (u) => {
-      const r = await get(u);
-      if (r.status !== 200 || isHome(r.url)) return null;
+      const r = await get(u, { log: true });
+      if (r.status !== 200 || isHome(r.url) && !starts.includes(u.replace(/\/$/, ''))) return null;
+      if (!starts.includes(u.replace(/\/$/, '')) && !keep(r.url.replace(/\/$/, ''))) return null;
       const p = extractPage(r.text, r.url, v.name);
-      const links = [...new Set([...r.text.matchAll(/href=["']([^"'#?]+)["']/gi)].map((m) => { try { return new URL(m[1], r.url).href.replace(/\/$/, ''); } catch { return null; } }).filter((x) => x && keep(x)))];
+      if (v.requireBrand && !new RegExp(v.requireBrand, 'i').test(p.brand)) return null;
+      if (v.requireProductMarker && !p.isCatalogProduct) return null;
+      const links = extractLinks(r.text, r.url).filter(keep);
       return { u, r, p, links };
     });
     for (const x of pages.filter(Boolean)) {
@@ -141,9 +164,9 @@ async function viaSitemap(v) {
       const others = x.links.filter((l) => l !== own);
       // Page "liste" : nom au pluriel générique ou beaucoup de liens vers d'autres fiches → pas un produit
       const isListing = (v.productsFrom === 'start' && pass === 0) || starts.includes(own) || !x.p.isProduct && (/(plug-?ins?|series|collection|bundles?)$|^(all|plug-?ins? for|top|best)\b/i.test(x.p.name || '') || others.length >= 30);
-      if (pass === 0) queue.push(...others); // découverte : liens vers d'autres fiches
+      if (pass + 1 < (v.discoveryPasses || 2)) queue.push(...others);
       if (isListing || (!v.trustInclude && !x.p.isProduct && v.productsFrom !== 'start') || !x.p.name) continue;
-      out.push({ name: x.p.name, url: x.p.canonical || x.r.url, image: x.p.image, images: x.p.images, text: [x.p.description, x.p.keywords, x.p.bodyText].join('\n'), description: (x.p.description || '').slice(0, 220), source: 'sitemap' });
+      out.push({ name: x.p.name, url: x.p.canonical || x.r.url, image: x.p.image, images: x.p.images, brand: x.p.brand, catalogValidated: x.p.isCatalogProduct, text: [x.p.description, x.p.keywords, x.p.bodyText].join('\n'), description: (x.p.description || '').slice(0, 220), metadata: { ...inferCatalogMetadata({ text: x.p.metadataText, operatingSystem: x.p.operatingSystem, price: x.p.price, url: x.p.canonical || x.r.url, checkedAt: new Date().toISOString(), listed: true }), ...(x.p.pricing ? { pricing: x.p.pricing } : {}), ...extractPublishedLatency(x.p.metadataText, x.p.canonical || x.r.url, new Date().toISOString()) }, source: v.mode === 'links' ? 'liens constructeur' : 'sitemap' });
     }
     if (DIAG) DIAG[`pass${pass + 1}`] = { fetched: batch.length, products: out.length, discovered: queue.length };
   }
@@ -152,9 +175,38 @@ async function viaSitemap(v) {
 
 async function collectVendor(v) {
   const mode = v.mode || 'auto';
+  if (mode === 'airwindows') {
+    const items = [];
+    for (let page = 1; page <= 15; page++) {
+      const r = await get(`${v.site}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=link,title,content`, { log: true });
+      if (r.status !== 200) break;
+      let posts; try { posts = JSON.parse(r.text); } catch { break; }
+      if (!Array.isArray(posts) || !posts.length) break;
+      for (const it of parseAirwindowsPosts(posts)) {
+        it.metadata = inferCatalogMetadata({ text: it.metadataText, url: it.url, checkedAt: new Date().toISOString(), listed: true });
+        items.push(it);
+      }
+      if (posts.length < 100) break;
+    }
+    return { items, via: mode };
+  }
+  const specialized = { 'download-table': parseDownloadTable, lsp: parseLSP, chow: parseChow }[mode];
+  if (specialized) {
+    const url = new URL(v.start[0], v.site).href;
+    const r = await get(url, { log: true });
+    const items = r.status === 200 ? specialized(r.text, r.url) : null;
+    items?.forEach((it) => { it.metadata.platformEvidence.checkedAt = new Date().toISOString(); it.metadata.statusEvidence.checkedAt = new Date().toISOString(); });
+    return { items, via: mode };
+  }
   if (mode === 'shopify') return { items: await viaShopify(v), via: 'shopify' };
   if (mode === 'woocommerce') return { items: await viaWoo(v), via: 'woocommerce' };
   if (mode === 'sitemap') return { items: await viaSitemap(v), via: 'sitemap' };
+  if (mode === 'wavesfactory') {
+    const items=await viaSitemap({...v,mode:'links'});
+    const free=await get(new URL('/free-vst-plugins/',v.site).href,{log:true});
+    return {items:[...(items||[]),...(free.status===200?parseWavesfactoryFree(free.text,free.url):[])],via:'fiches et catalogue gratuit officiels'};
+  }
+  if (mode === 'links') return { items: await viaSitemap(v), via: 'liens constructeur' };
   for (const [fn, via] of [[viaShopify, 'shopify'], [viaWoo, 'woocommerce'], [viaSitemap, 'sitemap']]) {
     const items = await fn(v);
     if (items && items.length) return { items, via };
@@ -168,18 +220,21 @@ async function readJson(path, fallback) {
   try { return JSON.parse(await readFile(new URL(path, ROOT), 'utf8')); } catch { return fallback; }
 }
 
-async function main() {
+export async function main() {
   const { vendors } = await readJson('sources/vendors.json', { vendors: [] });
   const previous = await readJson('data/plugins.json', { plugins: [] });
   const overrides = await readJson('data/overrides.json', {});
   const prevMeta = await readJson('data/meta.json', { sources: [] });
+  const prevDiagnostic = await readJson('data/diagnostic.json', { vendors: [] });
   const now = new Date().toISOString();
   const status = [];
   const diagnostics = [];
-  let all = [];
+  // Un constructeur absent de la configuration ne doit pas effacer son catalogue.
+  const configuredVendors = new Set(vendors.map((v) => v.name));
+  let all = previous.plugins.filter((p) => !configuredVendors.has(p.vendor));
 
   for (const v of vendors) {
-    if (ONLY && v.name !== ONLY) continue;
+    if (!selected(v.name)) continue;
     const t0 = Date.now();
     DIAG = { vendor: v.name, requests: [] };
     let res;
@@ -191,6 +246,7 @@ async function main() {
       .filter((it) => it.name && it.url)
       .filter((it) => !req.length || req.some((r) => r.test(`${it.name} ${it.url}`)))
       .filter((it) => !(v.excludeNames || []).some((n) => new RegExp(n, 'i').test(it.name)))
+      .filter((it) => !/\b(instruments?|pianos?|synths|soundbanks?|sample packs?|preset packs?)\b/i.test(it.productType || ''))
       .filter((it) => !isOutOfScope(it.name, `${it.productType || ''} ${it.description || ''}`));
     // Un même visuel sur 3 fiches ou plus du fabricant = image générique : on prend l'image suivante propre à la page
     const imgCount = {}; items.forEach((it) => { if (it.image) imgCount[it.image] = (imgCount[it.image] || 0) + 1; });
@@ -203,23 +259,28 @@ async function main() {
       all.push(...kept);
       status.push({ vendor: v.name, site: v.site, ok: false, via: res.via, found: raw, kept: kept.length, error: res.error || (raw ? 'tout filtré (hors périmètre)' : 'aucun produit lu'), ms: Date.now() - t0 });
     } else {
+      const collected = [];
       for (const it of items) {
-        const c = classify({ name: it.name, text: it.text || '' });
-        all.push({
+        const c = classify({ name: it.name, text: it.description || '', vendor: v.name });
+        collected.push({
           id: `${slug(v.name)}--${slug(it.name)}`, name: it.name, vendor: v.name, url: it.url,
           image: it.image || null, description: it.description || '', category: c.category, tags: c.tags,
-          classifiedBy: 'auto', source: it.source, checkedAt: now
+          classifiedBy: 'auto', source: it.source, checkedAt: now, ...it.metadata,
+          ...(it.brand ? { brand: it.brand } : {}),
+          ...(it.catalogValidated ? { catalogValidated: true } : {})
         });
       }
-      status.push({ vendor: v.name, site: v.site, ok: true, via: res.via, found: raw, kept: items.length, ms: Date.now() - t0 });
+      const merged = mergeVendorProducts(previous.plugins.filter((p) => p.vendor === v.name), collected);
+      all.push(...merged);
+      status.push({ vendor: v.name, site: v.site, ok: true, via: res.via, found: raw, kept: merged.length, collected: collected.length, ms: Date.now() - t0 });
     }
     diagnostics.push(DIAG);
     console.log(`${ok ? '✔' : '✘'} ${v.name.padEnd(22)} via ${res.via.padEnd(11)} lus=${raw} retenus=${ok ? items.length : 0}${res.error ? ' ' + res.error : ''}`);
   }
 
   // Latences officielles Waves
-  let latencyStatus = { ok: false };
-  if (!ONLY || ONLY === 'Waves') {
+  let latencyStatus = prevMeta.latency || { ok: false };
+  if (selected('Waves')) {
     const r = await get(LATENCY_URL);
     const rows = r.status === 200 ? parseWavesLatency(r.text) : [];
     if (rows.length) {
@@ -236,8 +297,8 @@ async function main() {
           const p = extractPage(r.text, r.url, 'Waves');
           if (p.name && norm(p.name) === norm(row.name)) { page = p; verified++; }
         }
-        const text = page ? [page.description, page.bodyText].join('\n') : '';
-        const c = classify({ name: row.name, text });
+        const text = page?.description || '';
+        const c = classify({ name: row.name, text, vendor: 'Waves' });
         return { id: `waves--${slug(row.name)}`, name: row.name, vendor: 'Waves', url: page ? (page.canonical || r.url) : null, image: page?.image || null, description: page ? (page.description || '').slice(0, 220) : '', category: c.category, tags: c.tags, classifiedBy: 'auto', source: page ? 'waves-latency+fiche' : 'waves-latency', checkedAt: now, latency: row.latency };
       });
       all.push(...rescued);
@@ -261,21 +322,37 @@ async function main() {
   // Corrections manuelles
   let plugins = [...byId.values()].map((p) => {
     const o = overrides[p.id];
-    return o ? { ...p, ...o, classifiedBy: o.category || o.tags ? 'manuel' : p.classifiedBy } : p;
+    return o ? applyCatalogOverride({ ...p, classifiedBy: o.category || o.tags ? 'manuel' : p.classifiedBy }, o) : p;
   }).filter((p) => !p.exclude);
+  resolveReplacements(plugins);
   plugins.sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
 
   // Mode test sur un seul constructeur : on ne remplace pas tout le catalogue
   if (ONLY) {
-    plugins = [...previous.plugins.filter((p) => p.vendor !== ONLY), ...plugins.filter((p) => p.vendor === ONLY)];
+    plugins = [...previous.plugins.filter((p) => !selected(p.vendor)), ...plugins.filter((p) => selected(p.vendor))];
   }
+  const vendorConfig = new Map(vendors.map((v) => [v.name, v]));
+  plugins = plugins.filter((p) => {
+    if (p.recordTypeEvidence?.method === 'reviewed-source' && !['effect','unknown'].includes(p.recordTypeEvidence.type)) return true;
+    const v = vendorConfig.get(p.vendor);
+    return !isOutOfScope(p.name, p.description)
+      && !(v?.excludeNames || []).some((pattern) => new RegExp(pattern, 'i').test(p.name))
+      && (!v?.requireBrand || new RegExp(v.requireBrand, 'i').test(p.brand || ''))
+      && (!v?.requireProductMarker || p.catalogValidated);
+  });
+  plugins.sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
 
+  plugins.forEach((p) => { auditCategoryEvidence(p, overrides[p.id]); auditRecordType(p); applyColorationMetadata(p); auditFeatureEvidence(p); if(p.catalogStatus==='free')delete p.pricing; });
   await mkdir(new URL('data/', ROOT), { recursive: true });
   await writeFile(new URL('data/plugins.json', ROOT), JSON.stringify({ generatedAt: now, count: plugins.length, plugins }, null, 1));
-  const sources = ONLY ? [...prevMeta.sources.filter((s) => s.vendor !== ONLY), ...status] : status;
+  const sources = ONLY ? [...prevMeta.sources.filter((s) => !selected(s.vendor)), ...status]
+    : [...prevMeta.sources.filter((s) => !configuredVendors.has(s.vendor)), ...status];
+  sources.forEach((s) => { s.kept = plugins.filter((p) => p.vendor === s.vendor).length; });
   await writeFile(new URL('data/meta.json', ROOT), JSON.stringify({ generatedAt: now, count: plugins.length, latency: latencyStatus, sources, labels: labels() }, null, 1));
-  await writeFile(new URL('data/diagnostic.json', ROOT), JSON.stringify({ generatedAt: now, vendors: diagnostics }, null, 1));
+  const diagnosticVendors = ONLY ? [...prevDiagnostic.vendors.filter((v) => !selected(v.vendor)), ...diagnostics]
+    : [...prevDiagnostic.vendors.filter((v) => !configuredVendors.has(v.vendor)), ...diagnostics];
+  await writeFile(new URL('data/diagnostic.json', ROOT), JSON.stringify({ generatedAt: now, vendors: diagnosticVendors }, null, 1));
   console.log(`\n${plugins.length} plugins écrits.`);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) main().catch((e) => { console.error(e); process.exit(1); });

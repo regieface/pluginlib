@@ -1,0 +1,1013 @@
+{
+ "plans": [
+  {
+   "id": "waves-ultimate",
+   "vendor": "Waves",
+   "plan": "Ultimate",
+   "source": "https://www.waves.com/subscriptions/ultimate",
+   "checkedAt": "2026-11-15T22:16:46.653Z",
+   "products": [
+    {
+     "name": "Abbey Road EMI TG12345 Channel",
+     "url": "https://www.waves.com/plugins/emi-tg12345"
+    },
+    {
+     "name": "AudioTrack",
+     "url": "https://www.waves.com/plugins/audiotrack"
+    },
+    {
+     "name": "Berzerk Distortion",
+     "url": "https://www.waves.com/plugins/berzerk-distortion"
+    },
+    {
+     "name": "Butch Vig Vocals",
+     "url": "https://www.waves.com/plugins/butch-vig-vocals"
+    },
+    {
+     "name": "C1 Compressor",
+     "url": "https://www.waves.com/plugins/c1-compressor"
+    },
+    {
+     "name": "C4 Multiband Compressor",
+     "url": "https://www.waves.com/plugins/c4-multiband-compressor"
+    },
+    {
+     "name": "CLA EchoSphere",
+     "url": "https://www.waves.com/plugins/cla-echosphere"
+    },
+    {
+     "name": "CLA Vocals",
+     "url": "https://www.waves.com/plugins/cla-vocals"
+    },
+    {
+     "name": "CLA-76 Compressor / Limiter",
+     "url": "https://www.waves.com/plugins/cla-76-compressor-limiter"
+    },
+    {
+     "name": "Clarity Vx®",
+     "url": "https://www.waves.com/plugins/clarity-vx"
+    },
+    {
+     "name": "Clarity Vx® DeReverb",
+     "url": "https://www.waves.com/plugins/clarity-vx-dereverb"
+    },
+    {
+     "name": "COSMOS Sample Finder",
+     "url": "https://www.waves.com/plugins/cosmos-sample-finder"
+    },
+    {
+     "name": "CR8 Creative Sampler",
+     "url": "https://www.waves.com/plugins/cr8-creative-sampler"
+    },
+    {
+     "name": "Curves Resolve",
+     "url": "https://www.waves.com/plugins/curves-resolve"
+    },
+    {
+     "name": "DeBreath",
+     "url": "https://www.waves.com/plugins/debreath"
+    },
+    {
+     "name": "DeEsser",
+     "url": "https://www.waves.com/plugins/deesser"
+    },
+    {
+     "name": "Doubler",
+     "url": "https://www.waves.com/plugins/doubler"
+    },
+    {
+     "name": "Eddie Kramer Effects Channel",
+     "url": "https://www.waves.com/plugins/eddie-kramer-effects-channel"
+    },
+    {
+     "name": "Eddie Kramer Guitar Channel",
+     "url": "https://www.waves.com/plugins/eddie-kramer-guitar-channel"
+    },
+    {
+     "name": "Eddie Kramer Vocal Channel",
+     "url": "https://www.waves.com/plugins/eddie-kramer-vocal-channel"
+    },
+    {
+     "name": "Electric 200 Piano",
+     "url": "https://www.waves.com/plugins/electric-200-piano"
+    },
+    {
+     "name": "Electric 88 Piano",
+     "url": "https://www.waves.com/plugins/electric-88-piano"
+    },
+    {
+     "name": "Electric Grand 80 Piano",
+     "url": "https://www.waves.com/plugins/electric-grand-80-piano"
+    },
+    {
+     "name": "Element 2.0 Virtual Analog Synth",
+     "url": "https://www.waves.com/plugins/element"
+    },
+    {
+     "name": "eMo D5 Dynamics",
+     "url": "https://www.waves.com/plugins/emo-d5-dynamics"
+    },
+    {
+     "name": "eMo F2 Filter",
+     "url": "https://www.waves.com/plugins/emo-f2-filter"
+    },
+    {
+     "name": "eMo Generator",
+     "url": "https://www.waves.com/plugins/emo-generator"
+    },
+    {
+     "name": "eMo Q4 Equalizer",
+     "url": "https://www.waves.com/plugins/emo-q4-equalizer"
+    },
+    {
+     "name": "Enigma",
+     "url": "https://www.waves.com/plugins/enigma"
+    },
+    {
+     "name": "F6 Floating-Band Dynamic EQ",
+     "url": "https://www.waves.com/plugins/f6-floating-band-dynamic-eq"
+    },
+    {
+     "name": "Flow Motion FM Synth",
+     "url": "https://www.waves.com/plugins/flow-motion-fm-synth"
+    },
+    {
+     "name": "Gemstones",
+     "url": "https://www.waves.com/plugins/gemstones"
+    },
+    {
+     "name": "Grand Rhapsody Piano",
+     "url": "https://www.waves.com/plugins/grand-rhapsody-piano"
+    },
+    {
+     "name": "Greg Wells MixCentric",
+     "url": "https://www.waves.com/plugins/greg-wells-mixcentric"
+    },
+    {
+     "name": "Greg Wells PianoCentric",
+     "url": "https://www.waves.com/plugins/greg-wells-pianocentric"
+    },
+    {
+     "name": "GTR Solo",
+     "url": "https://www.waves.com/plugins/gtr-solo"
+    },
+    {
+     "name": "GTR3",
+     "url": "https://www.waves.com/plugins/gtr3"
+    },
+    {
+     "name": "GTR3 Amps",
+     "url": "https://www.waves.com/plugins/gtr3-amps"
+    },
+    {
+     "name": "GTR3 Stomps",
+     "url": "https://www.waves.com/plugins/gtr3-stomps"
+    },
+    {
+     "name": "GTR3 ToolRack",
+     "url": "https://www.waves.com/plugins/gtr3-toolrack"
+    },
+    {
+     "name": "GTR3 Tuner",
+     "url": "https://www.waves.com/plugins/gtr3-tuner"
+    },
+    {
+     "name": "H-Comp Hybrid Compressor",
+     "url": "https://www.waves.com/plugins/h-comp-hybrid-compressor"
+    },
+    {
+     "name": "H-Delay Hybrid Delay",
+     "url": "https://www.waves.com/plugins/h-delay-hybrid-delay"
+    },
+    {
+     "name": "H-EQ Hybrid Equalizer",
+     "url": "https://www.waves.com/plugins/h-eq-hybrid-equalizer"
+    },
+    {
+     "name": "IDX Intelligent Dynamics",
+     "url": "https://www.waves.com/plugins/idx-intelligent-dynamics"
+    },
+    {
+     "name": "Infected Mushroom Pusher",
+     "url": "https://www.waves.com/plugins/infected-mushroom-pusher"
+    },
+    {
+     "name": "InPhase LT",
+     "url": "https://www.waves.com/plugins/inphase-lt"
+    },
+    {
+     "name": "IR-L Convolution Reverb",
+     "url": "https://www.waves.com/plugins/ir-l-convolution-reverb"
+    },
+    {
+     "name": "JJP Drums",
+     "url": "https://www.waves.com/plugins/jjp-drums"
+    },
+    {
+     "name": "JJP Strings & Keys",
+     "url": "https://www.waves.com/plugins/jjp-strings-keys"
+    },
+    {
+     "name": "Kaleidoscopes",
+     "url": "https://www.waves.com/plugins/kaleidoscopes"
+    },
+    {
+     "name": "Key Detector",
+     "url": "https://www.waves.com/plugins/key-detector"
+    },
+    {
+     "name": "Kramer Master Tape",
+     "url": "https://www.waves.com/plugins/kramer-master-tape"
+    },
+    {
+     "name": "L1 Ultramaximizer",
+     "url": "https://www.waves.com/plugins/l1-ultramaximizer"
+    },
+    {
+     "name": "L2 Ultramaximizer",
+     "url": "https://www.waves.com/plugins/l2-ultramaximizer"
+    },
+    {
+     "name": "LoAir",
+     "url": "https://www.waves.com/plugins/loair"
+    },
+    {
+     "name": "Lofi Space",
+     "url": "https://www.waves.com/plugins/lofi-space"
+    },
+    {
+     "name": "Magma Lil Tube",
+     "url": "https://www.waves.com/plugins/lil-tube"
+    },
+    {
+     "name": "Magma StressBox",
+     "url": "https://www.waves.com/plugins/magma-stressbox"
+    },
+    {
+     "name": "Magma Tube Channel Strip",
+     "url": "https://www.waves.com/plugins/magma-tube-channel-strip"
+    },
+    {
+     "name": "Manny Marroquin Reverb",
+     "url": "https://www.waves.com/plugins/manny-marroquin-reverb"
+    },
+    {
+     "name": "Manny Marroquin Triple D",
+     "url": "https://www.waves.com/plugins/manny-marroquin-triple-d"
+    },
+    {
+     "name": "Maserati ACG",
+     "url": "https://www.waves.com/plugins/maserati-acg"
+    },
+    {
+     "name": "Maserati B72",
+     "url": "https://www.waves.com/plugins/maserati-b72"
+    },
+    {
+     "name": "MaxxBass",
+     "url": "https://www.waves.com/plugins/maxxbass"
+    },
+    {
+     "name": "MaxxVolume",
+     "url": "https://www.waves.com/plugins/maxxvolume"
+    },
+    {
+     "name": "MetaFilter",
+     "url": "https://www.waves.com/plugins/metafilter"
+    },
+    {
+     "name": "MetaFlanger",
+     "url": "https://www.waves.com/plugins/metaflanger"
+    },
+    {
+     "name": "MondoMod",
+     "url": "https://www.waves.com/plugins/mondomod"
+    },
+    {
+     "name": "Morphoder",
+     "url": "https://www.waves.com/plugins/morphoder"
+    },
+    {
+     "name": "MV2",
+     "url": "https://www.waves.com/plugins/mv2"
+    },
+    {
+     "name": "NS1 Noise Suppressor",
+     "url": "https://www.waves.com/plugins/ns1-noise-suppressor"
+    },
+    {
+     "name": "Nx – Virtual Mix Room over Headphones",
+     "url": "https://www.waves.com/plugins/nx"
+    },
+    {
+     "name": "Nx Germano Studios New York",
+     "url": "https://www.waves.com/plugins/nx-germano-studios-new-york"
+    },
+    {
+     "name": "OneKnob Brighter",
+     "url": "https://www.waves.com/plugins/oneknob-brighter"
+    },
+    {
+     "name": "OneKnob Driver",
+     "url": "https://www.waves.com/plugins/oneknob-driver"
+    },
+    {
+     "name": "OneKnob Filter",
+     "url": "https://www.waves.com/plugins/oneknob-filter"
+    },
+    {
+     "name": "OneKnob Louder",
+     "url": "https://www.waves.com/plugins/oneknob-louder"
+    },
+    {
+     "name": "OneKnob Phatter",
+     "url": "https://www.waves.com/plugins/oneknob-phatter"
+    },
+    {
+     "name": "OneKnob Pressure",
+     "url": "https://www.waves.com/plugins/oneknob-pressure"
+    },
+    {
+     "name": "OneKnob Pumper",
+     "url": "https://www.waves.com/plugins/oneknob-pumper"
+    },
+    {
+     "name": "OneKnob Wetter",
+     "url": "https://www.waves.com/plugins/oneknob-wetter"
+    },
+    {
+     "name": "PAZ Analyzer",
+     "url": "https://www.waves.com/plugins/paz-analyzer"
+    },
+    {
+     "name": "Playlist Rider",
+     "url": "https://www.waves.com/plugins/playlist-rider"
+    },
+    {
+     "name": "Primary Source Expander",
+     "url": "https://www.waves.com/plugins/pse-primary-source-expander"
+    },
+    {
+     "name": "PS22 Stereo Maker",
+     "url": "https://www.waves.com/plugins/ps22-stereo-maker"
+    },
+    {
+     "name": "PuigTec EQs",
+     "url": "https://www.waves.com/plugins/puigtec-eqs"
+    },
+    {
+     "name": "Q10 Equalizer",
+     "url": "https://www.waves.com/plugins/q10-equalizer"
+    },
+    {
+     "name": "Renaissance Axx",
+     "url": "https://www.waves.com/plugins/renaissance-axx"
+    },
+    {
+     "name": "Renaissance Bass",
+     "url": "https://www.waves.com/plugins/renaissance-bass"
+    },
+    {
+     "name": "Renaissance Channel",
+     "url": "https://www.waves.com/plugins/renaissance-channel"
+    },
+    {
+     "name": "Renaissance Compressor",
+     "url": "https://www.waves.com/plugins/renaissance-compressor"
+    },
+    {
+     "name": "Renaissance DeEsser",
+     "url": "https://www.waves.com/plugins/renaissance-deesser"
+    },
+    {
+     "name": "Renaissance Equalizer",
+     "url": "https://www.waves.com/plugins/renaissance-equalizer"
+    },
+    {
+     "name": "Renaissance Reverb",
+     "url": "https://www.waves.com/plugins/renaissance-reverb"
+    },
+    {
+     "name": "Renaissance Vox",
+     "url": "https://www.waves.com/plugins/renaissance-vox"
+    },
+    {
+     "name": "S1 Stereo Imager",
+     "url": "https://www.waves.com/plugins/s1-stereo-imager"
+    },
+    {
+     "name": "Sibilance",
+     "url": "https://www.waves.com/plugins/sibilance"
+    },
+    {
+     "name": "Silk Vocal",
+     "url": "https://www.waves.com/plugins/silk-vocal"
+    },
+    {
+     "name": "SoundShifter",
+     "url": "https://www.waves.com/plugins/soundshifter"
+    },
+    {
+     "name": "SSL E-Channel",
+     "url": "https://www.waves.com/plugins/ssl-e-channel"
+    },
+    {
+     "name": "StudioVerse Audio Effects",
+     "url": "https://www.waves.com/plugins/studioverse-audio-effects"
+    },
+    {
+     "name": "StudioVerse Instruments",
+     "url": "https://www.waves.com/plugins/studioverse-instruments"
+    },
+    {
+     "name": "StudioVerse: Mix Unlock",
+     "url": "https://www.waves.com/plugins/studioverse-mix-unlock"
+    },
+    {
+     "name": "Sub Align",
+     "url": "https://www.waves.com/plugins/sub-align"
+    },
+    {
+     "name": "SuperTap",
+     "url": "https://www.waves.com/plugins/supertap"
+    },
+    {
+     "name": "Trans-X",
+     "url": "https://www.waves.com/plugins/transx"
+    },
+    {
+     "name": "TrueVerb",
+     "url": "https://www.waves.com/plugins/trueverb"
+    },
+    {
+     "name": "UltraPitch",
+     "url": "https://www.waves.com/plugins/ultrapitch"
+    },
+    {
+     "name": "V-Comp",
+     "url": "https://www.waves.com/plugins/v-comp"
+    },
+    {
+     "name": "V-EQ3",
+     "url": "https://www.waves.com/plugins/v-eq3"
+    },
+    {
+     "name": "V-EQ4",
+     "url": "https://www.waves.com/plugins/v-eq4"
+    },
+    {
+     "name": "Vitamin Sonic Enhancer",
+     "url": "https://www.waves.com/plugins/vitamin"
+    },
+    {
+     "name": "Vocal Bender",
+     "url": "https://www.waves.com/plugins/vocal-bender"
+    },
+    {
+     "name": "Vocal Rider®",
+     "url": "https://www.waves.com/plugins/vocal-rider"
+    },
+    {
+     "name": "Voltage Amps",
+     "url": "https://www.waves.com/plugins/voltage-amps"
+    },
+    {
+     "name": "VU Meter",
+     "url": "https://www.waves.com/plugins/vu-meter"
+    },
+    {
+     "name": "Waves Stream",
+     "url": "https://www.waves.com/plugins/waves-stream"
+    },
+    {
+     "name": "Waves Tune LT",
+     "url": "https://www.waves.com/plugins/waves-tune-lt"
+    },
+    {
+     "name": "Waves Tune Real-Time",
+     "url": "https://www.waves.com/plugins/waves-tune-real-time"
+    },
+    {
+     "name": "WLM Plus Loudness Meter",
+     "url": "https://www.waves.com/plugins/wlm-loudness-meter"
+    },
+    {
+     "name": "X-FDBK",
+     "url": "https://www.waves.com/plugins/x-fdbk"
+    },
+    {
+     "name": "Z-Noise",
+     "url": "https://www.waves.com/plugins/z-noise"
+    },
+    {
+     "name": "Abbey Road Chambers",
+     "url": "https://www.waves.com/plugins/abbey-road-chambers"
+    },
+    {
+     "name": "Abbey Road J37 Tape",
+     "url": "https://www.waves.com/plugins/j37-tape"
+    },
+    {
+     "name": "Abbey Road King’s Microphones",
+     "url": "https://www.waves.com/plugins/the-king-s-microphones"
+    },
+    {
+     "name": "Abbey Road REDD Consoles",
+     "url": "https://www.waves.com/plugins/redd"
+    },
+    {
+     "name": "Abbey Road Reel ADT",
+     "url": "https://www.waves.com/plugins/reel-adt"
+    },
+    {
+     "name": "Abbey Road Reverb Plates",
+     "url": "https://www.waves.com/plugins/abbey-road-reverb-plates"
+    },
+    {
+     "name": "Abbey Road RS124 Compressor",
+     "url": "https://www.waves.com/plugins/abbey-road-rs124-compressor"
+    },
+    {
+     "name": "Abbey Road RS56 Passive EQ",
+     "url": "https://www.waves.com/plugins/rs56"
+    },
+    {
+     "name": "Abbey Road Saturator",
+     "url": "https://www.waves.com/plugins/abbey-road-saturator"
+    },
+    {
+     "name": "Abbey Road Studio 3",
+     "url": "https://www.waves.com/plugins/abbey-road-studio-3"
+    },
+    {
+     "name": "Abbey Road TG Mastering Chain",
+     "url": "https://www.waves.com/plugins/abbey-road-tg-mastering-chain"
+    },
+    {
+     "name": "Abbey Road Vinyl",
+     "url": "https://www.waves.com/plugins/abbey-road-vinyl"
+    },
+    {
+     "name": "Aphex Vintage Aural Exciter",
+     "url": "https://www.waves.com/plugins/aphex-vintage-aural-exciter"
+    },
+    {
+     "name": "API 2500",
+     "url": "https://www.waves.com/plugins/api-2500"
+    },
+    {
+     "name": "API 550",
+     "url": "https://www.waves.com/plugins/api-550"
+    },
+    {
+     "name": "API 560",
+     "url": "https://www.waves.com/plugins/api-560"
+    },
+    {
+     "name": "Atlas Reverb",
+     "url": "https://www.waves.com/plugins/atlas-reverb"
+    },
+    {
+     "name": "B360 Ambisonics Encoder",
+     "url": "https://www.waves.com/plugins/b360-ambisonics-encoder"
+    },
+    {
+     "name": "Bass Fingers",
+     "url": "https://www.waves.com/plugins/bass-fingers"
+    },
+    {
+     "name": "Bass Rider",
+     "url": "https://www.waves.com/plugins/bass-rider"
+    },
+    {
+     "name": "Bass Slapper",
+     "url": "https://www.waves.com/plugins/bass-slapper"
+    },
+    {
+     "name": "Brauer Motion",
+     "url": "https://www.waves.com/plugins/brauer-motion"
+    },
+    {
+     "name": "BSS DPR-402",
+     "url": "https://www.waves.com/plugins/bss-dpr-402"
+    },
+    {
+     "name": "C360 Surround Compressor",
+     "url": "https://www.waves.com/plugins/c360-surround-compressor"
+    },
+    {
+     "name": "C6 Multiband Compressor",
+     "url": "https://www.waves.com/plugins/c6-multiband-compressor"
+    },
+    {
+     "name": "Center",
+     "url": "https://www.waves.com/plugins/center"
+    },
+    {
+     "name": "CLA Bass",
+     "url": "https://www.waves.com/plugins/cla-bass"
+    },
+    {
+     "name": "CLA Drums",
+     "url": "https://www.waves.com/plugins/cla-drums"
+    },
+    {
+     "name": "CLA Effects",
+     "url": "https://www.waves.com/plugins/cla-effects"
+    },
+    {
+     "name": "CLA Epic",
+     "url": "https://www.waves.com/plugins/cla-epic"
+    },
+    {
+     "name": "CLA Guitars",
+     "url": "https://www.waves.com/plugins/cla-guitars"
+    },
+    {
+     "name": "CLA MixDown",
+     "url": "https://www.waves.com/plugins/cla-mixdown"
+    },
+    {
+     "name": "CLA MixHub",
+     "url": "https://www.waves.com/plugins/cla-mixhub"
+    },
+    {
+     "name": "CLA Nx",
+     "url": "https://www.waves.com/plugins/cla-nx"
+    },
+    {
+     "name": "CLA Unplugged",
+     "url": "https://www.waves.com/plugins/cla-unplugged"
+    },
+    {
+     "name": "CLA-2A Compressor / Limiter",
+     "url": "https://www.waves.com/plugins/cla-2a-compressor-limiter"
+    },
+    {
+     "name": "CLA-3A Compressor / Limiter",
+     "url": "https://www.waves.com/plugins/cla-3a-compressor-limiter"
+    },
+    {
+     "name": "Clarity Vx® DeReverb Pro",
+     "url": "https://www.waves.com/plugins/clarity-vx-dereverb-pro"
+    },
+    {
+     "name": "Clarity Vx® Pro",
+     "url": "https://www.waves.com/plugins/clarity-vx-pro"
+    },
+    {
+     "name": "Clarix LB",
+     "url": "https://www.waves.com/plugins/clarix-lb"
+    },
+    {
+     "name": "Clavinet",
+     "url": "https://www.waves.com/plugins/clavinet"
+    },
+    {
+     "name": "Cobalt Saphira",
+     "url": "https://www.waves.com/plugins/cobalt-saphira"
+    },
+    {
+     "name": "Codex Wavetable Synth",
+     "url": "https://www.waves.com/plugins/codex"
+    },
+    {
+     "name": "Curves AQ",
+     "url": "https://www.waves.com/plugins/curves-aq"
+    },
+    {
+     "name": "Curves Equator",
+     "url": "https://www.waves.com/plugins/curves-equator"
+    },
+    {
+     "name": "dbx® 160 Compressor / Limiter",
+     "url": "https://www.waves.com/plugins/dbx-160-compressor-limiter"
+    },
+    {
+     "name": "Doppler",
+     "url": "https://www.waves.com/plugins/doppler"
+    },
+    {
+     "name": "Dorrough Stereo",
+     "url": "https://www.waves.com/plugins/dorrough-stereo"
+    },
+    {
+     "name": "Dorrough Surround",
+     "url": "https://www.waves.com/plugins/dorrough-surround"
+    },
+    {
+     "name": "Eddie Kramer Bass Channel",
+     "url": "https://www.waves.com/plugins/eddie-kramer-bass-channel"
+    },
+    {
+     "name": "Eddie Kramer Drum Channel",
+     "url": "https://www.waves.com/plugins/eddie-kramer-drum-channel"
+    },
+    {
+     "name": "Feedback Hunter",
+     "url": "https://www.waves.com/plugins/feedback-hunter"
+    },
+    {
+     "name": "GEQ Graphic Equalizer",
+     "url": "https://www.waves.com/plugins/geq-graphic-equalizer"
+    },
+    {
+     "name": "Greg Wells ToneCentric",
+     "url": "https://www.waves.com/plugins/greg-wells-tonecentric"
+    },
+    {
+     "name": "Greg Wells VoiceCentric",
+     "url": "https://www.waves.com/plugins/greg-wells-voicecentric"
+    },
+    {
+     "name": "H-Reverb Hybrid Reverb",
+     "url": "https://www.waves.com/plugins/h-reverb-hybrid-reverb"
+    },
+    {
+     "name": "IDR360 Bit Re-Quantizer",
+     "url": "https://www.waves.com/plugins/idr360-bit-re-quantizer"
+    },
+    {
+     "name": "Immersive Wrapper",
+     "url": "https://www.waves.com/plugins/immersive-wrapper"
+    },
+    {
+     "name": "InPhase",
+     "url": "https://www.waves.com/plugins/inphase"
+    },
+    {
+     "name": "InTrigger Drum Replacer",
+     "url": "https://www.waves.com/plugins/intrigger-drum-replacer"
+    },
+    {
+     "name": "IR1 Convolution Reverb",
+     "url": "https://www.waves.com/plugins/ir1-convolution-reverb"
+    },
+    {
+     "name": "IR360 Convolution Reverb",
+     "url": "https://www.waves.com/plugins/ir360-convolution-reverb"
+    },
+    {
+     "name": "IR-Live Convolution Reverb",
+     "url": "https://www.waves.com/plugins/ir-live-convolution-reverb"
+    },
+    {
+     "name": "JJP Bass",
+     "url": "https://www.waves.com/plugins/jjp-bass"
+    },
+    {
+     "name": "JJP Cymbals & Percussion",
+     "url": "https://www.waves.com/plugins/jjp-cymbals-percussion"
+    },
+    {
+     "name": "JJP Guitars",
+     "url": "https://www.waves.com/plugins/jjp-guitars"
+    },
+    {
+     "name": "JJP Vocals",
+     "url": "https://www.waves.com/plugins/jjp-vocals"
+    },
+    {
+     "name": "Kramer HLS Channel",
+     "url": "https://www.waves.com/plugins/kramer-hls-channel"
+    },
+    {
+     "name": "Kramer PIE Compressor",
+     "url": "https://www.waves.com/plugins/kramer-pie-compressor"
+    },
+    {
+     "name": "L3 Multimaximizer",
+     "url": "https://www.waves.com/plugins/l3-multimaximizer"
+    },
+    {
+     "name": "L3 Ultramaximizer",
+     "url": "https://www.waves.com/plugins/l3-ultramaximizer"
+    },
+    {
+     "name": "L3-16 Multimaximizer",
+     "url": "https://www.waves.com/plugins/l3-16-multimaximizer"
+    },
+    {
+     "name": "L360 Surround Limiter",
+     "url": "https://www.waves.com/plugins/l360-surround-limiter"
+    },
+    {
+     "name": "L3-LL Multimaximizer",
+     "url": "https://www.waves.com/plugins/l3-ll-multimaximizer"
+    },
+    {
+     "name": "L3-LL Ultramaximizer",
+     "url": "https://www.waves.com/plugins/l3-ll-ultramaximizer"
+    },
+    {
+     "name": "L4 Ultramaximizer",
+     "url": "https://www.waves.com/plugins/l4-ultramaximizer"
+    },
+    {
+     "name": "LFE360 Low-Pass Filter",
+     "url": "https://www.waves.com/plugins/lfe360-low-pass-filter"
+    },
+    {
+     "name": "Linear Phase EQ",
+     "url": "https://www.waves.com/plugins/linear-phase-eq"
+    },
+    {
+     "name": "Linear Phase Multiband Compressor",
+     "url": "https://www.waves.com/plugins/linear-phase-multiband-compressor"
+    },
+    {
+     "name": "M360 Surround Manager & Mixdown",
+     "url": "https://www.waves.com/plugins/m360-surround-manager-mixdown"
+    },
+    {
+     "name": "Magma BB Tubes",
+     "url": "https://www.waves.com/plugins/bb-tubes"
+    },
+    {
+     "name": "Magma Springs",
+     "url": "https://www.waves.com/plugins/magma-springs"
+    },
+    {
+     "name": "Manny Marroquin Delay",
+     "url": "https://www.waves.com/plugins/manny-marroquin-delay"
+    },
+    {
+     "name": "Manny Marroquin Distortion",
+     "url": "https://www.waves.com/plugins/manny-marroquin-distortion"
+    },
+    {
+     "name": "Manny Marroquin EQ",
+     "url": "https://www.waves.com/plugins/manny-marroquin-eq"
+    },
+    {
+     "name": "Manny Marroquin Tone Shaper",
+     "url": "https://www.waves.com/plugins/manny-marroquin-tone-shaper"
+    },
+    {
+     "name": "Maserati DRM",
+     "url": "https://www.waves.com/plugins/maserati-drm"
+    },
+    {
+     "name": "Maserati GRP",
+     "url": "https://www.waves.com/plugins/maserati-grp"
+    },
+    {
+     "name": "Maserati GTi",
+     "url": "https://www.waves.com/plugins/maserati-gti"
+    },
+    {
+     "name": "Maserati HMX",
+     "url": "https://www.waves.com/plugins/maserati-hmx"
+    },
+    {
+     "name": "Maserati VX1",
+     "url": "https://www.waves.com/plugins/maserati-vx1"
+    },
+    {
+     "name": "MDMX Distortion Modules",
+     "url": "https://www.waves.com/plugins/mdmx-distortion-modules"
+    },
+    {
+     "name": "MultiMod Rack",
+     "url": "https://www.waves.com/plugins/multimod-rack"
+    },
+    {
+     "name": "MV360",
+     "url": "https://www.waves.com/plugins/mv360"
+    },
+    {
+     "name": "NLS Non-Linear Summer",
+     "url": "https://www.waves.com/plugins/nls-non-linear-summer"
+    },
+    {
+     "name": "Nx Ocean Way Nashville",
+     "url": "https://www.waves.com/plugins/nx-ocean-way-nashville"
+    },
+    {
+     "name": "OVox Vocal ReSynthesis",
+     "url": "https://www.waves.com/plugins/ovox-vocal-resynthesis"
+    },
+    {
+     "name": "PRS SuperModels",
+     "url": "https://www.waves.com/plugins/prs-supermodels"
+    },
+    {
+     "name": "PuigChild Compressor",
+     "url": "https://www.waves.com/plugins/puigchild-compressor"
+    },
+    {
+     "name": "Q-Clone",
+     "url": "https://www.waves.com/plugins/q-clone"
+    },
+    {
+     "name": "R360 Surround Reverb",
+     "url": "https://www.waves.com/plugins/r360-surround-reverb"
+    },
+    {
+     "name": "Retro Fi",
+     "url": "https://www.waves.com/plugins/retro-fi"
+    },
+    {
+     "name": "S360 Surround Imager & Panner",
+     "url": "https://www.waves.com/plugins/s360-surround-imager-panner"
+    },
+    {
+     "name": "Scheps 73",
+     "url": "https://www.waves.com/plugins/scheps-73"
+    },
+    {
+     "name": "Scheps Omni Channel 2",
+     "url": "https://www.waves.com/plugins/scheps-omni-channel"
+    },
+    {
+     "name": "Scheps Parallel Particles",
+     "url": "https://www.waves.com/plugins/scheps-parallel-particles"
+    },
+    {
+     "name": "Smack Attack",
+     "url": "https://www.waves.com/plugins/smack-attack-transient-shaper"
+    },
+    {
+     "name": "Space Rider",
+     "url": "https://www.waves.com/plugins/space-rider"
+    },
+    {
+     "name": "Spherix Immersive Compressor & Limiter",
+     "url": "https://www.waves.com/plugins/spherix-immersive-compressor-limiter"
+    },
+    {
+     "name": "SSL EV2 Channel",
+     "url": "https://www.waves.com/plugins/ssl-ev2-channel"
+    },
+    {
+     "name": "SSL G-Channel",
+     "url": "https://www.waves.com/plugins/ssl-g-channel"
+    },
+    {
+     "name": "SSL G-Equalizer",
+     "url": "https://www.waves.com/plugins/ssl-g-equalizer"
+    },
+    {
+     "name": "SSL G-Master Buss Compressor",
+     "url": "https://www.waves.com/plugins/ssl-g-master-buss-compressor"
+    },
+    {
+     "name": "Submarine",
+     "url": "https://www.waves.com/plugins/submarine"
+    },
+    {
+     "name": "Sync Vx",
+     "url": "https://www.waves.com/plugins/sync-vx"
+    },
+    {
+     "name": "Torque",
+     "url": "https://www.waves.com/plugins/torque"
+    },
+    {
+     "name": "TRACT SPL Meter",
+     "url": "https://www.waves.com/plugins/tract-spl-meter"
+    },
+    {
+     "name": "TRACT System Calibration",
+     "url": "https://www.waves.com/plugins/tract-system-calibration"
+    },
+    {
+     "name": "UM225 / UM226",
+     "url": "https://www.waves.com/plugins/um225-um226"
+    },
+    {
+     "name": "W43 Noise Reduction Plugin",
+     "url": "https://www.waves.com/plugins/w43-noise-reduction-plugin"
+    },
+    {
+     "name": "Waves Harmony",
+     "url": "https://www.waves.com/plugins/waves-harmony"
+    },
+    {
+     "name": "Waves Tune",
+     "url": "https://www.waves.com/plugins/waves-tune"
+    },
+    {
+     "name": "WNS Noise Suppressor",
+     "url": "https://www.waves.com/plugins/wns-noise-suppressor"
+    },
+    {
+     "name": "X-Click",
+     "url": "https://www.waves.com/plugins/x-click"
+    },
+    {
+     "name": "X-Crackle",
+     "url": "https://www.waves.com/plugins/x-crackle"
+    },
+    {
+     "name": "X-Hum",
+     "url": "https://www.waves.com/plugins/x-hum"
+    },
+    {
+     "name": "X-Noise",
+     "url": "https://www.waves.com/plugins/x-noise"
+    }
+   ]
+  }
+ ]
+}

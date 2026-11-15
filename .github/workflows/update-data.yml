@@ -52,16 +52,25 @@ jobs:
         with:
           node-version: 22
       - name: Tests des analyseurs
-        run: node --test scripts/parsers.test.mjs
+        run: |
+          node --test scripts/*.test.mjs
+          python3 -m unittest discover -s scripts -p '*_test.py'
       - name: Collecte
         env:
           ONLY_VENDOR: ${{ github.event.inputs.vendor }}
-        run: node scripts/update.mjs
+          PLUGINLIB_HTTP_CACHE: ${{ runner.temp }}/pluginlib-http
+        run: |
+          node scripts/update.mjs
+          node scripts/enrich-catalog.mjs
+          node scripts/subscription-plans.mjs
+          node scripts/audit-catalog.mjs
+          node scripts/retailer-prices.mjs
+          node scripts/audit-integrity.mjs --fetch-missing
       - name: Enregistrer si les données ont changé
         run: |
           git config user.name "pluginlib-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/plugins.json data/meta.json data/diagnostic.json
+          git add data/plugins.json data/meta.json data/diagnostic.json data/quality-report.json data/quality-report.md data/integrity-report.json data/integrity-report.md data/subscriptions.json sources/retailer-links.json
           if git diff --cached --quiet; then echo "Aucun changement."; exit 0; fi
           git commit -m "données : mise à jour du $(date -u +%Y-%m-%d)"
           # Si quelqu'un a poussé pendant la collecte, on se remet à jour avant d'envoyer

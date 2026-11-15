@@ -3,6 +3,8 @@
 // Rien n'est inventé : chaque critère n'est posé que si un mot-clé explicite
 // apparaît dans ce texte. Le résultat est marqué "auto" dans les données et
 // peut être corrigé à la main dans data/overrides.json.
+import { COLORATION_LABELS } from '../coloration.mjs';
+import { FAMILY_RULES, inferFamily } from './category-evidence.mjs';
 
 // Produits hors périmètre, détectés sur le NOM du produit : instruments, synthés,
 // banques de sons, matériel, bundles, versions d'essai ou éducatives, formations…
@@ -17,33 +19,10 @@ const EXCLUDE_NAME = [
 // Signal fort dans la description courte (et non dans tout le texte de la page)
 const EXCLUDE_DESC = [/\b(virtual|software) instrument\b/i, /\bsynthesi[sz]er\b/i, /\bsample library\b/i, /\bkontakt\b/i];
 
-// Catégories principales : [id, libellé, motifs]. L'ordre compte (la première qui
-// correspond au NOM l'emporte ; sinon la première qui correspond au texte).
-export const CATEGORIES = [
-  ['channel', 'Tranche console / Channel strip', [/channel ?strip/i, /\b[a-z0-9-]*channel\b(?! (count|audio|mode))/i, /\bstrip\b/i]],
-  ['deesser', 'De-esser', [/de-?ess(er|ing)?/i, /sibilan/i]],
-  ['multiband', 'Dynamique multibande', [/multi-?band/i]],
-  ['comp', 'Compresseur', [/\bcompress(or|ion|eur)\b/i, /\bcomp\b/i, /\bleveling amplifier\b/i, /\b(1176|la-?2a|la-?3a|fairchild|vari-?mu|dbx ?160|2500|33609|distressor|opto)\b/i]],
-  ['limiter', 'Limiteur / Maximiseur', [/\blimit(er|ing)\b/i, /maximi[sz]er/i, /\bclipper\b/i, /\bclip(ping)?\b/i, /loudness maxim/i]],
-  ['gate', 'Gate / Expandeur', [/\bgate\b/i, /\bexpander\b/i, /noise gate/i]],
-  ['transient', 'Transitoires', [/transient/i, /\bsmack|punch designer\b/i]],
-  ['eq', 'Égaliseur', [/\beq\b/i, /\bequali[sz](er|ation)\b/i, /\bfilter(s)?\b/i, /\bpultec|eqp-?1a|api 550|api 560|neve 1073\b/i]],
-  ['resonance', 'Suppresseur de résonances', [/resonance (suppress|control)/i, /resonan(ces|t) (taming|tamer)/i, /\bsoothe\b/i]],
-  ['saturation', 'Saturation / Distorsion', [/saturat/i, /distort/i, /\bharmonic(s)?\b/i, /\bexciter\b/i, /\boverdrive\b/i, /\bwarmth\b/i]],
-  ['tape', 'Bande / Émulation magnétique', [/\btape\b/i, /\breel\b/i, /\bj37\b/i]],
-  ['reverb', 'Réverbération', [/reverb/i, /\bplate\b/i, /\bchambers?\b/i, /\bspring\b/i, /\broom\b/i, /\bhall\b/i, /convolution/i]],
-  ['delay', 'Délai / Écho', [/\bdelay\b/i, /\becho\b/i, /\btap\b/i]],
-  ['modulation', 'Modulation', [/chorus/i, /flanger/i, /phaser/i, /tremolo/i, /vibrato/i, /\bmodulat/i, /\brotary|leslie\b/i, /\badt\b/i, /doubler/i]],
-  ['pitch', 'Pitch / Correction vocale', [/\bpitch\b/i, /\btune\b/i, /harmoni[sz]er/i, /formant/i]],
-  ['stereo', 'Image stéréo', [/stereo (imag|widen|width)/i, /\bimager\b/i, /\bwidener\b/i, /mid\/?side|m\/s\b/i, /\bpanner\b/i]],
-  ['analysis', 'Mesure / Analyse', [/\bmeter(ing)?\b/i, /analy[sz]er/i, /loudness meter/i, /spectrum/i, /\blufs\b/i, /correlation/i]],
-  ['restoration', 'Restauration / Débruitage', [/denois/i, /noise reduction/i, /\bde-?(click|crackle|hum|reverb|clip|breath|plosive)\b/i, /restor/i, /dialogue (isolate|clean)/i]],
-  ['mastering', 'Suite de mastering', [/master(ing)? (suite|chain|assistant|console)/i, /\bmastering\b/i]],
-  ['amp', 'Ampli / Guitare & basse', [/\bamp(lifier)? sim/i, /guitar amp/i, /\bbass amp/i, /\bcabinet\b/i, /\bpedalboard\b/i]],
-  ['utility', 'Utilitaire', [/\butility\b/i, /\bgain\b/i, /phase align/i, /\btrim\b/i, /\bmonitor(ing)? (controller|correction)\b/i, /room correction/i]]
-];
+// Familles : une fonction principale explicite, sinon « à vérifier ».
+export const CATEGORIES = FAMILY_RULES;
 
-// Critères contextuels : ne s'affichent dans l'interface que pour les catégories listées.
+// Critères de filtrage. La coloration documentée est traitée après collecte.
 export const FACETS = {
   techno: {
     label: 'Technologie', for: ['comp', 'limiter', 'channel', 'multiband'],
@@ -51,11 +30,14 @@ export const FACETS = {
       fet: ['FET', [/\bfet\b/i, /\b1176\b/i, /\bcla-?76\b/i]],
       vca: ['VCA', [/\bvca\b/i, /\bdbx ?160\b/i, /\bapi 2500\b/i, /\bbus(s)? compressor\b/i, /\bssl g\b/i]],
       opto: ['Optique', [/\bopto/i, /\bla-?2a\b/i, /\bt4\b/i]],
-      varimu: ['Vari-Mu / Lampes', [/vari-?mu/i, /\bfairchild\b/i, /\b670\b/i, /\btube\b/i, /\bvalve\b/i]],
+      varimu: ['Vari-Mu', [/vari[- ]?mu/i, /variable[- ](?:mu|bias)/i]],
       diode: ['Diode bridge', [/diode/i, /\b33609\b/i, /\b2254\b/i]],
-      pwm: ['PWM', [/\bpwm\b/i]],
-      digital: ['Numérique / transparent', [/transparent/i, /\bclean\b/i, /lookahead|look-ahead/i]]
+      pwm: ['PWM', [/\bpwm\b/i]]
     }
+  },
+  coloration: {
+    label: 'Coloration', for: CATEGORIES.map(([id]) => id),
+    values: Object.fromEntries(Object.entries(COLORATION_LABELS).map(([key, label]) => [key, [label, []]]))
   },
   vitesse: {
     label: 'Attaque', for: ['comp', 'limiter', 'transient'],
@@ -105,7 +87,7 @@ export const FACETS = {
 
 // Options transversales (affichées pour toutes les catégories)
 export const COMMON = {
-  sidechain: ['Side-chain externe', [/side-?chain/i, /\bkey input\b/i]],
+  sidechain: ['Side-chain externe', [/external (?:side[- ]?chain|key)(?: input)?/i, /side[- ]?chain input/i, /\bkey input\b/i]],
   ms: ['Mid/Side', [/mid\/?side/i, /\bm\/s\b/i]],
   live: ['Mode / version Live', [/\blive\b/i]],
   zl: ['« Zero latency » annoncé', [/zero[- ]latency/i, /no latency/i, /latency-?free/i, /0 latency/i]]
@@ -113,20 +95,14 @@ export const COMMON = {
 
 function matches(text, patterns) { return patterns.some((re) => re.test(text)); }
 
-export function isOutOfScope(name = '', desc = '') { return EXCLUDE_NAME.some((re) => re.test(name)) || EXCLUDE_DESC.some((re) => re.test(desc)); }
+export function isOutOfScope(name = '', desc = '') {
+  return EXCLUDE_NAME.some((re) => re.test(name)) || !/\b(vocoder|morphoder)\b/i.test(`${name} ${desc}`) && EXCLUDE_DESC.some((re) => re.test(desc));
+}
 
-export function classify({ name = '', text = '' }) {
-  const full = `${name}\n${text}`;
-  let category = null;
-  for (const [id, , pats] of CATEGORIES) if (matches(name, pats)) { category = id; break; }
-  if (!category) {
-    let best = 0;
-    for (const [id, , pats] of CATEGORIES) {
-      const list = id === 'channel' ? [/channel ?strip/i] : pats;
-      const score = list.filter((re) => re.test(text)).length;
-      if (score > best) { best = score; category = id; }
-    }
-  }
+export function classify({ name = '', text = '', vendor = '' }) {
+  const productName = name.replace(/([a-z])([A-Z])/g, '$1 $2');
+  const full = `${productName}\n${text}`;
+  const category = inferFamily({ name, description: text, vendor }).category;
   const tags = [];
   for (const [fid, f] of Object.entries(FACETS)) {
     if (!category || !f.for.includes(category)) continue;
@@ -138,7 +114,7 @@ export function classify({ name = '', text = '' }) {
 
 export function labels() {
   const cat = Object.fromEntries(CATEGORIES.map(([id, l]) => [id, l]));
-  cat.other = 'Autre / non classé';
+  cat.other = 'Famille à vérifier';
   const facets = {};
   for (const [fid, f] of Object.entries(FACETS)) {
     facets[fid] = { label: f.label, for: f.for, values: Object.fromEntries(Object.entries(f.values).map(([v, [l]]) => [v, l])) };

@@ -1,5 +1,5 @@
 {
-  "_doc": "Liste des constructeurs collectés chaque nuit. 'mode' = auto (essaie Shopify, puis WooCommerce, puis sitemap) | shopify | woocommerce | sitemap. 'include' / 'exclude' = motifs (expressions régulières) appliqués à l'URL des pages produit en mode sitemap. Ajoute ou retire un constructeur ici, sans toucher au code. En mode sitemap, une page n'est retenue que si elle se déclare comme produit (JSON-LD Product/SoftwareApplication ou og:type=product), sauf si 'trustInclude' est vrai (motif d'URL jugé assez précis).",
+  "_doc": "Constructeurs collectés toutes les deux semaines. Modes : auto, shopify, woocommerce, sitemap, links (liens depuis start), download-table, lsp et chow. Les plateformes et le statut sont sourcés ; une erreur réseau ou une disparition du sitemap ne signifie pas abandon. Les anciennes fiches sont conservées lors d’une collecte partielle.",
   "vendors": [
     {
       "name": "Waves",
@@ -77,14 +77,18 @@
     {
       "name": "FabFilter",
       "site": "https://www.fabfilter.com",
-      "mode": "sitemap",
+      "mode": "links",
       "include": [
         "/products/[a-z0-9-]+$"
       ],
       "exclude": [
-        "/(bundles|compare)"
+        "/(bundles|compare)|synthesizer"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "productsFrom": "start",
+      "start": [
+        "/products"
+      ]
     },
     {
       "name": "MeldaProduction",
@@ -98,11 +102,15 @@
     {
       "name": "Solid State Logic",
       "site": "https://store.solidstatelogic.com",
-      "mode": "sitemap",
+      "mode": "links",
       "include": [
-        "/plug-ins/[a-z0-9-]+$"
+        "/plug-ins/[a-z0-9-]+/?$"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "productsFrom": "start",
+      "start": [
+        "/plug-ins"
+      ]
     },
     {
       "name": "sonible",
@@ -275,10 +283,536 @@
         "pro series|eq|comp|limiter|reverb|delay"
       ],
       "_note": "Seule la gamme Pro Series (traitement de mixage) est retenue."
+    },
+    {
+      "name": "Pulsar Audio",
+      "site": "https://pulsar.audio",
+      "mode": "links",
+      "include": [
+        "/(vocal-studio|primavera|echorec|digitape|mp-eq|eq-8200|poseidon|w495|ipa25-comp|comp-1178|vm-comp|smasher)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start"
+    },
+    {
+      "name": "Pulsar Modular",
+      "site": "https://www.pulsarmodular.com",
+      "mode": "sitemap",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "shirt|hoodie|mug|bundle|p900"
+      ],
+      "excludeNames": [
+        "cap|shirt|hoodie|mug"
+      ]
+    },
+    {
+      "name": "Sonnox",
+      "site": "https://sonnox.com",
+      "mode": "links",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start"
+    },
+    {
+      "name": "McDSP",
+      "site": "https://mcdsp.com",
+      "mode": "sitemap",
+      "include": [
+        "/plugin-index/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "excludeNames": [
+        "\\bpack$"
+      ]
+    },
+    {
+      "name": "LiquidSonics",
+      "site": "https://www.liquidsonics.com",
+      "mode": "sitemap",
+      "include": [
+        "/software/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "atmos-and-surround"
+      ]
+    },
+    {
+      "name": "Relab",
+      "site": "https://relabdevelopment.com",
+      "mode": "sitemap",
+      "include": [
+        "/(lx480-essentials|lx480-dual-engine-reverb|sonsig-rev-a|rev6000|rev6000-essentials|q82|q82-essentials|mea-2|mla-4|ace|relab-176|relab-color-drive)/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Voxengo",
+      "site": "https://www.voxengo.com",
+      "mode": "sitemap",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "excludeNames": [
+        "^r8brain"
+      ]
+    },
+    {
+      "name": "ToneBoosters",
+      "site": "https://www.toneboosters.com",
+      "mode": "links",
+      "include": [
+        "/tb_[a-z0-9_]+\\.html$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start",
+      "exclude": [
+        "flowtones|lowtone"
+      ]
+    },
+    {
+      "name": "Blue Cat Audio",
+      "site": "https://www.bluecataudio.com",
+      "mode": "links",
+      "include": [
+        "/Products/Product_[a-z0-9_]+/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/Products/Category_0_All/"
+      ],
+      "productsFrom": "start"
+    },
+    {
+      "name": "PSPaudioware",
+      "site": "https://www.pspaudioware.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "psp-n2o"
+      ]
+    },
+    {
+      "name": "DDMF",
+      "site": "https://ddmf.eu",
+      "mode": "sitemap",
+      "include": [
+        "/(6144-equalizer-plugin|comprezzore|directionaleq-equalizer-plugin|ers-250|ers-dimd|ers-echorek2|envelope|grandeq-mastering-equalizer|iieqpro-equalizer-plugin|lp10-linear-phase-equalizer-plugin|lincomp-multiband-compressor-plugin|magicdeatheye|magicdeatheyestereo|magicverb|metaplugin-chainer-vst-au-rtas-aax-wrapper|nolimits2-limiter-plugin|obercomp-multiband-autocompressor|plugindoctor|stereooerets-stereo-field-plugin|superplugin|thestrip-channel-strip-plugin)/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "/(bundles|bridgewize|chorddetector|contact|faq|freeware|news|shop|support|privacy|terms|impressum|wp-json|product-category)/?$"
+      ]
+    },
+    {
+      "name": "Acon Digital",
+      "site": "https://acondigital.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "acoustica$|acoustica/|remix$"
+      ]
+    },
+    {
+      "name": "Audio Damage",
+      "site": "https://www.audiodamage.com",
+      "mode": "shopify",
+      "include": [
+        "/products/ad[0-9]+-[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Goodhertz",
+      "site": "https://goodhertz.com",
+      "mode": "links",
+      "include": [
+        "/(canopener-studio|dc19|faraday-lim|good-dither|la-210|lohi|lossy|loudness|megaverb|midside|midside-matrix|panpot|tiltshift|tone-ctrl|trem-ctrl|tupe|tupe-wow|vcme|vcme-soft-clip|vulf-comp|wow-ctrl)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start",
+      "exclude": [
+        "/(plugins|login|create-account|tonal|about|contact|press|downloads|download|faq|manuals|jobs|dealers|privacy|terms|blog|cart|support|shop)/?$"
+      ]
+    },
+    {
+      "name": "u-he",
+      "site": "https://u-he.com",
+      "mode": "links",
+      "include": [
+        "/products/(colourcopy|filterscape|mfm2|presswerk|protoverb|satin|twangstrom|uhbik)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start"
+    },
+    {
+      "name": "TAL Software",
+      "site": "https://tal-software.com",
+      "mode": "links",
+      "include": [
+        "/products/(tal-[a-z0-9-]+|vocoder)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start",
+      "exclude": [
+        "tal-(drum|sampler|bassline|j-8|pha|u-no|mod|noise)"
+      ]
+    },
+    {
+      "name": "Kilohearts",
+      "site": "https://kilohearts.com",
+      "mode": "links",
+      "include": [
+        "/products/[a-z0-9_]+/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/products/kilohearts_essentials",
+        "/"
+      ],
+      "productsFrom": "start",
+      "exclude": [
+        "phase_plant|kilohearts_(subscription|ultimate|essentials)"
+      ]
+    },
+    {
+      "name": "Baby Audio",
+      "site": "https://babyaud.io",
+      "mode": "links",
+      "include": [
+        "/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": false,
+      "productsFrom": "start",
+      "exclude": [
+        "/(blog|support|contact|about|freebies|free-plugins|bundles|shop|faq|jobs|press|privacy|terms|artists|reviews|downloads|download|affiliate|merch|super-bundle|atom|ba-1)/?$"
+      ]
+    },
+    {
+      "name": "Cableguys",
+      "site": "https://www.cableguys.com",
+      "mode": "links",
+      "include": [
+        "/(timestop|shaperbox|snapback|volumeshaper|filtershaper-xl|midishaper|crushshaper|driveshaper|filtershaper-core|halftime|liquidshaper|noiseshaper|pancake|panshaper|pitchshaper|reverbshaper|timeshaper|widthshaper)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start"
+    },
+    {
+      "name": "AudioThing",
+      "site": "https://www.audiothing.net",
+      "mode": "sitemap",
+      "include": [
+        "/effects/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Klevgrand",
+      "site": "https://klevgrand.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "oneshot|pipa|kl[aä]der|speldosa|tines|syndt|hillman|jussi|baervaag|syndtsphere|skaka|slam|tomofon|ting|rassel|haaze2/expansion"
+      ]
+    },
+    {
+      "name": "D16 Group",
+      "site": "https://d16.pl",
+      "mode": "links",
+      "include": [
+        "/(echolite|pulsatec|sigmund2?|spacerek|syntorus2|godfazer|redoptor2|fazortan2|toraverb2|tekturon|repeater|frontier|decimort2|devastor2|antresol)/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/effects"
+      ],
+      "productsFrom": "start",
+      "exclude": [
+        "/(home|products|support|all|instruments|effects|expansions|bundles|samples|rack_extensions|downloads|manuals|press|distributors|company|privacy|refunds|eula|contact|shop)/?$"
+      ]
+    },
+    {
+      "name": "Tritik",
+      "site": "https://www.tritik.com",
+      "mode": "sitemap",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "TBProAudio",
+      "site": "https://www.tbproaudio.de",
+      "mode": "links",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/",
+        "/products/"
+      ],
+      "productsFrom": "start"
+    },
+    {
+      "name": "Audiority",
+      "site": "https://www.audiority.com",
+      "mode": "sitemap",
+      "include": [
+        "/shop/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "/(.*bundle.*|.*sample.*|.*soundset.*|.*preset.*)/?$"
+      ]
+    },
+    {
+      "name": "NUGEN Audio",
+      "site": "https://nugenaudio.com",
+      "mode": "links",
+      "include": [
+        "/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": false,
+      "start": [
+        "/products/"
+      ],
+      "productsFrom": "start"
+    },
+    {
+      "name": "DMG Audio",
+      "site": "https://dmgaudio.com",
+      "mode": "links",
+      "include": [
+        "/(compassion|duality|equality|equilibrium|essence|expurgate|limitless|multiplicity|pitchfunk|trackcomp|trackcontrol|trackds|trackgate|tracklimit|trackmeter)/?$"
+      ],
+      "trustInclude": true,
+      "productsFrom": "start"
+    },
+    {
+      "name": "Kazrog",
+      "site": "https://kazrog.com",
+      "mode": "shopify",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true
+    },
+    {
+      "name": "Boz Digital Labs",
+      "site": "https://www.bozdigitallabs.com",
+      "mode": "sitemap",
+      "include": [
+        "/product/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/plugins/"
+      ],
+      "excludeNames": [
+        "Ningbo|Vienna|piano"
+      ]
+    },
+    {
+      "name": "United Plugins",
+      "site": "https://unitedplugins.com",
+      "mode": "sitemap",
+      "include": [
+        "/[A-Z][A-Za-z0-9% _-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "Bundle|Sounds|Kicks|Choice|For-|for-|FAQ|Privacy|Contact|Support|Download|About|Terms|License|HookUP"
+      ],
+      "requireProductMarker": true
+    },
+    {
+      "name": "W.A. Production",
+      "site": "https://www.waproduction.com",
+      "mode": "sitemap",
+      "include": [
+        "/plugins/view/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "bundle|preset|expansion|serum|babylon|instachord|instacomposer|instascale|insta-articulation|midiq"
+      ],
+      "requireBrand": "^W\\.?\\s*A\\.?\\s*Production$",
+      "excludeNames": [
+        "for ImPerfect|^ImPerfect|Analog Empire|Prodigious Orchestral|^Chords|^Loop Engine|^Notes"
+      ]
+    },
+    {
+      "name": "GVST",
+      "site": "https://gvst.uk",
+      "mode": "links",
+      "include": [
+        "/Downloads/G[A-Za-z0-9]+/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/Downloads"
+      ],
+      "productsFrom": "start",
+      "excludeNames": [
+        "GSinth"
+      ]
+    },
+    {
+      "name": "Variety Of Sound",
+      "site": "https://varietyofsound.wordpress.com",
+      "mode": "download-table",
+      "include": [
+        ".*"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/downloads/"
+      ]
+    },
+    {
+      "name": "LSP Plugins",
+      "site": "https://lsp-plug.in",
+      "mode": "lsp",
+      "include": [
+        ".*"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/?page=plugins"
+      ]
+    },
+    {
+      "name": "Chowdhury DSP",
+      "site": "https://chowdsp.com",
+      "mode": "chow",
+      "include": [
+        ".*"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/products.html"
+      ]
+    },
+    {
+      "name": "Zynaptiq",
+      "site": "https://www.zynaptiq.com",
+      "mode": "links",
+      "include": [
+        "/(adaptiverb|balance|intensity|morph|morph-pro|pitchmap|pitchmap-colors|unveil|unfilter|unmix-drums|unmix-levels|unmix-drums|orange-vocoder|subspace|unmix-chords)/?$"
+      ],
+      "trustInclude": true,
+      "start": [
+        "/audio-plug-ins/",
+        "/"
+      ],
+      "productsFrom": "start"
+    },
+    {
+      "name": "Cherry Audio",
+      "site": "https://cherryaudio.com",
+      "mode": "sitemap",
+      "include": [
+        "/products/[a-z0-9-]+/?$"
+      ],
+      "trustInclude": true,
+      "exclude": [
+        "synth|organ|piano|bundle|collection|voltage|preset|modular"
+      ],
+      "excludeNames": [
+        "PS-20|CA2600|DCO-106|DREAMSYNTH|GX-80|ELKA|Sines|Memorymode|Mercury|Octave Cat|Harmonia|Quadra|Miniverse|Pro Soloist|Polymode|Chroma|KR-55|CR-78|Atomika|Blue3|ARP|Surrealistic|Solovox|Lowdown|Novachord|Crumar|Oberheim|Solina|Jupit|Memorymode|Synthesizer Expander"
+      ]
+    },
+    {
+      "name": "Airwindows",
+      "site": "https://www.airwindows.com",
+      "mode": "airwindows"
+    },
+    {
+      "name": "SIR Audio Tools",
+      "site": "https://www.siraudiotools.com",
+      "mode": "links",
+      "productsFrom": "start",
+      "start": [
+        "/index.php"
+      ],
+      "include": [
+        "/product\\.php\\?id=[a-z0-9]+$"
+      ],
+      "trustInclude": true,
+      "discoveryPasses": 3,
+      "excludeNames": [
+        "qwerty"
+      ]
+    },
+    {
+      "name": "Kush Audio",
+      "site": "https://thehouseofkush.com",
+      "mode": "shopify",
+      "excludeNames": [
+        "hardware|500|rack|gift|shirt|merch|KNOB|Pre Order|For Magpha|Crush & Bend|OG Trifecta"
+      ]
+    },
+    {
+      "name": "Native Instruments",
+      "site": "https://www.native-instruments.com",
+      "mode": "links",
+      "productsFrom": "start",
+      "start": [
+        "/pages/audio-effects"
+      ],
+      "include": [
+        "/products/(raum|replika|replika-xt|supercharger|supercharger-gt|transient-master|solid-bus-comp|solid-dynamics|solid-eq|vc-160|vc-2a|vc-76|enhanced-eq|passive-eq|vari-comp|driver|the-finger|the-mouth|phasis|flair|choral|bite|dirt|freak|replika-gr|guitar-rig-7-pro|guitar-rig-7-player)/?$"
+      ],
+      "exclude": [
+        "komplete|kontakt|massive|maschine|reaktor|guitar-rig-preset"
+      ],
+      "trustInclude": true,
+      "excludeNames": [
+        "Traktor|Maschine"
+      ]
+    },
+    {
+      "name": "ZL Audio",
+      "site": "https://zl-audio.github.io",
+      "mode": "links",
+      "start": [
+        "/plugins/"
+      ],
+      "productsFrom": "start",
+      "trustInclude": true,
+      "include": [
+        "/plugins/(zlequalizer2|zlspeceq|zlcompressor|zllimiter|zlsplitter|zlequalizer)/?$"
+      ]
+    },
+    {
+      "name": "Wavesfactory",
+      "site": "https://www.wavesfactory.com",
+      "mode": "wavesfactory",
+      "start": [
+        "/audio-plugins/"
+      ],
+      "include": [
+        "/audio-plugins/(re-esser|trackspacer|equalizer|cassette|spectre|echo-cat|quantum)/?$"
+      ],
+      "trustInclude": true
     }
-  ],
-  "_retired": {
-    "Kush Audio": "Domaine kushaudio.com en vente (redirige vers hugedomains.com) au 15/11/2026 : retiré.",
-    "Native Instruments": "Catalogue quasi exclusivement orienté production (instruments, expansions) : retiré."
-  }
+  ]
 }

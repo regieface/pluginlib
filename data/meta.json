@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-15T16:48:34.130Z",
- "count": 1182,
+ "generatedAt": "2026-11-15T22:20:44.263Z",
+ "count": 2627,
  "latency": {
   "ok": true,
   "rows": 255,
@@ -16,7 +16,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 248,
-   "kept": 227,
+   "kept": 246,
    "ms": 48458
   },
   {
@@ -25,7 +25,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 162,
-   "kept": 155,
+   "kept": 154,
    "ms": 8068
   },
   {
@@ -34,7 +34,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 157,
-   "kept": 146,
+   "kept": 33,
    "ms": 18888
   },
   {
@@ -43,7 +43,7 @@
    "ok": true,
    "via": "shopify",
    "found": 300,
-   "kept": 186,
+   "kept": 181,
    "ms": 458
   },
   {
@@ -52,17 +52,8 @@
    "ok": true,
    "via": "sitemap",
    "found": 532,
-   "kept": 479,
+   "kept": 95,
    "ms": 44342
-  },
-  {
-   "vendor": "FabFilter",
-   "site": "https://www.fabfilter.com",
-   "ok": true,
-   "via": "sitemap",
-   "found": 15,
-   "kept": 12,
-   "ms": 3739
   },
   {
    "vendor": "MeldaProduction",
@@ -74,22 +65,12 @@
    "ms": 59528
   },
   {
-   "vendor": "Solid State Logic",
-   "site": "https://store.solidstatelogic.com",
-   "ok": false,
-   "via": "sitemap",
-   "found": 0,
-   "kept": 1,
-   "error": "aucun produit lu",
-   "ms": 1425
-  },
-  {
    "vendor": "sonible",
    "site": "https://www.sonible.com",
    "ok": true,
    "via": "sitemap",
    "found": 69,
-   "kept": 35,
+   "kept": 19,
    "ms": 68895
   },
   {
@@ -98,7 +79,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 70,
-   "kept": 67,
+   "kept": 54,
    "ms": 6260
   },
   {
@@ -125,7 +106,7 @@
    "ok": false,
    "via": "sitemap",
    "found": 13,
-   "kept": 4,
+   "kept": 0,
    "error": "tout filtré (hors périmètre)",
    "ms": 24432
   },
@@ -154,7 +135,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 117,
-   "kept": 117,
+   "kept": 20,
    "ms": 27109
   },
   {
@@ -172,7 +153,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 16,
-   "kept": 16,
+   "kept": 4,
    "ms": 1282
   },
   {
@@ -181,7 +162,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 246,
-   "kept": 243,
+   "kept": 68,
    "ms": 296412
   },
   {
@@ -190,7 +171,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 676,
-   "kept": 572,
+   "kept": 22,
    "ms": 26719
   },
   {
@@ -199,7 +180,7 @@
    "ok": true,
    "via": "sitemap",
    "found": 58,
-   "kept": 46,
+   "kept": 27,
    "ms": 4659
   },
   {
@@ -235,12 +216,464 @@
    "ok": true,
    "via": "sitemap",
    "found": 139,
-   "kept": 6,
+   "kept": 3,
    "ms": 64889
+  },
+  {
+   "vendor": "FabFilter",
+   "site": "https://www.fabfilter.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 12,
+   "kept": 12,
+   "collected": 12,
+   "ms": 504
+  },
+  {
+   "vendor": "Solid State Logic",
+   "site": "https://store.solidstatelogic.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 72,
+   "kept": 65,
+   "collected": 65,
+   "ms": 6149
+  },
+  {
+   "vendor": "Sonnox",
+   "site": "https://sonnox.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 21,
+   "kept": 14,
+   "collected": 14,
+   "ms": 2916
+  },
+  {
+   "vendor": "LiquidSonics",
+   "site": "https://www.liquidsonics.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 71,
+   "kept": 6,
+   "collected": 71,
+   "ms": 15876
+  },
+  {
+   "vendor": "Relab",
+   "site": "https://relabdevelopment.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 147,
+   "kept": 12,
+   "collected": 147,
+   "ms": 4578
+  },
+  {
+   "vendor": "ToneBoosters",
+   "site": "https://www.toneboosters.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 16,
+   "kept": 16,
+   "collected": 16,
+   "ms": 410
+  },
+  {
+   "vendor": "PSPaudioware",
+   "site": "https://www.pspaudioware.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 61,
+   "kept": 56,
+   "collected": 61,
+   "ms": 16179
+  },
+  {
+   "vendor": "Acon Digital",
+   "site": "https://acondigital.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 7,
+   "kept": 7,
+   "collected": 7,
+   "ms": 1465
+  },
+  {
+   "vendor": "Audio Damage",
+   "site": "https://www.audiodamage.com",
+   "ok": true,
+   "via": "shopify",
+   "found": 33,
+   "kept": 23,
+   "collected": 23,
+   "ms": 598
+  },
+  {
+   "vendor": "u-he",
+   "site": "https://u-he.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 8,
+   "kept": 8,
+   "collected": 8,
+   "ms": 408
+  },
+  {
+   "vendor": "TAL Software",
+   "site": "https://tal-software.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 4,
+   "kept": 3,
+   "collected": 4,
+   "ms": 400
+  },
+  {
+   "vendor": "Kilohearts",
+   "site": "https://kilohearts.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 41,
+   "kept": 32,
+   "collected": 41,
+   "ms": 1655
+  },
+  {
+   "vendor": "Baby Audio",
+   "site": "https://babyaud.io",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 7,
+   "kept": 7,
+   "collected": 7,
+   "ms": 450
+  },
+  {
+   "vendor": "Cableguys",
+   "site": "https://www.cableguys.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 18,
+   "kept": 18,
+   "collected": 18,
+   "ms": 378
+  },
+  {
+   "vendor": "AudioThing",
+   "site": "https://www.audiothing.net",
+   "ok": true,
+   "via": "sitemap",
+   "found": 189,
+   "kept": 36,
+   "collected": 188,
+   "ms": 3239
+  },
+  {
+   "vendor": "Klevgrand",
+   "site": "https://klevgrand.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 35,
+   "kept": 32,
+   "collected": 32,
+   "ms": 2258
+  },
+  {
+   "vendor": "Tritik",
+   "site": "https://www.tritik.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 88,
+   "kept": 9,
+   "collected": 88,
+   "ms": 6972
+  },
+  {
+   "vendor": "Audiority",
+   "site": "https://www.audiority.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 107,
+   "kept": 47,
+   "collected": 104,
+   "ms": 6859
+  },
+  {
+   "vendor": "NUGEN Audio",
+   "site": "https://nugenaudio.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 34,
+   "kept": 34,
+   "collected": 34,
+   "ms": 44160
+  },
+  {
+   "vendor": "DMG Audio",
+   "site": "https://dmgaudio.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 14,
+   "kept": 14,
+   "collected": 14,
+   "ms": 398
+  },
+  {
+   "vendor": "Kazrog",
+   "site": "https://kazrog.com",
+   "ok": true,
+   "via": "shopify",
+   "found": 16,
+   "kept": 13,
+   "collected": 13,
+   "ms": 408
+  },
+  {
+   "vendor": "Variety Of Sound",
+   "site": "https://varietyofsound.wordpress.com",
+   "ok": true,
+   "via": "download-table",
+   "found": 23,
+   "kept": 23,
+   "collected": 23,
+   "ms": 628
+  },
+  {
+   "vendor": "LSP Plugins",
+   "site": "https://lsp-plug.in",
+   "ok": true,
+   "via": "lsp",
+   "found": 49,
+   "kept": 47,
+   "collected": 47,
+   "ms": 107
+  },
+  {
+   "vendor": "Chowdhury DSP",
+   "site": "https://chowdsp.com",
+   "ok": true,
+   "via": "chow",
+   "found": 6,
+   "kept": 6,
+   "collected": 6,
+   "ms": 234
+  },
+  {
+   "vendor": "Zynaptiq",
+   "site": "https://www.zynaptiq.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 17,
+   "kept": 9,
+   "collected": 17,
+   "ms": 1640
+  },
+  {
+   "vendor": "Cherry Audio",
+   "site": "https://cherryaudio.com",
+   "ok": false,
+   "via": "sitemap",
+   "found": 0,
+   "kept": 0,
+   "error": "aucun produit lu",
+   "ms": 2284
+  },
+  {
+   "vendor": "Pulsar Modular",
+   "site": "https://www.pulsarmodular.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 21,
+   "kept": 19,
+   "collected": 19,
+   "ms": 4809
+  },
+  {
+   "vendor": "Voxengo",
+   "site": "https://www.voxengo.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 50,
+   "kept": 47,
+   "collected": 47,
+   "ms": 686
+  },
+  {
+   "vendor": "Blue Cat Audio",
+   "site": "https://www.bluecataudio.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 34,
+   "kept": 34,
+   "collected": 34,
+   "ms": 741
+  },
+  {
+   "vendor": "DDMF",
+   "site": "https://ddmf.eu",
+   "ok": true,
+   "via": "sitemap",
+   "found": 19,
+   "kept": 19,
+   "collected": 19,
+   "ms": 2497
+  },
+  {
+   "vendor": "Goodhertz",
+   "site": "https://goodhertz.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 21,
+   "kept": 25,
+   "collected": 21,
+   "ms": 38
+  },
+  {
+   "vendor": "D16 Group",
+   "site": "https://d16.pl",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 15,
+   "kept": 15,
+   "collected": 15,
+   "ms": 33
+  },
+  {
+   "vendor": "TBProAudio",
+   "site": "https://www.tbproaudio.de",
+   "ok": false,
+   "via": "liens constructeur",
+   "found": 0,
+   "kept": 0,
+   "error": "aucun produit lu",
+   "ms": 5053
+  },
+  {
+   "vendor": "Boz Digital Labs",
+   "site": "https://www.bozdigitallabs.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 32,
+   "kept": 25,
+   "collected": 23,
+   "ms": 19835
+  },
+  {
+   "vendor": "United Plugins",
+   "site": "https://unitedplugins.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 55,
+   "kept": 55,
+   "collected": 55,
+   "ms": 2615
+  },
+  {
+   "vendor": "W.A. Production",
+   "site": "https://www.waproduction.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 143,
+   "kept": 73,
+   "collected": 75,
+   "ms": 2228
+  },
+  {
+   "vendor": "GVST",
+   "site": "https://gvst.uk",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 32,
+   "kept": 29,
+   "collected": 29,
+   "ms": 440
+  },
+  {
+   "vendor": "Airwindows",
+   "site": "https://www.airwindows.com",
+   "ok": true,
+   "via": "airwindows",
+   "found": 487,
+   "kept": 487,
+   "collected": 487,
+   "ms": 2341
+  },
+  {
+   "vendor": "SIR Audio Tools",
+   "site": "https://www.siraudiotools.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 7,
+   "kept": 6,
+   "collected": 6,
+   "ms": 741
+  },
+  {
+   "vendor": "Kush Audio",
+   "site": "https://thehouseofkush.com",
+   "ok": true,
+   "via": "shopify",
+   "found": 49,
+   "kept": 22,
+   "collected": 29,
+   "ms": 555
+  },
+  {
+   "vendor": "Native Instruments",
+   "site": "https://www.native-instruments.com",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 1,
+   "kept": 0,
+   "collected": 1,
+   "ms": 791
+  },
+  {
+   "vendor": "Pulsar Audio",
+   "site": "https://pulsar.audio",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 12,
+   "kept": 12,
+   "collected": 12,
+   "ms": 49
+  },
+  {
+   "vendor": "McDSP",
+   "site": "https://mcdsp.com",
+   "ok": true,
+   "via": "sitemap",
+   "found": 31,
+   "kept": 27,
+   "collected": 27,
+   "ms": 44
+  },
+  {
+   "vendor": "ZL Audio",
+   "site": "https://zl-audio.github.io",
+   "ok": true,
+   "via": "liens constructeur",
+   "found": 6,
+   "kept": 6,
+   "collected": 6,
+   "ms": 372
+  },
+  {
+   "vendor": "Wavesfactory",
+   "site": "https://www.wavesfactory.com",
+   "ok": true,
+   "via": "fiches et catalogue gratuit officiels",
+   "found": 11,
+   "kept": 11,
+   "collected": 11,
+   "ms": 853
   }
  ],
  "labels": {
   "categories": {
+   "tuner": "Accordeur",
+   "feedback": "Simulation de larsen",
    "channel": "Tranche console / Channel strip",
    "deesser": "De-esser",
    "multiband": "Dynamique multibande",
@@ -248,8 +681,9 @@
    "limiter": "Limiteur / Maximiseur",
    "gate": "Gate / Expandeur",
    "transient": "Transitoires",
-   "eq": "Égaliseur",
    "resonance": "Suppresseur de résonances",
+   "eq": "Égaliseur",
+   "filter": "Filtre",
    "saturation": "Saturation / Distorsion",
    "tape": "Bande / Émulation magnétique",
    "reverb": "Réverbération",
@@ -261,8 +695,10 @@
    "restoration": "Restauration / Débruitage",
    "mastering": "Suite de mastering",
    "amp": "Ampli / Guitare & basse",
+   "preamp": "Préampli",
+   "multi": "Multi-effets / Hôte",
    "utility": "Utilitaire",
-   "other": "Autre / non classé"
+   "other": "Famille à vérifier"
   },
   "facets": {
    "techno": {
@@ -277,10 +713,45 @@
      "fet": "FET",
      "vca": "VCA",
      "opto": "Optique",
-     "varimu": "Vari-Mu / Lampes",
+     "varimu": "Vari-Mu",
      "diode": "Diode bridge",
-     "pwm": "PWM",
-     "digital": "Numérique / transparent"
+     "pwm": "PWM"
+    }
+   },
+   "coloration": {
+    "label": "Coloration",
+    "for": [
+     "tuner",
+     "feedback",
+     "channel",
+     "deesser",
+     "multiband",
+     "comp",
+     "limiter",
+     "gate",
+     "transient",
+     "resonance",
+     "eq",
+     "filter",
+     "saturation",
+     "tape",
+     "reverb",
+     "delay",
+     "modulation",
+     "pitch",
+     "stereo",
+     "analysis",
+     "restoration",
+     "mastering",
+     "amp",
+     "preamp",
+     "multi",
+     "utility"
+    ],
+    "values": {
+     "transparent": "Transparent (documenté)",
+     "colored": "Coloration / harmoniques",
+     "mixed": "Modes neutres et colorés"
     }
    },
    "vitesse": {

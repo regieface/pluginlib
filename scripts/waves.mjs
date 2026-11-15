@@ -40,14 +40,15 @@ export function parseWavesLatency(html) {
   return rows.filter((r) => r && r.documentName).map((r) => ({
     name: stripHtml(r.documentName),
     latency: {
-      48: parseCell(r.native48 ?? r.native44), 96: parseCell(r.native96 ?? r.native88),
+      '44.1': parseCell(r.native44), 48: parseCell(r.native48),
+      '88.2': parseCell(r.native88), 96: parseCell(r.native96),
       source: 'https://www.waves.com/support/tech-specs/plugin-latency'
     }
   }));
 }
 
 const STOP = /\b(waves|plugin|plug-in|compressor|limiter|equalizer|eq|the)\b/g;
-export const norm = (s) => slug(s).replace(/-/g, ' ').replace(STOP, ' ').replace(/\s+/g, ' ').trim();
+export const norm = (s) => slug(s.replace(/[™®]/g,'')).replace(/-/g, ' ').replace(STOP, ' ').replace(/\s+/g, ' ').trim();
 
 export function matchWaves(products, rows) {
   const used = new Set();

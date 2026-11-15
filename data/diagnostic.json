@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-15T16:48:34.130Z",
+ "generatedAt": "2026-11-15T22:20:44.263Z",
  "vendors": [
   {
    "vendor": "Waves",
@@ -626,157 +626,6 @@
    }
   },
   {
-   "vendor": "FabFilter",
-   "requests": [
-    "200 https://www.fabfilter.com/robots.txt",
-    "404 https://www.fabfilter.com/sitemap.xml",
-    "404 https://www.fabfilter.com/sitemap_index.xml",
-    "200 https://www.fabfilter.com/sitemap-index",
-    "200 https://www.fabfilter.com/sitemap-default",
-    "404 https://www.fabfilter.com/sitemap-learn"
-   ],
-   "prefixes": [
-    [
-     "/downloads/pdf",
-     14
-    ],
-    [
-     "/download",
-     1
-    ],
-    [
-     "/press",
-     1
-    ],
-    [
-     "/press/1141210410",
-     1
-    ],
-    [
-     "/press/1135162410",
-     1
-    ],
-    [
-     "/press/1128336810",
-     1
-    ],
-    [
-     "/press/1125744810",
-     1
-    ],
-    [
-     "/press/1097060010",
-     1
-    ],
-    [
-     "/press/1093863210",
-     1
-    ],
-    [
-     "/press/1084964010",
-     1
-    ],
-    [
-     "/press/1079520810",
-     1
-    ],
-    [
-     "/press/1117018410",
-     1
-    ],
-    [
-     "/press/1117709610",
-     1
-    ],
-    [
-     "/press/1120647210",
-     1
-    ],
-    [
-     "/press/1146485864",
-     1
-    ],
-    [
-     "/press/1158012000",
-     1
-    ],
-    [
-     "/press/1161727200",
-     1
-    ],
-    [
-     "/press/1179144939",
-     1
-    ],
-    [
-     "/press/1187103600",
-     1
-    ],
-    [
-     "/press/1188829976",
-     1
-    ],
-    [
-     "/press/1196174806",
-     1
-    ],
-    [
-     "/press/1211972400",
-     1
-    ],
-    [
-     "/press/1212465600",
-     1
-    ],
-    [
-     "/press/1223888928",
-     1
-    ],
-    [
-     "/press/1233745200",
-     1
-    ]
-   ],
-   "sitemapUrls": 277,
-   "sample": [
-    "https://www.fabfilter.com/press/1135162410/fabfilter-releases-fabfilter-twin-synthesizer-plug-in",
-    "https://www.fabfilter.com/press/1117018410/fabfilter-releases-fabfilter-volcano-filter-plug-in",
-    "https://www.fabfilter.com/press/1161727200/fabfilter-releases-new-products-fabfilter-timeless-and-fabfilter-simplon",
-    "https://www.fabfilter.com/press/1179144939/fabfilter-releases-rtas-versions-of-all-plug-ins",
-    "https://www.fabfilter.com/press/1187103600/fabfilter-releases-fabfilter-pro-c-compressor-plug-in",
-    "https://www.fabfilter.com/press/1233745200/fabfilter-releases-fabfilter-twin-2-synthesizer-plug-in",
-    "https://www.fabfilter.com/press/1237212265/fabfilter-releases-updated-plug-ins-and-announces-preset-contest",
-    "https://www.fabfilter.com/press/1243270800/fabfilter-releases-fabfilter-timeless-2-delay-plug-in",
-    "https://www.fabfilter.com/press/1263794400/fabfilter-releases-micro-a-mini-filter-plug-in-for-a-mini-price",
-    "https://www.fabfilter.com/press/1274677200/fabfilter-releases-64-bit-plug-ins-for-mac-and-windows",
-    "https://www.fabfilter.com/press/1279515600/fabfilter-releases-plug-in-updates-and-announces-summer-sale",
-    "https://www.fabfilter.com/press/1287648000/fabfilter-announces-pro-l-limiter-plug-in",
-    "https://www.fabfilter.com/press/1302584400/fabfilter-releases-updates-for-all-plug-ins-new-pro-q-features",
-    "https://www.fabfilter.com/press/1304928000/fabfilter-announces-pro-g-gate-expander-plug-in",
-    "https://www.fabfilter.com/press/1319173200/fabfilter-announces-support-for-avids-new-aax-plug-in-format",
-    "https://www.fabfilter.com/press/1322484846/fabfilter-updates-all-plug-ins-introducing-aax-support",
-    "https://www.fabfilter.com/press/1331161200/fabfilter-releases-fabfilter-saturn-distortion-and-saturation-plug-in",
-    "https://www.fabfilter.com/press/1349427600/fabfilter-releases-fabfilter-pro-ds-intelligent-de-esser-plug-in",
-    "https://www.fabfilter.com/press/1354255200/fabfilter-updates-all-plug-ins-with-graphics-acceleration",
-    "https://www.fabfilter.com/press/1371812400/fabfilter-updates-all-plug-ins-including-aax-64-bit-support",
-    "https://www.fabfilter.com/press/1382002200/fabfilter-releases-fabfilter-pro-mb-multiband-dynamics-plug-in",
-    "https://www.fabfilter.com/press/1409212800/fabfilter-releases-fabfilter-pro-q-2-equalizer-plug-in",
-    "https://www.fabfilter.com/press/1440572940/fabfilter-releases-fabfilter-pro-c-2-compressor-plug-in",
-    "https://www.fabfilter.com/press/1450083600/fabfilter-updates-all-plug-ins-including-retina-support-announces-holiday-sale",
-    "https://www.fabfilter.com/press/1455004800/fabfilter-releases-bug-fix-update-for-all-plug-ins"
-   ],
-   "pass1": {
-    "fetched": 14,
-    "products": 14,
-    "discovered": 6
-   },
-   "pass2": {
-    "fetched": 1,
-    "products": 15,
-    "discovered": 0
-   }
-  },
-  {
    "vendor": "MeldaProduction",
    "requests": [
     "200 https://www.meldaproduction.com/robots.txt",
@@ -923,17 +772,6 @@
     "products": 121,
     "discovered": 0
    }
-  },
-  {
-   "vendor": "Solid State Logic",
-   "requests": [
-    "200 https://store.solidstatelogic.com/robots.txt",
-    "404 https://store.solidstatelogic.com/sitemap.xml",
-    "404 https://store.solidstatelogic.com/sitemap_index.xml"
-   ],
-   "prefixes": [],
-   "sitemapUrls": 0,
-   "sample": []
   },
   {
    "vendor": "sonible",
@@ -2833,6 +2671,2714 @@
     "fetched": 800,
     "products": 139,
     "discovered": 48989
+   }
+  },
+  {
+   "vendor": "FabFilter",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 12
+   },
+   "pass2": {
+    "fetched": 12,
+    "products": 12,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Solid State Logic",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 72
+   },
+   "pass2": {
+    "fetched": 72,
+    "products": 72,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Sonnox",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 21
+   },
+   "pass2": {
+    "fetched": 21,
+    "products": 21,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "LiquidSonics",
+   "requests": [
+    "200 https://www.liquidsonics.com/robots.txt",
+    "200 https://www.liquidsonics.com/sitemap.xml → https://www.liquidsonics.com/sitemap_index.xml",
+    "200 https://www.liquidsonics.com/sitemap_index.xml",
+    "200 https://www.liquidsonics.com/product-sitemap.xml",
+    "200 https://www.liquidsonics.com/product_cat-sitemap.xml",
+    "200 https://www.liquidsonics.com/post-sitemap.xml",
+    "200 https://www.liquidsonics.com/page-sitemap.xml",
+    "200 https://www.liquidsonics.com/category-sitemap.xml",
+    "200 https://www.liquidsonics.com/post_tag-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/2021/10",
+     7
+    ],
+    [
+     "/2022/08",
+     6
+    ],
+    [
+     "/2020/06",
+     6
+    ],
+    [
+     "/2020/10",
+     5
+    ],
+    [
+     "/2023/11",
+     5
+    ],
+    [
+     "/2024/03",
+     5
+    ],
+    [
+     "/2021/04",
+     4
+    ],
+    [
+     "/2019/10",
+     4
+    ],
+    [
+     "/2020/11",
+     3
+    ],
+    [
+     "/2022/11",
+     3
+    ],
+    [
+     "/2022/09",
+     3
+    ],
+    [
+     "/2021/11",
+     3
+    ],
+    [
+     "/2021/08",
+     3
+    ],
+    [
+     "/2021/07",
+     3
+    ],
+    [
+     "/2023/09",
+     3
+    ],
+    [
+     "/2024/01",
+     3
+    ],
+    [
+     "/2024/02",
+     3
+    ],
+    [
+     "/2024/08",
+     3
+    ],
+    [
+     "/2025/12",
+     3
+    ],
+    [
+     "/2026/03",
+     3
+    ],
+    [
+     "/2022/10",
+     2
+    ],
+    [
+     "/2022/12",
+     2
+    ],
+    [
+     "/2022/07",
+     2
+    ],
+    [
+     "/2022/05",
+     2
+    ],
+    [
+     "/2022/02",
+     2
+    ]
+   ],
+   "sitemapUrls": 297,
+   "sample": [
+    "https://www.liquidsonics.com/product/rocker_distribution/",
+    "https://www.liquidsonics.com/product/hookup_distribution/",
+    "https://www.liquidsonics.com/product/gearlounge_distribution1/",
+    "https://www.liquidsonics.com/product/dda_distribution/",
+    "https://www.liquidsonics.com/product/lustrous-plates-to-lustrous-plates-surround-upgrade/",
+    "https://www.liquidsonics.com/product/reverb-essentials-suite/",
+    "https://www.liquidsonics.com/product/m7-link-with-seventh-heaven-bundle/",
+    "https://www.liquidsonics.com/product/m7-link-with-seventh-heaven-professional-bundle/",
+    "https://www.liquidsonics.com/product/immersive-suite/",
+    "https://www.liquidsonics.com/product/ultimate-reverb-suite/",
+    "https://www.liquidsonics.com/product/m7-link/",
+    "https://www.liquidsonics.com/product/hd-cart/",
+    "https://www.liquidsonics.com/product/tai-chi-lite-to-standard-upgrade/",
+    "https://www.liquidsonics.com/product/tai-chi-lite/",
+    "https://www.liquidsonics.com/product/tai-chi/",
+    "https://www.liquidsonics.com/product/cinematic-rooms-with-seventh-heaven-bundle/",
+    "https://www.liquidsonics.com/product/liquidsonics-surround-bundle/",
+    "https://www.liquidsonics.com/product/cinematic-rooms-professional-with-lustrous-plates-surround-bundle/",
+    "https://www.liquidsonics.com/product/cinematic-rooms-professional-with-lustrous-plates-bundle/",
+    "https://www.liquidsonics.com/product/cinematic-rooms-with-lustrous-plates-reverberate-3-bundle/",
+    "https://www.liquidsonics.com/product/cinematic-rooms-with-lustrous-plates-bundle/",
+    "https://www.liquidsonics.com/product/professional-bundle/",
+    "https://www.liquidsonics.com/product/liquidsonics-reverb-bundle/",
+    "https://www.liquidsonics.com/product/lustrous-plates-surround/",
+    "https://www.liquidsonics.com/product/seventh-heaven-standard-to-professional-upgrade/"
+   ],
+   "pass1": {
+    "fetched": 10,
+    "products": 7,
+    "discovered": 92
+   },
+   "pass2": {
+    "fetched": 92,
+    "products": 71,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Relab",
+   "requests": [
+    "200 https://relabdevelopment.com/robots.txt",
+    "200 https://relabdevelopment.com/sitemap.xml",
+    "404 https://relabdevelopment.com/sitemap_index.xml",
+    "200 https://relabdevelopment.com/sitemap-post-type-post.xml",
+    "200 https://relabdevelopment.com/sitemap-post-type-page.xml",
+    "200 https://relabdevelopment.com/sitemap-post-type-testimonials.xml",
+    "200 https://relabdevelopment.com/sitemap-post-type-lc-article.xml",
+    "200 https://relabdevelopment.com/sitemap-taxonomy-category.xml",
+    "200 https://relabdevelopment.com/sitemap-taxonomy-post_tag.xml",
+    "200 https://relabdevelopment.com/sitemap-taxonomy-testimonials-taxonomy.xml",
+    "200 https://relabdevelopment.com/sitemap-taxonomy-lc-article-taxonomy.xml"
+   ],
+   "prefixes": [
+    [
+     "/learning-center/the-original-factory-preset-pack",
+     11
+    ],
+    [
+     "/learning-center/reverb-section",
+     10
+    ],
+    [
+     "/learning-center/the-relab-lx480-dual-engine-reverb-plug-in",
+     7
+    ],
+    [
+     "/learning-center/enhancement-section",
+     5
+    ],
+    [
+     "/learning-center/outpul-levels-section",
+     4
+    ],
+    [
+     "/learning-center/meters-section",
+     3
+    ],
+    [
+     "/learning-center/the-parameters-of-the-relab-lx480-dual-engine-reverb-plug-in",
+     2
+    ],
+    [
+     "/the-making-of-the-relab-176-tube-compressor-limiter-plugin/",
+     1
+    ],
+    [
+     "/how-to-use-the-maselec-mla-4-for-better-mix-bus-processing/",
+     1
+    ],
+    [
+     "/why-the-rev6000-is-in-a-class-of-its-own-the-quest-for-absolute-realism/",
+     1
+    ],
+    [
+     "/the-rev6000-revolutionizing-hardware-re-creation/",
+     1
+    ],
+    [
+     "/danish-innovation-in-reverb-a-legacy-continued-with-rev6000/",
+     1
+    ],
+    [
+     "/sonsig-ace-quick-wins-why-your-chorus-might-be-undermining-your-mix/",
+     1
+    ],
+    [
+     "/demystifying-complex-modulation-and-modulator-waveshaping/",
+     1
+    ],
+    [
+     "/sonsig-ace-quick-wins-unlocking-immersive-dimension-with-enrich/",
+     1
+    ],
+    [
+     "/your-low-end-deserves-more-you-deserve-more/",
+     1
+    ],
+    [
+     "/sonsig-ace-quick-wins-how-to-dial-in-the-tonal-character/",
+     1
+    ],
+    [
+     "/q82-quick-wins-skip-the-learning-curve-with-matthew-weiss/",
+     1
+    ],
+    [
+     "/create-an-epic-trailer-ping-using-sonsig-rev-a/",
+     1
+    ],
+    [
+     "/sub-lengthening-unleash-the-power-of-reverb/",
+     1
+    ],
+    [
+     "/3825-2/",
+     1
+    ],
+    [
+     "/in-conversation-with-matthew-weiss-akon-nicky-minaj-swae-lee/",
+     1
+    ],
+    [
+     "/enhance-your-drum-ambience-with-the-relab-lx480/",
+     1
+    ],
+    [
+     "/vocal-reverb-lx480/",
+     1
+    ],
+    [
+     "/classic-snare-plate-lx480/",
+     1
+    ]
+   ],
+   "sitemapUrls": 306,
+   "sample": [
+    "https://relabdevelopment.com/the-making-of-the-relab-176-tube-compressor-limiter-plugin/",
+    "https://relabdevelopment.com/joe-carrell-on-the-relab-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/thank-you-relab-176-free-plugin/",
+    "https://relabdevelopment.com/learning-center/system-requirements-for-the-mea-2-eq-plug-in/",
+    "https://relabdevelopment.com/learning-center/introducing-the-maselec-mea-2-precision-eq-plug-in/",
+    "https://relabdevelopment.com/learning-center/comparative-analysis-of-the-maselec-mea-2-eq-plug-in-by-relab-and-the-actual-hardware/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/whats-new-in-lx480-v4/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/system-requirements-for-the-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/learning-center/how-to-create-realistic-sounding-spaces-using-the-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/how-to-shape-the-sounds-of-the-relab-lx480-dual-engine-plug-in/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/installing-your-brand-new-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/learning-center/using-the-relab-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/learning-center/the-parameters-of-the-relab-lx480-dual-engine-reverb-plug-in/dual-engine-mode-cascade/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/quick-start-guide-for-the-lx480-dual-engine-reverb/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/",
+    "https://relabdevelopment.com/learning-center/the-relab-lx480-dual-engine-reverb-plug-in/end-user-license-agreement-for-the-lx480-dual-engine-reverb-plugin/",
+    "https://relabdevelopment.com/learning-center/the-parameters-of-the-relab-lx480-dual-engine-reverb-plug-in/"
+   ],
+   "pass1": {
+    "fetched": 15,
+    "products": 15,
+    "discovered": 132
+   },
+   "pass2": {
+    "fetched": 132,
+    "products": 147,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "ToneBoosters",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 16
+   },
+   "pass2": {
+    "fetched": 16,
+    "products": 16,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "PSPaudioware",
+   "requests": [
+    "200 https://www.pspaudioware.com/robots.txt",
+    "200 https://www.pspaudioware.com/sitemap.xml",
+    "404 https://www.pspaudioware.com/sitemap_index.xml",
+    "200 https://www.pspaudioware.com/sitemap_products.xml",
+    "200 https://www.pspaudioware.com/sitemap_product_tags.xml",
+    "200 https://www.pspaudioware.com/sitemap_pages.xml",
+    "200 https://www.pspaudioware.com/sitemap_artists.xml",
+    "200 https://www.pspaudioware.com/sitemap_categories.xml"
+   ],
+   "prefixes": [
+    [
+     "/products/psp-neon-hr",
+     1
+    ],
+    [
+     "/products/psp-n2o",
+     1
+    ],
+    [
+     "/products/psp-nexcellence",
+     1
+    ],
+    [
+     "/products/psp-b-scanner",
+     1
+    ],
+    [
+     "/products/psp-classicq",
+     1
+    ],
+    [
+     "/products/psp-mcq",
+     1
+    ],
+    [
+     "/products/psp-retroq",
+     1
+    ],
+    [
+     "/products/psp-flare",
+     1
+    ],
+    [
+     "/products/psp-85",
+     1
+    ],
+    [
+     "/products/psp-mixpack2",
+     1
+    ],
+    [
+     "/products/psp-drc",
+     1
+    ],
+    [
+     "/products/psp-e27",
+     1
+    ],
+    [
+     "/products/psp-oldtimermb",
+     1
+    ],
+    [
+     "/products/psp-spector",
+     1
+    ],
+    [
+     "/products/psp-stereopack",
+     1
+    ],
+    [
+     "/products/psp-masterq2",
+     1
+    ],
+    [
+     "/products/psp-twin-l",
+     1
+    ],
+    [
+     "/products/psp-fetpressor",
+     1
+    ],
+    [
+     "/products/psp-stompfilter",
+     1
+    ],
+    [
+     "/products/psp-stompdelay",
+     1
+    ],
+    [
+     "/products/psp-lotary2",
+     1
+    ],
+    [
+     "/products/psp-xenon",
+     1
+    ],
+    [
+     "/products/psp-impressor",
+     1
+    ],
+    [
+     "/products/psp-hertzrider2",
+     1
+    ],
+    [
+     "/products/psp-pianoverb2",
+     1
+    ]
+   ],
+   "sitemapUrls": 222,
+   "sample": [
+    "https://www.pspaudioware.com/products/psp-neon-hr",
+    "https://www.pspaudioware.com/products/psp-n2o",
+    "https://www.pspaudioware.com/products/psp-nexcellence",
+    "https://www.pspaudioware.com/products/psp-b-scanner",
+    "https://www.pspaudioware.com/products/psp-classicq",
+    "https://www.pspaudioware.com/products/psp-mcq",
+    "https://www.pspaudioware.com/products/psp-retroq",
+    "https://www.pspaudioware.com/products/psp-flare",
+    "https://www.pspaudioware.com/products/psp-85",
+    "https://www.pspaudioware.com/products/psp-mixpack2",
+    "https://www.pspaudioware.com/products/psp-drc",
+    "https://www.pspaudioware.com/products/psp-e27",
+    "https://www.pspaudioware.com/products/psp-oldtimermb",
+    "https://www.pspaudioware.com/products/psp-spector",
+    "https://www.pspaudioware.com/products/psp-stereopack",
+    "https://www.pspaudioware.com/products/psp-masterq2",
+    "https://www.pspaudioware.com/products/psp-twin-l",
+    "https://www.pspaudioware.com/products/psp-fetpressor",
+    "https://www.pspaudioware.com/products/psp-stompfilter",
+    "https://www.pspaudioware.com/products/psp-stompdelay",
+    "https://www.pspaudioware.com/products/psp-lotary2",
+    "https://www.pspaudioware.com/products/psp-xenon",
+    "https://www.pspaudioware.com/products/psp-impressor",
+    "https://www.pspaudioware.com/products/psp-hertzrider2",
+    "https://www.pspaudioware.com/products/psp-pianoverb2"
+   ],
+   "pass1": {
+    "fetched": 58,
+    "products": 56,
+    "discovered": 35
+   },
+   "pass2": {
+    "fetched": 5,
+    "products": 61,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Acon Digital",
+   "requests": [
+    "200 https://acondigital.com/robots.txt",
+    "200 https://acondigital.com/sitemap.xml",
+    "404 https://acondigital.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/products/acoustica",
+     7
+    ],
+    [
+     "/blog/acoustica-7-4",
+     1
+    ],
+    [
+     "/blog/deverberate3-released",
+     1
+    ],
+    [
+     "/blog/extract-dialogue-1-2",
+     1
+    ],
+    [
+     "/blog/multiply-1-3",
+     1
+    ],
+    [
+     "/blog/mastering-suite-1-2-and-equalize-2-1",
+     1
+    ],
+    [
+     "/blog/verberate-2-2",
+     1
+    ],
+    [
+     "/blog/extractdialogue-1-1",
+     1
+    ],
+    [
+     "/blog/new-website",
+     1
+    ],
+    [
+     "/blog/deverberate-wins-pro-tools-expert-blind-test",
+     1
+    ],
+    [
+     "/blog/new-user-account",
+     1
+    ],
+    [
+     "/products/mix-and-mastering-suite",
+     1
+    ],
+    [
+     "/products/restoration-suite",
+     1
+    ],
+    [
+     "/products/deverberate",
+     1
+    ],
+    [
+     "/products/defilter",
+     1
+    ],
+    [
+     "/products/verberate",
+     1
+    ],
+    [
+     "/products/verberate-immersive",
+     1
+    ],
+    [
+     "/products/verberate-basic",
+     1
+    ],
+    [
+     "/products/multiply",
+     1
+    ],
+    [
+     "/products/equalize",
+     1
+    ],
+    [
+     "/auth/forgotten-password",
+     1
+    ],
+    [
+     "/auth/impersonate",
+     1
+    ],
+    [
+     "/auth/login",
+     1
+    ],
+    [
+     "/auth/register",
+     1
+    ],
+    [
+     "/blog",
+     1
+    ]
+   ],
+   "sitemapUrls": 39,
+   "sample": [
+    "https://acondigital.com/products/acoustica",
+    "https://acondigital.com/products/mix-and-mastering-suite",
+    "https://acondigital.com/products/restoration-suite",
+    "https://acondigital.com/products/deverberate",
+    "https://acondigital.com/products/defilter",
+    "https://acondigital.com/products/verberate",
+    "https://acondigital.com/products/verberate-immersive",
+    "https://acondigital.com/products/verberate-basic",
+    "https://acondigital.com/products/multiply",
+    "https://acondigital.com/products/equalize",
+    "https://acondigital.com/products/acoustica/using-acoustic-in-music",
+    "https://acondigital.com/products/acoustica/acoustica-features",
+    "https://acondigital.com/products/acoustica/acoustica-comparison",
+    "https://acondigital.com/products/acoustica/acoustica8-linux",
+    "https://acondigital.com/products/acoustica/using-acoustica-in-post-production",
+    "https://acondigital.com/products/acoustica/using-acoustica-in-music-production",
+    "https://acondigital.com/plug-in-eula",
+    "https://acondigital.com/products"
+   ],
+   "pass1": {
+    "fetched": 9,
+    "products": 7,
+    "discovered": 12
+   },
+   "pass2": {
+    "fetched": 1,
+    "products": 7,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Audio Damage",
+   "requests": [
+    "200 https://www.audiodamage.com/products.json?limit=250&page=1"
+   ],
+   "productTypes": [
+    "software",
+    "T-Shirt",
+    "Gift Card"
+   ]
+  },
+  {
+   "vendor": "u-he",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 8
+   },
+   "pass2": {
+    "fetched": 8,
+    "products": 8,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "TAL Software",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 4
+   },
+   "pass2": {
+    "fetched": 4,
+    "products": 4,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Kilohearts",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 2,
+    "products": 0,
+    "discovered": 53
+   },
+   "pass2": {
+    "fetched": 53,
+    "products": 41,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Baby Audio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 9
+   },
+   "pass2": {
+    "fetched": 9,
+    "products": 7,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Cableguys",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 18
+   },
+   "pass2": {
+    "fetched": 18,
+    "products": 18,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "AudioThing",
+   "requests": [
+    "200 https://www.audiothing.net/robots.txt",
+    "200 https://www.audiothing.net/sitemap.xml",
+    "200 https://www.audiothing.net/sitemap_index.xml → https://www.audiothing.net/sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/about/",
+     1
+    ],
+    [
+     "/apps/fields",
+     1
+    ],
+    [
+     "/audiothing-plugin-manager/",
+     1
+    ],
+    [
+     "/blog/",
+     1
+    ],
+    [
+     "/blog/10th-anniversary",
+     1
+    ],
+    [
+     "/blog/blindfold-eq-freeware-eq-plugin",
+     1
+    ],
+    [
+     "/blog/clap-plugin-porting",
+     1
+    ],
+    [
+     "/blog/how-to-make-a-8bit-chiptune-song",
+     1
+    ],
+    [
+     "/blog/how-to-make-ambient-soundscapes",
+     1
+    ],
+    [
+     "/blog/how-to-make-creative-convolution-reverbs-irs",
+     1
+    ],
+    [
+     "/blog/making-of-the-orb",
+     1
+    ],
+    [
+     "/blog/moving-forward",
+     1
+    ],
+    [
+     "/blog/no-subscriptions-here",
+     1
+    ],
+    [
+     "/blog/the-dolby-a-trick",
+     1
+    ],
+    [
+     "/blog/wires-history",
+     1
+    ],
+    [
+     "/bundle/drum-machines",
+     1
+    ],
+    [
+     "/bundle/dub-bundle",
+     1
+    ],
+    [
+     "/bundle/echo-bundle",
+     1
+    ],
+    [
+     "/bundle/effect-bundle",
+     1
+    ],
+    [
+     "/bundle/hainpack",
+     1
+    ],
+    [
+     "/bundle/instrument-bundle",
+     1
+    ],
+    [
+     "/bundle/things-bundle",
+     1
+    ],
+    [
+     "/bundle/vintage-bundle",
+     1
+    ],
+    [
+     "/contact/",
+     1
+    ]
+   ],
+   "sitemapUrls": 91,
+   "sample": [
+    "https://www.audiothing.net/audiothing-plugin-manager/",
+    "https://www.audiothing.net/blog/blindfold-eq-freeware-eq-plugin/",
+    "https://www.audiothing.net/blog/clap-plugin-porting/",
+    "https://www.audiothing.net/plugin-updates/",
+    "https://www.audiothing.net/plugins/"
+   ],
+   "pass1": {
+    "fetched": 38,
+    "products": 37,
+    "discovered": 154
+   },
+   "pass2": {
+    "fetched": 154,
+    "products": 189,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Klevgrand",
+   "requests": [
+    "200 https://klevgrand.com/robots.txt",
+    "200 https://klevgrand.com/sitemap.xml",
+    "404 https://klevgrand.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/products",
+     1
+    ],
+    [
+     "/instruments",
+     1
+    ],
+    [
+     "/effects",
+     1
+    ],
+    [
+     "/expansions",
+     1
+    ],
+    [
+     "/bundles",
+     1
+    ],
+    [
+     "/store",
+     1
+    ],
+    [
+     "/stories",
+     1
+    ],
+    [
+     "/pick-of-the-month",
+     1
+    ],
+    [
+     "/support",
+     1
+    ],
+    [
+     "/helper",
+     1
+    ],
+    [
+     "/education",
+     1
+    ],
+    [
+     "/about",
+     1
+    ],
+    [
+     "/press",
+     1
+    ],
+    [
+     "/newsletter",
+     1
+    ],
+    [
+     "/privacy",
+     1
+    ],
+    [
+     "/terms",
+     1
+    ],
+    [
+     "/products/altitude",
+     1
+    ],
+    [
+     "/products/altitudeharmony",
+     1
+    ],
+    [
+     "/products/oneshot-techno",
+     1
+    ],
+    [
+     "/products/hillman",
+     1
+    ],
+    [
+     "/products/oneshot-organic-hyperpop",
+     1
+    ],
+    [
+     "/products/oneshot-blanket-drums",
+     1
+    ],
+    [
+     "/products/parrot",
+     1
+    ],
+    [
+     "/products/tomofon",
+     1
+    ]
+   ],
+   "sitemapUrls": 236,
+   "sample": [
+    "https://klevgrand.com/products",
+    "https://klevgrand.com/products/altitude",
+    "https://klevgrand.com/products/altitudeharmony",
+    "https://klevgrand.com/products/oneshot-techno",
+    "https://klevgrand.com/products/hillman",
+    "https://klevgrand.com/products/oneshot-organic-hyperpop",
+    "https://klevgrand.com/products/oneshot-blanket-drums",
+    "https://klevgrand.com/products/parrot",
+    "https://klevgrand.com/products/tomofon",
+    "https://klevgrand.com/products/oneshot-london-sessions",
+    "https://klevgrand.com/products/walls",
+    "https://klevgrand.com/products/tomofon-dreamscapes",
+    "https://klevgrand.com/products/elpiano",
+    "https://klevgrand.com/products/stark",
+    "https://klevgrand.com/products/tomofon-time-and-space",
+    "https://klevgrand.com/products/tomofon-pop-proteins",
+    "https://klevgrand.com/products/skaka",
+    "https://klevgrand.com/products/oneshot-storytelling-percussion",
+    "https://klevgrand.com/products/revolv",
+    "https://klevgrand.com/products/everything-bundle",
+    "https://klevgrand.com/products/richter",
+    "https://klevgrand.com/products/fosfat",
+    "https://klevgrand.com/products/speldosa",
+    "https://klevgrand.com/products/brusfri",
+    "https://klevgrand.com/products/oneshot-forest"
+   ],
+   "pass1": {
+    "fetched": 35,
+    "products": 31,
+    "discovered": 38
+   },
+   "pass2": {
+    "fetched": 4,
+    "products": 35,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Tritik",
+   "requests": [
+    "200 https://www.tritik.com/robots.txt",
+    "200 https://www.tritik.com/sitemap.xml → https://www.tritik.com/sitemap_index.xml",
+    "200 https://www.tritik.com/sitemap_index.xml",
+    "200 https://www.tritik.com/page-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/shop/",
+     1
+    ],
+    [
+     "/thanksforyourdownload/",
+     1
+    ],
+    [
+     "/legal/",
+     1
+    ],
+    [
+     "/edu/",
+     1
+    ],
+    [
+     "/product/",
+     1
+    ],
+    [
+     "/legal/privacy",
+     1
+    ],
+    [
+     "/contact/",
+     1
+    ],
+    [
+     "/product/krushpro",
+     1
+    ],
+    [
+     "/product/visu",
+     1
+    ],
+    [
+     "/product/moodal",
+     1
+    ],
+    [
+     "/product/tkdelay",
+     1
+    ],
+    [
+     "/product/echorus",
+     1
+    ],
+    [
+     "/product/irid",
+     1
+    ],
+    [
+     "/product/flaw",
+     1
+    ],
+    [
+     "/product/tymee",
+     1
+    ],
+    [
+     "/legal/eula",
+     1
+    ],
+    [
+     "/faq/",
+     1
+    ],
+    [
+     "/product/krush",
+     1
+    ],
+    [
+     "/product/complete-bundle",
+     1
+    ]
+   ],
+   "sitemapUrls": 20,
+   "sample": [
+    "https://www.tritik.com/product/",
+    "https://www.tritik.com/product/krushpro/",
+    "https://www.tritik.com/product/visu/",
+    "https://www.tritik.com/product/moodal/",
+    "https://www.tritik.com/product/tkdelay/",
+    "https://www.tritik.com/product/echorus/",
+    "https://www.tritik.com/product/irid/",
+    "https://www.tritik.com/product/flaw/",
+    "https://www.tritik.com/product/tymee/",
+    "https://www.tritik.com/product/krush/",
+    "https://www.tritik.com/product/complete-bundle/"
+   ],
+   "pass1": {
+    "fetched": 10,
+    "products": 9,
+    "discovered": 90
+   },
+   "pass2": {
+    "fetched": 90,
+    "products": 88,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Audiority",
+   "requests": [
+    "200 https://www.audiority.com/robots.txt",
+    "200 https://www.audiority.com/sitemap.xml → https://www.audiority.com/sitemap_index.xml",
+    "200 https://www.audiority.com/sitemap_index.xml",
+    "200 https://www.audiority.com/product-sitemap.xml",
+    "200 https://www.audiority.com/page-sitemap.xml",
+    "200 https://www.audiority.com/epkb_post_type_1-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/shop/",
+     1
+    ],
+    [
+     "/shop/chief-flanger",
+     1
+    ],
+    [
+     "/shop/neonverb-mv2",
+     1
+    ],
+    [
+     "/shop/spatial-d320",
+     1
+    ],
+    [
+     "/shop/studio-reverb",
+     1
+    ],
+    [
+     "/shop/green-reaper-gr9",
+     1
+    ],
+    [
+     "/shop/effects-plugin-bundle",
+     1
+    ],
+    [
+     "/shop/big-swarma",
+     1
+    ],
+    [
+     "/shop/tube-modulator",
+     1
+    ],
+    [
+     "/shop/blue-face",
+     1
+    ],
+    [
+     "/shop/dark-memory",
+     1
+    ],
+    [
+     "/shop/electric-matter",
+     1
+    ],
+    [
+     "/shop/chorus-ensembler",
+     1
+    ],
+    [
+     "/shop/chief-chorus",
+     1
+    ],
+    [
+     "/shop/space-station-um282",
+     1
+    ],
+    [
+     "/shop/octaver-82",
+     1
+    ],
+    [
+     "/shop/polycomp",
+     1
+    ],
+    [
+     "/shop/solidus-randy-250",
+     1
+    ],
+    [
+     "/shop/pedalboard-classic-distortions",
+     1
+    ],
+    [
+     "/shop/solidus-vs8100",
+     1
+    ],
+    [
+     "/shop/plexitape",
+     1
+    ],
+    [
+     "/shop/heavy-pedal",
+     1
+    ],
+    [
+     "/shop/ldc2-compander",
+     1
+    ],
+    [
+     "/shop/pre-x7",
+     1
+    ],
+    [
+     "/shop/distortion-1",
+     1
+    ]
+   ],
+   "sitemapUrls": 106,
+   "sample": [
+    "https://www.audiority.com/shop/effects-plugin-bundle/",
+    "https://www.audiority.com/plugin-versions/",
+    "https://www.audiority.com/support/are-your-plugins-compatible-with-my-computer/",
+    "https://www.audiority.com/support/are-your-plugins-32bit-compatible/",
+    "https://www.audiority.com/support/norton-360-blocks-my-plugin-installation/",
+    "https://www.audiority.com/support/im-an-artist-producer-manager-pr-can-i-have-your-products-for-free/",
+    "https://www.audiority.com/support/i-get-license-file-is-invalid-when-i-try-to-activate-my-plugin/",
+    "https://www.audiority.com/support/how-do-i-register-activate-my-plugins/",
+    "https://www.audiority.com/support/plugin-install-instructions-purchased-from-dealers/",
+    "https://www.audiority.com/support/my-plugin-installation-fails-on-windows-10/",
+    "https://www.audiority.com/support/i-purchased-a-plugin-from-one-of-your-resellers-but-i-only-got-a-code-what-now/",
+    "https://www.audiority.com/support/can-i-resell-my-purchased-plugins/"
+   ],
+   "pass1": {
+    "fetched": 49,
+    "products": 49,
+    "discovered": 58
+   },
+   "pass2": {
+    "fetched": 58,
+    "products": 107,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "NUGEN Audio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 107
+   },
+   "pass2": {
+    "fetched": 107,
+    "products": 34,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "DMG Audio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 14
+   },
+   "pass2": {
+    "fetched": 14,
+    "products": 14,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Kazrog",
+   "requests": [
+    "200 https://kazrog.com/products.json?limit=250&page=1"
+   ],
+   "productTypes": [
+    "Audio Plugin",
+    "License Transfer",
+    "Gift Card"
+   ]
+  },
+  {
+   "vendor": "Variety Of Sound",
+   "requests": [
+    "200 https://varietyofsound.wordpress.com/downloads/"
+   ]
+  },
+  {
+   "vendor": "LSP Plugins",
+   "requests": [
+    "200 https://lsp-plug.in/?page=plugins"
+   ]
+  },
+  {
+   "vendor": "Chowdhury DSP",
+   "requests": [
+    "200 https://chowdsp.com/products.html"
+   ]
+  },
+  {
+   "vendor": "Zynaptiq",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 2,
+    "products": 0,
+    "discovered": 17
+   },
+   "pass2": {
+    "fetched": 17,
+    "products": 17,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Cherry Audio",
+   "requests": [
+    "200 https://cherryaudio.com/robots.txt",
+    "200 https://cherryaudio.com/sitemap.xml",
+    "404 https://cherryaudio.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/accessibility",
+     1
+    ],
+    [
+     "/bandsplaining",
+     1
+    ],
+    [
+     "/beat",
+     1
+    ],
+    [
+     "/company",
+     1
+    ],
+    [
+     "/links",
+     1
+    ],
+    [
+     "/news",
+     1
+    ],
+    [
+     "/privacy",
+     1
+    ],
+    [
+     "/products",
+     1
+    ],
+    [
+     "/reviews",
+     1
+    ],
+    [
+     "/search",
+     1
+    ],
+    [
+     "/videos",
+     1
+    ],
+    [
+     "/challenges/take-the-test",
+     1
+    ],
+    [
+     "/company/branding",
+     1
+    ],
+    [
+     "/company/jobs",
+     1
+    ],
+    [
+     "/company/partners",
+     1
+    ],
+    [
+     "/news/12-days-of-giftmas-sale",
+     1
+    ],
+    [
+     "/news/2019-events",
+     1
+    ],
+    [
+     "/news/5th-anniversary-free-synthesizer-expander-module",
+     1
+    ],
+    [
+     "/news/a-glimpse-of-knobcon-12",
+     1
+    ],
+    [
+     "/news/alan-r-pearlman-foundation-fundraising-update",
+     1
+    ],
+    [
+     "/news/an-interview-with-michael-whalen",
+     1
+    ],
+    [
+     "/news/andrew-macaulays-modules-update-release-6-1a",
+     1
+    ],
+    [
+     "/news/announcing-cherry-pick-3-for-99",
+     1
+    ],
+    [
+     "/news/another-10-out-of-10-for-mercury-6",
+     1
+    ]
+   ],
+   "sitemapUrls": 1512,
+   "sample": [
+    "https://cherryaudio.com/products",
+    "https://cherryaudio.com/news/best-new-plug-ins-2023-novachord-solovox",
+    "https://cherryaudio.com/news/cherry-audio-announces-sync-product-manager",
+    "https://cherryaudio.com/news/cherry-audio-products-now-offer-full-apple-silicon-m1-native-support",
+    "https://cherryaudio.com/news/cherry-audio-releases-polymode-synthesizer-plugin",
+    "https://cherryaudio.com/news/gx-80-and-sines-featured-as-top-synths-for-plugin-week-2023",
+    "https://cherryaudio.com/news/magnetic-magazine-10-favorite-plugins",
+    "https://cherryaudio.com/news/musictech-gx-80-amongst-best-synth-plugins-of-2024",
+    "https://cherryaudio.com/news/plugin-boutiques-focus-on-cherry-audio-sale",
+    "https://cherryaudio.com/news/rhodes-and-cherry-audio-launch-the-rhodes-chroma-plug-in",
+    "https://cherryaudio.com/news/stardust-201-selected-plugin-week-2023-1",
+    "https://cherryaudio.com/news/voltage-modular-1-2-released-plug-in-hosting-opengl-and-more",
+    "https://cherryaudio.com/products/atomika-synthesizer",
+    "https://cherryaudio.com/products/blue3-tonewheel-organ",
+    "https://cherryaudio.com/products/ca2600",
+    "https://cherryaudio.com/products/chroma",
+    "https://cherryaudio.com/products/cr-78",
+    "https://cherryaudio.com/products/dco-106",
+    "https://cherryaudio.com/products/downloads",
+    "https://cherryaudio.com/products/dreamsynth",
+    "https://cherryaudio.com/products/ds-2-synthesizer",
+    "https://cherryaudio.com/products/eight-voice",
+    "https://cherryaudio.com/products/elka-x",
+    "https://cherryaudio.com/products/esq-1-synthesizer",
+    "https://cherryaudio.com/products/filtomika-filter"
+   ],
+   "pass1": {
+    "fetched": 32,
+    "products": 0,
+    "discovered": 961
+   }
+  },
+  {
+   "vendor": "Pulsar Modular",
+   "requests": [],
+   "prefixes": [
+    [
+     "/p900-1-2/",
+     3
+    ],
+    [
+     "/p900-1-21/",
+     3
+    ],
+    [
+     "/p900-1-22/",
+     3
+    ],
+    [
+     "/",
+     3
+    ],
+    [
+     "/bundles/",
+     3
+    ],
+    [
+     "/april-2024-p455-update/",
+     2
+    ],
+    [
+     "/leap-of-faith-p422-firuz-resonance-eq/",
+     2
+    ],
+    [
+     "/p900-1-1-beta/",
+     2
+    ],
+    [
+     "/news/",
+     2
+    ],
+    [
+     "/masterpieces/",
+     2
+    ],
+    [
+     "/support/",
+     2
+    ],
+    [
+     "/product/logo-shirt",
+     1
+    ],
+    [
+     "/product/lunar-lander-shirt",
+     1
+    ],
+    [
+     "/product/p42-hoodie",
+     1
+    ],
+    [
+     "/product/lunar-lander-mug",
+     1
+    ],
+    [
+     "/product/logo-hoodie",
+     1
+    ],
+    [
+     "/product/p410-joyride",
+     1
+    ],
+    [
+     "/product/p44-magnum",
+     1
+    ],
+    [
+     "/product/p11-abyss",
+     1
+    ],
+    [
+     "/product/565-filter-set",
+     1
+    ],
+    [
+     "/product/p42-climax-line-amp",
+     1
+    ],
+    [
+     "/product/p440-sweet-spot",
+     1
+    ],
+    [
+     "/product/p19-igloo",
+     1
+    ],
+    [
+     "/product/p915-medusa",
+     1
+    ],
+    [
+     "/product/logo-hat",
+     1
+    ]
+   ],
+   "sitemapUrls": 190,
+   "sample": [
+    "https://www.pulsarmodular.com/product/logo-shirt/",
+    "https://www.pulsarmodular.com/product/lunar-lander-shirt/",
+    "https://www.pulsarmodular.com/product/p42-hoodie/",
+    "https://www.pulsarmodular.com/product/lunar-lander-mug/",
+    "https://www.pulsarmodular.com/product/logo-hoodie/",
+    "https://www.pulsarmodular.com/product/p410-joyride/",
+    "https://www.pulsarmodular.com/product/p44-magnum/",
+    "https://www.pulsarmodular.com/product/p11-abyss/",
+    "https://www.pulsarmodular.com/product/565-filter-set/",
+    "https://www.pulsarmodular.com/product/p42-climax-line-amp/",
+    "https://www.pulsarmodular.com/product/p440-sweet-spot/",
+    "https://www.pulsarmodular.com/product/p19-igloo/",
+    "https://www.pulsarmodular.com/product/p915-medusa/",
+    "https://www.pulsarmodular.com/product/logo-hat/",
+    "https://www.pulsarmodular.com/product/zorba/",
+    "https://www.pulsarmodular.com/product/p22-rail/",
+    "https://www.pulsarmodular.com/product/p455-mdn-sidecar/",
+    "https://www.pulsarmodular.com/product/p252-mdn-diode/",
+    "https://www.pulsarmodular.com/product/p422-fairuz/",
+    "https://www.pulsarmodular.com/product/p821-mdn-tape/",
+    "https://www.pulsarmodular.com/product/master-bundle/",
+    "https://www.pulsarmodular.com/product/power-tools-bundle/",
+    "https://www.pulsarmodular.com/product/transformer-bundle/",
+    "https://www.pulsarmodular.com/product/mdn-bundle/",
+    "https://www.pulsarmodular.com/product/r862-skywave/"
+   ],
+   "pass1": {
+    "fetched": 21,
+    "products": 21,
+    "discovered": 21
+   },
+   "pass2": {
+    "fetched": 21,
+    "products": 21,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Voxengo",
+   "requests": [
+    "404 https://www.voxengo.com/sitemap_index.xml → https://www.voxengo.com/files/pad/index.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/orders/info",
+     1
+    ],
+    [
+     "/orders/pricelist",
+     1
+    ],
+    [
+     "/press/",
+     1
+    ],
+    [
+     "/qna/",
+     1
+    ],
+    [
+     "/testimonials/",
+     1
+    ],
+    [
+     "/group/all-vst-plugins-download",
+     1
+    ],
+    [
+     "/group/audio-track-plugin-download",
+     1
+    ],
+    [
+     "/group/best-seller-vst-plugins",
+     1
+    ],
+    [
+     "/group/clipper-plugin-download",
+     1
+    ],
+    [
+     "/group/equalizer-plugin-download",
+     1
+    ],
+    [
+     "/group/free-vst-plugins-download",
+     1
+    ],
+    [
+     "/group/harmonic-plugin-download",
+     1
+    ],
+    [
+     "/group/limiter-vst-plugin-download",
+     1
+    ],
+    [
+     "/group/mastering-plugins-download",
+     1
+    ],
+    [
+     "/group/reverb-plugin-download",
+     1
+    ],
+    [
+     "/group/streaming-plugins-download",
+     1
+    ],
+    [
+     "/group/utility-vst-plugin-download",
+     1
+    ],
+    [
+     "/product/anspec",
+     1
+    ],
+    [
+     "/product/beeper",
+     1
+    ],
+    [
+     "/product/bms",
+     1
+    ],
+    [
+     "/product/boogex",
+     1
+    ],
+    [
+     "/product/correlometer",
+     1
+    ],
+    [
+     "/product/crtivtapebus",
+     1
+    ],
+    [
+     "/product/crunchessor",
+     1
+    ]
+   ],
+   "sitemapUrls": 68,
+   "sample": [
+    "https://www.voxengo.com/group/all-vst-plugins-download/",
+    "https://www.voxengo.com/group/audio-track-plugin-download/",
+    "https://www.voxengo.com/group/best-seller-vst-plugins/",
+    "https://www.voxengo.com/group/clipper-plugin-download/",
+    "https://www.voxengo.com/group/equalizer-plugin-download/",
+    "https://www.voxengo.com/group/free-vst-plugins-download/",
+    "https://www.voxengo.com/group/harmonic-plugin-download/",
+    "https://www.voxengo.com/group/limiter-vst-plugin-download/",
+    "https://www.voxengo.com/group/mastering-plugins-download/",
+    "https://www.voxengo.com/group/reverb-plugin-download/",
+    "https://www.voxengo.com/group/streaming-plugins-download/",
+    "https://www.voxengo.com/group/utility-vst-plugin-download/",
+    "https://www.voxengo.com/product/anspec/",
+    "https://www.voxengo.com/product/beeper/",
+    "https://www.voxengo.com/product/bms/",
+    "https://www.voxengo.com/product/boogex/",
+    "https://www.voxengo.com/product/correlometer/",
+    "https://www.voxengo.com/product/crtivtapebus/",
+    "https://www.voxengo.com/product/crunchessor/",
+    "https://www.voxengo.com/product/curveeq/",
+    "https://www.voxengo.com/product/deconvolver/",
+    "https://www.voxengo.com/product/deftcompressor/",
+    "https://www.voxengo.com/product/drumformer/",
+    "https://www.voxengo.com/product/ebuslim/",
+    "https://www.voxengo.com/product/elephant/"
+   ],
+   "pass1": {
+    "fetched": 50,
+    "products": 50,
+    "discovered": 217
+   }
+  },
+  {
+   "vendor": "Blue Cat Audio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 34
+   },
+   "pass2": {
+    "fetched": 34,
+    "products": 34,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "DDMF",
+   "requests": [
+    "404 https://ddmf.eu/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/6144-equalizer-plugin/",
+     1
+    ],
+    [
+     "/bridgewize/",
+     1
+    ],
+    [
+     "/bundles/",
+     1
+    ],
+    [
+     "/chorddetector/",
+     1
+    ],
+    [
+     "/comprezzore/",
+     1
+    ],
+    [
+     "/contact/",
+     1
+    ],
+    [
+     "/directionaleq-equalizer-plugin/",
+     1
+    ],
+    [
+     "/ers-250/",
+     1
+    ],
+    [
+     "/ers-dimd/",
+     1
+    ],
+    [
+     "/ers-echorek2/",
+     1
+    ],
+    [
+     "/envelope/",
+     1
+    ],
+    [
+     "/faq/",
+     1
+    ],
+    [
+     "/freeware/",
+     1
+    ],
+    [
+     "/grandeq-mastering-equalizer/",
+     1
+    ],
+    [
+     "/iieqpro-equalizer-plugin/",
+     1
+    ],
+    [
+     "/lp10-linear-phase-equalizer-plugin/",
+     1
+    ],
+    [
+     "/lincomp-multiband-compressor-plugin/",
+     1
+    ],
+    [
+     "/magicdeatheye/",
+     1
+    ],
+    [
+     "/magicdeatheyestereo/",
+     1
+    ],
+    [
+     "/magicverb/",
+     1
+    ],
+    [
+     "/metaplugin-chainer-vst-au-rtas-aax-wrapper/",
+     1
+    ],
+    [
+     "/news/",
+     1
+    ],
+    [
+     "/nolimits2-limiter-plugin/",
+     1
+    ],
+    [
+     "/obercomp-multiband-autocompressor/",
+     1
+    ],
+    [
+     "/plugindoctor/",
+     1
+    ]
+   ],
+   "sitemapUrls": 33,
+   "sample": [
+    "https://ddmf.eu/6144-equalizer-plugin/",
+    "https://ddmf.eu/directionaleq-equalizer-plugin/",
+    "https://ddmf.eu/iieqpro-equalizer-plugin/",
+    "https://ddmf.eu/lp10-linear-phase-equalizer-plugin/",
+    "https://ddmf.eu/lincomp-multiband-compressor-plugin/",
+    "https://ddmf.eu/metaplugin-chainer-vst-au-rtas-aax-wrapper/",
+    "https://ddmf.eu/nolimits2-limiter-plugin/",
+    "https://ddmf.eu/plugindoctor/",
+    "https://ddmf.eu/stereooerets-stereo-field-plugin/",
+    "https://ddmf.eu/superplugin/",
+    "https://ddmf.eu/thestrip-channel-strip-plugin/"
+   ],
+   "pass1": {
+    "fetched": 21,
+    "products": 19,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Goodhertz",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 21
+   },
+   "pass2": {
+    "fetched": 21,
+    "products": 21,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "D16 Group",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 15
+   },
+   "pass2": {
+    "fetched": 15,
+    "products": 15,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "TBProAudio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 2,
+    "products": 0,
+    "discovered": 55
+   },
+   "pass2": {
+    "fetched": 55,
+    "products": 0,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Boz Digital Labs",
+   "requests": [
+    "200 https://www.bozdigitallabs.com/robots.txt",
+    "200 https://www.bozdigitallabs.com/sitemap.xml",
+    "404 https://www.bozdigitallabs.com/sitemap_index.xml",
+    "200 https://www.bozdigitallabs.com/wp-sitemap.xml",
+    "200 https://www.bozdigitallabs.com/sitemap.html",
+    "200 https://www.bozdigitallabs.com/producttags-sitemap.xml",
+    "200 https://www.bozdigitallabs.com/productcat-sitemap.xml",
+    "200 https://www.bozdigitallabs.com/sitemap-misc.xml",
+    "200 https://www.bozdigitallabs.com/post-sitemap.xml",
+    "200 https://www.bozdigitallabs.com/page-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/product-category/impact",
+     6
+    ],
+    [
+     "/product-category/application",
+     6
+    ],
+    [
+     "/product-category/master-keys-piano",
+     5
+    ],
+    [
+     "/product-category/tone",
+     3
+    ],
+    [
+     "/product-category/space",
+     3
+    ],
+    [
+     "/product-tag/august-sale",
+     1
+    ],
+    [
+     "/product-tag/biggest-sale-2021",
+     1
+    ],
+    [
+     "/product-tag/black-friday-sale-2021",
+     1
+    ],
+    [
+     "/product-tag/end-of-may-sale",
+     1
+    ],
+    [
+     "/product-tag/featured",
+     1
+    ],
+    [
+     "/product-tag/first-of-may-sale",
+     1
+    ],
+    [
+     "/product-tag/march-2-1-sale",
+     1
+    ],
+    [
+     "/product-tag/october-sale",
+     1
+    ],
+    [
+     "/product-tag/september-sale-2",
+     1
+    ],
+    [
+     "/product-category/legacy",
+     1
+    ],
+    [
+     "/product-category/uncategorized",
+     1
+    ],
+    [
+     "/product-category/bundles",
+     1
+    ],
+    [
+     "/product-category/david-bendeth-signature-series",
+     1
+    ],
+    [
+     "/product-category/freebies",
+     1
+    ],
+    [
+     "/product-category/synth-vi",
+     1
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/sitemap.html",
+     1
+    ],
+    [
+     "/stereo-guitar/",
+     1
+    ],
+    [
+     "/merry-christmas-have-some-music/",
+     1
+    ],
+    [
+     "/mixing-contest/",
+     1
+    ]
+   ],
+   "sitemapUrls": 134,
+   "sample": [
+    "https://www.bozdigitallabs.com/product-tag/august-sale/",
+    "https://www.bozdigitallabs.com/product-tag/biggest-sale-2021/",
+    "https://www.bozdigitallabs.com/product-tag/black-friday-sale-2021/",
+    "https://www.bozdigitallabs.com/product-tag/end-of-may-sale/",
+    "https://www.bozdigitallabs.com/product-tag/featured/",
+    "https://www.bozdigitallabs.com/product-tag/first-of-may-sale/",
+    "https://www.bozdigitallabs.com/product-tag/march-2-1-sale/",
+    "https://www.bozdigitallabs.com/product-tag/october-sale/",
+    "https://www.bozdigitallabs.com/product-tag/september-sale-2/",
+    "https://www.bozdigitallabs.com/product-category/legacy/",
+    "https://www.bozdigitallabs.com/product-category/impact/sub-harmonic-enhancers/",
+    "https://www.bozdigitallabs.com/product-category/uncategorized/",
+    "https://www.bozdigitallabs.com/product-category/tone/analog-modeled-plugins/",
+    "https://www.bozdigitallabs.com/product-category/application/",
+    "https://www.bozdigitallabs.com/product-category/bundles/",
+    "https://www.bozdigitallabs.com/product-category/impact/compressor-limiter-gates/",
+    "https://www.bozdigitallabs.com/product-category/david-bendeth-signature-series/",
+    "https://www.bozdigitallabs.com/product-category/application/drums-bass/",
+    "https://www.bozdigitallabs.com/product-category/tone/equalizers/",
+    "https://www.bozdigitallabs.com/product-category/freebies/",
+    "https://www.bozdigitallabs.com/product-category/master-keys-piano/grand/",
+    "https://www.bozdigitallabs.com/product-category/impact/",
+    "https://www.bozdigitallabs.com/product-category/master-keys-piano/lite/",
+    "https://www.bozdigitallabs.com/product-category/master-keys-piano/",
+    "https://www.bozdigitallabs.com/product-category/application/mastering/"
+   ],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 32
+   },
+   "pass2": {
+    "fetched": 32,
+    "products": 32,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "United Plugins",
+   "requests": [
+    "404 https://unitedplugins.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/",
+     1
+    ],
+    [
+     "/DarkFire/",
+     1
+    ],
+    [
+     "/FireSpacer/",
+     1
+    ],
+    [
+     "/Biverb/",
+     1
+    ],
+    [
+     "/Cyberdrive/",
+     1
+    ],
+    [
+     "/Pluralis/",
+     1
+    ],
+    [
+     "/FireMaximizer/",
+     1
+    ],
+    [
+     "/FireMaster/",
+     1
+    ],
+    [
+     "/MasterMind/",
+     1
+    ],
+    [
+     "/Mirror/",
+     1
+    ],
+    [
+     "/Bassment/",
+     1
+    ],
+    [
+     "/Voxessor/",
+     1
+    ],
+    [
+     "/TrapTune/",
+     1
+    ],
+    [
+     "/Nanopulse/",
+     1
+    ],
+    [
+     "/Cryostasis/",
+     1
+    ],
+    [
+     "/Transmutator/",
+     1
+    ],
+    [
+     "/Hyperspace/",
+     1
+    ],
+    [
+     "/UniChannel/",
+     1
+    ],
+    [
+     "/Electrum/",
+     1
+    ],
+    [
+     "/QuickBass/",
+     1
+    ],
+    [
+     "/FireCobra/",
+     1
+    ],
+    [
+     "/Orbitron/",
+     1
+    ],
+    [
+     "/DIFIX/",
+     1
+    ],
+    [
+     "/VoxDucker/",
+     1
+    ],
+    [
+     "/FireEQ/",
+     1
+    ]
+   ],
+   "sitemapUrls": 138,
+   "sample": [
+    "https://unitedplugins.com/",
+    "https://unitedplugins.com/DarkFire/",
+    "https://unitedplugins.com/FireSpacer/",
+    "https://unitedplugins.com/Biverb/",
+    "https://unitedplugins.com/Cyberdrive/",
+    "https://unitedplugins.com/Pluralis/",
+    "https://unitedplugins.com/FireMaximizer/",
+    "https://unitedplugins.com/FireMaster/",
+    "https://unitedplugins.com/MasterMind/",
+    "https://unitedplugins.com/Mirror/",
+    "https://unitedplugins.com/Bassment/",
+    "https://unitedplugins.com/Voxessor/",
+    "https://unitedplugins.com/TrapTune/",
+    "https://unitedplugins.com/Nanopulse/",
+    "https://unitedplugins.com/Cryostasis/",
+    "https://unitedplugins.com/Transmutator/",
+    "https://unitedplugins.com/Hyperspace/",
+    "https://unitedplugins.com/UniChannel/",
+    "https://unitedplugins.com/Electrum/",
+    "https://unitedplugins.com/QuickBass/",
+    "https://unitedplugins.com/FireCobra/",
+    "https://unitedplugins.com/Orbitron/",
+    "https://unitedplugins.com/DIFIX/",
+    "https://unitedplugins.com/VoxDucker/",
+    "https://unitedplugins.com/FireEQ/"
+   ],
+   "pass1": {
+    "fetched": 135,
+    "products": 47,
+    "discovered": 1149
+   },
+   "pass2": {
+    "fetched": 75,
+    "products": 55,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "W.A. Production",
+   "requests": [
+    "404 https://www.waproduction.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/sounds/view",
+     887
+    ],
+    [
+     "/plugins/view",
+     409
+    ],
+    [
+     "/templates/view",
+     292
+    ],
+    [
+     "/bundles/view",
+     252
+    ],
+    [
+     "/tutorials/view",
+     218
+    ],
+    [
+     "/videos/view",
+     91
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/blog",
+     1
+    ],
+    [
+     "/cart",
+     1
+    ],
+    [
+     "/users/login",
+     1
+    ],
+    [
+     "/pages/loopademy",
+     1
+    ],
+    [
+     "/licenses",
+     1
+    ],
+    [
+     "/subscribe/new",
+     1
+    ],
+    [
+     "/sounds",
+     1
+    ],
+    [
+     "/plugins",
+     1
+    ],
+    [
+     "/videos",
+     1
+    ],
+    [
+     "/templates",
+     1
+    ],
+    [
+     "/bundles",
+     1
+    ],
+    [
+     "/sounds/items",
+     1
+    ],
+    [
+     "/templates/items",
+     1
+    ]
+   ],
+   "sitemapUrls": 2163,
+   "sample": [
+    "https://www.waproduction.com",
+    "https://www.waproduction.com/blog",
+    "https://www.waproduction.com/cart",
+    "https://www.waproduction.com/users/login",
+    "https://www.waproduction.com/pages/loopademy",
+    "https://www.waproduction.com/licenses",
+    "https://www.waproduction.com/subscribe/new",
+    "https://www.waproduction.com/sounds",
+    "https://www.waproduction.com/plugins",
+    "https://www.waproduction.com/videos",
+    "https://www.waproduction.com/templates",
+    "https://www.waproduction.com/bundles",
+    "https://www.waproduction.com/sounds/items/free",
+    "https://www.waproduction.com/templates/items/free",
+    "https://www.waproduction.com/bundles/view/custom-bundle-creator",
+    "https://www.waproduction.com/sounds/view/what-about-wicked-dubstep-basses-for-serum-537",
+    "https://www.waproduction.com/sounds/view/what-about-top-chart-edm-sounds-for-sylenth1-amp-spire-538",
+    "https://www.waproduction.com/sounds/view/what-about-ryan-enzed-spire-soundset-539",
+    "https://www.waproduction.com/sounds/view/what-about-edm-amp-urban-vocal-shouts-540",
+    "https://www.waproduction.com/sounds/view/what-about-epic-edm-construction-kits-541",
+    "https://www.waproduction.com/sounds/view/what-about-huge-fl-studio-dubstep-template-542",
+    "https://www.waproduction.com/sounds/view/what-about-fresh-ni-massive-soundset-543",
+    "https://www.waproduction.com/sounds/view/what-about-hit-the-crowd-kicks-544",
+    "https://www.waproduction.com/sounds/view/what-about-epic-dubstep-construction-kits-545",
+    "https://www.waproduction.com/sounds/view/what-about-edm-full-length-fx-lines-546"
+   ],
+   "pass1": {
+    "fetched": 243,
+    "products": 143,
+    "discovered": 1928
+   },
+   "pass2": {
+    "fetched": 11,
+    "products": 143,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "GVST",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 33
+   },
+   "pass2": {
+    "fetched": 33,
+    "products": 32,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Airwindows",
+   "requests": [
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=1&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=2&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=3&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=4&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=5&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=6&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=7&_fields=link,title,content",
+    "200 https://www.airwindows.com/wp-json/wp/v2/posts?per_page=100&page=8&_fields=link,title,content"
+   ]
+  },
+  {
+   "vendor": "SIR Audio Tools",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 7
+   },
+   "pass2": {
+    "fetched": 7,
+    "products": 7,
+    "discovered": 42
+   }
+  },
+  {
+   "vendor": "Kush Audio",
+   "requests": [
+    "200 https://thehouseofkush.com/products.json?limit=250&page=1"
+   ],
+   "productTypes": [
+    "Kush Plugin",
+    "Pre-Order",
+    "Manufacturing",
+    "Kush Analog",
+    "Sly-Fi Plugin"
+   ]
+  },
+  {
+   "vendor": "Native Instruments",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 8
+   },
+   "pass2": {
+    "fetched": 8,
+    "products": 1,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Pulsar Audio",
+   "requests": [],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 12
+   },
+   "pass2": {
+    "fetched": 12,
+    "products": 12,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "McDSP",
+   "requests": [],
+   "prefixes": [
+    [
+     "/2021/12",
+     23
+    ],
+    [
+     "/category/blog",
+     14
+    ],
+    [
+     "/2022/01",
+     7
+    ],
+    [
+     "/2018/08",
+     2
+    ],
+    [
+     "/2018/01",
+     2
+    ],
+    [
+     "/2019/01",
+     2
+    ],
+    [
+     "/downloads/plugin-downloads",
+     2
+    ],
+    [
+     "/apb/apb-support",
+     2
+    ],
+    [
+     "/support/plug-in-support",
+     2
+    ],
+    [
+     "/2018/11",
+     1
+    ],
+    [
+     "/2018/09",
+     1
+    ],
+    [
+     "/2018/07",
+     1
+    ],
+    [
+     "/2018/02",
+     1
+    ],
+    [
+     "/2019/07",
+     1
+    ],
+    [
+     "/2021/07",
+     1
+    ],
+    [
+     "/2021/08",
+     1
+    ],
+    [
+     "/2022/06",
+     1
+    ],
+    [
+     "/2022/07",
+     1
+    ],
+    [
+     "/2025/11",
+     1
+    ],
+    [
+     "/privacy-policy/",
+     1
+    ],
+    [
+     "/contact/",
+     1
+    ],
+    [
+     "/demo-page/",
+     1
+    ],
+    [
+     "/education/",
+     1
+    ],
+    [
+     "/about/",
+     1
+    ],
+    [
+     "/press-landing-page/mcdsp-ships-apb-16-hardware-box",
+     1
+    ]
+   ],
+   "sitemapUrls": 200,
+   "sample": [
+    "https://mcdsp.com/2018/08/10/mcdsp-releases-new-venue-plug-ins/",
+    "https://mcdsp.com/2018/02/05/mcdsp-ships-plug-ins-for-cri-middleware/",
+    "https://mcdsp.com/2021/12/27/022-shorten-your-plug-in-chains/",
+    "https://mcdsp.com/downloads/plugin-downloads/downloads-legacyinstallers/",
+    "https://mcdsp.com/support/plug-in-support/",
+    "https://mcdsp.com/support/plug-in-support/plug-in-support-faq/",
+    "https://mcdsp.com/press-landing-page/mcdsp-releases-new-venue-plug-ins/",
+    "https://mcdsp.com/press-landing-page/mcdsp-ships-plug-ins-for-cri-middleware/",
+    "https://mcdsp.com/downloads/plugin-downloads/",
+    "https://mcdsp.com/dealers/plugin-dealers/",
+    "https://mcdsp.com/press-landing-page/mcdsp-announces-moo-x-mixer-apb-plug-in-is-now-shipping/",
+    "https://mcdsp.com/press-landing-page/mcdsp-releases-new-apb-plug-ins/",
+    "https://mcdsp.com/press-landing-page/mcdsp-announces-royal-mu-and-royal-q-apb-plugins/",
+    "https://mcdsp.com/press-landing-page/mcdsp-ships-royal-mu-and-royal-q-apb-plug-ins/",
+    "https://mcdsp.com/plugin-index-deprecated-3/compressor-bank-deprecatedapr2022/",
+    "https://mcdsp.com/plugin-index/futzbox/",
+    "https://mcdsp.com/plugin-index/",
+    "https://mcdsp.com/plugin-index/ae600/",
+    "https://mcdsp.com/plugin-index/ae400/",
+    "https://mcdsp.com/plugin-index/channel-g/",
+    "https://mcdsp.com/plugin-index/channel-g-compact/",
+    "https://mcdsp.com/plugin-index/channel-g-surround/",
+    "https://mcdsp.com/plugin-index/nf575/",
+    "https://mcdsp.com/plugin-index/4040-retro/",
+    "https://mcdsp.com/plugin-index/4030-retro/"
+   ],
+   "pass1": {
+    "fetched": 34,
+    "products": 30,
+    "discovered": 147
+   },
+   "pass2": {
+    "fetched": 1,
+    "products": 31,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "ZL Audio",
+   "requests": [
+    "200 https://zl-audio.github.io/plugins/zlequalizer2 → https://zl-audio.github.io/plugins/zlequalizer2/",
+    "200 https://zl-audio.github.io/plugins/zlequalizer → https://zl-audio.github.io/plugins/zlequalizer/",
+    "200 https://zl-audio.github.io/plugins/zlspeceq → https://zl-audio.github.io/plugins/zlspeceq/",
+    "200 https://zl-audio.github.io/plugins/zllimiter → https://zl-audio.github.io/plugins/zllimiter/",
+    "200 https://zl-audio.github.io/plugins/zlcompressor → https://zl-audio.github.io/plugins/zlcompressor/",
+    "200 https://zl-audio.github.io/plugins/zlsplitter → https://zl-audio.github.io/plugins/zlsplitter/"
+   ],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 6
+   },
+   "pass2": {
+    "fetched": 6,
+    "products": 6,
+    "discovered": 0
+   }
+  },
+  {
+   "vendor": "Wavesfactory",
+   "requests": [
+    "200 https://www.wavesfactory.com/audio-plugins → https://www.wavesfactory.com/audio-plugins/",
+    "200 https://www.wavesfactory.com/audio-plugins/trackspacer → https://www.wavesfactory.com/audio-plugins/trackspacer/",
+    "200 https://www.wavesfactory.com/audio-plugins/cassette → https://www.wavesfactory.com/audio-plugins/cassette/",
+    "200 https://www.wavesfactory.com/audio-plugins/equalizer → https://www.wavesfactory.com/audio-plugins/equalizer/",
+    "200 https://www.wavesfactory.com/audio-plugins/quantum → https://www.wavesfactory.com/audio-plugins/quantum/",
+    "200 https://www.wavesfactory.com/audio-plugins/spectre → https://www.wavesfactory.com/audio-plugins/spectre/",
+    "200 https://www.wavesfactory.com/audio-plugins/re-esser → https://www.wavesfactory.com/audio-plugins/re-esser/",
+    "200 https://www.wavesfactory.com/audio-plugins/echo-cat → https://www.wavesfactory.com/audio-plugins/echo-cat/",
+    "200 https://www.wavesfactory.com/free-vst-plugins/"
+   ],
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": [],
+   "pass1": {
+    "fetched": 1,
+    "products": 0,
+    "discovered": 7
+   },
+   "pass2": {
+    "fetched": 7,
+    "products": 7,
+    "discovered": 0
    }
   }
  ]

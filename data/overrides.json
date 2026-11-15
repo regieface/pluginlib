@@ -1,1 +1,4106 @@
-{}
+{
+  "sir-audio-tools--sir3": {
+    "category": "reverb",
+    "tags": []
+  },
+  "sir-audio-tools--standardclip": {
+    "category": "limiter",
+    "tags": [],
+    "latencyInfo": {
+      "zero": true,
+      "conditional": true,
+      "values": [],
+      "sampleRate": null,
+      "noteFr": "Le filtre de suréchantillonnage à phase minimale n’ajoute pas de latence. Le mode à phase linéaire en ajoute ; la valeur dépend des réglages.",
+      "excerpt": "Minimum phase oversampling filter adds no latency; linear phase adds latency depending on filter settings.",
+      "url": "https://www.siraudiotools.com/manual.php?id=standardclip",
+      "checkedAt": "2026-11-15T18:00:00Z"
+    }
+  },
+  "sir-audio-tools--standardeq": {
+    "category": "eq",
+    "tags": []
+  },
+  "sir-audio-tools--standardgate": {
+    "category": "gate",
+    "tags": []
+  },
+  "sir-audio-tools--standardcompressor": {
+    "category": "comp",
+    "tags": [],
+    "image": null,
+    "imageEvidence": {
+      "url": "https://www.siraudiotools.com/product.php?id=stcompressor",
+      "excerpt": "Publisher screenshot is pixelated during customer beta; related StandardCLIP thumbnail is not the compressor.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    },
+    "catalogStatus": "beta",
+    "statusEvidence": {
+      "url": "https://www.siraudiotools.com/",
+      "excerpt": "StandardCompressor — Customer Beta",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "sir-audio-tools--spectrumanalyzer": {
+    "category": "analysis",
+    "tags": []
+  },
+  "pulsar-audio--mp-eq": {
+    "aliases": [
+      "Pulsar Massive",
+      "Massive"
+    ]
+  },
+  "pulsar-audio--vm-comp": {
+    "aliases": [
+      "Pulsar Mu",
+      "Mu"
+    ],
+    "colorationInfo": {
+      "kind": "colored",
+      "method": "reviewed-source",
+      "url": "https://pulsar.audio/vm-comp/",
+      "noteFr": "Émulation de compresseur à lampes avec chemin audio coloré. Un contrôle de gain doux n’annule pas cette coloration.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "fabfilter--fabfilter-pro-q-4": {
+    "latencyInfo": {
+      "zero": true,
+      "conditional": true,
+      "values": [],
+      "sampleRate": 44.1,
+      "modes": [
+        {
+          "label": "Phase linéaire Low",
+          "samples": 3072
+        },
+        {
+          "label": "Phase linéaire Medium",
+          "samples": 5120
+        },
+        {
+          "label": "Phase linéaire High",
+          "samples": 9216
+        },
+        {
+          "label": "Phase linéaire Very High",
+          "samples": 17408
+        },
+        {
+          "label": "Phase linéaire Maximum",
+          "samples": 66560
+        }
+      ],
+      "noteFr": "Mode Zero Latency : 0 sample. Phase linéaire : valeurs ci-dessous à 44,1 kHz uniquement ; les réglages et bandes spectrales peuvent modifier la latence.",
+      "excerpt": "The manufacturer documents zero-latency mode and five linear-phase resolutions at 44.1 kHz. Other sample rates and combined L/R plus M/S processing can change latency.",
+      "url": "https://www.fabfilter.com/help/pro-q/using/processingmode",
+      "checkedAt": "2026-11-15T18:00:00Z"
+    },
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://www.fabfilter.com/help/pro-q/using/character-mode",
+      "noteFr": "Mode Clean neutre ; modes Subtle et Warm ajoutant une saturation. La neutralité dépend du mode Character.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://prod.fabfilter.com/help/pro-q/intro/fabfilterproq",
+      "excerpt": "Égaliseur dont les bandes peuvent fonctionner en dynamique.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://prod.fabfilter.com/help/pro-q/using/dynamic-eq",
+        "excerpt": "Bandes Bell et Shelf utilisables en EQ dynamique.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "eqtype:linphase": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://prod.fabfilter.com/help/pro-q/using/processingmode",
+        "excerpt": "Modes Zero Latency, Natural Phase et Linear Phase.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "eqtype:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://prod.fabfilter.com/help/pro-q/using/bandcontrols",
+        "excerpt": "Placement stéréo ou Mid/Side des bandes.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://prod.fabfilter.com/help/pro-q/using/bandcontrols",
+        "excerpt": "Traitement Mid/Side disponible par bande.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    }
+  },
+  "eventide--2016-stereo-room": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "SP2016 Reverb"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/plug-ins/2016-stereo-room/",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: SP2016 Reverb. Existing licences are not transferred."
+    }
+  },
+  "eventide--h3000-factory": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "H3000 Factory Mk II"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/plug-ins/h3000-factory/",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: H3000 Factory Mk II. Existing licences are not transferred."
+    }
+  },
+  "eventide--h3000-band-delays": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "H3000 Band Delays Mk II"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays/",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: H3000 Band Delays Mk II. Existing licences are not transferred."
+    }
+  },
+  "eventide--physion": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "Physion Mk II"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/downloads/?product=Ensemble+Subscription",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: Physion Mk II. Existing licences are not transferred."
+    }
+  },
+  "eventide--fl201-instant-flanger": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "Instant Flanger Mk II"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/downloads/?product=Ensemble+Subscription",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: Instant Flanger Mk II. Existing licences are not transferred."
+    }
+  },
+  "eventide--ps101-instant-phaser": {
+    "catalogStatus": "superseded",
+    "replacedBy": {
+      "name": "Instant Phaser Mk II"
+    },
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/downloads/?product=Ensemble+Subscription",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "Manufacturer identifies a newer replacement: Instant Phaser Mk II. Existing licences are not transferred."
+    }
+  },
+  "eventide--spliteq-2": {
+    "catalogStatus": "upcoming",
+    "releaseDate": "2026-11-17",
+    "statusEvidence": {
+      "url": "https://www.eventideaudio.com/plug-ins/spliteq/",
+      "checkedAt": "2026-11-15T19:00:00Z",
+      "excerpt": "A new version is coming November 17, 2026."
+    }
+  },
+  "tokyo-dawn-records--tdr-kotelnikov": {
+    "colorationInfo": {
+      "kind": "transparent",
+      "method": "reviewed-source",
+      "url": "https://www.tokyodawn.net/tdr-kotelnikov/",
+      "noteFr": "Compression conçue pour préserver le timbre et le punch, sans émulation de matériel.",
+      "checkedAt": "2026-11-15T20:24:45.639Z"
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.tokyodawn.net/tdr-kotelnikov/",
+      "excerpt": "Compression conçue pour préserver le timbre et le punch, sans émulation de matériel.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "voxengo--polysquasher": {
+    "colorationInfo": {
+      "kind": "transparent",
+      "method": "reviewed-source",
+      "url": "https://www.voxengo.com/product/psquasher/",
+      "noteFr": "Conçu pour une compression de mastering transparente, sans coloration volontaire annoncée.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.voxengo.com/product/psquasher/",
+      "excerpt": "Conçu pour une compression de mastering transparente, sans coloration volontaire annoncée.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "nugen-audio--isl": {
+    "colorationInfo": {
+      "kind": "transparent",
+      "method": "reviewed-source",
+      "url": "https://nugenaudio.com/isl/",
+      "noteFr": "Limiteur true-peak conçu pour une action transparente, selon la fiche officielle.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "limiter",
+    "categoryEvidence": {
+      "category": "limiter",
+      "method": "reviewed-source",
+      "url": "https://nugenaudio.com/isl/",
+      "excerpt": "Limiteur true-peak conçu pour une action transparente, selon la fiche officielle.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "nugen-audio--islst": {
+    "colorationInfo": {
+      "kind": "transparent",
+      "method": "reviewed-source",
+      "url": "https://nugenaudio.com/isl/",
+      "noteFr": "Version stéréo du limiteur true-peak, présentée comme transparente par l’éditeur.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "limiter",
+    "categoryEvidence": {
+      "category": "limiter",
+      "method": "reviewed-source",
+      "url": "https://nugenaudio.com/isl/",
+      "excerpt": "Version stéréo du limiteur true-peak, présentée comme transparente par l’éditeur.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "voxengo--crunchessor": {
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://www.voxengo.com/product/crunchessor/",
+      "noteFr": "Coloration et traitement à lampes désactivables pour obtenir une compression neutre. Le plugin entier n’est donc pas classé transparent.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "voxengo--deft-compressor": {
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://www.voxengo.com/product/deftcompressor/",
+      "noteFr": "Compression avec mode Vintage produisant une saturation douce et pouvant surcharger la sortie. La coloration dépend du mode.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "klanghelm--dc8c": {
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://klanghelm.com/contents/products/DC8C",
+      "noteFr": "Mode CLEAN, deux modèles de saturation et soft clipper de sortie optionnel : neutralité selon réglages.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://klanghelm.com/contents/products/DC8C",
+      "excerpt": "Mode CLEAN, deux modèles de saturation et soft clipper de sortie optionnel : neutralité selon réglages.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "fabfilter--fabfilter-pro-c-3": {
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://prod.fabfilter.com/help/pro-c/using/styleandcharacter",
+      "noteFr": "Styles Clean et Mastering, mais aussi styles colorés et saturation Character (Tube, Diode, Bright). Neutralité selon style et Character désactivé.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "pulsar-modular--p11-abyss": {
+    "colorationInfo": {
+      "kind": "mixed",
+      "method": "reviewed-source",
+      "url": "https://www.pulsarmodular.com/product/p11-abyss/",
+      "noteFr": "Réglages de pression présentés comme transparents à faible PSI et de plus en plus colorés à forte pression.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "waves--cla-3a-compressor-limiter": {
+    "colorationInfo": {
+      "kind": "colored",
+      "method": "reviewed-source",
+      "url": "https://www.waves.com/plugins/cla-3a-compressor-limiter",
+      "noteFr": "L’émulation comporte une légère distorsion harmonique annoncée. La courbe de compression dite transparente ne signifie pas absence de coloration.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "universal-audio--v76-preamplifier": {
+    "colorationInfo": {
+      "kind": "colored",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/v76-preamplifier",
+      "noteFr": "Émulation de préampli à lampes dont l’éditeur décrit le gain riche en harmoniques.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    }
+  },
+  "airwindows--inflamer": {
+    "colorationInfo": {
+      "kind": "colored",
+      "method": "reviewed-source",
+      "url": "https://www.airwindows.com/inflamer/",
+      "noteFr": "Traitement par waveshaping, avec génération d’harmoniques : ce n’est pas un processeur transparent.",
+      "checkedAt": "2026-11-15T20:24:45.640Z"
+    },
+    "category": "saturation",
+    "categoryEvidence": {
+      "category": "saturation",
+      "method": "reviewed-source",
+      "url": "https://www.airwindows.com/inflamer/",
+      "excerpt": "Traitement par waveshaping, avec génération d’harmoniques : ce n’est pas un processeur transparent.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "waves--cla-2a-compressor-limiter": {
+    "category": "comp",
+    "featureEvidence": {
+      "techno:opto": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+        "excerpt": "Atténuateur optique électroluminescent T4 pour la réduction de gain (pages 2 et 5).",
+        "checkedAt": "2026-11-15T20:33:00.157Z"
+      },
+      "techno:varimu": {
+        "present": false,
+        "method": "reviewed-source",
+        "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+        "excerpt": "Les lampes appartiennent au chemin audio ; la réduction de gain est optique T4, pas Vari-Mu.",
+        "checkedAt": "2026-11-15T20:33:00.157Z"
+      },
+      "opt:ms": {
+        "present": false,
+        "method": "reviewed-source",
+        "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+        "excerpt": "Composants mono et stéréo liés ; pas de mode Mid/Side dans les composants et commandes documentés.",
+        "checkedAt": "2026-11-15T20:33:00.157Z"
+      },
+      "eqtype:ms": {
+        "present": false,
+        "method": "reviewed-source",
+        "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+        "excerpt": "Pas de fonction Mid/Side.",
+        "checkedAt": "2026-11-15T20:33:00.157Z"
+      },
+      "opt:sidechain": {
+        "present": false,
+        "method": "reviewed-source",
+        "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+        "excerpt": "Pas d’entrée de side-chain externe dans les composants et commandes documentés. Absence également confirmée par le propriétaire.",
+        "checkedAt": "2026-11-15T20:33:00.157Z"
+      }
+    },
+    "colorationInfo": {
+      "kind": "colored",
+      "method": "reviewed-source",
+      "url": "https://assets.wavescdn.com/pdf/plugins/cla-2a-compressor-limiter-v16-update.pdf",
+      "noteFr": "Réduction de gain optique T4, chemin audio à lampes avec distorsion harmonique modélisée. Ce n’est pas un Vari-Mu.",
+      "checkedAt": "2026-11-15T20:33:00.157Z"
+    },
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "plugin-alliance--bx-tuner": {
+    "category": "tuner",
+    "categoryEvidence": {
+      "category": "tuner",
+      "method": "reviewed-source",
+      "url": "https://files.plugin-alliance.com/products/bx_tuner/bx_tuner_manual.pdf",
+      "excerpt": "Accordeur pour guitares et basses, selon la fonction principale du manuel.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "soundtoys--little-microshift": {
+    "category": "stereo",
+    "categoryEvidence": {
+      "category": "stereo",
+      "method": "reviewed-source",
+      "url": "https://www.soundtoys.com/product/little-microshift/",
+      "excerpt": "Élargissement stéréo par décalage de hauteur et délai variable. Le contrôle multibande de Focus évoqué pour MicroShift ne constitue pas une compression multibande.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "soundtoys--microshift": {
+    "category": "stereo",
+    "categoryEvidence": {
+      "category": "stereo",
+      "method": "reviewed-source",
+      "url": "https://www.soundtoys.com/product/microshift/",
+      "excerpt": "Élargissement stéréo par décalage de hauteur et délai variable. Le contrôle multibande de Focus évoqué pour MicroShift ne constitue pas une compression multibande.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "boz-digital-labs--pan-knob": {
+    "category": "stereo",
+    "categoryEvidence": {
+      "category": "stereo",
+      "method": "reviewed-source",
+      "url": "https://www.bozdigitallabs.com/pan-knob/",
+      "excerpt": "Outil de panoramique et de balance stéréo.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "zl-audio--zl-equalizer-2": {
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zlequalizer2/manual/",
+      "excerpt": "Dynamic equalizer plugin.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "Dynamic equalizer plugin.",
+    "image": "https://zl-audio.github.io/images/zlequalizer2/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zlequalizer2/installation/",
+      "excerpt": "Logiciel gratuit et open source, installateurs actuellement distribués.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlequalizer2/manual/",
+        "excerpt": "Égalisation dynamique confirmée par le manuel du produit.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlequalizer2/manual/",
+        "excerpt": "Modes ou séparation Mid/Side explicitement documentés.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "opt:sidechain": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlequalizer2/manual/",
+        "excerpt": "Entrée de side-chain externe explicitement décrite dans les commandes.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    }
+  },
+  "zl-audio--zl-spectrum-equalizer": {
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+      "excerpt": "Dynamic spectrum equalizer plugin.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "Dynamic spectrum equalizer plugin.",
+    "image": "https://zl-audio.github.io/images/zlspeceq/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zlspeceq/installation/",
+      "excerpt": "Logiciel gratuit et open source, installateurs actuellement distribués.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+        "excerpt": "Égalisation dynamique confirmée par le manuel du produit.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "eqtype:linphase": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+        "excerpt": "Jusqu’à 24 bandes à phase linéaire.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+        "excerpt": "Modes ou séparation Mid/Side explicitement documentés.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      },
+      "opt:sidechain": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+        "excerpt": "Entrée de side-chain externe explicitement décrite dans les commandes.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    },
+    "latencyInfo": {
+      "conditional": true,
+      "zero": false,
+      "values": [
+        {
+          "label": "Extreme Low",
+          "value": 12,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "Very Low",
+          "value": 23,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "Low",
+          "value": 46,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "Medium",
+          "value": 93,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "High",
+          "value": 186,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "Very High",
+          "value": 372,
+          "unit": "ms",
+          "approximate": true
+        },
+        {
+          "label": "Extreme High",
+          "value": 743,
+          "unit": "ms",
+          "approximate": true
+        }
+      ],
+      "noteFr": "Latence approximative selon la résolution spectrale : 12, 23, 46, 93, 186, 372 ou 743 ms. Fréquence non précisée dans ce tableau du manuel.",
+      "url": "https://zl-audio.github.io/plugins/zlspeceq/manual/",
+      "checkedAt": "2026-11-15T21:25:09.766Z",
+      "sampleRate": null
+    }
+  },
+  "zl-audio--zl-compressor": {
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zlcompressor/manual/",
+      "excerpt": "Dynamic range compressor plugin.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "Dynamic range compressor plugin.",
+    "image": "https://zl-audio.github.io/images/zlcompressor/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zlcompressor/installation/",
+      "excerpt": "Logiciel gratuit et open source, installateurs actuellement distribués.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "featureEvidence": {
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlcompressor/manual/",
+        "excerpt": "Modes ou séparation Mid/Side explicitement documentés.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    }
+  },
+  "zl-audio--zl-limiter": {
+    "category": "limiter",
+    "categoryEvidence": {
+      "category": "limiter",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zllimiter/manual/",
+      "excerpt": "True Peak limiter plugin.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "True Peak limiter plugin.",
+    "image": "https://zl-audio.github.io/images/zllimiter/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zllimiter/installation/",
+      "excerpt": "Logiciel gratuit et open source, installateurs actuellement distribués.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    }
+  },
+  "zl-audio--zl-splitter": {
+    "category": "utility",
+    "categoryEvidence": {
+      "category": "utility",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zlsplitter/manual/",
+      "excerpt": "Multifunctional audio splitter for Left/Right, Mid/Side, Low/High, Transient/Steady and Peak/Steady components.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "Multifunctional audio splitter for Left/Right, Mid/Side, Low/High, Transient/Steady and Peak/Steady components.",
+    "image": "https://zl-audio.github.io/images/zlsplitter/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zlsplitter/installation/",
+      "excerpt": "Logiciel gratuit et open source, installateurs actuellement distribués.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "featureEvidence": {
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlsplitter/manual/",
+        "excerpt": "Modes ou séparation Mid/Side explicitement documentés.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    }
+  },
+  "zl-audio--zl-equalizer-legacy": {
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://zl-audio.github.io/plugins/zlequalizer/manual/",
+      "excerpt": "Legacy dynamic equalizer plugin.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "description": "Legacy dynamic equalizer plugin.",
+    "image": "https://zl-audio.github.io/images/zlequalizer/dark_crop.jpg",
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://zl-audio.github.io/help/plugin_installation/",
+      "excerpt": "VST3 : installateurs macOS, Windows et Linux ; AU sur macOS, LV2 sur Windows et Linux.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "catalogStatus": "discontinued",
+    "statusEvidence": {
+      "url": "https://zl-audio.github.io/plugins/zlequalizer/installation/",
+      "excerpt": "Version abandonnée, sans futures corrections ; l’éditeur recommande Equalizer 2.",
+      "checkedAt": "2026-11-15T21:25:09.766Z"
+    },
+    "replacedBy": {
+      "name": "ZL Equalizer 2"
+    },
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://zl-audio.github.io/plugins/zlequalizer/manual/",
+        "excerpt": "Égalisation dynamique confirmée par le manuel du produit.",
+        "checkedAt": "2026-11-15T21:25:09.766Z"
+      }
+    }
+  },
+  "tokyo-dawn-records--tdr-molotok": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://www.tokyodawn.net/tdr-molotok/",
+      "excerpt": "Free Download",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "tokyo-dawn-records--tdr-prism": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://www.tokyodawn.net/tdr-prism/",
+      "excerpt": "Free Download",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    },
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://www.tokyodawn.net/tdr-prism/",
+      "excerpt": "Windows Installer; Macos Package; Linux x86-64 Archive",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "tokyo-dawn-records--tdr-collector": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://www.tokyodawn.net/tdr-collector/",
+      "excerpt": "Free Download",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    },
+    "recordType": "application",
+    "recordTypeEvidence": {
+      "type": "application",
+      "method": "reviewed-source",
+      "url": "https://www.tokyodawn.net/tdr-collector/",
+      "excerpt": "Free software package manager for the Tokyo Dawn Labs product catalogue.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    },
+    "platforms": [
+      "macos",
+      "windows",
+      "linux"
+    ],
+    "platformEvidence": {
+      "url": "https://www.tokyodawn.net/tdr-collector/",
+      "excerpt": "Windows Installer; Macos Package; Linux x86-64 Archive",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "meldaproduction--msoundfactoryplayer": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "url": "https://www.meldaproduction.com/MSoundFactoryPlayer",
+      "excerpt": "MSoundFactoryPlayer is completely for FREE!",
+      "method": "reviewed-source",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    },
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://www.meldaproduction.com/MSoundFactoryPlayer",
+      "excerpt": "Free variant of our ultimate modular instrument. Free instrument.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "plugin-alliance--lion": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://www.plugin-alliance.com/products/lion",
+      "excerpt": "A dual-oscillator synth with over 40 built-in effects.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "eventide--generate": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://www.eventideaudio.com/plug-ins/generate/",
+      "excerpt": "Polysynth: 8 chaotic oscillators create complex pads, moving keys, jittery sequenced basses.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "audio-damage--ad-202": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://www.audiodamage.com/products/ad066-ad202",
+      "excerpt": "AD-202 is a single-oscillator monosynth in the small-grey-box tradition of the early 1980s.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "lsp-plugins--multisampler": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://lsp-plug.in/?page=manuals&section=multisampler_x12",
+      "excerpt": "Instruments: Multisampler x12. MIDI events trigger sample playback.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "universal-audio--luna-free": {
+    "recordType": "application",
+    "recordTypeEvidence": {
+      "type": "application",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/luna-free",
+      "excerpt": "Digital Audio Workstation (DAW) for macOS and Windows.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "universal-audio--luna-studio": {
+    "recordType": "application",
+    "recordTypeEvidence": {
+      "type": "application",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/luna-studio",
+      "excerpt": "Digital Audio Workstation (DAW) for macOS and Windows.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--buchla-259e-twisted-waveform-generator": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/buchla-259e-twisted-waveform-generator",
+      "excerpt": "Buchla 259e Twisted Waveform Generator is a dual oscillator plugin created in collaboration with Buchla as a Modular expansion. It's perfect for screeching, metallic, harsh, digital sounds.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--buchla-296e-spectral-processor": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/buchla-296e-spectral-processor",
+      "excerpt": "Buchla 296e Spectral Processor provides high-end spectral filtering and processing to be used as a Modular expansion. It features 16 band-pass filters, each with its own VCA and envelope follower. The only software versi",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--doepfer-a-101-2-vactrol-lpg": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/doepfer-a-101-2-vactrol-lpg",
+      "excerpt": "Doepfer A-101-2 Vactrol LPG adds organic and acoustic sounds to Modular patches. Created in collaboration with Doepfer, this vactrol filter plugin is a Modular expansion, featuring vactrol control of a 12 dB low pass fil",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--doepfer-a-188-1-bbd": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/doepfer-a-188-1-bbd",
+      "excerpt": "Doepfer A-188-1 BBD is a delay effect modeled after a rare and exciting hardware. Created in collaboration with Doepfer, this Modular expansion is great for dirty delays, sharp slapbacks, whooshing swirly ambience, or ut",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--intellijel-korgasmatron-ii": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/intellijel-korgasmatron-ii",
+      "excerpt": "Intellijel Korgasmatron II is a dual six mode filter which can also be used as a limited oscillator, created in collaboration with Intellijel as a Modular expansion. Any sound passed through it comes out richer, more nua",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--intellijel-rubicon": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/intellijel-rubicon",
+      "excerpt": "A thru-zero oscillator plugin, created in collaboration with Intellijel, as a Modular expansion. Intellijel Rubicon is ideal for experimenting with FM synthesis and can create very complex and detailed sounds.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "softube--intellijel-ufold-ii": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://www.softube.com/kr/plug-ins/intellijel-ufold-ii",
+      "excerpt": "VST plug-in for Modular, a wavefolder which shapes the timbre of any audio signal.",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-2445-emt-a-reverb-plug-in-based-on-the-emt-244-and-the-emt-245": {
+    "name": "PSP 2445 EMT",
+    "aliases": [
+      "PSP 2445 EMT a reverb plug-in based on: the EMT® 244 and the EMT® 245."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-2445-emt",
+      "excerpt": "PSP 2445 EMT",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-608-multidelay-perhaps-the-most-fully-featured-delay-plug-in": {
+    "name": "PSP 608MD",
+    "aliases": [
+      "PSP 608 MultiDelay perhaps the most fully featured delay plug-in ."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-608md",
+      "excerpt": "PSP 608MD",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-auralcontrol-an-essential-tool-for-multichannel-tracking-mixing-and-mastering": {
+    "name": "PSP auralControl",
+    "aliases": [
+      "PSP auralControl an essential tool for multichannel tracking, mixing and mastering."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-auralcontrol",
+      "excerpt": "PSP auralControl",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-busspressor-a-compressor-for-group-and-master-buss-processing": {
+    "name": "PSP BussPressor",
+    "aliases": [
+      "PSP BussPressor a compressor for group and master buss processing."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-busspressor",
+      "excerpt": "PSP BussPressor",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-datamix-a567-a-tracking-and-mixing-console-equalizer": {
+    "name": "PSP Datamix A567",
+    "aliases": [
+      "PSP Datamix A567 a Tracking and Mixing console equalizer!"
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-datamix-a567",
+      "excerpt": "PSP Datamix A567",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-easyverb-a-multipurpose-algorithmic-reverb-processor": {
+    "name": "PSP EasyVerb",
+    "aliases": [
+      "PSP EasyVerb a multipurpose algorithmic reverb processor."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-easyverb",
+      "excerpt": "PSP EasyVerb",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-hertzrider2-stereo-frequency-shifter-taken-to-the-new-level": {
+    "name": "PSP HertzRider2",
+    "aliases": [
+      "PSP HertzRider2 Stereo Frequency Shifter taken to the new level!"
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-hertzrider2",
+      "excerpt": "PSP HertzRider2",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-mastercomp-a-high-fidelity-stereo-dynamics-processor": {
+    "name": "PSP MasterComp",
+    "aliases": [
+      "PSP MasterComp a high fidelity stereo dynamics processor."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-mastercomp",
+      "excerpt": "PSP MasterComp",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-masterq2-a-highend-and-very-musical-mastering-equaliser": {
+    "name": "PSP MasterQ2",
+    "aliases": [
+      "PSP MasterQ2 a highend and very musical mastering equaliser"
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-masterq2",
+      "excerpt": "PSP MasterQ2",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-mcq-a-flexible-console-style-eq-inspired-by-classic-mmci-equalizer": {
+    "name": "PSP McQ",
+    "aliases": [
+      "PSP McQ a flexible console-style EQ inspired by classic MMCI equalizer"
+    ],
+    "identityEvidence": {
+      "url": "https://pspaudioware.com/products/psp-mcq",
+      "excerpt": "PSP McQ",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-nobleq-a-passive-equalizer-with-a-wide-range-of-frequency-settings": {
+    "name": "PSP NobleQ",
+    "aliases": [
+      "PSP NobleQ a passive equalizer with a wide range of frequency settings"
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-nobleq",
+      "excerpt": "PSP NobleQ",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-oldtimermb-is-a-vintage-style-multi-band-compressor": {
+    "name": "PSP oldTimerMB",
+    "aliases": [
+      "PSP oldTimerMB is a vintage-style multi-band compressor!"
+    ],
+    "identityEvidence": {
+      "url": "https://pspaudioware.com/products/psp-oldtimermb",
+      "excerpt": "PSP oldTimerMB",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-springbox-an-exelent-emulation-of-a-hardware-spring-reverberator": {
+    "name": "PSP SpringBox",
+    "aliases": [
+      "PSP SpringBox an exelent emulation of a hardware spring reverberator."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-springbox",
+      "excerpt": "PSP SpringBox",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-stereoaligner2-precision-tool-for-correcting-time-phase-and-balance-issues": {
+    "name": "PSP stereoAligner2",
+    "aliases": [
+      "PSP stereoAligner2 precision tool for correcting time, phase and balance issues."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-stereoaligner2",
+      "excerpt": "PSP stereoAligner2",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-stereocontroller2-the-correction-tool-for-dual-channel-stereophonic-signals": {
+    "name": "PSP stereoController2",
+    "aliases": [
+      "PSP stereoController2 the correction tool for dual channel stereophonic signals!"
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-stereocontroller2",
+      "excerpt": "PSP stereoController2",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-tilt-q-a-musical-tilt-and-contour-eq-for-fast-tonal-shaping": {
+    "name": "PSP Tilt-Q",
+    "aliases": [
+      "PSP Tilt-Q a musical tilt and contour EQ for fast tonal shaping."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-tilt-q",
+      "excerpt": "PSP Tilt-Q",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "pspaudioware--psp-x-dither-a-high-quality-dithering-and-noise-shaping-processor": {
+    "name": "PSP X-Dither",
+    "aliases": [
+      "PSP X-Dither a high-quality dithering and noise shaping processor."
+    ],
+    "identityEvidence": {
+      "url": "https://www.pspaudioware.com/products/psp-x-dither",
+      "excerpt": "PSP X-Dither",
+      "method": "product-heading",
+      "checkedAt": "2026-11-15T21:48:28.712Z"
+    }
+  },
+  "waves--dts-neural-mono2stereo": {
+    "legacyIds": [
+      "waves--dts-neuraltm-mono2stereo"
+    ],
+    "aliases": [
+      "DTS Neural™ Mono2Stereo"
+    ],
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dts-neuraltm-mono2stereo": {
+    "duplicateOf": "waves--dts-neural-mono2stereo",
+    "duplicateEvidence": {
+      "url": "https://www.waves.com/plugins/dts-neural-mono2stereo",
+      "excerpt": "Same official product name; ™ is a trademark symbol, not an edition.",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dts-neural-surround-downmix": {
+    "legacyIds": [
+      "waves--dts-neuraltm-surround-downmix"
+    ],
+    "aliases": [
+      "DTS Neural™ Surround DownMix"
+    ],
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dts-neuraltm-surround-downmix": {
+    "duplicateOf": "waves--dts-neural-surround-downmix",
+    "duplicateEvidence": {
+      "url": "https://www.waves.com/plugins/dts-neural-surround-downmix",
+      "excerpt": "Same official product name; ™ is a trademark symbol, not an edition.",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dts-neural-surround-upmix": {
+    "legacyIds": [
+      "waves--dts-neuraltm-surround-upmix"
+    ],
+    "aliases": [
+      "DTS Neural™ Surround UpMix"
+    ],
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dts-neuraltm-surround-upmix": {
+    "duplicateOf": "waves--dts-neural-surround-upmix",
+    "duplicateEvidence": {
+      "url": "https://www.waves.com/plugins/dts-neural-surround-upmix",
+      "excerpt": "Same official product name; ™ is a trademark symbol, not an edition.",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-chambers": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-emi-tg12345-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-king-s-microphones": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-redd-consoles": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-reel-adt": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-reverb-plates": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-rs124-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-rs56-passive-eq": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-saturator": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-studio-3": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-tg-mastering-chain": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--abbey-road-vinyl": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--aphex-vintage-aural-exciter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--api-2500": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--api-550": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--api-560": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--audiotrack": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--b360-ambisonics-encoder": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--bass-rider": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--berzerk-distortion": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--brauer-motion": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--bss-dpr-402": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--butch-vig-vocals": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--c1-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--c360-surround-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--c4-multiband-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--c6-multiband-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--center": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-bass": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-drums": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-echosphere": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-effects": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-epic": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-guitars": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-mixdown": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-mixhub": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-nx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-unplugged": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-vocals": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cla-76-compressor-limiter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--clarity-vx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--clarity-vx-dereverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--clarity-vx-dereverb-pro": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--clarity-vx-pro": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--clarix-lb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cobalt-saphira": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--cosmos-sample-finder": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--curves-aq": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--curves-equator": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dbx-160-compressor-limiter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--debreath": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--deesser": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--doppler": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dorrough-stereo": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dorrough-surround": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--doubler": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--dugan-speech": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--eddie-kramer-bass-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--eddie-kramer-drum-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--eddie-kramer-effects-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--eddie-kramer-guitar-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--eddie-kramer-vocal-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--emo-d5-dynamics": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--emo-f2-filter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--emo-generator": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--emo-q4-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--enigma": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--f6-floating-band-dynamic-eq": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--feedback-hunter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--gemstones": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--geq-graphic-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--greg-wells-mixcentric": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--greg-wells-tonecentric": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--greg-wells-voicecentric": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--gtr3": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--gtr3-stomps": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--gtr3-toolrack": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--gtr3-tuner": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--h-comp-hybrid-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--h-delay-hybrid-delay": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--h-eq-hybrid-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--h-reverb-hybrid-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--idr360-bit-re-quantizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--idx-intelligent-dynamics": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--immersive-wrapper": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--infected-mushroom-pusher": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--inphase": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--inphase-lt": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--intrigger-drum-replacer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ir-l-convolution-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ir-live-convolution-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ir1-convolution-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ir360-convolution-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-bass": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-cymbals-and-percussion": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-drums": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-guitars": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-strings-and-keys": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--jjp-vocals": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--kaleidoscopes": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--key-detector": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--kramer-hls-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--kramer-master-tape": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--kramer-pie-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l1-ultramaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l2-ultramaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l3-multimaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l3-ultramaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l3-16-multimaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l3-ll-ultramaximizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--l360-surround-limiter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--linear-phase-eq": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--linear-phase-multiband-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--loair": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--lofi-space": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--m360-surround-manager-and-mixdown": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--magma-bb-tubes": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--magma-lil-tube": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--magma-springs": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--magma-tube-channel-strip": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-delay": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-distortion": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-eq": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-tone-shaper": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--manny-marroquin-triple-d": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-acg": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-b72": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-drm": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-grp": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-gti": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-hmx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maserati-vx1": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maxxbass": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--maxxvolume": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--mdmx-distortion-modules": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--metafilter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--metaflanger": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--mondomod": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--multimod-rack": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--mv2": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--nls-non-linear-summer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ns1-noise-suppressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--nx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--nx-ocean-way-nashville": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-brighter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-driver": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-filter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-louder": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-phatter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-pressure": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-pumper": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--oneknob-wetter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ovox-vocal-resynthesis": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--paz-analyzer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--playlist-rider": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--primary-source-expander": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--prs-supermodels": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ps22-stereo-maker": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--puigchild-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--q-clone": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--q10-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--r360-surround-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-axx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-bass": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-compressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-deesser": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-reverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--renaissance-vox": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--s1-stereo-imager": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--s360-surround-panner-and-imager": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--scheps-73": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--scheps-omni-channel-2": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--scheps-parallel-particles": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--sibilance": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--silk-vocal": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--smack-attack": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--soundshifter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--space-rider": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--spherix-immersive-compressor-and-limiter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ssl-e-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ssl-ev2-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ssl-g-channel": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ssl-g-equalizer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--studiorack": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--studioverse-audio-effects": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--studioverse-mix-unlock": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--sub-align": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--submarine": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--supertap": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--sync-vx": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--torque": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--tract-system-calibration": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--trans-x": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--trueverb": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--ultrapitch": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--um225-um226": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--v-comp": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--v-eq3": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--v-eq4": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--vitamin-sonic-enhancer": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--vocal-bender": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--vocal-rider": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--voltage-amps": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--vu-meter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--waves-harmony": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--waves-stream": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--waves-tune": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--waves-tune-lt": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--waves-tune-real-time": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--wlm-plus-loudness-meter": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--wns-noise-suppressor": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--x-click": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--x-crackle": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--x-fdbk": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--x-hum": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--x-noise": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "waves--z-noise": {
+    "platforms": [
+      "macos",
+      "windows"
+    ],
+    "platformEvidence": {
+      "url": "https://www.waves.com/support/tech-specs/system-requirements",
+      "excerpt": "Plugins: Mac and Windows. Consult product notes and the requirements for the installed Waves version.",
+      "method": "reviewed-vendor-requirements",
+      "checkedAt": "2026-11-15T21:51:46.379Z"
+    }
+  },
+  "pspaudioware--psp-auralcomp-the-ultimate-multi-channel-compressor-and-limiter-plug-in": {
+    "name": "PSP auralComp",
+    "aliases": [
+      "PSP auralComp the ultimate multi-channel compressor & limiter plug-in!"
+    ],
+    "identityEvidence": {
+      "method": "remove-marketing-suffix",
+      "url": "https://www.pspaudioware.com/products/psp-auralcomp",
+      "excerpt": "PSP auralComp the ultimate multi-channel compressor & limiter plug-in!",
+      "checkedAt": "2026-11-15T21:55:37.248Z"
+    }
+  },
+  "pspaudioware--psp-infinistrip-an-infinitely-configurable-channel-strip-plug-in": {
+    "name": "PSP InfiniStrip",
+    "aliases": [
+      "PSP InfiniStrip an infinitely configurable channel strip plug-in!"
+    ],
+    "identityEvidence": {
+      "method": "remove-marketing-suffix",
+      "url": "https://www.pspaudioware.com/products/psp-infinistrip",
+      "excerpt": "PSP InfiniStrip an infinitely configurable channel strip plug-in!",
+      "checkedAt": "2026-11-15T21:55:37.249Z"
+    }
+  },
+  "pspaudioware--psp-vintagewarmer-the-legendary-analog-style-single-or-multi-band-compressor-limiter": {
+    "name": "PSP VintageWarmer",
+    "aliases": [
+      "PSP VintageWarmer the legendary analog-style single or multi-band compressor/limiter."
+    ],
+    "identityEvidence": {
+      "method": "remove-marketing-suffix",
+      "url": "https://www.pspaudioware.com/products/psp-vintagewarmer2",
+      "excerpt": "PSP VintageWarmer the legendary analog-style single or multi-band compressor/limiter.",
+      "checkedAt": "2026-11-15T21:55:37.249Z"
+    }
+  },
+  "audiothing--miniverb-snesverb-8bit-chiptune-lofi-reverb-plugin-vst-au-aax": {
+    "name": "miniVerb",
+    "aliases": [
+      "miniVerb SNESverb 8bit Chiptune LoFi Reverb Plugin (VST, AU, AAX)"
+    ],
+    "identityEvidence": {
+      "method": "product-heading",
+      "url": "https://www.audiothing.net/effects/miniverb/",
+      "excerpt": "miniVerb",
+      "checkedAt": "2026-11-15T22:00:49.341Z"
+    },
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://www.audiothing.net/effects/miniverb/",
+      "excerpt": "miniVerb is an 8-bit/chiptune and lofi reverb effect inspired by the sound of 80s game consoles and retrocomputers.",
+      "checkedAt": "2026-11-15T22:01:19.642Z"
+    }
+  },
+  "pspaudioware--psp-retroq-a-musical-eq-with-psp-vintagewarmer-inspired-filters": {
+    "name": "PSP RetroQ",
+    "aliases": [
+      "PSP RetroQ a musical EQ with PSP VintageWarmer-inspired filters"
+    ],
+    "identityEvidence": {
+      "method": "product-heading",
+      "url": "https://pspaudioware.com/products/psp-retroq",
+      "excerpt": "PSP RetroQ",
+      "checkedAt": "2026-11-15T22:00:49.341Z"
+    }
+  },
+  "united-plugins--hyperspacecore": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://unitedplugins.com/HyperspaceCore",
+      "excerpt": "Hyperspace Core is free. Buy the license for €0.",
+      "checkedAt": "2026-11-15T22:00:49.341Z"
+    }
+  },
+  "united-plugins--urban-puncher": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://unitedplugins.com/UrbanPuncher",
+      "excerpt": "FREE (with ads). No functionality of the plugin is limited. Register for a license to remove the ads and support the team.",
+      "checkedAt": "2026-11-15T22:00:49.341Z"
+    },
+    "freeLabel": "Gratuit avec publicité"
+  },
+  "wavesfactory--cassette": {},
+  "wavesfactory--cassette-transport": {
+    "categoryEvidence": {
+      "category": "pitch",
+      "method": "reviewed-source",
+      "url": "https://www.wavesfactory.com/free-vst-plugins/#cassette-transport",
+      "excerpt": "Free audio plugin effect that simulates the sound of tape speeding up and slowing down.",
+      "checkedAt": "2026-11-15T22:39:29.972Z"
+    }
+  },
+  "wavesfactory--echo-cat": {},
+  "wavesfactory--equalizer": {
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/equalizer/",
+        "excerpt": "Performs constant EQ changes based on the input signal.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/equalizer/",
+        "excerpt": "Features include Mid/Side processing.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "eqtype:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/equalizer/",
+        "excerpt": "Features include Mid/Side processing.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "opt:sidechain": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/equalizer/",
+        "excerpt": "New in version 1.0.2: Equalizer now features a sidechain input.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      }
+    },
+    "latencyInfo": {
+      "zero": true,
+      "conditional": false,
+      "values": [],
+      "sampleRate": null,
+      "url": "https://www.wavesfactory.com/audio-plugins/equalizer/",
+      "excerpt": "The processing is done in the time domain. No latency is required at all.",
+      "checkedAt": "2026-11-15T22:39:29.972Z"
+    }
+  },
+  "wavesfactory--flash": {},
+  "wavesfactory--quantum": {},
+  "wavesfactory--re-esser": {},
+  "wavesfactory--sk10": {
+    "categoryEvidence": {
+      "category": "utility",
+      "method": "reviewed-source",
+      "url": "https://www.wavesfactory.com/free-vst-plugins/#sk10",
+      "excerpt": "SK10 is a free audio plugin that simulates a sub-kick microphone. A sub-kick mic is essentially a speaker converted into a microphone. \nThanks to its diameter it captures a lot of low end and it's a perfect fit along your regular kick mic for boosting the low frequencies.",
+      "checkedAt": "2026-11-15T22:39:29.972Z"
+    }
+  },
+  "wavesfactory--snarebuzz": {
+    "categoryEvidence": {
+      "category": "utility",
+      "method": "reviewed-source",
+      "url": "https://www.wavesfactory.com/free-vst-plugins/#snarebuzz",
+      "excerpt": "SnareBuzz is a free audio plugin that simulates the sympathetic resonances produced by the wires of a snare drum when another sound source is playing near.\nUse it as a psycho-acoustic effect to bring realism and life to your tracks.",
+      "checkedAt": "2026-11-15T22:39:29.972Z"
+    }
+  },
+  "wavesfactory--spectre": {},
+  "wavesfactory--trackspacer": {
+    "featureEvidence": {
+      "eqtype:dynamique": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/trackspacer/",
+        "excerpt": "Internal 32 band EQ that reacts to the incoming sidechain signal; applies a reversed EQ curve to another track.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "opt:sidechain": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/trackspacer/",
+        "excerpt": "Analyses the spectrum of the sidechain. Uses an internal sidechain if an external one is not provided.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "opt:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/trackspacer/",
+        "excerpt": "Apply Trackspacer to the full stereo field, only the left or right channels, only the mid or side channels.",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      },
+      "eqtype:ms": {
+        "present": true,
+        "method": "reviewed-source",
+        "url": "https://www.wavesfactory.com/audio-plugins/trackspacer/",
+        "excerpt": "Stereo, Mid, Side",
+        "checkedAt": "2026-11-15T22:39:29.972Z"
+      }
+    }
+  }
+}

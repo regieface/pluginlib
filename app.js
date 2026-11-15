@@ -1,20 +1,33 @@
 // PluginLib — interface. Les données vivent dans data/*.json (mises à jour toutes les deux semaines par GitHub Actions).
-import { shortDescription } from './descriptions.mjs';
+const moduleVersion = window.PL_V || 1;
+const { shortDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
+const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceStale } = await import(`./catalog.mjs?v=${moduleVersion}`);
+const { defaultSelections, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
+const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
+const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
+const { normalizeCollection, mergeCollection, collectionStatus, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
 const STATUS_KEY = 'pluginlib.status.v2';
 const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'Abonnement actif', former: 'Ancien abonnement', trial: 'Démo', wishlist: 'Liste d’envies', not_owned: 'Non possédé' };
 const PAGE = 30;
 
-let DATA = [], META = null, LBL = null, status = {}, shown = PAGE;
-const st = { scope: 'all', q: '', family: '', maker: '', c1: '', c2: '', c3: '', option: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
+let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], shown = PAGE;
+const st = { scope: 'all', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
+let selections = defaultSelections();
+const filterControls = new Map(), filterChoices = new Map();
 
 // Collection : statut par plugin (reprise de l'ancien format « étoile » si présent)
 try {
   status = JSON.parse(localStorage.getItem(STATUS_KEY) || '{}') || {};
+  subscriptions = JSON.parse(localStorage.getItem('pluginlib.subscriptions.v1') || '[]') || [];
+  unmatchedLicenses=JSON.parse(localStorage.getItem('pluginlib.unmatchedLicenses.v1')||'[]');
+  licenseDetails=JSON.parse(localStorage.getItem('pluginlib.licenseDetails.v1')||'{}');
   const old = JSON.parse(localStorage.getItem('pluginlib.owned.v1') || '[]');
   old.forEach((id) => { if (!status[id]) status[id] = 'owned'; });
 } catch { status = {}; }
-const save = () => { try { localStorage.setItem(STATUS_KEY, JSON.stringify(status)); } catch { /* stockage indisponible */ } };
+const save = () => { try { localStorage.setItem(STATUS_KEY, JSON.stringify(status)); localStorage.setItem('pluginlib.subscriptions.v1',JSON.stringify(subscriptions));localStorage.setItem('pluginlib.unmatchedLicenses.v1',JSON.stringify(unmatchedLicenses));localStorage.setItem('pluginlib.licenseDetails.v1',JSON.stringify(licenseDetails)); } catch { /* stockage indisponible */ } };
+const currentCollection=()=>({status,subscriptions,unmatchedLicenses,licenseDetails});
+const licenseStatus=p=>collectionStatus(p,currentCollection(),PLANS);
 
 const norm = (s) => (s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const fmt = (n) => n.toLocaleString('fr-FR');
@@ -29,23 +42,37 @@ function lat(p, rate) {
 
 // ---------- Chargement ----------
 async function load() {
-  const [d, m] = await Promise.all([
+  const [d, m, plans] = await Promise.all([
     fetch('data/plugins.json', { cache: 'no-cache' }).then((r) => r.json()),
-    fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json())
+    fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json()),
+    fetch('data/subscriptions.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{plans:[]}).catch(()=>({plans:[]}))
   ]);
   META = m; LBL = m.labels;
-  DATA = d.plugins.map((p) => {
+  PLANS=plans.plans||[];
+  ({status,subscriptions,unmatchedLicenses,licenseDetails}=normalizeCollection(currentCollection(),d.plugins,PLANS));
+  DATA = d.plugins.filter(p=>!p.duplicateOf).map((p) => {
     const summary = shortDescription(p);
-    return { ...p, summary, _s: norm(`${p.name} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
+    return { ...p, summary, _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
   });
-  stats(); fillStatic(); render();
+  save();stats(); fillStatic(); renderSubscriptions();render();
+}
+
+function renderSubscriptions(){
+  $('#subscriptionOptions').replaceChildren(...PLANS.map(plan=>{
+    const label=document.createElement('label'),checkbox=document.createElement('input');checkbox.type='checkbox';
+    checkbox.checked=subscriptions.some(s=>subscriptionKey(s)===subscriptionKey(plan)&&s.status==='active');
+    checkbox.addEventListener('change',()=>{const s={vendor:plan.vendor,plan:plan.plan,status:checkbox.checked?'active':'inactive',source:'Déclaration du propriétaire'};({status,subscriptions,unmatchedLicenses,licenseDetails}=mergeCollection(currentCollection(),{subscriptions:[s]},DATA,PLANS));save();renderSubscriptions();render();});
+    label.append(checkbox,` ${plan.vendor} ${plan.plan} · ${DATA.filter(p=>isPlanMember(p,plan)).length} plugins du catalogue`);return label;
+  }));
 }
 
 function stats() {
   $('#total').textContent = fmt(DATA.length);
   $('#makers').textContent = fmt(new Set(DATA.map((p) => p.vendor)).size);
-  $('#latstat').textContent = fmt(DATA.filter((p) => p.latency).length);
+  $('#latstat').textContent = fmt(DATA.filter(hasDocumentedLatency).length);
   $('#linkstat').textContent = fmt(DATA.filter((p) => p.url).length);
+  const pendingFamilies = DATA.filter((p) => p.category === 'other').length;
+  $('#familyCoverage').textContent = `Catalogue : ${fmt(DATA.length - pendingFamilies)} familles renseignées · ${fmt(pendingFamilies)} familles à vérifier.`;
   if (META.generatedAt) {
     const d = new Date(META.generatedAt);
     $('#headright').innerHTML = `Mise à jour automatique toutes les deux semaines<br>Dernière : ${d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} à ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
@@ -55,60 +82,96 @@ function stats() {
     `<tr><td><a href="${esc(META.latency.url || '#')}" target="_blank" rel="noopener">Latences Waves</a></td><td class="${META.latency.ok ? 'ok' : 'ko'}">${META.latency.ok ? 'À jour' : 'Échec'}</td><td>tableau officiel</td><td>${META.latency.rows ?? '—'}</td></tr>`;
 }
 
-const opt = (v, l, n) => `<option value="${esc(v)}">${esc(l)}${n != null ? ` (${n})` : ''}</option>`;
-
 function fillStatic() {
+  selections = defaultSelections(Object.keys(LBL.facets));
   const fam = {}; DATA.forEach((p) => { fam[p.category] = (fam[p.category] || 0) + 1; });
-  $('#family').innerHTML = opt('', 'Toutes les familles') + Object.entries(LBL.categories).filter(([id]) => fam[id]).sort((a, b) => a[1].localeCompare(b[1])).map(([id, l]) => opt(id, l, fam[id])).join('');
+  addMulti('family', 'Familles', 'Toutes les familles', Object.entries(LBL.categories).filter(([id]) => fam[id]).sort((a, b) => a[1].localeCompare(b[1])).map(([id, label]) => [id, label, fam[id]]));
   const mk = {}; DATA.forEach((p) => { mk[p.vendor] = (mk[p.vendor] || 0) + 1; });
-  $('#maker').innerHTML = opt('', 'Tous les fabricants') + Object.keys(mk).sort((a, b) => a.localeCompare(b)).map((v) => opt(v, v, mk[v])).join('');
-  $('#option').innerHTML = opt('', 'Toutes') + Object.entries(LBL.common).map(([k, l]) => opt(`opt:${k}`, l)).join('');
-  contextual();
+  addMulti('maker', 'Fabricants', 'Tous les fabricants', Object.keys(mk).sort((a, b) => a.localeCompare(b)).map((value) => [value, value, mk[value]]));
+  addMulti('option', 'Fonctions', 'Toutes les fonctions', Object.entries(LBL.common).map(([key, label]) => [`opt:${key}`, label]));
+  addMulti('platform', 'Plateformes', 'Toutes les plateformes', [...Object.entries(PLATFORMS), ['unknown', 'Compatibilité à vérifier']]);
+  addMulti('catalogStatus', 'Disponibilité', 'Tous les statuts', Object.entries(CATALOG_STATUSES));
+  addMulti('recordType', 'Type de fiche', 'Tous les types', Object.entries(RECORD_TYPES));
+  for (const [key, def] of Object.entries(LBL.facets)) {
+    const field = document.createElement('div'); field.className = 'field';
+    const label = document.createElement('div'); label.className = 'filter-label';
+    label.textContent = key === 'espace' ? 'Type d’espace' : def.label;
+    const root = document.createElement('div'); root.id = `facet-${key}`;
+    field.append(label, root); $('#facetFilters').append(field);
+    const options = Object.entries(def.values).map(([value, text]) => [`${key}:${value}`, text, DATA.filter((p) => p.tags.includes(`${key}:${value}`)).length]).filter(([, , count]) => count);
+    addMulti(key, label.textContent, 'Indifférent', options, root);
+  }
+  renderActiveFilters();
 }
 
-// Critères contextuels : ils changent selon la famille choisie
-function contextual() {
-  const facets = st.family ? Object.entries(LBL.facets).filter(([, f]) => f.for.includes(st.family)) : [];
-  const pool = DATA.filter((p) => p.category === st.family);
-  ['c1', 'c2', 'c3'].forEach((k, i) => {
-    const sel = $('#' + k), lab = $('#label' + (i + 1));
-    const f = facets[i];
-    st[k] = '';
-    if (!f) {
-      lab.textContent = st.family ? '—' : `Critère ${i + 1}`;
-      sel.innerHTML = opt('', st.family ? 'Sans objet pour cette famille' : 'Choisis une famille'); sel.disabled = true; return;
+function addMulti(key, label, emptyLabel, options, root = $('#' + key)) {
+  filterChoices.set(key, { label, options, root });
+  filterControls.set(key, mountMultiSelect(root, { label, emptyLabel, options, getSelection: () => selections[key], onChange: (next) => {
+    selections[key] = next;
+    if (key === 'family') reconcileFamilyCriteria();
+    renderActiveFilters(); rerender();
+  } }));
+}
+
+function reconcileFamilyCriteria() {
+  const cleared = clearIrrelevantFacets(DATA, selections, LBL.facets);
+  const notice = $('#filterNotice');
+  notice.textContent = cleared.length ? `Critères retirés car sans objet pour les familles choisies : ${cleared.map((key) => LBL.facets[key].label).join(', ')}.` : '';
+  notice.hidden = !cleared.length;
+}
+
+function renderActiveFilters() {
+  const chips = document.createDocumentFragment();
+  for (const [key, { label, options }] of filterChoices) {
+    for (const mode of ['include', 'exclude']) for (const value of selections[key][mode]) {
+      const text = options.find(([id]) => id === value)?.[1] || value;
+      const button = document.createElement('button'); button.type = 'button'; button.className = `filter-chip ${mode}`;
+      button.textContent = `${mode === 'exclude' ? 'Exclure ' : ''}${text} ×`;
+      button.setAttribute('aria-label', `Retirer le filtre ${label} : ${mode === 'exclude' ? 'exclure ' : ''}${text}`);
+      button.addEventListener('click', () => {
+        selections[key] = changeSelection(selections[key], value, mode, false);
+        if (key === 'family') reconcileFamilyCriteria();
+        filterControls.get(key)(); renderActiveFilters(); rerender();
+      });
+      chips.append(button);
     }
-    const [fid, def] = f;
-    lab.textContent = def.label;
-    const vals = Object.entries(def.values).map(([v, l]) => [`${fid}:${v}`, l, pool.filter((p) => p.tags.includes(`${fid}:${v}`)).length]).filter((x) => x[2]);
-    sel.innerHTML = opt('', 'Tous') + vals.map(([v, l, n]) => opt(v, l, n)).join('');
-    sel.disabled = !vals.length;
-  });
+  }
+  $('#activeFilters').replaceChildren(chips);
 }
 
 // ---------- Filtrage ----------
-function filtered() {
+function filtered(ignoreSelections = false) {
   const terms = norm(st.q).split(/\s+/).filter(Boolean);
   return DATA.filter((p) => {
-    const s = status[p.id] || 'unknown';
+    if (!ignoreSelections && !matchesPluginSelections(p, selections)) return false;
+    const s = licenseStatus(p);
     if (st.scope === 'owned' && !['owned', 'subscription'].includes(s)) return false;
     if (st.scope === 'wishlist' && s !== 'wishlist') return false;
     if (st.scope === 'discover' && ['owned', 'subscription', 'former'].includes(s)) return false;
     if (terms.length && !terms.every((t) => p._s.includes(t))) return false;
-    if (st.family && p.category !== st.family) return false;
-    if (st.maker && p.vendor !== st.maker) return false;
-    for (const k of ['c1', 'c2', 'c3', 'option']) if (st[k] && !p.tags.includes(st[k])) return false;
     const l = lat(p, st.rate);
     if (st.zl === 'zero' && !(l && l.zero)) return false;
-    if (st.zl === 'zeromode' && !(l && (l.zero || l.zeroMode))) return false;
-    if (st.zl === 'announced' && !p.tags.includes('opt:zl') && !(l && l.zero)) return false;
-    if (st.zl === 'known' && !l) return false;
+    if (st.zl === 'zeromode' && !(l && (l.zero || l.zeroMode)) && !p.latencyInfo?.zero) return false;
+    if (st.zl === 'announced' && !p.tags.includes('opt:zl') && !(l && l.zero) && !p.latencyInfo?.zero) return false;
+    if (st.zl === 'known' && !hasDocumentedLatency(p)) return false;
     if (st.links === 'yes' && !p.url) return false;
     if (st.links === 'no' && p.url) return false;
     if (st.visual === 'yes' && !p.image) return false;
     if (st.visual === 'no' && p.image) return false;
     return true;
   });
+}
+
+function refreshContextualFilters() {
+  const candidates = filtered(true);
+  for (const [key, { root }] of filterChoices) {
+    const counts = contextualCounts(candidates, selections, key, LBL.facets);
+    const active = selections[key].include.length || selections[key].exclude.length;
+    const hidden = !!LBL.facets[key] && !counts.size && !active;
+    root.closest('.field').hidden = hidden;
+    if (hidden) root.querySelector('details').open = false;
+    filterControls.get(key)({ counts });
+  }
 }
 
 function latCell(p, rate) {
@@ -121,30 +184,105 @@ function latCell(p, rate) {
 
 function card(p) {
   const n = $('#tpl').content.cloneNode(true);
+  n.querySelector('.card').classList.toggle('licensed', ['owned', 'subscription'].includes(licenseStatus(p)));
   const img = n.querySelector('img');
   n.querySelector('.fallback b').textContent = p.vendor.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   n.querySelector('.fallback span').textContent = LBL.categories[p.category] || '';
-  if (p.image) { img.src = p.image; img.alt = p.name; img.onerror = () => img.remove(); } else img.remove();
+  if (p.image) {
+    const art = n.querySelector('.art');
+    img.onload = () => art.classList.add('has-image');
+    img.onerror = () => { art.classList.remove('has-image'); img.remove(); };
+    img.alt = p.name; img.src = p.image;
+  } else img.remove();
   const l = lat(p, st.rate);
   n.querySelector('.ribbon').textContent = l?.zero ? `Zero latency · ${st.rate} kHz` : l?.zeroMode ? `ZL selon mode · ${st.rate} kHz` : '';
   n.querySelector('.maker').textContent = p.vendor;
   n.querySelector('.plugin').textContent = p.name;
   n.querySelector('.description').textContent = p.summary;
-  const tags = p.tags.map((t) => { const [f, v] = t.split(':'); return f === 'opt' ? LBL.common[v] : LBL.facets[f]?.values[v]; }).filter(Boolean);
-  n.querySelector('.badges').innerHTML = `<span class="badge fam">${esc(LBL.categories[p.category] || p.category)}</span>` + tags.map((t) => `<span class="badge">${esc(t)}</span>`).join('') + (p.classifiedBy === 'manuel' ? '<span class="badge ok">Classement vérifié</span>' : '');
+  const tagLabel = (tag) => { const [f, v] = tag.split(':'); return f === 'opt' ? LBL.common[v] : LBL.facets[f]?.values[v]; };
+  const tags = p.tags.map((id) => ({ id, label: tagLabel(id) })).filter((t) => t.label);
+  const familyEvidence = p.categoryEvidence;
+  const familyLabel = esc(LBL.categories[p.category] || p.category);
+  const familyBadge = p.category !== 'other' && familyEvidence?.url
+    ? `<a class="badge fam" href="${esc(familyEvidence.url)}" target="_blank" rel="noopener" title="${esc(familyEvidence.excerpt || 'Fonction principale documentée')}">${familyLabel} ↗</a>`
+    : `<span class="badge fam" title="Fonction principale non confirmée">${familyLabel}</span>`;
+  n.querySelector('.badges').innerHTML = familyBadge + tags.map(({id,label}) => {
+    const proof = p.featureEvidence?.[id];
+    const level = proof?.method === 'reviewed-source' ? 'Source vérifiée' : proof?.method === 'latency-table' ? 'Tableau officiel' : 'Annoncé dans le nom ou la description éditeur';
+    return proof?.url ? `<a class="badge" href="${esc(proof.url)}" target="_blank" rel="noopener" title="${esc(`${level} · ${proof.excerpt || 'Source propre au produit'}`)}">${esc(label)} ↗</a>` : `<span class="badge">${esc(label)}</span>`;
+  }).join('') + (familyEvidence?.method === 'reviewed-source' ? '<span class="badge ok">Famille vérifiée</span>' : '');
+  if (p.unverifiedTags?.length) {
+    const review = document.createElement('details'); review.className = 'feature-review';
+    const summary = document.createElement('summary'); summary.textContent = `${p.unverifiedTags.length} critère${p.unverifiedTags.length > 1 ? 's' : ''} à vérifier`;
+    const text = document.createElement('div'); text.textContent = `${p.unverifiedTags.map((tag) => tagLabel(tag) || tag).join(' · ')}. Ces critères sont écartés des filtres tant qu’ils ne sont pas confirmés.`;
+    review.append(summary,text); n.querySelector('.badges').after(review);
+  }
+  const metadata = n.querySelector('.metadata');
+  metadata.textContent = `${p.platforms?.length ? p.platforms.map((id) => PLATFORMS[id]).filter(Boolean).join(' · ') : 'Plateformes à vérifier'} · ${CATALOG_STATUSES[p.catalogStatus] || CATALOG_STATUSES.unknown}${p.recordType && !['effect','unknown'].includes(p.recordType) ? ` · ${RECORD_TYPES[p.recordType]}` : ''}`;
+  metadata.title = [p.platformEvidence?.url, p.statusEvidence?.url].filter(Boolean).join('\n');
+  if (p.replacedBy) {
+    const successor = document.createElement(p.replacedBy.url ? 'a' : 'span');
+    if (p.replacedBy.url) { successor.href = p.replacedBy.url; successor.target = '_blank'; successor.rel = 'noopener'; }
+    successor.textContent = ` · Remplacé par ${p.replacedBy.name}`;
+    metadata.append(successor);
+  }
+  if (p.colorationInfo) {
+    const info = p.colorationInfo;
+    const note = document.createElement('div'); note.className = 'coloration-note';
+    note.append(document.createTextNode(`${info.noteFr} `));
+    const source = document.createElement('a'); source.href = info.url; source.target = '_blank'; source.rel = 'noopener';
+    source.textContent = 'Source ↗'; source.title = info.method === 'reviewed-source' ? 'Fiche ou manuel officiel vérifié' : 'Description constructeur · classement automatique';
+    note.append(source); metadata.after(note);
+  }
+  const prices = n.querySelector('.prices');
+  if (p.pricing) {
+    const price = p.pricing;
+    const priceSource = price.sourceName || 'Éditeur';
+    const stale = isPriceStale(price);
+    prices.innerHTML = `<span>Normal : <b>${price.normal != null ? esc(formatPrice(price.normal, price.currency)) : '—'}</b></span><span class="promo">${stale ? 'Dernière promo' : 'Promo relevée'} : <b>${price.promo != null ? esc(formatPrice(price.promo, price.currency)) : '—'}</b></span>${price.isRange ? '<small>À partir de · selon édition</small>' : ''}<small><a href="${esc(price.url)}" target="_blank" rel="noopener">${esc(priceSource)} · relevé le ${new Date(price.checkedAt).toLocaleDateString('fr-FR')}</a></small>${stale ? '<small class="price-stale">Dernier tarif connu · à revérifier</small>' : ''}`;
+    prices.title = `Tarifs ${priceSource}, sans conversion. Taxes et conditions selon le vendeur.\n${price.url}`;
+  } else if (p.catalogStatus === 'free') prices.textContent = p.freeLabel || 'Gratuit';
+  else prices.textContent = 'Prix normal / promo non publiés';
+  const latencyInfo = p.latencyInfo;
   n.querySelector('.latbox').innerHTML = p.latency ? latCell(p, '48') + latCell(p, '96') : '';
+  if (latencyInfo) {
+    const note = document.createElement('div');
+    note.className = 'latency-note';
+    const values = (latencyInfo.values || []).map((v) => `${v.value} ${v.unit}`).join(' / ');
+    note.textContent = latencyInfo.noteFr || `${latencyInfo.conditional ? 'Selon le mode : ' : 'Latence publiée : '}${values || (latencyInfo.zero ? 'zéro latence annoncé' : '')}${latencyInfo.sampleRate ? ` à ${latencyInfo.sampleRate} kHz` : values ? ' · fréquence non précisée' : ''}`;
+    note.title = latencyInfo.excerpt;
+    n.querySelector('.latbox').append(note);
+    if (latencyInfo.modes?.length) {
+      const details = document.createElement('details');
+      details.className = 'latency-note';
+      details.innerHTML = `<summary>Valeurs par mode à ${esc(latencyInfo.sampleRate)} kHz</summary>` + latencyInfo.modes.map((mode) => `<div>${esc(mode.label)} : ${esc(mode.samples)} samples</div>`).join('');
+      n.querySelector('.latbox').append(details);
+    }
+  }
   const sel = n.querySelector('.own select');
   sel.innerHTML = Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
-  sel.value = status[p.id] || 'unknown';
+  sel.value = licenseStatus(p);
   sel.classList.toggle('set', sel.value !== 'unknown');
   sel.dataset.id = p.id;
+  if(licenseDetails[p.id]&&['owned','subscription','former'].includes(sel.value)){
+    const details=document.createElement('small');details.className='license-detail';details.textContent=`Licence importée : ${licenseDetails[p.id].name}`;n.querySelector('.own').after(details);
+  }
   const a = n.querySelector('.productlink');
   if (p.url) { a.href = p.url; a.textContent = 'Fiche constructeur ↗'; } else { a.removeAttribute('href'); a.textContent = 'Fiche non trouvée'; a.classList.add('none'); }
-  n.querySelector('.footnote').textContent = p.latency ? 'Latence : tableau officiel Waves' : (p.url ? 'Lue sur le site du fabricant' : '');
+  n.querySelector('.footnote').textContent = hasDocumentedLatency(p) ? 'Latence : source constructeur' : (p.url ? 'Lue sur le site du fabricant' : '');
+  n.querySelector('.footnote').title = p.latencyInfo?.url || (p.latency && p.vendor === 'Waves' ? META.latency.url : p.url || '');
+  if (hasDocumentedLatency(p)) {
+    const source = document.createElement('a');
+    source.href = n.querySelector('.footnote').title;
+    source.target = '_blank'; source.rel = 'noopener';
+    source.textContent = 'Latence : source constructeur ↗';
+    n.querySelector('.footnote').replaceChildren(source);
+  }
   return n;
 }
 
 function render() {
+  refreshContextualFilters();
   const list = filtered();
   const latKey = (p) => { const l = lat(p, st.rate); return l?.samples ?? (l?.variants ? Math.min(...l.variants.map((v) => v.samples)) : 1e9); };
   const by = { az: (a, b) => a.name.localeCompare(b.name), brand: (a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name), images: (a, b) => (!!b.image - !!a.image) || a.name.localeCompare(b.name), latency: (a, b) => latKey(a) - latKey(b) || a.name.localeCompare(b.name) };
@@ -155,16 +293,22 @@ function render() {
   if (!list.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Aucun plugin ne correspond à ces filtres.'; frag.append(e); }
   $('#cards').replaceChildren(frag);
   $('#more').hidden = list.length <= shown;
-  document.querySelectorAll('.field').forEach((f) => { const s = f.querySelector('select'); f.classList.toggle('active', !!s.value && !['all', 'Tous', ''].includes(s.value) && s.id !== 'rate'); });
+  const unmatched=$('#unmatchedCollection');unmatched.hidden=st.scope!=='owned'||!unmatchedLicenses.length;
+  if(!unmatched.hidden){$('#unmatchedSummary').textContent=`${unmatchedLicenses.length} licences importées sans fiche correspondante`;
+    $('#unmatchedList').replaceChildren(...unmatchedLicenses.map(license=>{const li=document.createElement('li');li.textContent=`${license.publisher} — ${license.name} · ${STATUS[license.status]||'À vérifier'}${license.kind==='group'?' · Groupe de licences':''}`;return li;}));
+  }
+  document.querySelectorAll('.field').forEach((f) => { const s = f.querySelector('select'); if (s) f.classList.toggle('active', !!s.value && !['all', 'Tous', ''].includes(s.value) && s.id !== 'rate'); });
 }
 
 // ---------- Événements ----------
 const rerender = () => { shown = PAGE; render(); };
 let t;
 $('#query').addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value; rerender(); }, 120); });
-for (const k of ['family', 'maker', 'c1', 'c2', 'c3', 'option', 'zl', 'rate', 'links', 'visual', 'sort']) {
-  $('#' + k).addEventListener('change', (e) => { st[k] = e.target.value; if (k === 'family') contextual(); rerender(); });
+for (const k of ['zl', 'rate', 'links', 'visual', 'sort']) {
+  $('#' + k).addEventListener('change', (e) => { st[k] = e.target.value; rerender(); });
 }
+document.addEventListener('click', (event) => document.querySelectorAll('.multi-select[open]').forEach((details) => { if (!details.contains(event.target)) details.open = false; }));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') document.querySelectorAll('.multi-select[open]').forEach((details) => { details.open = false; details.querySelector('summary').focus(); }); });
 $('#scope').addEventListener('click', (e) => {
   const b = e.target.closest('button'); if (!b) return;
   $('#scope').querySelectorAll('button').forEach((x) => x.classList.toggle('active', x === b));
@@ -174,17 +318,26 @@ $('#cards').addEventListener('change', (e) => {
   const s = e.target.closest('.own select'); if (!s) return;
   if (s.value === 'unknown') delete status[s.dataset.id]; else status[s.dataset.id] = s.value;
   s.classList.toggle('set', s.value !== 'unknown'); save();
+  rerender();
 });
 $('#more').addEventListener('click', () => { shown += PAGE; render(); });
 $('#reset').addEventListener('click', () => {
-  Object.assign(st, { q: '', family: '', maker: '', option: '', zl: 'all', links: 'all', visual: 'all' });
+  Object.assign(st, { q: '', zl: 'all', links: 'all', visual: 'all' });
+  selections = defaultSelections(Object.keys(LBL.facets));
   $('#query').value = '';
-  for (const k of ['family', 'maker', 'option']) $('#' + k).value = '';
+  $('#filterNotice').hidden = true;
+  document.querySelectorAll('.multi-select').forEach((details) => {
+    details.open = false;
+    const search = details.querySelector('input[type="search"]');
+    if (search) { search.value = ''; search.dispatchEvent(new Event('input')); }
+    details.querySelector('.multi-options').scrollTop = 0;
+  });
   for (const k of ['zl', 'links', 'visual']) $('#' + k).value = 'all';
-  contextual(); rerender();
+  filterControls.forEach((refresh) => refresh());
+  renderActiveFilters(); rerender();
 });
 $('#export').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify({ app: 'PluginLib', version: 2, exportedAt: new Date().toISOString(), status }, null, 1)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(exportCollection(currentCollection(),DATA,PLANS), null, 1)], { type: 'application/json' });
   const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'pluginlib-ma-collection.json' });
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
@@ -193,9 +346,11 @@ $('#importFile').addEventListener('change', async (e) => {
   const f = e.target.files[0]; if (!f) return;
   try {
     const j = JSON.parse(await f.text());
-    if (j.status) Object.assign(status, j.status);
-    (j.owned || []).forEach((id) => { status[id] = status[id] || 'owned'; });
-    save(); render();
+    ({status,subscriptions,unmatchedLicenses,licenseDetails}=mergeCollection(currentCollection(),j,DATA,PLANS));
+    save(); renderSubscriptions();render();
+    const counts={owned:0,subscription:0};for(const p of DATA){const s=licenseStatus(p);if(s in counts)counts[s]++;}
+    const active=subscriptions.filter(s=>s.status==='active').map(s=>`${s.vendor} ${s.plan}${planFor(s,PLANS)?` : ${DATA.filter(p=>isPlanMember(p,planFor(s,PLANS))&&licenseStatus(p)==='subscription').length} plugins reconnus`:' : périmètre à vérifier'}`);
+    $('#collectionNotice').hidden=false;$('#collectionNotice').textContent=`Collection importée : ${counts.owned} licences perpétuelles · ${counts.subscription} abonnements actifs.${active.length?' '+active.join(' · '):''}`;
   } catch { alert('Fichier non reconnu.'); }
   e.target.value = '';
 });

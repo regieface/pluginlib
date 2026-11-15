@@ -1,0 +1,318 @@
+{
+ "collections": [
+  {
+   "id": "kilohearts-free-effects",
+   "vendor": "Kilohearts",
+   "name": "Kilohearts Essentials / Free Effects",
+   "source": "https://kilohearts.com/products/kilohearts_essentials",
+   "freeLabel": "Gratuit avec un compte",
+   "noteFr": "Effets gratuits, utilisables seuls ou comme Snapins. Les hôtes et effets Premium ne sont pas inclus.",
+   "checkedAt": "2026-11-15T22:54:25.342Z",
+   "products": [
+    {
+     "name": "3-Band EQ",
+     "url": "https://kilohearts.com/products/3band_eq"
+    },
+    {
+     "name": "Bitcrush",
+     "url": "https://kilohearts.com/products/bitcrush"
+    },
+    {
+     "name": "Channel Mixer",
+     "url": "https://kilohearts.com/products/channel_mixer"
+    },
+    {
+     "name": "Chorus",
+     "url": "https://kilohearts.com/products/chorus"
+    },
+    {
+     "name": "Clipper",
+     "url": "https://kilohearts.com/products/clipper"
+    },
+    {
+     "name": "Comb Filter",
+     "url": "https://kilohearts.com/products/comb_filter"
+    },
+    {
+     "name": "Compactor",
+     "url": "https://kilohearts.com/products/compactor"
+    },
+    {
+     "name": "Compressor",
+     "url": "https://kilohearts.com/products/compressor"
+    },
+    {
+     "name": "Delay",
+     "url": "https://kilohearts.com/products/delay"
+    },
+    {
+     "name": "Distortion",
+     "url": "https://kilohearts.com/products/distortion"
+    },
+    {
+     "name": "Dual Delay",
+     "url": "https://kilohearts.com/products/dual_delay"
+    },
+    {
+     "name": "Dynamics",
+     "url": "https://kilohearts.com/products/dynamics"
+    },
+    {
+     "name": "Ensemble",
+     "url": "https://kilohearts.com/products/ensemble"
+    },
+    {
+     "name": "Filter",
+     "url": "https://kilohearts.com/products/filter"
+    },
+    {
+     "name": "Flanger",
+     "url": "https://kilohearts.com/products/flanger"
+    },
+    {
+     "name": "Formant Filter",
+     "url": "https://kilohearts.com/products/formant_filter"
+    },
+    {
+     "name": "Frequency Shifter",
+     "url": "https://kilohearts.com/products/frequency_shifter"
+    },
+    {
+     "name": "Gain",
+     "url": "https://kilohearts.com/products/gain"
+    },
+    {
+     "name": "Gate",
+     "url": "https://kilohearts.com/products/gate"
+    },
+    {
+     "name": "Haas",
+     "url": "https://kilohearts.com/products/haas"
+    },
+    {
+     "name": "Ladder Filter",
+     "url": "https://kilohearts.com/products/ladder_filter"
+    },
+    {
+     "name": "Limiter",
+     "url": "https://kilohearts.com/products/limiter"
+    },
+    {
+     "name": "Nonlinear Filter",
+     "url": "https://kilohearts.com/products/nonlinear_filter"
+    },
+    {
+     "name": "Phase Distortion",
+     "url": "https://kilohearts.com/products/phase_distortion"
+    },
+    {
+     "name": "Phaser",
+     "url": "https://kilohearts.com/products/phaser"
+    },
+    {
+     "name": "Pitch Shifter",
+     "url": "https://kilohearts.com/products/pitch_shifter"
+    },
+    {
+     "name": "Resonator",
+     "url": "https://kilohearts.com/products/resonator"
+    },
+    {
+     "name": "Reverb",
+     "url": "https://kilohearts.com/products/reverb"
+    },
+    {
+     "name": "Reverser",
+     "url": "https://kilohearts.com/products/reverser"
+    },
+    {
+     "name": "Ring Mod",
+     "url": "https://kilohearts.com/products/ring_mod"
+    },
+    {
+     "name": "Shaper",
+     "url": "https://kilohearts.com/products/shaper"
+    },
+    {
+     "name": "Stereo",
+     "url": "https://kilohearts.com/products/stereo"
+    },
+    {
+     "name": "Tape Stop",
+     "url": "https://kilohearts.com/products/tape_stop"
+    },
+    {
+     "name": "Trance Gate",
+     "url": "https://kilohearts.com/products/trance_gate"
+    },
+    {
+     "name": "Transient Shaper",
+     "url": "https://kilohearts.com/products/transient_shaper"
+    }
+   ]
+  },
+  {
+   "id": "melda-free-fx",
+   "vendor": "MeldaProduction",
+   "name": "MFreeFXBundle",
+   "source": "https://www.meldaproduction.com/MFreeFXBundle",
+   "freeLabel": "Gratuit · mise à niveau optionnelle",
+   "noteFr": "Édition gratuite de MFreeFXBundle. La mise à niveau payante et ses fonctions supplémentaires ne sont pas déclarées acquises.",
+   "checkedAt": "2026-11-15T22:54:25.345Z",
+   "products": [
+    {
+     "name": "MAGC",
+     "url": "https://www.meldaproduction.com/MAGC"
+    },
+    {
+     "name": "MAnalyzer",
+     "url": "https://www.meldaproduction.com/MAnalyzer"
+    },
+    {
+     "name": "MAutopan",
+     "url": "https://www.meldaproduction.com/MAutopan"
+    },
+    {
+     "name": "MAutoPitch",
+     "url": "https://www.meldaproduction.com/MAutoPitch"
+    },
+    {
+     "name": "MBandPass",
+     "url": "https://www.meldaproduction.com/MBandPass"
+    },
+    {
+     "name": "MBitFun",
+     "url": "https://www.meldaproduction.com/MBitFun"
+    },
+    {
+     "name": "MCCGenerator",
+     "url": "https://www.meldaproduction.com/MCCGenerator"
+    },
+    {
+     "name": "MChannelMatrix",
+     "url": "https://www.meldaproduction.com/MChannelMatrix"
+    },
+    {
+     "name": "MCharmVerb",
+     "url": "https://www.meldaproduction.com/MCharmVerb"
+    },
+    {
+     "name": "MComb",
+     "url": "https://www.meldaproduction.com/MComb"
+    },
+    {
+     "name": "MCompressor",
+     "url": "https://www.meldaproduction.com/MCompressor"
+    },
+    {
+     "name": "MConvolutionEZ",
+     "url": "https://www.meldaproduction.com/MConvolutionEZ"
+    },
+    {
+     "name": "MDelay",
+     "url": "https://www.meldaproduction.com/MDelay"
+    },
+    {
+     "name": "MEqualizer",
+     "url": "https://www.meldaproduction.com/MEqualizer"
+    },
+    {
+     "name": "MFlanger",
+     "url": "https://www.meldaproduction.com/MFlanger"
+    },
+    {
+     "name": "MFreeformPhase",
+     "url": "https://www.meldaproduction.com/MFreeformPhase"
+    },
+    {
+     "name": "MFreqShifter",
+     "url": "https://www.meldaproduction.com/MFreqShifter"
+    },
+    {
+     "name": "MLoudnessAnalyzer",
+     "url": "https://www.meldaproduction.com/MLoudnessAnalyzer"
+    },
+    {
+     "name": "MMetronome",
+     "url": "https://www.meldaproduction.com/MMetronome"
+    },
+    {
+     "name": "MNoiseGenerator",
+     "url": "https://www.meldaproduction.com/MNoiseGenerator"
+    },
+    {
+     "name": "MNotepad",
+     "url": "https://www.meldaproduction.com/MNotepad"
+    },
+    {
+     "name": "MOscillator",
+     "url": "https://www.meldaproduction.com/MOscillator"
+    },
+    {
+     "name": "MOscilloscope",
+     "url": "https://www.meldaproduction.com/MOscilloscope"
+    },
+    {
+     "name": "MPhaser",
+     "url": "https://www.meldaproduction.com/MPhaser"
+    },
+    {
+     "name": "MRatio",
+     "url": "https://www.meldaproduction.com/MRatio"
+    },
+    {
+     "name": "MRatioMB",
+     "url": "https://www.meldaproduction.com/MRatioMB"
+    },
+    {
+     "name": "MRecorder",
+     "url": "https://www.meldaproduction.com/MRecorder"
+    },
+    {
+     "name": "MRingModulator",
+     "url": "https://www.meldaproduction.com/MRingModulator"
+    },
+    {
+     "name": "MSaturator",
+     "url": "https://www.meldaproduction.com/MSaturator"
+    },
+    {
+     "name": "MSpectralPan",
+     "url": "https://www.meldaproduction.com/MSpectralPan"
+    },
+    {
+     "name": "MStereoExpander",
+     "url": "https://www.meldaproduction.com/MStereoExpander"
+    },
+    {
+     "name": "MStereoScope",
+     "url": "https://www.meldaproduction.com/MStereoScope"
+    },
+    {
+     "name": "MTremolo",
+     "url": "https://www.meldaproduction.com/MTremolo"
+    },
+    {
+     "name": "MTuner",
+     "url": "https://www.meldaproduction.com/MTuner"
+    },
+    {
+     "name": "MUtility",
+     "url": "https://www.meldaproduction.com/MUtility"
+    },
+    {
+     "name": "MVibrato",
+     "url": "https://www.meldaproduction.com/MVibrato"
+    },
+    {
+     "name": "MWaveFolder",
+     "url": "https://www.meldaproduction.com/MWaveFolder"
+    },
+    {
+     "name": "MWaveShaper",
+     "url": "https://www.meldaproduction.com/MWaveShaper"
+    }
+   ]
+  }
+ ]
+}

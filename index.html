@@ -28,10 +28,10 @@
 
   <main>
     <div class="summary">
-      <div class="stat"><div class="n" id="total">—</div><div class="s">Plugins de mixage & mastering</div></div>
+      <div class="stat"><div class="n" id="total">—</div><div class="s">Références du catalogue</div></div>
       <div class="stat"><div class="n" id="makers">—</div><div class="s">Fabricants</div></div>
-      <div class="stat"><div class="n" id="latstat">—</div><div class="s">Latences officielles Waves</div></div>
-      <div class="stat"><div class="n" id="linkstat">—</div><div class="s">Fiches constructeur vérifiées</div></div>
+      <div class="stat"><div class="n" id="latstat">—</div><div class="s">Latences documentées · tous fabricants</div></div>
+      <div class="stat"><div class="n" id="linkstat">—</div><div class="s">Fiches constructeur référencées</div></div>
     </div>
 
     <section class="panel">
@@ -49,17 +49,20 @@
           <input id="importFile" type="file" accept="application/json,.json">
         </div>
       </div>
+      <p id="collectionNotice" class="filter-help" role="status" hidden></p>
+      <details class="collection-subscriptions"><summary>Mes abonnements</summary><div id="subscriptionOptions"></div><p class="filter-help">Les plugins inclus dans un abonnement actif apparaissent dans « Ma collection » et s’encadrent en vert.</p></details>
       <div class="searchbar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 5 5"></path></svg>
         <input id="query" placeholder="Rechercher un effet, un fabricant, un modèle (1176, Pultec…)" autocomplete="off">
       </div>
       <div class="filters">
-        <div class="field"><label for="family">Famille</label><select id="family"></select></div>
-        <div class="field"><label for="maker">Fabricant</label><select id="maker"></select></div>
-        <div class="field"><label for="c1" id="label1">Critère 1</label><select id="c1"></select></div>
-        <div class="field"><label for="c2" id="label2">Critère 2</label><select id="c2"></select></div>
-        <div class="field"><label for="c3" id="label3">Critère 3</label><select id="c3"></select></div>
-        <div class="field"><label for="option">Fonction</label><select id="option"></select></div>
+        <div class="field"><div class="filter-label">Plateformes</div><div id="platform"></div></div>
+        <div class="field"><div class="filter-label">Disponibilité</div><div id="catalogStatus"></div></div>
+        <div class="field"><div class="filter-label">Type de fiche</div><div id="recordType"></div></div>
+        <div class="field"><div class="filter-label">Familles</div><div id="family"></div></div>
+        <div class="field"><div class="filter-label">Fabricants</div><div id="maker"></div></div>
+        <div id="facetFilters" class="facet-fields"></div>
+        <div class="field"><div class="filter-label">Fonctions</div><div id="option"></div></div>
         <div class="field"><label for="zl">Zero Latency</label>
           <select id="zl">
             <option value="all">Indifférent</option>
@@ -71,16 +74,21 @@
         <div class="field"><label for="rate">Fréquence</label>
           <select id="rate"><option value="96">96 kHz</option><option value="48">48 kHz</option></select></div>
         <div class="field"><label for="links">Fiche constructeur</label>
-          <select id="links"><option value="all">Indifférent</option><option value="yes">Fiche vérifiée</option><option value="no">Sans fiche</option></select></div>
+          <select id="links"><option value="all">Indifférent</option><option value="yes">Avec fiche</option><option value="no">Sans fiche</option></select></div>
         <div class="field"><label for="visual">Visuels</label>
           <select id="visual"><option value="all">Tous</option><option value="yes">Avec visuel</option><option value="no">Sans visuel</option></select></div>
       </div>
+      <p class="filter-help">Coche plusieurs choix pour les inclure. Le bouton − exclut un choix ; × retire un filtre. Les choix et leurs nombres s’ajustent aux filtres actifs.</p>
+      <p id="filterNotice" class="filter-help" role="status" hidden></p>
+      <p class="filter-help">Les critères sans preuve propre au produit restent « à vérifier » et sont écartés des filtres. Clique sur un critère affiché sur une fiche pour consulter sa source.</p>
+      <p id="familyCoverage" class="filter-help"></p>
+      <div id="activeFilters" class="active-filters" aria-label="Filtres actifs"></div>
     </section>
 
     <div class="resulthead">
       <div>
         <h2><span id="matched">0</span> résultats</h2>
-        <small id="hint">Choisis une famille pour afficher les critères adaptés. Les filtres sont cumulables.</small>
+        <small id="hint">Par défaut : toutes les plateformes, y compris les compatibilités à vérifier, hors Airwindows, abandonnés, anciennes versions remplacées et sorties à venir.</small>
       </div>
       <div class="resultsort">
         <label for="sort">Trier :</label>
@@ -95,10 +103,11 @@
 
     <div class="cards" id="cards"></div>
     <button class="loadmore" id="more" hidden>Afficher plus de plugins</button>
+    <details id="unmatchedCollection" class="unmatched-collection" hidden><summary id="unmatchedSummary"></summary><p>Ces licences sont conservées dans ta collection. Le nom exact de l’export est affiché tant qu’une fiche de la même version ou édition n’est pas identifiée.</p><ul id="unmatchedList"></ul></details>
 
     <details class="panel coverage">
       <summary><b>Sources et état de la dernière mise à jour</b></summary>
-      <p class="about">Les données sont lues toutes les deux semaines sur les sites des fabricants. Un lien n’est affiché que si la page a répondu lors de la dernière collecte. Les latences proviennent du <a href="https://www.waves.com/support/tech-specs/plugin-latency" target="_blank" rel="noopener">tableau officiel Waves</a>. Famille et critères sont déduits des mots employés par le fabricant : ils peuvent être incomplets.</p>
+      <p class="about">Les données sont lues toutes les deux semaines sur les sites des fabricants. Les anciennes fiches sont conservées lorsqu’une collecte est partielle ; un échec réseau ne signifie pas qu’un produit est abandonné. Les plateformes et la disponibilité viennent des annonces officielles. « Gratuit maintenu » désigne un produit gratuit toujours distribué dans le catalogue actuel, sans garantie de futures mises à jour. Une ancienne version remplacée peut rester prise en charge par son éditeur. Les prix viennent de l’éditeur ou, à défaut, d’un revendeur identifié sur la carte. Les informations non confirmées restent à vérifier. Les latences proviennent des fiches et manuels officiels de tous les fabricants, ainsi que du <a href="https://www.waves.com/support/tech-specs/plugin-latency" target="_blank" rel="noopener">tableau officiel Waves</a>. Famille et critères sont déduits des mots employés par le fabricant : ils peuvent être incomplets.</p>
       <div class="tablewrap"><table id="sources"></table></div>
     </details>
     <div class="smallprint">PluginLib · Les données inconnues restent inconnues : rien n’est estimé. Ta collection est enregistrée dans ce navigateur — pense à l’exporter.</div>
@@ -111,6 +120,8 @@
         <div class="maker"></div>
         <div class="plugin"></div>
         <div class="description"></div>
+        <div class="metadata"></div>
+        <div class="prices"></div>
         <div class="badges"></div>
         <div class="latbox"></div>
         <div class="own"><label>Ma licence</label><select></select></div>

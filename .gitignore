@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 pluginlib.tgz
 collection-privee/
+__pycache__/
+*.pyc
