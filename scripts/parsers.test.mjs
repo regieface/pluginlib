@@ -41,13 +41,13 @@ test('sitemap index et urlset', () => {
 
 test('classement contextuel', () => {
   const c = classify({ name: 'CLA-76 Compressor / Limiter', text: 'FET compressor with ultra-fast attack. External sidechain.' });
-  assert.equal(c.category, 'limiter');
+  assert.equal(c.category, 'comp');
   assert.ok(c.tags.includes('techno:fet'));
   assert.ok(c.tags.includes('opt:sidechain'));
   const e = classify({ name: 'Pro-Q 4', text: 'Dynamic EQ with linear phase mode and mid/side' });
   assert.equal(e.category, 'eq');
   assert.ok(e.tags.includes('eqtype:dynamique') && e.tags.includes('eqtype:linphase'));
   assert.ok(!e.tags.some((t) => t.startsWith('techno:')));
-  assert.ok(isOutOfScope('Analog Lab V synthesizer'));
+  assert.ok(isOutOfScope('Analog Lab V Synthesizer')); assert.ok(isOutOfScope('Reverb Plugins')); assert.ok(isOutOfScope('KStrip | Free Trial'));
   assert.ok(!isOutOfScope('SSL Bus Compressor'));
 });

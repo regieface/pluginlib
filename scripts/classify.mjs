@@ -4,25 +4,27 @@
 // apparaît dans ce texte. Le résultat est marqué "auto" dans les données et
 // peut être corrigé à la main dans data/overrides.json.
 
-// Produits hors périmètre (production musicale) : instruments, synthés, banques de sons…
-const EXCLUDE = [
-  /\bsynth(esi[sz]er)?s?\b/i, /\binstruments?\b/i, /\bsampler\b/i, /\bpiano\b/i, /\borgan\b/i,
-  /\bdrum (machine|kit|sampler)\b/i, /\bsample (pack|library)\b/i, /\bloops?\b/i,
-  /\bexpansion\b/i, /\bpreset packs?\b/i, /\bsoundbank\b/i, /\bkontakt\b/i, /\barpeggiator\b/i,
-  /\bmidi (controller|keyboard)\b/i, /\bgift card\b/i, /\bmerch|t-shirt|hoodie|mug\b/i,
-  /\bheadphones?\b/i, /\bmicrophones? (hardware|preamp hardware)\b/i, /\binterface audio|audio interface\b/i,
-  /\bsubscription\b/i, /\bupgrade\b/i, /\bcrossgrade\b/i, /\blicen[cs]e (transfer|upgrade)\b/i,
-  /\bcourse\b/i, /\btutorial\b/i, /\bmasterclass\b/i
+// Produits hors périmètre, détectés sur le NOM du produit : instruments, synthés,
+// banques de sons, matériel, bundles, versions d'essai ou éducatives, formations…
+const EXCLUDE_NAME = [
+  /\bsynth(esi[sz]er)?s?\b/i, /\binstruments?\b/i, /\bsampler\b/i, /\bpiano(centric)?\b/i, /\borgan\b/i, /\bclavinet\b/i,
+  /\bbass (fingers|slapper)\b/i, /\bdrum (machine|kit|sampler)\b/i, /\b(sample|sound|preset) (pack|library|bank)s?\b/i,
+  /\bexpansion\b/i, /\bbundle\b/i, /\bcollection\b/i, /\bpick any\b/i, /\b(free )?trial\b/i, /\beducational\b/i,
+  /verified purchase/i, /\bpromo\b/i, /\bupgrade\b/i, /\bcrossgrade\b/i, /\bgift card\b/i, /\bsubscription\b/i,
+  /\b(accelerator|satellite|option card|pcie|thunderbolt|firewire|interface)\b/i, /\bua connect\b/i, /\bsoundgrid\b/i,
+  /\b(course|tutorial|masterclass)\b/i, /\bmerch|t-shirt|hoodie|mug\b/i, /\bplugins?$/i, /^plugins? for\b/i, /\bseries$/i
 ];
+// Signal fort dans la description courte (et non dans tout le texte de la page)
+const EXCLUDE_DESC = [/\b(virtual|software) instrument\b/i, /\bsynthesi[sz]er\b/i, /\bsample library\b/i, /\bkontakt\b/i];
 
 // Catégories principales : [id, libellé, motifs]. L'ordre compte (la première qui
 // correspond au NOM l'emporte ; sinon la première qui correspond au texte).
 export const CATEGORIES = [
-  ['channel', 'Tranche console / Channel strip', [/channel ?strip/i, /\bchannel\b/i, /console (emulation|channel)/i, /\bstrip\b/i]],
+  ['channel', 'Tranche console / Channel strip', [/channel ?strip/i, /\b[a-z0-9-]*channel\b(?! (count|audio|mode))/i, /\bstrip\b/i]],
   ['deesser', 'De-esser', [/de-?ess(er|ing)?/i, /sibilan/i]],
-  ['limiter', 'Limiteur / Maximiseur', [/\blimit(er|ing)\b/i, /maximi[sz]er/i, /\bclipper\b/i, /\bclip(ping)?\b/i, /loudness maxim/i]],
   ['multiband', 'Dynamique multibande', [/multi-?band/i]],
   ['comp', 'Compresseur', [/\bcompress(or|ion|eur)\b/i, /\bcomp\b/i, /\bleveling amplifier\b/i, /\b(1176|la-?2a|la-?3a|fairchild|vari-?mu|dbx ?160|2500|33609|distressor|opto)\b/i]],
+  ['limiter', 'Limiteur / Maximiseur', [/\blimit(er|ing)\b/i, /maximi[sz]er/i, /\bclipper\b/i, /\bclip(ping)?\b/i, /loudness maxim/i]],
   ['gate', 'Gate / Expandeur', [/\bgate\b/i, /\bexpander\b/i, /noise gate/i]],
   ['transient', 'Transitoires', [/transient/i, /\bsmack|punch designer\b/i]],
   ['eq', 'Égaliseur', [/\beq\b/i, /\bequali[sz](er|ation)\b/i, /\bfilter(s)?\b/i, /\bpultec|eqp-?1a|api 550|api 560|neve 1073\b/i]],
@@ -111,13 +113,20 @@ export const COMMON = {
 
 function matches(text, patterns) { return patterns.some((re) => re.test(text)); }
 
-export function isOutOfScope(text) { return EXCLUDE.some((re) => re.test(text)); }
+export function isOutOfScope(name = '', desc = '') { return EXCLUDE_NAME.some((re) => re.test(name)) || EXCLUDE_DESC.some((re) => re.test(desc)); }
 
 export function classify({ name = '', text = '' }) {
   const full = `${name}\n${text}`;
   let category = null;
   for (const [id, , pats] of CATEGORIES) if (matches(name, pats)) { category = id; break; }
-  if (!category) for (const [id, , pats] of CATEGORIES) if (matches(text, pats)) { category = id; break; }
+  if (!category) {
+    let best = 0;
+    for (const [id, , pats] of CATEGORIES) {
+      const list = id === 'channel' ? [/channel ?strip/i] : pats;
+      const score = list.filter((re) => re.test(text)).length;
+      if (score > best) { best = score; category = id; }
+    }
+  }
   const tags = [];
   for (const [fid, f] of Object.entries(FACETS)) {
     if (!category || !f.for.includes(category)) continue;
