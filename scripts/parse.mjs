@@ -36,16 +36,23 @@ function jsonLd(html) {
   return out;
 }
 
-const cleanTitle = (t = '') => t.replace(/\s*[|–—-]\s*[^|–—-]{2,40}$/u, '').replace(/^\s*(buy|shop)\s+/i, '').trim();
+// Titre de page → nom du produit : on coupe sur " | ", " - ", " – ", " — " et on retire
+// les morceaux qui ne sont que le nom du constructeur ou une mention commerciale.
+export function cleanTitle(t = '', vendor = '') {
+  const v = vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const parts = t.split(/\s+[|–—-]\s+|\s*\|\s*/).map((x) => x.replace(/^\s*(buy|shop)\s+/i, '').trim()).filter(Boolean);
+  const keep = parts.filter((x) => { const k = x.toLowerCase().replace(/[^a-z0-9]/g, ''); return k && k !== v && !(v && k.startsWith(v) && k.length - v.length <= 6) && !/^(official site|home|plug-?ins?|software|audio plug-?ins?)$/i.test(x); });
+  return (keep[0] || parts[0] || '').trim();
+}
 
-export function extractPage(html, url) {
+export function extractPage(html, url, vendor = '') {
   const ld = jsonLd(html);
   const types = ld.flatMap((x) => [].concat(x['@type'] || []));
   const prod = ld.find((x) => [].concat(x['@type'] || []).some((t) => /^(Product|SoftwareApplication|ProductGroup)$/i.test(t)));
   const ogType = meta(html, 'og:type');
   const title = decode((html.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '').trim();
   let name = (prod && typeof prod.name === 'string' && prod.name) || meta(html, 'og:title') || title;
-  name = cleanTitle(stripHtml(name));
+  name = cleanTitle(stripHtml(name), vendor);
   let image = meta(html, 'og:image') || meta(html, 'twitter:image');
   if (!image && prod) { const im = [].concat(prod.image || [])[0]; image = typeof im === 'string' ? im : im?.url || null; }
   if (image) { try { image = new URL(image, url).href; } catch { image = null; } }

@@ -11,14 +11,18 @@
       "exclude": [
         "/plugins/(all|new|on-sale)"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "excludeNames": [
+        "^harmonic enhancers$",
+        "^gtr solo$"
+      ]
     },
     {
       "name": "Plugin Alliance",
       "site": "https://www.plugin-alliance.com",
       "mode": "sitemap",
       "include": [
-        "/en/products/[a-z0-9_-]+\\.html$"
+        "/products/[a-z0-9_-]+$"
       ],
       "trustInclude": true
     },
@@ -39,16 +43,31 @@
       "mode": "auto",
       "include": [
         "/products/[a-z0-9-]+"
+      ],
+      "excludeNames": [
+        "\\bapollo\\b",
+        "\\bvolt\\b",
+        "\\bsphere\\b",
+        "option card",
+        "\\bsatellite\\b",
+        "\\bpcie\\b",
+        "pedal",
+        "\\binterface\\b",
+        "\\bbundle\\b",
+        "\\bamplifier pedal\\b"
       ]
     },
     {
       "name": "Softube",
       "site": "https://www.softube.com",
-      "mode": "auto",
+      "mode": "sitemap",
       "include": [
-        "/plug-ins/[a-z0-9-]+$",
-        "/products/[a-z0-9-]+$"
-      ]
+        "/(plug-ins|products)/[a-z0-9-]+$"
+      ],
+      "exclude": [
+        "/support/"
+      ],
+      "trustInclude": true
     },
     {
       "name": "FabFilter",
@@ -73,11 +92,10 @@
     },
     {
       "name": "Solid State Logic",
-      "site": "https://www.solidstatelogic.com",
+      "site": "https://store.solidstatelogic.com",
       "mode": "sitemap",
       "include": [
-        "/products/plug-ins/[a-z0-9-]+$",
-        "/products/[a-z0-9-]+-plug-in$"
+        "/plug-ins/[a-z0-9-]+$"
       ],
       "trustInclude": true
     },
@@ -97,14 +115,22 @@
       "site": "https://www.ikmultimedia.com",
       "mode": "sitemap",
       "include": [
-        "/products/(tr|tr6|trs|trx)[a-z0-9-]*/?$"
+        "/products/[a-z0-9-]+$"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "require": [
+        "t-?racks|tr[56x]?-|tape machine|tascam|lurssen|master match|eq ?(73|81|pa|pb|p)\\b|opto compressor|black 76|white 2a|bus compressor|brickwall|stealth limiter|quad (image|saturator)|csr|dyna-?mu|vintage tube|fairchild|british channel|channel strip"
+      ]
     },
     {
       "name": "Harrison",
       "site": "https://harrisonaudio.com",
-      "mode": "auto"
+      "mode": "auto",
+      "excludeNames": [
+        "mixbus",
+        "livetrax",
+        "^harrison 32 bus$"
+      ]
     },
     {
       "name": "Empirical Labs",
@@ -117,7 +143,17 @@
     {
       "name": "Analog Obsession",
       "site": "https://www.analogobsession.com",
-      "mode": "auto"
+      "mode": "sitemap",
+      "productsFrom": "start",
+      "start": [
+        "/equalizer/",
+        "/equalization/",
+        "/dynamicprocessing/",
+        "/color-preamp-saturation/"
+      ],
+      "exclude": [
+        "/(faq|bundles?|contact|about|hello-world|cart|checkout|account|my-account|privacy[a-z-]*|terms[a-z-]*|shop|blog|news|category/.*|tag/.*|support|downloads?|donate|equalizer|equalization|dynamicprocessing|color-preamp-saturation)/?$"
+      ]
     },
     {
       "name": "Acustica Audio",
@@ -143,17 +179,24 @@
       "site": "https://klanghelm.com",
       "mode": "sitemap",
       "include": [
-        "/contents/products/[A-Za-z0-9-]+/[A-Za-z0-9-]+\\.php$"
+        "/contents/products/[A-Za-z0-9]+\\.html$"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "exclude": [
+        "(old|v1)\\.html$"
+      ]
     },
     {
       "name": "Oeksound",
       "site": "https://oeksound.com",
-      "mode": "auto",
+      "mode": "sitemap",
       "include": [
         "/plugins/[a-z0-9-]+/?$"
-      ]
+      ],
+      "exclude": [
+        "/plugins/(legacy-|soothelive$)"
+      ],
+      "trustInclude": true
     },
     {
       "name": "Eventide",
@@ -171,16 +214,26 @@
       "include": [
         "/product/[a-z0-9-]+/?$"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "excludeNames": [
+        "^soundtoys 5",
+        "^upgrades?$"
+      ]
     },
     {
       "name": "iZotope",
       "site": "https://www.izotope.com",
       "mode": "sitemap",
       "include": [
-        "/en/products/[a-z0-9-]+\\.html$"
+        "/products/[a-z0-9-]+$"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "excludeNames": [
+        "bundle",
+        "suite$",
+        "elements$",
+        "^music production"
+      ]
     },
     {
       "name": "Arturia",
@@ -189,16 +242,10 @@
       "include": [
         "/products/(audio-effects|software-effects)/[a-z0-9-]+/overview$"
       ],
-      "trustInclude": true
-    },
-    {
-      "name": "Native Instruments",
-      "site": "https://www.native-instruments.com",
-      "mode": "sitemap",
-      "include": [
-        "/en/products/komplete/effects/[a-z0-9-]+/?$"
-      ],
-      "trustInclude": true
+      "trustInclude": true,
+      "excludeNames": [
+        "^arturia$"
+      ]
     },
     {
       "name": "Valhalla DSP",
@@ -214,17 +261,17 @@
       "mode": "auto"
     },
     {
-      "name": "Kush Audio",
-      "site": "https://www.kushaudio.com",
-      "mode": "auto"
-    },
-    {
       "name": "Positive Grid",
       "site": "https://www.positivegrid.com",
       "mode": "auto",
       "require": [
         "pro series|eq|comp|limiter|reverb|delay"
-      ]
+      ],
+      "_note": "Seule la gamme Pro Series (traitement de mixage) est retenue."
     }
-  ]
+  ],
+  "_retired": {
+    "Kush Audio": "Domaine kushaudio.com en vente (redirige vers hugedomains.com) au 15/11/2026 : retiré.",
+    "Native Instruments": "Catalogue quasi exclusivement orienté production (instruments, expansions) : retiré."
+  }
 }

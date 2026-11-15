@@ -12,7 +12,7 @@ const EXCLUDE_NAME = [
   /\bexpansion\b/i, /\bbundle\b/i, /\bcollection\b/i, /\bpick any\b/i, /\b(free )?trial\b/i, /\beducational\b/i,
   /verified purchase/i, /\bpromo\b/i, /\bupgrade\b/i, /\bcrossgrade\b/i, /\bgift card\b/i, /\bsubscription\b/i,
   /\b(accelerator|satellite|option card|pcie|thunderbolt|firewire|interface)\b/i, /\bua connect\b/i, /\bsoundgrid\b/i,
-  /\b(course|tutorial|masterclass)\b/i, /\bmerch|t-shirt|hoodie|mug\b/i, /\bplugins?$/i, /^plugins? for\b/i, /\bseries$/i
+  /\b(course|tutorial|masterclass)\b/i, /\bplugins\b/i, /\bpedal\b/i, /\bapollo\b/i, /\bmic pre(amp(lifier)?)?\b/i, /\bacademic\b/i, /\bupgrades?\b/i, /[{}$]/, /\bnks\b/i, /^sampling software$/i, /\bmerch|t-shirt|hoodie|mug\b/i, /\bplugins?$/i, /^plugins? for\b/i, /\bseries$/i
 ];
 // Signal fort dans la description courte (et non dans tout le texte de la page)
 const EXCLUDE_DESC = [/\b(virtual|software) instrument\b/i, /\bsynthesi[sz]er\b/i, /\bsample library\b/i, /\bkontakt\b/i];
