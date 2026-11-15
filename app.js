@@ -1,4 +1,5 @@
 // PluginLib — interface. Les données vivent dans data/*.json (mises à jour chaque nuit par GitHub Actions).
+import { shortDescription } from './descriptions.mjs';
 const $ = (s) => document.querySelector(s);
 const STATUS_KEY = 'pluginlib.status.v2';
 const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'Abonnement actif', former: 'Ancien abonnement', trial: 'Démo', wishlist: 'Liste d’envies', not_owned: 'Non possédé' };
@@ -33,7 +34,10 @@ async function load() {
     fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json())
   ]);
   META = m; LBL = m.labels;
-  DATA = d.plugins.map((p) => ({ ...p, _s: norm(`${p.name} ${p.vendor} ${p.description} ${LBL.categories[p.category] || ''}`) }));
+  DATA = d.plugins.map((p) => {
+    const summary = shortDescription(p);
+    return { ...p, summary, _s: norm(`${p.name} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
+  });
   stats(); fillStatic(); render();
 }
 
@@ -125,7 +129,7 @@ function card(p) {
   n.querySelector('.ribbon').textContent = l?.zero ? `Zero latency · ${st.rate} kHz` : l?.zeroMode ? `ZL selon mode · ${st.rate} kHz` : '';
   n.querySelector('.maker').textContent = p.vendor;
   n.querySelector('.plugin').textContent = p.name;
-  n.querySelector('.description').textContent = p.description || '';
+  n.querySelector('.description').textContent = p.summary;
   const tags = p.tags.map((t) => { const [f, v] = t.split(':'); return f === 'opt' ? LBL.common[v] : LBL.facets[f]?.values[v]; }).filter(Boolean);
   n.querySelector('.badges').innerHTML = `<span class="badge fam">${esc(LBL.categories[p.category] || p.category)}</span>` + tags.map((t) => `<span class="badge">${esc(t)}</span>`).join('') + (p.classifiedBy === 'manuel' ? '<span class="badge ok">Classement vérifié</span>' : '');
   n.querySelector('.latbox').innerHTML = p.latency ? latCell(p, '48') + latCell(p, '96') : '';

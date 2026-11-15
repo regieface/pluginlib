@@ -59,7 +59,7 @@ button.outline:hover { background: #eaf6f6; }
 .info { padding: 15px; flex: 1; min-width: 0; }
 .maker { color: #007d8e; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; }
 .plugin { font-size: 19px; font-weight: 790; letter-spacing: -.4px; line-height: 1.24; margin: 4px 0 7px; overflow-wrap: anywhere; }
-.description { color: #6a7f90; font-size: 12px; min-height: 37px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.description { color: #6a7f90; font-size: 12px; min-height: 37px; overflow-wrap: anywhere; }
 .badges { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0; }
 .badge { background: #edf2f5; border-radius: 8px; padding: 5px 8px; font-size: 11px; font-weight: 700; color: #556f80; }
 .badge.fam { background: var(--light); color: #006b74; }
