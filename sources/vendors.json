@@ -67,7 +67,12 @@
       "exclude": [
         "/support/"
       ],
-      "trustInclude": true
+      "trustInclude": true,
+      "excludeNames": [
+        "^4ms ",
+        "\\bmodular\\b",
+        "\\beurorack\\b"
+      ]
     },
     {
       "name": "FabFilter",
@@ -115,12 +120,9 @@
       "site": "https://www.ikmultimedia.com",
       "mode": "sitemap",
       "include": [
-        "/products/[a-z0-9-]+$"
+        "/products/(tr|tr6|trs|trx|t-racks)[a-z0-9-]*/?$"
       ],
-      "trustInclude": true,
-      "require": [
-        "t-?racks|tr[56x]?-|tape machine|tascam|lurssen|master match|eq ?(73|81|pa|pb|p)\\b|opto compressor|black 76|white 2a|bus compressor|brickwall|stealth limiter|quad (image|saturator)|csr|dyna-?mu|vintage tube|fairchild|british channel|channel strip"
-      ]
+      "trustInclude": true
     },
     {
       "name": "Harrison",
@@ -153,6 +155,11 @@
       ],
       "exclude": [
         "/(faq|bundles?|contact|about|hello-world|cart|checkout|account|my-account|privacy[a-z-]*|terms[a-z-]*|shop|blog|news|category/.*|tag/.*|support|downloads?|donate|equalizer|equalization|dynamicprocessing|color-preamp-saturation)/?$"
+      ],
+      "excludeNames": [
+        "^comments",
+        "^analog obsession$",
+        "^(channel strip|equalizer|equalization|bundles?)$"
       ]
     },
     {
@@ -230,8 +237,8 @@
       "trustInclude": true,
       "excludeNames": [
         "bundle",
-        "suite$",
-        "elements$",
+        "suite",
+        "elements\\b",
         "^music production"
       ]
     },

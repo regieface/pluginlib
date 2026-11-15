@@ -40,9 +40,15 @@ function jsonLd(html) {
 // les morceaux qui ne sont que le nom du constructeur ou une mention commerciale.
 export function cleanTitle(t = '', vendor = '') {
   const v = vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const GENERIC = new Set(['', 'audio', 'inc', 'ltd', 'gmbh', 'software', 'plugins', 'plugin', 'official', 'music', 'dsp', 'digital', 'com', 'store', 'shop']);
+  const isVendor = (x) => { const k = x.toLowerCase().replace(/[^a-z0-9]/g, ''); return !!v && k.startsWith(v) && GENERIC.has(k.slice(v.length)); };
   const parts = t.split(/\s+[|–—-]\s+|\s*\|\s*/).map((x) => x.replace(/^\s*(buy|shop)\s+/i, '').trim()).filter(Boolean);
-  const keep = parts.filter((x) => { const k = x.toLowerCase().replace(/[^a-z0-9]/g, ''); return k && k !== v && !(v && k.startsWith(v) && k.length - v.length <= 6) && !/^(official site|home|plug-?ins?|software|audio plug-?ins?)$/i.test(x); });
-  return (keep[0] || parts[0] || '').trim();
+  const keep = parts.filter((x) => !isVendor(x) && !/^(official site|home|plug-?ins?|software|audio plug-?ins?)$/i.test(x));
+  let name = (keep[0] || parts[0] || '').trim();
+  // « oeksound: soothe3 » → « soothe3 »
+  const m = name.match(/^([^:]{2,30}):\s+(.+)$/);
+  if (m && isVendor(m[1])) name = m[2];
+  return name;
 }
 
 export function extractPage(html, url, vendor = '') {
