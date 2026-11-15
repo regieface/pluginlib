@@ -1,11 +1,12 @@
 {
- "generatedAt": "2026-11-15T13:44:11.351Z",
- "count": 916,
+ "generatedAt": "2026-11-15T14:01:10.187Z",
+ "count": 1166,
  "latency": {
   "ok": true,
   "rows": 255,
-  "matched": 225,
-  "orphans": 47,
+  "matched": 204,
+  "orphans": 52,
+  "orphansVerified": 25,
   "url": "https://www.waves.com/support/tech-specs/plugin-latency"
  },
  "sources": [
@@ -14,28 +15,27 @@
    "site": "https://www.waves.com",
    "ok": true,
    "via": "sitemap",
-   "found": 252,
-   "kept": 236,
-   "ms": 67570
+   "found": 228,
+   "kept": 208,
+   "ms": 322489
   },
   {
    "vendor": "Plugin Alliance",
    "site": "https://www.plugin-alliance.com",
-   "ok": false,
+   "ok": true,
    "via": "sitemap",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 1334
+   "found": 189,
+   "kept": 180,
+   "ms": 11016
   },
   {
    "vendor": "Slate Digital",
    "site": "https://slatedigital.com",
    "ok": true,
    "via": "sitemap",
-   "found": 159,
-   "kept": 148,
-   "ms": 21346
+   "found": 134,
+   "kept": 123,
+   "ms": 29949
   },
   {
    "vendor": "Universal Audio",
@@ -43,45 +43,45 @@
    "ok": true,
    "via": "shopify",
    "found": 300,
-   "kept": 222,
-   "ms": 715
+   "kept": 186,
+   "ms": 493
   },
   {
    "vendor": "Softube",
    "site": "https://www.softube.com",
-   "ok": false,
-   "via": "aucune",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 44704
+   "ok": true,
+   "via": "sitemap",
+   "found": 532,
+   "kept": 490,
+   "ms": 38309
   },
   {
    "vendor": "FabFilter",
    "site": "https://www.fabfilter.com",
    "ok": true,
    "via": "sitemap",
-   "found": 15,
-   "kept": 12,
-   "ms": 2618
+   "found": 5,
+   "kept": 5,
+   "ms": 2664
   },
   {
    "vendor": "MeldaProduction",
    "site": "https://www.meldaproduction.com",
    "ok": true,
    "via": "sitemap",
-   "found": 121,
-   "kept": 118,
-   "ms": 33231
+   "found": 123,
+   "kept": 120,
+   "ms": 30384
   },
   {
    "vendor": "Solid State Logic",
-   "site": "https://www.solidstatelogic.com",
-   "ok": true,
+   "site": "https://store.solidstatelogic.com",
+   "ok": false,
    "via": "sitemap",
-   "found": 1,
+   "found": 0,
    "kept": 1,
-   "ms": 2874
+   "error": "aucun produit lu",
+   "ms": 1333
   },
   {
    "vendor": "sonible",
@@ -90,16 +90,16 @@
    "via": "sitemap",
    "found": 69,
    "kept": 35,
-   "ms": 52101
+   "ms": 57494
   },
   {
    "vendor": "IK Multimedia",
    "site": "https://www.ikmultimedia.com",
    "ok": true,
    "via": "sitemap",
-   "found": 74,
-   "kept": 73,
-   "ms": 14054
+   "found": 47,
+   "kept": 8,
+   "ms": 9880
   },
   {
    "vendor": "Harrison",
@@ -107,8 +107,8 @@
    "ok": true,
    "via": "sitemap",
    "found": 66,
-   "kept": 66,
-   "ms": 38067
+   "kept": 8,
+   "ms": 43648
   },
   {
    "vendor": "Empirical Labs",
@@ -117,17 +117,16 @@
    "via": "woocommerce",
    "found": 9,
    "kept": 4,
-   "ms": 9286
+   "ms": 6553
   },
   {
    "vendor": "Analog Obsession",
    "site": "https://www.analogobsession.com",
-   "ok": false,
-   "via": "aucune",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 61791
+   "ok": true,
+   "via": "sitemap",
+   "found": 13,
+   "kept": 13,
+   "ms": 23179
   },
   {
    "vendor": "Acustica Audio",
@@ -137,7 +136,7 @@
    "found": 0,
    "kept": 0,
    "error": "aucun produit lu",
-   "ms": 2515
+   "ms": 773
   },
   {
    "vendor": "Kiive Audio",
@@ -146,64 +145,61 @@
    "via": "shopify",
    "found": 58,
    "kept": 27,
-   "ms": 370
+   "ms": 452
   },
   {
    "vendor": "Tokyo Dawn Records",
    "site": "https://www.tokyodawn.net",
    "ok": true,
    "via": "sitemap",
-   "found": 117,
-   "kept": 117,
-   "ms": 22569
+   "found": 127,
+   "kept": 127,
+   "ms": 23245
   },
   {
    "vendor": "Klanghelm",
    "site": "https://klanghelm.com",
-   "ok": false,
+   "ok": true,
    "via": "sitemap",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 1043
+   "found": 9,
+   "kept": 9,
+   "ms": 1444
   },
   {
    "vendor": "Oeksound",
    "site": "https://oeksound.com",
-   "ok": false,
-   "via": "aucune",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 1635
+   "ok": true,
+   "via": "sitemap",
+   "found": 16,
+   "kept": 16,
+   "ms": 1305
   },
   {
    "vendor": "Eventide",
    "site": "https://www.eventideaudio.com",
    "ok": true,
    "via": "sitemap",
-   "found": 249,
-   "kept": 246,
-   "ms": 224952
+   "found": 246,
+   "kept": 243,
+   "ms": 284949
   },
   {
    "vendor": "Soundtoys",
    "site": "https://www.soundtoys.com",
    "ok": true,
    "via": "sitemap",
-   "found": 129,
-   "kept": 125,
-   "ms": 7296
+   "found": 153,
+   "kept": 129,
+   "ms": 7665
   },
   {
    "vendor": "iZotope",
    "site": "https://www.izotope.com",
-   "ok": false,
+   "ok": true,
    "via": "sitemap",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 999
+   "found": 58,
+   "kept": 48,
+   "ms": 5022
   },
   {
    "vendor": "Arturia",
@@ -212,17 +208,7 @@
    "via": "sitemap",
    "found": 41,
    "kept": 40,
-   "ms": 5168
-  },
-  {
-   "vendor": "Native Instruments",
-   "site": "https://www.native-instruments.com",
-   "ok": false,
-   "via": "sitemap",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 4782
+   "ms": 6186
   },
   {
    "vendor": "Valhalla DSP",
@@ -231,7 +217,7 @@
    "via": "woocommerce",
    "found": 10,
    "kept": 10,
-   "ms": 3145
+   "ms": 3178
   },
   {
    "vendor": "Black Rooster Audio",
@@ -240,26 +226,16 @@
    "via": "sitemap",
    "found": 35,
    "kept": 29,
-   "ms": 38762
-  },
-  {
-   "vendor": "Kush Audio",
-   "site": "https://www.kushaudio.com",
-   "ok": false,
-   "via": "aucune",
-   "found": 0,
-   "kept": 0,
-   "error": "aucun produit lu",
-   "ms": 170
+   "ms": 36995
   },
   {
    "vendor": "Positive Grid",
    "site": "https://www.positivegrid.com",
    "ok": true,
    "via": "sitemap",
-   "found": 146,
+   "found": 139,
    "kept": 6,
-   "ms": 54925
+   "ms": 57850
   }
  ],
  "labels": {

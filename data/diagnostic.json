@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-15T13:44:11.351Z",
+ "generatedAt": "2026-11-15T14:01:10.187Z",
  "vendors": [
   {
    "vendor": "Waves",
@@ -10,6 +10,108 @@
     "200 https://www.waves.com/api/feeds/sitemap",
     "200 https://www.waves.com/api/feeds/sitemap-video",
     "200 https://a124569.sitemaphosting.com/4023656/sitemap_images.xml.gz"
+   ],
+   "prefixes": [
+    [
+     "/studioverse/chain",
+     10275
+    ],
+    [
+     "/studioverse/creator",
+     6232
+    ],
+    [
+     "/studioverse/chains",
+     734
+    ],
+    [
+     "/support/tag",
+     37
+    ],
+    [
+     "/downloads/graphic-library",
+     10
+    ],
+    [
+     "/mixers-racks/emotion-lv1",
+     8
+    ],
+    [
+     "/support/tech-specs",
+     7
+    ],
+    [
+     "/events/sept-2018",
+     4
+    ],
+    [
+     "/events/march-2019",
+     4
+    ],
+    [
+     "/events/may-2019",
+     3
+    ],
+    [
+     "/events/apr-2019",
+     2
+    ],
+    [
+     "/llm/products.json",
+     1
+    ],
+    [
+     "/legal/cookie-notice-and-privacy-choices",
+     1
+    ],
+    [
+     "/voice-regen/faq",
+     1
+    ],
+    [
+     "/tag/mix-trick-or-trash",
+     1
+    ],
+    [
+     "/support/soundgrid-interfaces-compatibility-chart",
+     1
+    ],
+    [
+     "/legal/legal-notices",
+     1
+    ],
+    [
+     "/support/waves-update-plan",
+     1
+    ],
+    [
+     "/pooch-what-live-sound-engineers-can-do-at-home",
+     1
+    ],
+    [
+     "/tag/ken-pooch-van-druten",
+     1
+    ],
+    [
+     "/tag/live-sound",
+     1
+    ],
+    [
+     "/bundles/black-friday-all-stars",
+     1
+    ],
+    [
+     "/legal",
+     1
+    ],
+    [
+     "/tag/electronic-music-production",
+     1
+    ],
+    [
+     "/legal/waves-terms-of-use",
+     1
+    ]
    ],
    "sitemapUrls": 20856,
    "sample": [
@@ -41,7 +143,7 @@
    ],
    "pass1": {
     "fetched": 298,
-    "products": 252,
+    "products": 228,
     "discovered": 0
    }
   },
@@ -57,6 +159,108 @@
     "200 https://www.plugin-alliance.com/sitemap_collections_1.xml?from=527707570440&to=593801543944",
     "200 https://www.plugin-alliance.com/sitemap_blogs_1.xml",
     "200 https://www.plugin-alliance.com/sitemap_articles_1.xml"
+   ],
+   "prefixes": [
+    [
+     "/blogs/news",
+     14
+    ],
+    [
+     "/agents.md",
+     1
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/products/c502v",
+     1
+    ],
+    [
+     "/products/oldtimer",
+     1
+    ],
+    [
+     "/products/tape-face",
+     1
+    ],
+    [
+     "/products/bx_clipper",
+     1
+    ],
+    [
+     "/products/hg-q",
+     1
+    ],
+    [
+     "/products/brainworx-bx_masterdesk-pro",
+     1
+    ],
+    [
+     "/products/machine-head",
+     1
+    ],
+    [
+     "/products/crystalline",
+     1
+    ],
+    [
+     "/products/spl-big",
+     1
+    ],
+    [
+     "/products/wavesurfer",
+     1
+    ],
+    [
+     "/products/u2a",
+     1
+    ],
+    [
+     "/products/spatial-creator",
+     1
+    ],
+    [
+     "/products/bx_xl-v3",
+     1
+    ],
+    [
+     "/products/vac-attack",
+     1
+    ],
+    [
+     "/products/bx_enhancer",
+     1
+    ],
+    [
+     "/products/silver-bullet-mk2",
+     1
+    ],
+    [
+     "/products/bus-compressor",
+     1
+    ],
+    [
+     "/products/wunderlich",
+     1
+    ],
+    [
+     "/products/cenozoix-compressor",
+     1
+    ],
+    [
+     "/products/xtcomp",
+     1
+    ],
+    [
+     "/products/bx_glue",
+     1
+    ],
+    [
+     "/products/hype",
+     1
+    ]
    ],
    "sitemapUrls": 386,
    "sample": [
@@ -85,7 +289,12 @@
     "https://www.plugin-alliance.com/products/bx_glue",
     "https://www.plugin-alliance.com/products/hype",
     "https://www.plugin-alliance.com/products/battalion"
-   ]
+   ],
+   "pass1": {
+    "fetched": 259,
+    "products": 189,
+    "discovered": 0
+   }
   },
   {
    "vendor": "Slate Digital",
@@ -108,6 +317,108 @@
     "200 https://slatedigital.com/gblocks_pattern_collections-sitemap.xml",
     "200 https://slatedigital.com/playlist-category-sitemap.xml",
     "200 https://slatedigital.com/author-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/lp/kr",
+     3
+    ],
+    [
+     "/lp/tr",
+     3
+    ],
+    [
+     "/lp/in",
+     2
+    ],
+    [
+     "/plugin/repeater-delay",
+     1
+    ],
+    [
+     "/plugin/kilohearts",
+     1
+    ],
+    [
+     "/plugin/strongroom-london",
+     1
+    ],
+    [
+     "/plugin/ml-2-modeling-mics",
+     1
+    ],
+    [
+     "/plugin/storch-filter",
+     1
+    ],
+    [
+     "/plugin/vmr-3-0",
+     1
+    ],
+    [
+     "/plugin/stellar-echo",
+     1
+    ],
+    [
+     "/plugin/custom-series-bundle",
+     1
+    ],
+    [
+     "/plugin/eiosis-air-and-earth-eq",
+     1
+    ],
+    [
+     "/plugin/virtual-tube-collection",
+     1
+    ],
+    [
+     "/plugin/virtual-preamp-collection",
+     1
+    ],
+    [
+     "/plugin/vmr-2-0-mix-bundle-one",
+     1
+    ],
+    [
+     "/plugin/audified-u73b",
+     1
+    ],
+    [
+     "/plugin/virtual-buss-compressors",
+     1
+    ],
+    [
+     "/plugin/fg-116-blue-series-fet-compressor",
+     1
+    ],
+    [
+     "/plugin/infinity-eq",
+     1
+    ],
+    [
+     "/plugin/fresh-air",
+     1
+    ],
+    [
+     "/plugin/murda-melodies",
+     1
+    ],
+    [
+     "/plugin/mo-tt",
+     1
+    ],
+    [
+     "/plugin/fg-x-2",
+     1
+    ],
+    [
+     "/plugin/transient-shaper",
+     1
+    ],
+    [
+     "/plugin/metapitch",
+     1
+    ]
    ],
    "sitemapUrls": 322,
    "sample": [
@@ -144,7 +455,7 @@
    },
    "pass2": {
     "fetched": 514,
-    "products": 159,
+    "products": 134,
     "discovered": 0
    }
   },
@@ -152,19 +463,133 @@
    "vendor": "Universal Audio",
    "requests": [
     "200 https://www.uaudio.com/products.json?limit=250&page=1"
+   ],
+   "productTypes": [
+    "UAD Plug-Ins",
+    "Pick Any Bundles",
+    "Bundles",
+    "Audio Interfaces",
+    "UAD Plug-Ins Promo",
+    "Apps",
+    "Guitar Gear",
+    "Subscription",
+    "UAD Accelerators",
+    "Accessories",
+    "Microphones",
+    "Analog Hardware"
    ]
   },
   {
    "vendor": "Softube",
    "requests": [
-    "200 https://www.softube.com/products.json?limit=250&page=1 → https://www.softube.com/",
-    "404 https://www.softube.com/wp-json/wc/store/v1/products?per_page=100&page=1",
     "200 https://www.softube.com/robots.txt",
     "200 https://www.softube.com/sitemap.xml → https://www.softube.com/sitemap.axd",
     "200 https://www.softube.com/sitemap_index.xml → https://www.softube.com/sitemap.axd",
     "200 https://www.softube.com/sitemap.axd",
     "200 https://www.softube.com/sitemap.axd?page=1",
     "200 https://www.softube.com/sitemap.axd?page=2"
+   ],
+   "prefixes": [
+    [
+     "/au/plug-ins",
+     178
+    ],
+    [
+     "/kr/plug-ins",
+     178
+    ],
+    [
+     "/cn/plug-ins",
+     178
+    ],
+    [
+     "/eu/plug-ins",
+     178
+    ],
+    [
+     "/jp/plug-ins",
+     178
+    ],
+    [
+     "/ca/plug-ins",
+     178
+    ],
+    [
+     "/no/plug-ins",
+     178
+    ],
+    [
+     "/us/plug-ins",
+     178
+    ],
+    [
+     "/ch/plug-ins",
+     178
+    ],
+    [
+     "/dk/plug-ins",
+     178
+    ],
+    [
+     "/uk/plug-ins",
+     178
+    ],
+    [
+     "/pl/plug-ins",
+     178
+    ],
+    [
+     "/se/plug-ins",
+     178
+    ],
+    [
+     "/au/user-manuals",
+     140
+    ],
+    [
+     "/kr/user-manuals",
+     140
+    ],
+    [
+     "/cn/user-manuals",
+     140
+    ],
+    [
+     "/eu/user-manuals",
+     140
+    ],
+    [
+     "/jp/user-manuals",
+     140
+    ],
+    [
+     "/ca/user-manuals",
+     140
+    ],
+    [
+     "/no/user-manuals",
+     140
+    ],
+    [
+     "/us/user-manuals",
+     140
+    ],
+    [
+     "/ch/user-manuals",
+     140
+    ],
+    [
+     "/dk/user-manuals",
+     140
+    ],
+    [
+     "/uk/user-manuals",
+     140
+    ],
+    [
+     "/pl/user-manuals",
+     140
+    ]
    ],
    "sitemapUrls": 7028,
    "sample": [
@@ -196,8 +621,8 @@
    ],
    "pass1": {
     "fetched": 800,
-    "products": 0,
-    "discovered": 17867
+    "products": 532,
+    "discovered": 14662
    }
   },
   {
@@ -209,6 +634,108 @@
     "200 https://www.fabfilter.com/sitemap-index",
     "200 https://www.fabfilter.com/sitemap-default",
     "404 https://www.fabfilter.com/sitemap-learn"
+   ],
+   "prefixes": [
+    [
+     "/downloads/pdf",
+     14
+    ],
+    [
+     "/download",
+     1
+    ],
+    [
+     "/press",
+     1
+    ],
+    [
+     "/press/1141210410",
+     1
+    ],
+    [
+     "/press/1135162410",
+     1
+    ],
+    [
+     "/press/1128336810",
+     1
+    ],
+    [
+     "/press/1125744810",
+     1
+    ],
+    [
+     "/press/1097060010",
+     1
+    ],
+    [
+     "/press/1093863210",
+     1
+    ],
+    [
+     "/press/1084964010",
+     1
+    ],
+    [
+     "/press/1079520810",
+     1
+    ],
+    [
+     "/press/1117018410",
+     1
+    ],
+    [
+     "/press/1117709610",
+     1
+    ],
+    [
+     "/press/1120647210",
+     1
+    ],
+    [
+     "/press/1146485864",
+     1
+    ],
+    [
+     "/press/1158012000",
+     1
+    ],
+    [
+     "/press/1161727200",
+     1
+    ],
+    [
+     "/press/1179144939",
+     1
+    ],
+    [
+     "/press/1187103600",
+     1
+    ],
+    [
+     "/press/1188829976",
+     1
+    ],
+    [
+     "/press/1196174806",
+     1
+    ],
+    [
+     "/press/1211972400",
+     1
+    ],
+    [
+     "/press/1212465600",
+     1
+    ],
+    [
+     "/press/1223888928",
+     1
+    ],
+    [
+     "/press/1233745200",
+     1
+    ]
    ],
    "sitemapUrls": 277,
    "sample": [
@@ -240,12 +767,12 @@
    ],
    "pass1": {
     "fetched": 14,
-    "products": 14,
+    "products": 5,
     "discovered": 6
    },
    "pass2": {
     "fetched": 1,
-    "products": 15,
+    "products": 5,
     "discovered": 0
    }
   },
@@ -254,8 +781,109 @@
    "requests": [
     "200 https://www.meldaproduction.com/robots.txt",
     "200 https://www.meldaproduction.com/sitemap.xml",
-    "404 https://www.meldaproduction.com/sitemap_index.xml",
-    "ERR /sitemap-index.xml Failed to parse URL from /sitemap-index.xml"
+    "404 https://www.meldaproduction.com/sitemap_index.xml"
+   ],
+   "prefixes": [
+    [
+     "/about/artists",
+     111
+    ],
+    [
+     "/tutorials/video",
+     13
+    ],
+    [
+     "/",
+     4
+    ],
+    [
+     "/effects",
+     1
+    ],
+    [
+     "/effects/unique",
+     1
+    ],
+    [
+     "/effects/free",
+     1
+    ],
+    [
+     "/product/discounted",
+     1
+    ],
+    [
+     "/instruments/",
+     1
+    ],
+    [
+     "/bundles",
+     1
+    ],
+    [
+     "/bundles/compare",
+     1
+    ],
+    [
+     "/subscription/",
+     1
+    ],
+    [
+     "/equalizers",
+     1
+    ],
+    [
+     "/dynamics-processors",
+     1
+    ],
+    [
+     "/spectral",
+     1
+    ],
+    [
+     "/stereo",
+     1
+    ],
+    [
+     "/distortion",
+     1
+    ],
+    [
+     "/reverbs-delays",
+     1
+    ],
+    [
+     "/filters",
+     1
+    ],
+    [
+     "/tutorials",
+     1
+    ],
+    [
+     "/text",
+     1
+    ],
+    [
+     "/text/introduction",
+     1
+    ],
+    [
+     "/text/compression",
+     1
+    ],
+    [
+     "/text/limiters",
+     1
+    ],
+    [
+     "/text/equalizers",
+     1
+    ],
+    [
+     "/text/mixing",
+     1
+    ]
    ],
    "sitemapUrls": 343,
    "sample": [
@@ -288,54 +916,24 @@
    "pass1": {
     "fetched": 145,
     "products": 120,
-    "discovered": 4524
+    "discovered": 4526
    },
    "pass2": {
-    "fetched": 357,
-    "products": 121,
+    "fetched": 359,
+    "products": 123,
     "discovered": 0
    }
   },
   {
    "vendor": "Solid State Logic",
    "requests": [
-    "200 https://www.solidstatelogic.com/robots.txt",
-    "200 https://www.solidstatelogic.com/sitemap.xml",
-    "404 https://www.solidstatelogic.com/sitemap_index.xml"
+    "200 https://store.solidstatelogic.com/robots.txt",
+    "404 https://store.solidstatelogic.com/sitemap.xml",
+    "404 https://store.solidstatelogic.com/sitemap_index.xml"
    ],
-   "sitemapUrls": 925,
-   "sample": [
-    "https://solidstatelogic.com/solutions/broadcast-production",
-    "https://solidstatelogic.com/media/ssl-native-v63-plug-release-adds-machine-based-ilok-licensing-and-new-plug",
-    "https://solidstatelogic.com/media/ssl-releases-new-flexverb-plug-in-and-ssl-native-v61",
-    "https://solidstatelogic.com/media/ty-fy-doubles-up-on-duality-at-roy-e-production-center",
-    "https://solidstatelogic.com/media/ssl-native-v6-plug-bundle-released",
-    "https://solidstatelogic.com/media/ssl-all-go-at-b-pro-production",
-    "https://solidstatelogic.com/media/new-24-fader-and-au-delta-control-plug-ins-aws-consoles",
-    "https://solidstatelogic.com/media/ssl-announce-collection-new-products-and-features-ssl-live-console-range",
-    "https://solidstatelogic.com/media/face-to-distribute-ssl-live-and-broadcast-products",
-    "https://solidstatelogic.com/media/spiritland-productions-puts-system-t-heart-its-new-entertainment-ob-vehicle",
-    "https://solidstatelogic.com/media/ssl-announces-four-new-dante-and-aes67-network-io-products",
-    "https://solidstatelogic.com/media/ssl-delivers-powerful-automated-audio-production-without-console-with-new-system-t-products",
-    "https://solidstatelogic.com/media/ssl-system-t-networked-audio-production-technology-ibc-2016",
-    "https://solidstatelogic.com/media/danmon-group-distribute-ssl-broadcast-products-in-norway",
-    "https://solidstatelogic.com/media/ksat-boosts-broadcast-production-with-ssl-c10-and-network-io",
-    "https://solidstatelogic.com/products/aws",
-    "https://solidstatelogic.com/products",
-    "https://solidstatelogic.com/music-and-audio-production/ssl-interfaces-summer-promo",
-    "https://solidstatelogic.com/products/dante-live-sound",
-    "https://solidstatelogic.com/products/duality-fuse",
-    "https://solidstatelogic.com/solutions/music-production-and-mixing",
-    "https://solidstatelogic.com/solutions/ob-and-sports-production",
-    "https://solidstatelogic.com/products/dynamic-automation",
-    "https://solidstatelogic.com/products/harrison-lookahead-compressor",
-    "https://solidstatelogic.com/products/harrison-spectral-gate"
-   ],
-   "pass1": {
-    "fetched": 1,
-    "products": 1,
-    "discovered": 0
-   }
+   "prefixes": [],
+   "sitemapUrls": 0,
+   "sample": []
   },
   {
    "vendor": "sonible",
@@ -347,6 +945,108 @@
     "200 https://www.sonible.com/post-sitemap.xml",
     "200 https://www.sonible.com/page-sitemap.xml",
     "200 https://www.sonible.com/category-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/blog/category",
+     15
+    ],
+    [
+     "/products/smartlimit",
+     1
+    ],
+    [
+     "/products/smartchain",
+     1
+    ],
+    [
+     "/products/smartdeess",
+     1
+    ],
+    [
+     "/products/smartgate",
+     1
+    ],
+    [
+     "/products/smartbundle",
+     1
+    ],
+    [
+     "/products/primevocal",
+     1
+    ],
+    [
+     "/products/truelevel",
+     1
+    ],
+    [
+     "/products/pureverb",
+     1
+    ],
+    [
+     "/products/purelimit",
+     1
+    ],
+    [
+     "/products/truebalance",
+     1
+    ],
+    [
+     "/products/learnbundle",
+     1
+    ],
+    [
+     "/products/puredeess",
+     1
+    ],
+    [
+     "/products/purecomp",
+     1
+    ],
+    [
+     "/products/pureeq",
+     1
+    ],
+    [
+     "/products/pureunmask",
+     1
+    ],
+    [
+     "/products/purebundle",
+     1
+    ],
+    [
+     "/products/smartcomp3",
+     1
+    ],
+    [
+     "/products/vocalbundle",
+     1
+    ],
+    [
+     "/products/studio-bundle",
+     1
+    ],
+    [
+     "/products/smartessentials",
+     1
+    ],
+    [
+     "/products/dynamics-bundle",
+     1
+    ],
+    [
+     "/products/metering-bundle",
+     1
+    ],
+    [
+     "/products/smarteq4",
+     1
+    ],
+    [
+     "/products/smartreverb2",
+     1
+    ]
    ],
    "sitemapUrls": 190,
    "sample": [
@@ -395,20 +1095,8 @@
     "404 https://www.ikmultimedia.com/sitemap_index.xml",
     "200 https://ikmultimedia.com/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
     "200 https://ikmultimedia.com/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/zh/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/zh/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/es/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/es/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/fr/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/fr/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/ja/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/ja/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/pt/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/pt/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
     "200 https://ikmultimedia.com/en-us/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
     "200 https://ikmultimedia.com/en-us/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
-    "200 https://ikmultimedia.com/zh-us/sitemap_products_1.xml?from=15791878897996&to=16131684598092",
-    "200 https://ikmultimedia.com/zh-us/sitemap_products_2.xml?from=16131684630860&to=16313428902220",
     "200 https://ikmultimedia.com/sitemap_agentic_discovery.xml",
     "200 https://ikmultimedia.com/sitemap_pages_1.xml?from=730444104012&to=739285336396",
     "200 https://ikmultimedia.com/sitemap_collections_1.xml?from=683710841164&to=697770148172",
@@ -417,42 +1105,117 @@
     "200 https://ikmultimedia.com/sitemap_articles_2.xml",
     "200 https://ikmultimedia.com/sitemap_articles_3.xml",
     "200 https://ikmultimedia.com/sitemap_metaobject_pages_1.xml",
-    "200 https://ikmultimedia.com/zh/sitemap_pages_1.xml?from=730444104012&to=739285336396",
-    "200 https://ikmultimedia.com/zh/sitemap_collections_1.xml?from=683710841164&to=697770148172",
-    "200 https://ikmultimedia.com/zh/sitemap_blogs_1.xml",
-    "200 https://ikmultimedia.com/zh/sitemap_articles_1.xml",
-    "200 https://ikmultimedia.com/zh/sitemap_articles_2.xml",
-    "200 https://ikmultimedia.com/zh/sitemap_articles_3.xml",
-    "200 https://ikmultimedia.com/zh/sitemap_metaobject_pages_1.xml",
-    "200 https://ikmultimedia.com/es/sitemap_pages_1.xml?from=730444104012&to=739285336396",
-    "200 https://ikmultimedia.com/es/sitemap_collections_1.xml?from=683710841164&to=697770148172",
-    "200 https://ikmultimedia.com/es/sitemap_blogs_1.xml",
-    "200 https://ikmultimedia.com/es/sitemap_articles_1.xml",
-    "200 https://ikmultimedia.com/es/sitemap_articles_2.xml",
-    "200 https://ikmultimedia.com/es/sitemap_articles_3.xml",
-    "200 https://ikmultimedia.com/es/sitemap_metaobject_pages_1.xml",
-    "200 https://ikmultimedia.com/fr/sitemap_pages_1.xml?from=730444104012&to=739285336396",
-    "200 https://ikmultimedia.com/fr/sitemap_collections_1.xml?from=683710841164&to=697770148172",
-    "200 https://ikmultimedia.com/fr/sitemap_blogs_1.xml",
-    "200 https://ikmultimedia.com/fr/sitemap_articles_1.xml",
-    "200 https://ikmultimedia.com/fr/sitemap_articles_2.xml",
-    "200 https://ikmultimedia.com/fr/sitemap_articles_3.xml",
-    "200 https://ikmultimedia.com/fr/sitemap_metaobject_pages_1.xml",
-    "200 https://ikmultimedia.com/ja/sitemap_pages_1.xml?from=730444104012&to=739285336396",
-    "200 https://ikmultimedia.com/ja/sitemap_collections_1.xml?from=683710841164&to=697770148172",
-    "200 https://ikmultimedia.com/ja/sitemap_blogs_1.xml",
-    "200 https://ikmultimedia.com/ja/sitemap_articles_1.xml",
-    "200 https://ikmultimedia.com/ja/sitemap_articles_2.xml",
-    "200 https://ikmultimedia.com/ja/sitemap_articles_3.xml",
-    "200 https://ikmultimedia.com/ja/sitemap_metaobject_pages_1.xml",
-    "200 https://ikmultimedia.com/pt/sitemap_pages_1.xml?from=730444104012&to=739285336396",
-    "200 https://ikmultimedia.com/pt/sitemap_collections_1.xml?from=683710841164&to=697770148172",
-    "200 https://ikmultimedia.com/pt/sitemap_blogs_1.xml",
-    "200 https://ikmultimedia.com/pt/sitemap_articles_1.xml",
-    "200 https://ikmultimedia.com/pt/sitemap_articles_2.xml",
-    "200 https://ikmultimedia.com/pt/sitemap_articles_3.xml"
+    "200 https://ikmultimedia.com/en-us/sitemap_pages_1.xml?from=730444104012&to=739285336396",
+    "200 https://ikmultimedia.com/en-us/sitemap_collections_1.xml?from=683710841164&to=697770148172",
+    "200 https://ikmultimedia.com/en-us/sitemap_blogs_1.xml",
+    "200 https://ikmultimedia.com/en-us/sitemap_articles_1.xml",
+    "200 https://ikmultimedia.com/en-us/sitemap_articles_2.xml",
+    "200 https://ikmultimedia.com/en-us/sitemap_articles_3.xml",
+    "200 https://ikmultimedia.com/en-us/sitemap_metaobject_pages_1.xml"
    ],
-   "sitemapUrls": 20504,
+   "prefixes": [
+    [
+     "/blogs/news",
+     2731
+    ],
+    [
+     "/en-us/blogs",
+     2731
+    ],
+    [
+     "/en-us/products",
+     453
+    ],
+    [
+     "/en-us/collections",
+     49
+    ],
+    [
+     "/en-us/pages",
+     32
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/products/tonex-royal45",
+     1
+    ],
+    [
+     "/products/brianmay",
+     1
+    ],
+    [
+     "/products/orangecs",
+     1
+    ],
+    [
+     "/products/mesa",
+     1
+    ],
+    [
+     "/products/mesa2",
+     1
+    ],
+    [
+     "/products/fender",
+     1
+    ],
+    [
+     "/products/fender2",
+     1
+    ],
+    [
+     "/products/amplitube5cs",
+     1
+    ],
+    [
+     "/products/arconear",
+     1
+    ],
+    [
+     "/products/arcximmersive",
+     1
+    ],
+    [
+     "/products/arcstudio",
+     1
+    ],
+    [
+     "/products/measurement-mic",
+     1
+    ],
+    [
+     "/products/mododrum",
+     1
+    ],
+    [
+     "/products/modo-drum-cs-1-5",
+     1
+    ],
+    [
+     "/products/modo-drum-special-edition-1-5",
+     1
+    ],
+    [
+     "/products/mdblackoyster",
+     1
+    ],
+    [
+     "/products/mdbritcustom",
+     1
+    ],
+    [
+     "/products/mdbubinga",
+     1
+    ],
+    [
+     "/products/mddjentleman",
+     1
+    ]
+   ],
+   "sitemapUrls": 6533,
    "sample": [
     "https://ikmultimedia.com/products/tonex-royal45",
     "https://ikmultimedia.com/products/brianmay",
@@ -481,9 +1244,9 @@
     "https://ikmultimedia.com/products/mdreference"
    ],
    "pass1": {
-    "fetched": 128,
-    "products": 74,
-    "discovered": 506
+    "fetched": 800,
+    "products": 47,
+    "discovered": 599
    }
   },
   {
@@ -495,6 +1258,108 @@
     "200 https://harrisonaudio.com/sitemap.xml",
     "404 https://harrisonaudio.com/sitemap_index.xml",
     "200 https://www.solidstatelogic.com/sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/explore/media",
+     49
+    ],
+    [
+     "/legal/general-end-user-license-agreement",
+     29
+    ],
+    [
+     "/",
+     2
+    ],
+    [
+     "/legal/privacy-policy",
+     2
+    ],
+    [
+     "/solutions/music-creation",
+     2
+    ],
+    [
+     "/legal/website-terms-and-conditions",
+     2
+    ],
+    [
+     "/solutions/music-production-and-mixing",
+     2
+    ],
+    [
+     "/legal/cookie-declaration",
+     2
+    ],
+    [
+     "/events",
+     2
+    ],
+    [
+     "/products",
+     2
+    ],
+    [
+     "/products/bass-flow",
+     2
+    ],
+    [
+     "/products/stunning-phaser",
+     2
+    ],
+    [
+     "/404",
+     2
+    ],
+    [
+     "/products/drum-flow",
+     2
+    ],
+    [
+     "/sitemap.xml",
+     2
+    ],
+    [
+     "/legal",
+     2
+    ],
+    [
+     "/products/vocal-flow",
+     2
+    ],
+    [
+     "/products/32-bus",
+     2
+    ],
+    [
+     "/products/livetrax-3",
+     2
+    ],
+    [
+     "/get-started",
+     2
+    ],
+    [
+     "/recycling-information",
+     2
+    ],
+    [
+     "/products/vocal-flow-and-vocalstrip-bundle",
+     2
+    ],
+    [
+     "/products/mastering-bundle",
+     2
+    ],
+    [
+     "/products/spring-bundle",
+     2
+    ],
+    [
+     "/products/ssl-channel-strip-2-and-harrison-32classic-channel-strip-bundle",
+     2
+    ]
    ],
    "sitemapUrls": 1080,
    "sample": [
@@ -545,8 +1410,6 @@
   {
    "vendor": "Analog Obsession",
    "requests": [
-    "404 https://www.analogobsession.com/products.json?limit=250&page=1 → https://analogobsession.com/products.json?limit=250&page=1",
-    "404 https://www.analogobsession.com/wp-json/wc/store/v1/products?per_page=100&page=1",
     "200 https://www.analogobsession.com/robots.txt → https://analogobsession.com/robots.txt",
     "200 https://www.analogobsession.com/sitemap.xml → https://analogobsession.com/wp-sitemap.xml",
     "404 https://www.analogobsession.com/sitemap_index.xml → https://analogobsession.com/sitemap_index.xml",
@@ -554,6 +1417,48 @@
     "200 https://analogobsession.com/wp-sitemap-posts-post-1.xml",
     "200 https://analogobsession.com/wp-sitemap-posts-page-1.xml",
     "200 https://analogobsession.com/wp-sitemap-taxonomies-category-1.xml"
+   ],
+   "prefixes": [
+    [
+     "/hello-world/",
+     1
+    ],
+    [
+     "/equalizer/",
+     1
+    ],
+    [
+     "/dynamicprocessing/",
+     1
+    ],
+    [
+     "/equalization/",
+     1
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/bundles/",
+     1
+    ],
+    [
+     "/color-preamp-saturation/",
+     1
+    ],
+    [
+     "/faq/",
+     1
+    ],
+    [
+     "/channel-strip/",
+     1
+    ],
+    [
+     "/category/uncategorized",
+     1
+    ]
    ],
    "sitemapUrls": 10,
    "sample": [
@@ -569,13 +1474,13 @@
     "https://analogobsession.com/category/uncategorized/"
    ],
    "pass1": {
-    "fetched": 10,
+    "fetched": 4,
     "products": 0,
-    "discovered": 120
+    "discovered": 33
    },
    "pass2": {
-    "fetched": 120,
-    "products": 0,
+    "fetched": 33,
+    "products": 13,
     "discovered": 0
    }
   },
@@ -589,6 +1494,7 @@
     "404 https://www.acustica-audio.com/sitemap_index.xml",
     "404 https://sitemap.acustica-audio.com/sitemap.xml"
    ],
+   "prefixes": [],
    "sitemapUrls": 0,
    "sample": []
   },
@@ -596,6 +1502,14 @@
    "vendor": "Kiive Audio",
    "requests": [
     "200 https://www.kiiveaudio.com/products.json?limit=250&page=1"
+   ],
+   "productTypes": [
+    "FX Processing",
+    "Bundle",
+    "Channel strip",
+    "",
+    "Compression",
+    "Bus Processor"
    ]
   },
   {
@@ -609,6 +1523,108 @@
     "200 https://www.tokyodawn.net/wp-sitemap-posts-page-1.xml",
     "200 https://www.tokyodawn.net/wp-sitemap-taxonomies-category-1.xml",
     "200 https://www.tokyodawn.net/wp-sitemap-taxonomies-post_tag-1.xml"
+   ],
+   "prefixes": [
+    [
+     "/practice-avoiding-mistakes/",
+     1
+    ],
+    [
+     "/comfortfit/",
+     1
+    ],
+    [
+     "/comfort-fit-forget-and-remember-lp/",
+     1
+    ],
+    [
+     "/margin-london-7th-edition-tokyo-dawn-compilation/",
+     1
+    ],
+    [
+     "/portformat/",
+     1
+    ],
+    [
+     "/blaktroniks/",
+     1
+    ],
+    [
+     "/comfort-fit-polyshufflez-lp/",
+     1
+    ],
+    [
+     "/opolopo/",
+     1
+    ],
+    [
+     "/portformat-the-repeat-factor-lp/",
+     1
+    ],
+    [
+     "/comfort-fit-polyshufflez-remixes/",
+     1
+    ],
+    [
+     "/howard-marks/",
+     1
+    ],
+    [
+     "/laurent_garnier/",
+     1
+    ],
+    [
+     "/dudley_perkins/",
+     1
+    ],
+    [
+     "/swedeart/",
+     1
+    ],
+    [
+     "/shuanise/",
+     1
+    ],
+    [
+     "/caits_meissner/",
+     1
+    ],
+    [
+     "/distantstarr/",
+     1
+    ],
+    [
+     "/atjazz/",
+     1
+    ],
+    [
+     "/note/",
+     1
+    ],
+    [
+     "/wallis_bird/",
+     1
+    ],
+    [
+     "/georgia_anne_muldrow/",
+     1
+    ],
+    [
+     "/domu/",
+     1
+    ],
+    [
+     "/jay_scarlett/",
+     1
+    ],
+    [
+     "/andreas_saag/",
+     1
+    ],
+    [
+     "/robot_koch/",
+     1
+    ]
    ],
    "sitemapUrls": 1407,
    "sample": [
@@ -626,11 +1642,11 @@
    "pass1": {
     "fetched": 22,
     "products": 20,
-    "discovered": 104
+    "discovered": 107
    },
    "pass2": {
-    "fetched": 104,
-    "products": 117,
+    "fetched": 107,
+    "products": 127,
     "discovered": 0
    }
   },
@@ -640,6 +1656,24 @@
     "200 https://klanghelm.com/robots.txt",
     "200 https://klanghelm.com/sitemap.xml",
     "200 https://klanghelm.com/sitemap_index.xml → https://klanghelm.com/contents/common/main"
+   ],
+   "prefixes": [
+    [
+     "/contents/products",
+     11
+    ],
+    [
+     "/contents/common",
+     9
+    ],
+    [
+     "/contents/userarea",
+     3
+    ],
+    [
+     "/contents/newsletter",
+     1
+    ]
    ],
    "sitemapUrls": 24,
    "sample": [
@@ -655,18 +1689,123 @@
     "https://klanghelm.com/contents/products/SDRR.html",
     "https://klanghelm.com/contents/products/VUMT.html",
     "https://klanghelm.com/contents/common/productsoverview.html"
-   ]
+   ],
+   "pass1": {
+    "fetched": 9,
+    "products": 9,
+    "discovered": 3
+   }
   },
   {
    "vendor": "Oeksound",
    "requests": [
-    "404 https://oeksound.com/products.json?limit=250&page=1",
-    "404 https://oeksound.com/wp-json/wc/store/v1/products?per_page=100&page=1",
     "200 https://oeksound.com/robots.txt",
     "404 https://oeksound.com/sitemap.xml",
     "404 https://oeksound.com/sitemap_index.xml",
     "200 https://oeksound.com/sitemap-index.xml",
     "200 https://oeksound.com/sitemap-0.xml"
+   ],
+   "prefixes": [
+    [
+     "/updates/legacy-soothe",
+     20
+    ],
+    [
+     "/updates/spiff",
+     19
+    ],
+    [
+     "/updates/soothe2",
+     15
+    ],
+    [
+     "/updates/bloom",
+     7
+    ],
+    [
+     "/updates/soothe3",
+     5
+    ],
+    [
+     "/updates/soothe-live",
+     4
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/10-years-of-oeksound-party/",
+     1
+    ],
+    [
+     "/about/",
+     1
+    ],
+    [
+     "/accessibility/",
+     1
+    ],
+    [
+     "/bloom/",
+     1
+    ],
+    [
+     "/careers/",
+     1
+    ],
+    [
+     "/cart/",
+     1
+    ],
+    [
+     "/changelog/bloom",
+     1
+    ],
+    [
+     "/changelog/legacy-soothe",
+     1
+    ],
+    [
+     "/changelog/soothe-live",
+     1
+    ],
+    [
+     "/changelog/soothe2",
+     1
+    ],
+    [
+     "/changelog/soothe3",
+     1
+    ],
+    [
+     "/changelog/spiff",
+     1
+    ],
+    [
+     "/contact-support/",
+     1
+    ],
+    [
+     "/download-soothe-live/",
+     1
+    ],
+    [
+     "/downloads/",
+     1
+    ],
+    [
+     "/downloads/soothe2",
+     1
+    ],
+    [
+     "/downloads/spiff",
+     1
+    ],
+    [
+     "/eula/",
+     1
+    ]
    ],
    "sitemapUrls": 164,
    "sample": [
@@ -682,13 +1821,13 @@
     "https://oeksound.com/support/uninstalling-plugins/"
    ],
    "pass1": {
-    "fetched": 7,
-    "products": 0,
-    "discovered": 17
+    "fetched": 6,
+    "products": 4,
+    "discovered": 12
    },
    "pass2": {
-    "fetched": 17,
-    "products": 0,
+    "fetched": 12,
+    "products": 16,
     "discovered": 0
    }
   },
@@ -755,9 +1894,143 @@
     "200 https://www.eventideaudio.com/reply-sitemap38.xml",
     "200 https://www.eventideaudio.com/reply-sitemap39.xml",
     "200 https://www.eventideaudio.com/reply-sitemap40.xml",
-    "200 https://www.eventideaudio.com/reply-sitemap41.xml"
+    "200 https://www.eventideaudio.com/reply-sitemap41.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap42.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap43.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap44.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap45.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap46.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap47.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap48.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap49.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap50.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap51.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap52.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap53.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap54.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap55.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap56.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap57.xml",
+    "200 https://www.eventideaudio.com/reply-sitemap58.xml",
+    "200 https://www.eventideaudio.com/studio-sitemap.xml",
+    "200 https://www.eventideaudio.com/software-sitemap.xml",
+    "200 https://www.eventideaudio.com/broadcast-sitemap.xml",
+    "200 https://www.eventideaudio.com/support-sitemap.xml",
+    "200 https://www.eventideaudio.com/press_release-sitemap.xml",
+    "200 https://www.eventideaudio.com/pedal-sitemap.xml",
+    "200 https://www.eventideaudio.com/download-sitemap.xml",
+    "200 https://www.eventideaudio.com/artist-sitemap.xml",
+    "200 https://www.eventideaudio.com/dealer-sitemap.xml",
+    "200 https://www.eventideaudio.com/category-sitemap.xml",
+    "200 https://www.eventideaudio.com/post_tag-sitemap.xml",
+    "200 https://www.eventideaudio.com/topic-tag-sitemap.xml",
+    "200 https://www.eventideaudio.com/topic-tag-sitemap2.xml",
+    "200 https://www.eventideaudio.com/subjects-sitemap.xml",
+    "200 https://www.eventideaudio.com/author-sitemap.xml"
    ],
-   "sitemapUrls": 53939,
+   "prefixes": [
+    [
+     "/forums/reply",
+     57529
+    ],
+    [
+     "/forums/topic",
+     12613
+    ],
+    [
+     "/forums/topic-tag",
+     1770
+    ],
+    [
+     "/blog/tag",
+     459
+    ],
+    [
+     "/blog/subject",
+     35
+    ],
+    [
+     "/forums/forum",
+     20
+    ],
+    [
+     "/blog/category",
+     18
+    ],
+    [
+     "/blog/author",
+     17
+    ],
+    [
+     "/plug-ins/anthology-ii-tdm",
+     1
+    ],
+    [
+     "/plug-ins/anthology-xi",
+     1
+    ],
+    [
+     "/plug-ins/clockworks-legacy-tdm",
+     1
+    ],
+    [
+     "/plug-ins/fl201-instant-flanger",
+     1
+    ],
+    [
+     "/plug-ins/h949-tdm",
+     1
+    ],
+    [
+     "/plug-ins/ps101-instant-phaser",
+     1
+    ],
+    [
+     "/plug-ins/reverb-2016-bundle",
+     1
+    ],
+    [
+     "/plug-ins/sst-282-space-station",
+     1
+    ],
+    [
+     "/plug-ins/2016-stereo-room",
+     1
+    ],
+    [
+     "/plug-ins/massivepack",
+     1
+    ],
+    [
+     "/plug-ins/quadravox-pthd",
+     1
+    ],
+    [
+     "/plug-ins/h3000-factory",
+     1
+    ],
+    [
+     "/plug-ins/h3000-band-delays",
+     1
+    ],
+    [
+     "/plug-ins/anthology-tdm",
+     1
+    ],
+    [
+     "/plug-ins/reverb-tdm",
+     1
+    ],
+    [
+     "/plug-ins/h3000-factory-tdm",
+     1
+    ],
+    [
+     "/plug-ins/h3000-band-delays-tdm",
+     1
+    ]
+   ],
+   "sitemapUrls": 73776,
    "sample": [
     "https://www.eventideaudio.com/plug-ins/anthology-ii-tdm/",
     "https://www.eventideaudio.com/plug-ins/anthology-xi/",
@@ -787,12 +2060,12 @@
    ],
    "pass1": {
     "fetched": 73,
-    "products": 67,
+    "products": 66,
     "discovered": 194
    },
    "pass2": {
     "fetched": 194,
-    "products": 249,
+    "products": 246,
     "discovered": 0
    }
   },
@@ -810,6 +2083,108 @@
     "200 https://www.soundtoys.com/category-sitemap.xml",
     "200 https://www.soundtoys.com/post_tag-sitemap.xml",
     "200 https://www.soundtoys.com/resource-type-sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/product/gift-card",
+     1
+    ],
+    [
+     "/product/tremolator",
+     1
+    ],
+    [
+     "/product/filterfreak",
+     1
+    ],
+    [
+     "/product/decapitator",
+     1
+    ],
+    [
+     "/product/echoboy",
+     1
+    ],
+    [
+     "/product/little-alterboy",
+     1
+    ],
+    [
+     "/product/panman",
+     1
+    ],
+    [
+     "/product/phasemistress",
+     1
+    ],
+    [
+     "/product/microshift",
+     1
+    ],
+    [
+     "/product/primaltap",
+     1
+    ],
+    [
+     "/product/sie-q",
+     1
+    ],
+    [
+     "/product/spaceblender",
+     1
+    ],
+    [
+     "/product/superplate",
+     1
+    ],
+    [
+     "/product/little-plate",
+     1
+    ],
+    [
+     "/product/devil-loc",
+     1
+    ],
+    [
+     "/product/little-primaltap",
+     1
+    ],
+    [
+     "/product/echoboy-jr",
+     1
+    ],
+    [
+     "/product/little-radiator",
+     1
+    ],
+    [
+     "/product/little-microshift",
+     1
+    ],
+    [
+     "/product/radiator",
+     1
+    ],
+    [
+     "/product/devil-loc-deluxe",
+     1
+    ],
+    [
+     "/product/soundtoys-5",
+     1
+    ],
+    [
+     "/product/effect-rack",
+     1
+    ],
+    [
+     "/product/crystallizer",
+     1
+    ],
+    [
+     "/product/academic-bundle",
+     1
+    ]
    ],
    "sitemapUrls": 296,
    "sample": [
@@ -846,7 +2221,7 @@
    },
    "pass2": {
     "fetched": 650,
-    "products": 129,
+    "products": 153,
     "discovered": 0
    }
   },
@@ -862,6 +2237,108 @@
     "200 https://www.izotope.com/sitemap_pages_1.xml?from=141799719083&to=205321175211",
     "200 https://www.izotope.com/sitemap_collections_1.xml?from=324423352491&to=332728107179",
     "200 https://www.izotope.com/sitemap_metaobject_pages_1.xml"
+   ],
+   "prefixes": [
+    [
+     "/community/blog",
+     769
+    ],
+    [
+     "/pages/release-notes",
+     31
+    ],
+    [
+     "/pages/product-downloads",
+     28
+    ],
+    [
+     "/",
+     1
+    ],
+    [
+     "/products/aurora",
+     1
+    ],
+    [
+     "/products/equinox",
+     1
+    ],
+    [
+     "/products/plasma",
+     1
+    ],
+    [
+     "/products/trash",
+     1
+    ],
+    [
+     "/products/fxeq",
+     1
+    ],
+    [
+     "/products/tonal-balance-control",
+     1
+    ],
+    [
+     "/products/vocalsynth",
+     1
+    ],
+    [
+     "/products/neoverb",
+     1
+    ],
+    [
+     "/products/cascadia",
+     1
+    ],
+    [
+     "/products/mix-master-bundle-advanced",
+     1
+    ],
+    [
+     "/products/insight",
+     1
+    ],
+    [
+     "/products/velvet",
+     1
+    ],
+    [
+     "/products/mix-master-bundle-standard",
+     1
+    ],
+    [
+     "/products/neutron-elements",
+     1
+    ],
+    [
+     "/products/nectar-elements",
+     1
+    ],
+    [
+     "/products/nectar-standard",
+     1
+    ],
+    [
+     "/products/neutron",
+     1
+    ],
+    [
+     "/products/ozone-standard",
+     1
+    ],
+    [
+     "/products/ozone-advanced",
+     1
+    ],
+    [
+     "/products/ozone-elements",
+     1
+    ],
+    [
+     "/products/stutter-edit",
+     1
+    ]
    ],
    "sitemapUrls": 944,
    "sample": [
@@ -890,7 +2367,17 @@
     "https://www.izotope.com/community/blog/what-is-audio-production",
     "https://www.izotope.com/community/blog/music-production-tips-for-beginners",
     "https://www.izotope.com/community/blog/rulebreakers-how-to-use-ozone-modules-for-mixing-and-production"
-   ]
+   ],
+   "pass1": {
+    "fetched": 39,
+    "products": 39,
+    "discovered": 663
+   },
+   "pass2": {
+    "fetched": 19,
+    "products": 58,
+    "discovered": 0
+   }
   },
   {
    "vendor": "Arturia",
@@ -904,6 +2391,108 @@
     "200 https://www.arturia.com/__sitemap__/es.xml",
     "200 https://www.arturia.com/__sitemap__/ja.xml",
     "200 https://www.arturia.com/__sitemap__/zh.xml"
+   ],
+   "prefixes": [
+    [
+     "/fr/products",
+     453
+    ],
+    [
+     "/de/products",
+     453
+    ],
+    [
+     "/es/products",
+     453
+    ],
+    [
+     "/ja/products",
+     453
+    ],
+    [
+     "/zh/products",
+     453
+    ],
+    [
+     "/fr/support",
+     202
+    ],
+    [
+     "/de/support",
+     202
+    ],
+    [
+     "/es/support",
+     202
+    ],
+    [
+     "/ja/support",
+     202
+    ],
+    [
+     "/zh/support",
+     202
+    ],
+    [
+     "/fr/company",
+     191
+    ],
+    [
+     "/de/company",
+     191
+    ],
+    [
+     "/es/company",
+     191
+    ],
+    [
+     "/ja/company",
+     191
+    ],
+    [
+     "/zh/company",
+     191
+    ],
+    [
+     "/support/downloads-manuals",
+     190
+    ],
+    [
+     "/company/press",
+     183
+    ],
+    [
+     "/fr/stories",
+     147
+    ],
+    [
+     "/de/stories",
+     147
+    ],
+    [
+     "/es/stories",
+     147
+    ],
+    [
+     "/ja/stories",
+     147
+    ],
+    [
+     "/zh/stories",
+     147
+    ],
+    [
+     "/products/software-instruments",
+     142
+    ],
+    [
+     "/products/software-effects",
+     90
+    ],
+    [
+     "/products/hardware-synths",
+     87
+    ]
    ],
    "sitemapUrls": 6113,
    "sample": [
@@ -940,85 +2529,6 @@
    }
   },
   {
-   "vendor": "Native Instruments",
-   "requests": [
-    "200 https://www.native-instruments.com/robots.txt",
-    "200 https://www.native-instruments.com/sitemap.xml",
-    "404 https://www.native-instruments.com/sitemap_index.xml",
-    "200 https://www.native-instruments.com/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/ja/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/ja/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/de/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/de/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/zh/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/zh/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/fr/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/fr/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/es/sitemap_products_1.xml?from=11554309210415&to=16017911808303",
-    "200 https://www.native-instruments.com/es/sitemap_products_2.xml?from=16020499792175&to=16238417084719",
-    "200 https://www.native-instruments.com/sitemap_agentic_discovery.xml",
-    "200 https://www.native-instruments.com/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/sitemap_metaobject_pages_1.xml",
-    "200 https://www.native-instruments.com/ja/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/ja/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/ja/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/ja/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/ja/sitemap_metaobject_pages_1.xml",
-    "200 https://www.native-instruments.com/de/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/de/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/de/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/de/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/de/sitemap_metaobject_pages_1.xml",
-    "200 https://www.native-instruments.com/zh/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/zh/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/zh/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/zh/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/zh/sitemap_metaobject_pages_1.xml",
-    "200 https://www.native-instruments.com/fr/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/fr/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/fr/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/fr/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/fr/sitemap_metaobject_pages_1.xml",
-    "200 https://www.native-instruments.com/es/sitemap_pages_1.xml?from=153763184943&to=166682100015",
-    "200 https://www.native-instruments.com/es/sitemap_collections_1.xml?from=496757637423&to=508809871663",
-    "200 https://www.native-instruments.com/es/sitemap_blogs_1.xml",
-    "200 https://www.native-instruments.com/es/sitemap_articles_1.xml",
-    "200 https://www.native-instruments.com/es/sitemap_metaobject_pages_1.xml"
-   ],
-   "sitemapUrls": 10771,
-   "sample": [
-    "https://www.native-instruments.com/products/24k-drums",
-    "https://www.native-instruments.com/products/infamous-flow",
-    "https://www.native-instruments.com/products/indigo-dust",
-    "https://www.native-instruments.com/products/crate-cuts",
-    "https://www.native-instruments.com/products/crystal-daggers",
-    "https://www.native-instruments.com/products/polar-flare",
-    "https://www.native-instruments.com/products/prismatic-bliss",
-    "https://www.native-instruments.com/products/prospect-haze",
-    "https://www.native-instruments.com/products/queensbridge-story",
-    "https://www.native-instruments.com/products/pure-drip",
-    "https://www.native-instruments.com/products/raw-voltage",
-    "https://www.native-instruments.com/products/radiant-horizon",
-    "https://www.native-instruments.com/products/rare-vibrations",
-    "https://www.native-instruments.com/products/sierra-grove",
-    "https://www.native-instruments.com/products/artist-expansion-sasha",
-    "https://www.native-instruments.com/products/satin-looks",
-    "https://www.native-instruments.com/products/solar-breeze",
-    "https://www.native-instruments.com/products/static-friction",
-    "https://www.native-instruments.com/products/midnight-flow",
-    "https://www.native-instruments.com/products/resonant-blaze",
-    "https://www.native-instruments.com/products/rolling-tides",
-    "https://www.native-instruments.com/products/street-swarm",
-    "https://www.native-instruments.com/products/transistor-punch",
-    "https://www.native-instruments.com/products/rhythm-source",
-    "https://www.native-instruments.com/products/true-school"
-   ]
-  },
-  {
    "vendor": "Valhalla DSP",
    "requests": [
     "403 https://valhalladsp.com/products.json?limit=250&page=1",
@@ -1034,6 +2544,76 @@
     "200 https://www.blackroosteraudio.com/sitemap.xml → https://blackroosteraudio.com/sitemap.xml",
     "404 https://www.blackroosteraudio.com/sitemap_index.xml → https://blackroosteraudio.com/sitemap_index.xml",
     "200 https://blackroosteraudio.com/sitemap.xml"
+   ],
+   "prefixes": [
+    [
+     "/en/blogreader",
+     84
+    ],
+    [
+     "/en/newsreader",
+     42
+    ],
+    [
+     "/en/products",
+     36
+    ],
+    [
+     "/en/landing",
+     19
+    ],
+    [
+     "/en/artists",
+     14
+    ],
+    [
+     "/en/support",
+     2
+    ],
+    [
+     "/en/",
+     1
+    ],
+    [
+     "/en/blog",
+     1
+    ],
+    [
+     "/en/news",
+     1
+    ],
+    [
+     "/en/ecoupon",
+     1
+    ],
+    [
+     "/en/about",
+     1
+    ],
+    [
+     "/en/faq",
+     1
+    ],
+    [
+     "/en/edusupport",
+     1
+    ],
+    [
+     "/en/imprint",
+     1
+    ],
+    [
+     "/en/termsofservice",
+     1
+    ],
+    [
+     "/en/privacy",
+     1
+    ],
+    [
+     "/en/registration",
+     1
+    ]
    ],
    "sitemapUrls": 208,
    "sample": [
@@ -1073,18 +2653,6 @@
     "products": 35,
     "discovered": 0
    }
-  },
-  {
-   "vendor": "Kush Audio",
-   "requests": [
-    "403 https://www.kushaudio.com/products.json?limit=250&page=1 → https://www.hugedomains.com/domain_profile.cfm?d=kushaudio.com",
-    "403 https://www.kushaudio.com/wp-json/wc/store/v1/products?per_page=100&page=1 → https://www.hugedomains.com/domain_profile.cfm?d=kushaudio.com",
-    "200 https://www.kushaudio.com/robots.txt",
-    "403 https://www.kushaudio.com/sitemap.xml → https://www.hugedomains.com/domain_profile.cfm?d=kushaudio.com",
-    "403 https://www.kushaudio.com/sitemap_index.xml → https://www.hugedomains.com/domain_profile.cfm?d=kushaudio.com"
-   ],
-   "sitemapUrls": 0,
-   "sample": []
   },
   {
    "vendor": "Positive Grid",
@@ -1131,6 +2699,108 @@
     "200 https://www.positivegrid.com/sitemap/it-eu.xml",
     "200 https://www.positivegrid.com/sitemap/ja-eu.xml"
    ],
+   "prefixes": [
+    [
+     "/de-us/blogs",
+     253
+    ],
+    [
+     "/fr-us/blogs",
+     253
+    ],
+    [
+     "/es-us/blogs",
+     253
+    ],
+    [
+     "/it-us/blogs",
+     253
+    ],
+    [
+     "/ja-us/blogs",
+     253
+    ],
+    [
+     "/ca/blogs",
+     253
+    ],
+    [
+     "/de-ca/blogs",
+     253
+    ],
+    [
+     "/fr-ca/blogs",
+     253
+    ],
+    [
+     "/es-ca/blogs",
+     253
+    ],
+    [
+     "/it-ca/blogs",
+     253
+    ],
+    [
+     "/ja-ca/blogs",
+     253
+    ],
+    [
+     "/uk/blogs",
+     253
+    ],
+    [
+     "/de-uk/blogs",
+     253
+    ],
+    [
+     "/fr-uk/blogs",
+     253
+    ],
+    [
+     "/es-uk/blogs",
+     253
+    ],
+    [
+     "/it-uk/blogs",
+     253
+    ],
+    [
+     "/ja-uk/blogs",
+     253
+    ],
+    [
+     "/au/blogs",
+     253
+    ],
+    [
+     "/de-au/blogs",
+     253
+    ],
+    [
+     "/fr-au/blogs",
+     253
+    ],
+    [
+     "/es-au/blogs",
+     253
+    ],
+    [
+     "/it-au/blogs",
+     253
+    ],
+    [
+     "/ja-au/blogs",
+     253
+    ],
+    [
+     "/jp/blogs",
+     253
+    ],
+    [
+     "/en-jp/blogs",
+     253
+    ]
+   ],
    "sitemapUrls": 17352,
    "sample": [
     "https://www.positivegrid.com/products/spark-control",
@@ -1161,8 +2831,8 @@
    ],
    "pass1": {
     "fetched": 800,
-    "products": 146,
-    "discovered": 55063
+    "products": 139,
+    "discovered": 48989
    }
   }
  ]
