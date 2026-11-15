@@ -143,7 +143,7 @@ async function viaSitemap(v) {
       const isListing = (v.productsFrom === 'start' && pass === 0) || starts.includes(own) || !x.p.isProduct && (/(plug-?ins?|series|collection|bundles?)$|^(all|plug-?ins? for|top|best)\b/i.test(x.p.name || '') || others.length >= 30);
       if (pass === 0) queue.push(...others); // découverte : liens vers d'autres fiches
       if (isListing || (!v.trustInclude && !x.p.isProduct && v.productsFrom !== 'start') || !x.p.name) continue;
-      out.push({ name: x.p.name, url: x.p.canonical || x.r.url, image: x.p.image, text: [x.p.description, x.p.keywords, x.p.bodyText].join('\n'), description: (x.p.description || '').slice(0, 220), source: 'sitemap' });
+      out.push({ name: x.p.name, url: x.p.canonical || x.r.url, image: x.p.image, images: x.p.images, text: [x.p.description, x.p.keywords, x.p.bodyText].join('\n'), description: (x.p.description || '').slice(0, 220), source: 'sitemap' });
     }
     if (DIAG) DIAG[`pass${pass + 1}`] = { fetched: batch.length, products: out.length, discovered: queue.length };
   }
@@ -192,6 +192,11 @@ async function main() {
       .filter((it) => !req.length || req.some((r) => r.test(`${it.name} ${it.url}`)))
       .filter((it) => !(v.excludeNames || []).some((n) => new RegExp(n, 'i').test(it.name)))
       .filter((it) => !isOutOfScope(it.name, `${it.productType || ''} ${it.description || ''}`));
+    // Un même visuel sur 3 fiches ou plus du fabricant = image générique : on prend l'image suivante propre à la page
+    const imgCount = {}; items.forEach((it) => { if (it.image) imgCount[it.image] = (imgCount[it.image] || 0) + 1; });
+    for (const it of items) {
+      if (it.image && imgCount[it.image] >= 3) it.image = (it.images || []).find((u) => (imgCount[u] || 0) < 3) || null;
+    }
     const ok = items.length > 0;
     if (!ok) {
       const kept = previous.plugins.filter((p) => p.vendor === v.name);

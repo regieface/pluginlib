@@ -51,3 +51,16 @@ test('classement contextuel', () => {
   assert.ok(isOutOfScope('Analog Lab V Synthesizer')); assert.ok(isOutOfScope('Reverb Plugins')); assert.ok(isOutOfScope('KStrip | Free Trial'));
   assert.ok(!isOutOfScope('SSL Bus Compressor'));
 });
+
+test('visuel : attributs sans guillemets et capture GUI préférée (structure Waves)', () => {
+  const html = `<head><meta property=og:image content=https://media.wavescdn.com/images/products/plugins/share/cla-echosphere.jpg><link rel=canonical href=https://www.waves.com/plugins/cla-echosphere></head><main><img src="https://media.wavescdn.com/images/products/plugins/hero/cla-echosphere.png?fit=max" alt="CLA EchoSphere main banner"><img src="https://media.wavescdn.com/images/products/plugins/max/cla-echosphere.png?h=300" alt="CLA EchoSphere main image"><img src="/logo.svg"></main>`;
+  const p = extractPage(html, 'https://www.waves.com/plugins/cla-echosphere', 'Waves');
+  assert.equal(p.image, 'https://media.wavescdn.com/images/products/plugins/max/cla-echosphere.png?h=300');
+  assert.equal(p.canonical, 'https://www.waves.com/plugins/cla-echosphere');
+});
+
+test('visuel : page sans og:image (structure Arturia)', () => {
+  const html = `<main><img src="https://medias.arturia.net/images/products/comp-fet76/content-1.jpg" class="w-100"><img src="https://medias.arturia.net/images/products/fx-collection-6/fx-collection-pro.png"></main>`;
+  const p = extractPage(html, 'https://www.arturia.com/products/software-effects/comp-fet76/overview', 'Arturia');
+  assert.equal(p.image, 'https://medias.arturia.net/images/products/comp-fet76/content-1.jpg');
+});
