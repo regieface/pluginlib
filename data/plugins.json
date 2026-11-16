@@ -63603,6 +63603,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GChorus",
     "excerpt": "GVST GChorus"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GChorus",
+    "hash": "c73bf59e049f0d56ee328e35d6fdc1baee331ea0f8592f1826fa191d211f9efc",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.062Z"
    }
   },
   {
@@ -63652,6 +63658,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GClip",
     "excerpt": "GVST GClip"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GClip",
+    "hash": "9c08bbf3643aeae6b2bf286f46bde046f6cd33d39653b712e4dcd4059898aeef",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.063Z"
    }
   },
   {
@@ -63706,6 +63718,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GComp",
     "excerpt": "GVST GComp"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GComp",
+    "hash": "ed60dc6e04f2ef631422067281cd20abb9f65beb11f52d7d97762a098d1fdc3a",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.064Z"
    }
   },
   {
@@ -63810,6 +63828,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GDelay",
     "excerpt": "GVST GDelay"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GDelay",
+    "hash": "2cc92aa8427052148ed2dd90bfb7566b22658989a7fe089408d4568bff9fd72e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.087Z"
    }
   },
   {
@@ -63910,7 +63934,13 @@
     "status": "unconfirmed",
     "originalCategory": "utility"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GFader",
+    "hash": "f62bdfbf7126b41d6f10cd730663ed42e56e6c45eb9b4c14e0abe96a6dafe209",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.087Z"
+   }
   },
   {
    "id": "gvst--gvst-gform",
@@ -64008,7 +64038,13 @@
     "status": "unconfirmed",
     "originalCategory": "utility"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GGain",
+    "hash": "0e1eaf1d30513bd154ffc87cccf8a4ec212a68df7d9eded9036a1d54e5657525",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.088Z"
+   }
   },
   {
    "id": "gvst--gvst-ggate",
@@ -64055,6 +64091,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GGate",
     "excerpt": "GVST GGate"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GGate",
+    "hash": "4a0806ec07e3760f0a774917086f60febc535f79b0164def3d8d6341e5bae674",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.089Z"
    }
   },
   {
@@ -64096,7 +64138,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GGrain",
+    "hash": "b28a224c80f81fba3f39b808288cdfec2064b3d5c0229431c7b27ad76e196d41",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.089Z"
+   }
   },
   {
    "id": "gvst--gvst-ghi",
@@ -64139,7 +64187,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GHi",
+    "hash": "9e34c32da1a2c4033ef7919213f2173b570ac3cd4feaadb084d29bddb7a7bd8e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.090Z"
+   }
   },
   {
    "id": "gvst--gvst-glfo",
@@ -64180,7 +64234,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GLFO",
+    "hash": "9992506e5bcc7c05a50f6468c2e43c49573a789b69bfbe503e6ea20e61676074",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.091Z"
+   }
   },
   {
    "id": "gvst--gvst-gloop",
@@ -64223,7 +64283,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GLoop",
+    "hash": "f861e747a6881a20ba3b4fbd78815ae724088dacc6312f4393b0810268eefada",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.092Z"
+   }
   },
   {
    "id": "gvst--gvst-glow",
@@ -64380,7 +64446,13 @@
     "status": "unconfirmed",
     "originalCategory": "stereo"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GMonoBass",
+    "hash": "d563696a83ae057f15259033cd7fd0b65255eda134c2b38c78c8745e99511828",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.092Z"
+   }
   },
   {
    "id": "gvst--gvst-gmulti",
@@ -64478,7 +64550,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GNormal",
+    "hash": "fbdb8c5e7a71724dde2aa66d8072da1d2098dc30d045e5f18e72f7ceffd3c207",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.093Z"
+   }
   },
   {
    "id": "gvst--gvst-gpitchgate",
@@ -64525,6 +64603,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GPitchGate",
     "excerpt": "GVST GPitchGate"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GPitchGate",
+    "hash": "62be56cf55895cc03292a405259cbcec3a0f8b5a30d6607cbe6b35e53f79a2f4",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.094Z"
    }
   },
   {
@@ -64763,7 +64847,13 @@
     "status": "unconfirmed",
     "originalCategory": "pitch"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GSnap",
+    "hash": "0d6d63588ced017caceeee44cd272eef4133d2e3850cc91bc6d56b91b562f655",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.095Z"
+   }
   },
   {
    "id": "gvst--gvst-gspace",
@@ -64936,6 +65026,12 @@
     "method": "product-family",
     "url": "https://gvst.uk/Downloads/GTriChorus",
     "excerpt": "GVST GTriChorus"
+   },
+   "presentationSource": {
+    "url": "https://gvst.uk/Downloads/GTriChorus",
+    "hash": "b14827968e8708dc7e3e1895b31872d731535fac13055e3ba4e0f99b99c0b57a",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.095Z"
    }
   },
   {
@@ -68851,7 +68947,13 @@
     "status": "unconfirmed",
     "originalCategory": "delay"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://ikmultimedia.com/en-us/products/trtascamportaone",
+    "hash": "e55379c36ba89f15abaeee2de3accdf48c6a611c9a50936897e1ce84712c6f9e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.119Z"
+   }
   },
   {
    "id": "ik-multimedia--teac-a-3340s",
@@ -68912,7 +69014,13 @@
     "status": "unconfirmed",
     "originalCategory": "saturation"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://ikmultimedia.com/en-us/products/trteaca3340s",
+    "hash": "443e46253b25c3e000171fb736473bfc6143af8c1f61c2198f07a56ba841be29",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.137Z"
+   }
   },
   {
    "id": "ik-multimedia--teac-a-6100-mkii",
@@ -68973,7 +69081,13 @@
     "status": "unconfirmed",
     "originalCategory": "tape"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://ikmultimedia.com/en-us/products/trteaca6100",
+    "hash": "e1c2b139de4f860e3e3745c37fa15e942f72d7bda2d1ff7185425fcdb00bf4eb",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.160Z"
+   }
   },
   {
    "id": "ik-multimedia--the-farm-stone-room",
@@ -81477,6 +81591,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=art_delay",
     "excerpt": "Artistic Delay"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=art_delay_mono",
+    "hash": "5c850ce316f47ef4762c0bbdebd4ac4aeb999d3c5b79bdeb5521d7a1d46824db",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.427Z"
    }
   },
   {
@@ -81531,6 +81651,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=autogain",
     "excerpt": "Automatic Gain Control"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=autogain_mono",
+    "hash": "32feb56d66253d49e3803cdc9a2803fe5abf87166c7928c97befcffaba440d56",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.438Z"
    }
   },
   {
@@ -81579,7 +81705,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=beat_breather_mono",
+    "hash": "47d6594bb34aa524c7bf27bb2c186e2bae2e780de8a4cf165f7144f78b6afb12",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.427Z"
+   }
   },
   {
    "id": "lsp-plugins--chorus",
@@ -81633,6 +81765,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=chorus",
     "excerpt": "Chorus"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=chorus_mono",
+    "hash": "c749a67a013147a3c508d2e14d219c1b5d4e03118cc09ed8ba3541a0474a60b7",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.435Z"
    }
   },
   {
@@ -81705,6 +81843,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=clipper",
     "excerpt": "Clipper"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=clipper_mono",
+    "hash": "c149dbbea021c7e8f0c9e4bd1cb894cb28264e25ba57eba2d12cb6d404e81cdd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.436Z"
    }
   },
   {
@@ -81759,6 +81903,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=comp_delay",
     "excerpt": "Compensation Delay "
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=comp_delay_mono",
+    "hash": "9fa0c96bbd86547d9bcfee6ab2c5f881d182312374cf44f95a95d788b5942d45",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.425Z"
    }
   },
   {
@@ -81813,6 +81963,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=compressor",
     "excerpt": "Compressor"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=compressor_lr",
+    "hash": "cb7e889d49a54729a32f4e80e01a4f04f38e2db5cb1af8156076c6d90ccb815d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.467Z"
    }
   },
   {
@@ -81861,7 +82017,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=crossover_lr",
+    "hash": "d0829b4b0d95047b881622e4518a8f6c9c94ad01830048fc06510ecec5c14601",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.468Z"
+   }
   },
   {
    "id": "lsp-plugins--deesser",
@@ -81915,6 +82077,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=deesser",
     "excerpt": "Deesser"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=deesser_mono",
+    "hash": "def10874aa011c54cfd8ac0d1e62a7374698f41624b6b416461906d0ff97d5d0",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.466Z"
    }
   },
   {
@@ -81963,7 +82131,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=dyna_processor_lr",
+    "hash": "9c53d408be87552f581bdf0e9a3cff131cc74c29e6ffe97bd5ec1fd12e68668e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.472Z"
+   }
   },
   {
    "id": "lsp-plugins--expander",
@@ -82017,6 +82191,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=expander",
     "excerpt": "Expander"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=expander_lr",
+    "hash": "4d899879489a81c7fb7098e15499711b1392b73bfa6dd6454af44edff4ee13a1",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.471Z"
    }
   },
   {
@@ -82071,6 +82251,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=filter",
     "excerpt": "Filter"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=filter_mono",
+    "hash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.474Z"
    }
   },
   {
@@ -82125,6 +82311,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=flanger",
     "excerpt": "Flanger"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=flanger_mono",
+    "hash": "176fe79ac91b64e2aafa94c141177e8e74c51cc55bfe5ff570974dc02ace7f74",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.529Z"
    }
   },
   {
@@ -82179,6 +82371,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=gate",
     "excerpt": "Gate"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=gate_lr",
+    "hash": "99ba5df8be13c0b40a8b526c52d74cf79d07aedc8bda559db58a789ec8675b12",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.534Z"
    }
   },
   {
@@ -82233,6 +82431,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=gott_compressor",
     "excerpt": "GOTT Compressor"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=gott_compressor_lr",
+    "hash": "ec857639099c73ecb9d9e084699154f4a50b870a33db2ea2b4bbd595d14c48e7",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.540Z"
    }
   },
   {
@@ -82297,6 +82501,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=graph_equalizer",
     "excerpt": "Graphic Equalizer"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=graph_equalizer_x16_lr",
+    "hash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.530Z"
    }
   },
   {
@@ -82345,7 +82555,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=impulse_responses_mono",
+    "hash": "e4fafe2daa934a9b9de825addf5990fa53484f1cdc31ca34b8b65cb0c56644e9",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.534Z"
+   }
   },
   {
    "id": "lsp-plugins--impulse-reverb",
@@ -82399,6 +82615,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=impulse_reverb",
     "excerpt": "Impulse Reverb"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=impulse_reverb_mono",
+    "hash": "6eec0216f1a928ad219a3590ad599ddac8aeec7293f732a3700161bfc41a0166",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.529Z"
    }
   },
   {
@@ -82453,6 +82675,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=latency_meter",
     "excerpt": "Latency Meter"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=latency_meter",
+    "hash": "5c8e824ea334e3ce3dc7378f4c2a7b30ede64d0620b570ec20e2df8aed81ebb7",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.565Z"
    }
   },
   {
@@ -82507,6 +82735,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=limiter",
     "excerpt": "Limiter"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=limiter_mono",
+    "hash": "03172bd47c50bc88f8fb0f7fb5a83691c1c8486f03842bfbdcaab016ca2115f0",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.566Z"
    }
   },
   {
@@ -82555,7 +82789,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=loud_comp_mono",
+    "hash": "01f0a941377ff15e30f365e63c0e583954f5143d29f2b190672aa4da6c19a6fe",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.563Z"
+   }
   },
   {
    "id": "lsp-plugins--matcher",
@@ -82603,7 +82843,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=matcher_mono",
+    "hash": "75da5f217da1a47297f38cec1c44116c26ec7fd44c1d8154fda07ef668e45201",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.568Z"
+   }
   },
   {
    "id": "lsp-plugins--mixer",
@@ -82651,7 +82897,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mixer_x16_mono",
+    "hash": "4cedb2ac17ac505c274feb4a52c0284c7692d5e678d31d4beae03fbae5fcb75e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.570Z"
+   }
   },
   {
    "id": "lsp-plugins--multiband-clipper",
@@ -82723,6 +82975,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_clipper",
     "excerpt": "Multiband Clipper"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_clipper_mono",
+    "hash": "aaa439e8d2a491dce8d2fa1f9a07a89e1f6bec90fe15699c4b200cee5dbf4725",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.572Z"
    }
   },
   {
@@ -82777,6 +83035,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_compressor",
     "excerpt": "Multiband Compressor"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_compressor_lr",
+    "hash": "edd93b10faf86836419abc62eb3845ce59daa1c8a26532d15ea80a8e41088ba2",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.610Z"
    }
   },
   {
@@ -82831,6 +83095,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_dyna_processor",
     "excerpt": "Multiband Dynamics Processor"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_dyna_processor_lr",
+    "hash": "c2d3cb3f2dc88bf10af51cb386ec103123a267151ea6f26f76a40211bc879cfe",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.612Z"
    }
   },
   {
@@ -82885,6 +83155,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_expander",
     "excerpt": "Multiband Expander"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_expander_lr",
+    "hash": "3584fa4516e15a7e36f4c2cfeca2fe15b262d47114dab08d8f7141021a2a43aa",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.614Z"
    }
   },
   {
@@ -82939,6 +83215,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_gate",
     "excerpt": "Multiband Gate"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_gate_lr",
+    "hash": "034454efccdeaa368da15eda1da728d29318893a76f5f39ee255b903ca3fecde",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.613Z"
    }
   },
   {
@@ -82993,6 +83275,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_limiter",
     "excerpt": "Multiband Limiter"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_limiter_mono",
+    "hash": "c5bf3308ea6a0643150d3077f1e1271a736e1b43258541122dc964ef4926e849",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.618Z"
    }
   },
   {
@@ -83043,7 +83331,13 @@
     "status": "unconfirmed",
     "originalCategory": "multiband"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=mb_ringmod_sc_mono",
+    "hash": "0cc71f840c3a701b59200988861aa50d0ee42382faa02b7def9aa5cd9cdd501f",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.621Z"
+   }
   },
   {
    "id": "lsp-plugins--multisampler",
@@ -83098,6 +83392,12 @@
     "url": "https://lsp-plug.in/?page=manuals&section=multisampler_x12",
     "excerpt": "Instruments: Multisampler x12. MIDI events trigger sample playback.",
     "checkedAt": "2026-11-15T21:48:28.712Z"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=multisampler_x12_do",
+    "hash": "e359c904cf03c2127129222d1375492d02170450dfad14bef180f39dffde65b4",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.653Z"
    }
   },
   {
@@ -83146,7 +83446,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=noise_generator_x1",
+    "hash": "9a460ac9ec00d6e3f72a56c4e47c27fe52b9baad47e59b5f78b1d886073493bc",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.654Z"
+   }
   },
   {
    "id": "lsp-plugins--oscillator",
@@ -83194,7 +83500,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=oscillator_mono",
+    "hash": "f3bdd3c81a851ace4eeae168496020758f6c2f34131d47c851f99ca0700cfd0e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.651Z"
+   }
   },
   {
    "id": "lsp-plugins--oscilloscope",
@@ -83248,6 +83560,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=oscilloscope",
     "excerpt": "Oscilloscope"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=oscilloscope_x1",
+    "hash": "fa4e43c157c616aa0f90ca15e47313c1948d87103f3d1c5d2f305c0f1fad4b69",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.658Z"
    }
   },
   {
@@ -83312,6 +83630,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=para_equalizer",
     "excerpt": "Parametric Equalizer"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=para_equalizer_x16_lr",
+    "hash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.656Z"
    }
   },
   {
@@ -83360,7 +83684,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=phase_detector",
+    "hash": "3b971a30ffb8addc00b72e6ba2d0960efbbb4bbb5d0203a63ae6416f8b1c6fd5",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.659Z"
+   }
   },
   {
    "id": "lsp-plugins--phaser",
@@ -83414,6 +83744,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=phaser",
     "excerpt": "Phaser"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=phaser_mono",
+    "hash": "b6ddef8666e4aeee2927bb0bd09e126ef7940bdb3ad85109bc1d2b39cb25a50f",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.688Z"
    }
   },
   {
@@ -83462,7 +83798,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=profiler_mono",
+    "hash": "c8d582e4368a4a88845d47559c5601f3dcd773fff273ea42232a319735029109",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.690Z"
+   }
   },
   {
    "id": "lsp-plugins--referencer",
@@ -83510,7 +83852,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=referencer_mono",
+    "hash": "7498c67ce5d81b123502bac83a865ae2e226a8e64d60b41b9fa8909c4feaac12",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.700Z"
+   }
   },
   {
    "id": "lsp-plugins--return",
@@ -83558,7 +83906,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=return_mono",
+    "hash": "d026e45719cc52ae2089bff8cd4190250fcf2974bcfd8fde9d0252a1d8b6d6f7",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.701Z"
+   }
   },
   {
    "id": "lsp-plugins--ring-modulated-sidechain",
@@ -83608,7 +83962,13 @@
     "status": "unconfirmed",
     "originalCategory": "modulation"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=ringmod_sc_mono",
+    "hash": "05d745ab70b96fe69a7433e0e8a984f31bb699e1ac27e3db9d50f94997abca92",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.693Z"
+   }
   },
   {
    "id": "lsp-plugins--room-builder",
@@ -83658,7 +84018,13 @@
     "status": "unconfirmed",
     "originalCategory": "reverb"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=room_builder_mono",
+    "hash": "b3dd078ffbcda8b21257f81948befb2c77b949ca120a66f7476e4ed95c8aab07",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.704Z"
+   }
   },
   {
    "id": "lsp-plugins--send",
@@ -83706,7 +84072,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=send_mono",
+    "hash": "c8bcde5c2f92e1a94e757bed877bd02d1e53d2dbdbc1961c386aaf24d5a711f5",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.730Z"
+   }
   },
   {
    "id": "lsp-plugins--slap-back-delay",
@@ -83760,6 +84132,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=slap_delay",
     "excerpt": "Slap-back Delay"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=slap_delay_mono",
+    "hash": "7ed7338212439d2f35b3340a9d91d2240a38719809c76d0f72ac12ac374d8d0d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.730Z"
    }
   },
   {
@@ -83814,6 +84192,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=spectrum_analyzer",
     "excerpt": "Spectrum Analyzer"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=spectrum_analyzer_x1",
+    "hash": "cc4dbfaa694335001e0b716c1472616ad2be4e97ae6ac0ef9174b0deaa378efb",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.731Z"
    }
   },
   {
@@ -83868,6 +84252,12 @@
     "method": "product-family",
     "url": "https://lsp-plug.in/ajax/bundle.php?bundle=surge_filter",
     "excerpt": "Surge Filter"
+   },
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=surge_filter_mono",
+    "hash": "a534fe6356632548814888c37d6c2b3dbaff6c6170ceffd1a43b0bf4b5fbc68f",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.757Z"
    }
   },
   {
@@ -83916,7 +84306,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://lsp-plug.in/?page=manuals&section=trigger_midi_mono",
+    "hash": "2a407e5f49c8dd8449fe46014a5b8d856dbdda07781bd194969499a5d9fadb9f",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.757Z"
+   }
   },
   {
    "id": "mcdsp--4020-retro-equalizer",
@@ -83996,6 +84392,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/4020-retro/",
     "excerpt": "4020 Retro Equalizer"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/4020-retro/",
+    "hash": "eb632d00bbc9f1a4aadd96d37175500dfaa465b51d8178b55fd9c0bd96ed7c53",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.712Z"
    }
   },
   {
@@ -84077,6 +84479,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/4030-retro/",
     "excerpt": "4030 Retro Compressor"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/4030-retro/",
+    "hash": "1a93ca62f2f72c7e8b4a2c7f8768676825a563fd415f5808db0b0bdb5500fdea",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.718Z"
    }
   },
   {
@@ -84157,6 +84565,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/4040-retro/",
     "excerpt": "4040 Retro Limiter"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/4040-retro/",
+    "hash": "c8237dee2f279c49d1f89bf881615eec1af296fda05bfb7fa6b182636012eb76",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.723Z"
    }
   },
   {
@@ -84236,6 +84650,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/6020-ultimate/",
     "excerpt": "6020 Ultimate EQ"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/6020-ultimate/",
+    "hash": "d4d179c5f815769fa06c502e85850e93f3ec15bb60936874b3671701e6d12453",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.729Z"
    }
   },
   {
@@ -84316,6 +84736,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/6030-ultimate/",
     "excerpt": "6030 Ultimate Compressor"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/6030-ultimate/",
+    "hash": "bc335c2271458865de96ad0973b71bb4a094164cc5422a4e8587414d8077c197",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.736Z"
    }
   },
   {
@@ -84395,6 +84821,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/6034-ultimate/",
     "excerpt": "6034 Multi-Band Compressor"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/6034-ultimate/",
+    "hash": "530afc51660b8b115ab540b241f68c41288ddeb80f4858237f867a6b6d620cba",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.742Z"
    }
   },
   {
@@ -84474,6 +84906,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/6050-ultimate-channel-strip/",
     "excerpt": "6050 Ultimate Channel Strip"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/6050-ultimate-channel-strip/",
+    "hash": "3df31f78db8838d51af5cb76952855fbdd608012a838ef2ed15717ee1305e431",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.752Z"
    }
   },
   {
@@ -84553,6 +84991,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/ae400/",
     "excerpt": "AE400 Active EQ"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/ae400/",
+    "hash": "1c232cad25c85426c7a9f20ca94234680ebe364247bdce02bd580eb9cc4a60c3",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.746Z"
    }
   },
   {
@@ -84633,6 +85077,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/ae600/",
     "excerpt": "AE600 Active EQ"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/ae600/",
+    "hash": "fc12ce32f499ca8424a35ae2b984a1d6c14a8f43ded275414981646d05f7288c",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.756Z"
    }
   },
   {
@@ -84707,7 +85157,13 @@
     "status": "unconfirmed",
     "originalCategory": "channel"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/analog-channel/",
+    "hash": "3472c1d55135e65ac89f72cfd8d853fb1ed5f4c5d7692ce95fb67297f30a7f8e",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.761Z"
+   }
   },
   {
    "id": "mcdsp--channel-g",
@@ -84785,7 +85241,13 @@
     "status": "unconfirmed",
     "originalCategory": "channel"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/channel-g/",
+    "hash": "a1d349c281b75fe8a36a86e47e4a9c304d2c1cda8ff181170e10f3a96dc4ebaa",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.764Z"
+   }
   },
   {
    "id": "mcdsp--channel-g-compact",
@@ -84862,7 +85324,13 @@
     "status": "unconfirmed",
     "originalCategory": "channel"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/channel-g-compact/",
+    "hash": "b09b29f62051c23f74ae7894a1f79431bcda86059b509cd379d86f0babfef1cd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.770Z"
+   }
   },
   {
    "id": "mcdsp--channel-g-surround",
@@ -84936,7 +85404,13 @@
     "status": "unconfirmed",
     "originalCategory": "channel"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/channel-g-surround/",
+    "hash": "d020cb603fe99f3a2ce8c4b89af69fc03d3651697d10f2b8a160072e728aadc3",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.767Z"
+   }
   },
   {
    "id": "mcdsp--compressorbank",
@@ -85016,6 +85490,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/compressor-bank/",
     "excerpt": "CompressorBank"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/compressor-bank/",
+    "hash": "75ced41529634a0914374feaf70d6a08a089b48404f3efa99fdd4ee4d224ec1a",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.773Z"
    }
   },
   {
@@ -85094,6 +85574,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/de555/",
     "excerpt": "DE555 Advanced De-Esser"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/de555/",
+    "hash": "ecc448d055fbc8c25510c82e7f5cf267a430b648e948f4a3fe2d8d0f538c53b0",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.777Z"
    }
   },
   {
@@ -85174,6 +85660,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/filterbank/",
     "excerpt": "FilterBank"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/filterbank/",
+    "hash": "f32b8fea0168580e83b1f272e52bd333f31e3d658e79d55d50337279a400d833",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.780Z"
    }
   },
   {
@@ -85246,7 +85738,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/futzbox/",
+    "hash": "a3f9479ee272d399668669c6479681caede96e65f29297e1a8defd520df4423d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.783Z"
+   }
   },
   {
    "id": "mcdsp--futzverb",
@@ -85332,7 +85830,13 @@
     "status": "unconfirmed",
     "originalCategory": "reverb"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/futzverb/",
+    "hash": "f3c757510f5b6d0bef5511020faa80d6f96bb21582e13f8d965c856b89838f69",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.787Z"
+   }
   },
   {
    "id": "mcdsp--mc2000-multi-band-compressor",
@@ -85410,6 +85914,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/mc2000/",
     "excerpt": "MC2000 Multi-Band Compressor"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/mc2000/",
+    "hash": "63c93132a54c6e0c769e0a8261093d4c1867f30a3230ceaaf22d7699500e4a7d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.790Z"
    }
   },
   {
@@ -85471,6 +85981,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/ml4000/",
     "excerpt": "ML4000 Mastering Limiter"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/ml4000/",
+    "hash": "8dc236afe0b62f3ce1c43606fdd1afdbfcc5c8003661de64fd02b32036eaca45",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.793Z"
    }
   },
   {
@@ -85530,6 +86046,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/ml8000/",
     "excerpt": "ML8000 Advanced Limiter"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/ml8000/",
+    "hash": "247778307347026abc149e4a4b85bd59ef16ed4ed9aec25e5a13a3b7d06bf27d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.796Z"
    }
   },
   {
@@ -85608,6 +86130,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/nf575/",
     "excerpt": "NF575 Noise Filter"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/nf575/",
+    "hash": "9166e4ebe1088a8bc7aa7da9cd1a912ee6664f19eab7145be69972970f6df2c8",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.799Z"
    }
   },
   {
@@ -85669,6 +86197,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/nr800/",
     "excerpt": "NR800 Noise Reduction"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/nr800/",
+    "hash": "f76e1ef7b7e72407f88aece386c92fa60d517d4ca7662aa5c1a06a46d7b067b8",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.802Z"
    }
   },
   {
@@ -85750,6 +86284,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/revolver/",
     "excerpt": "Revolver Convolution Reverb"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/revolver/",
+    "hash": "c1711ead787fac0010aef5bbfd30a3b6c783d5555e841351388904c471a150dd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.805Z"
    }
   },
   {
@@ -85822,7 +86362,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/sa-2/",
+    "hash": "4a8c009fd98fc1e05d31c4138126854f444bbd61422d3b0418bfa9340854c2a4",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.808Z"
+   }
   },
   {
    "id": "mcdsp--sa-3-spectral-processor",
@@ -85889,7 +86435,13 @@
     "status": "unconfirmed",
     "originalCategory": "analysis"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/sa-3/",
+    "hash": "c5694cd9e7539cd945c56111686572b2ac8c71dfe0646b35403c4863d5627e66",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.811Z"
+   }
   },
   {
    "id": "mcdsp--spc2000-serial-parallel-compressor",
@@ -85967,6 +86519,12 @@
     "method": "product-family",
     "url": "https://mcdsp.com/plugin-index/spc2000/",
     "excerpt": "SPC2000 Serial/Parallel Compressor"
+   },
+   "presentationSource": {
+    "url": "https://mcdsp.com/plugin-index/spc2000/",
+    "hash": "5779e14fbc44ecf15695aab652e8b52785b1a0f008710ab5234f84b6ea1b8af4",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.814Z"
    }
   },
   {
@@ -101457,8 +102015,9 @@
    },
    "presentationSource": {
     "url": "https://www.plugin-alliance.com/products/g8",
-    "hash": "8d5f7e520401f3c77bdd4948d38aa26172daba9cdc4446549201f1b38e377afa",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "4eba8a96338812f43b4070fd120c7f606ae6fb47eeba61dcb238a646a602c4a4",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.825Z"
    }
   },
   {
@@ -115399,8 +115958,9 @@
    },
    "presentationSource": {
     "url": "https://www.siraudiotools.com/product.php?id=standardclip",
-    "hash": "3f235861880f755b37800ab8600adac213988ec30052983252cdcdec2c6b5425",
-    "checkedAt": "2026-11-15T17:46:11.008Z"
+    "hash": "8257cdccb2d0071231f9c03c2c8a53393d6d0930cfe31ad6e76888b8d622004d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.817Z"
    }
   },
   {
@@ -125224,8 +125784,9 @@
    },
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/harrison-deesser",
-    "hash": "5d71f14065b7e25b209b1de9df3d938c63c9af508a1a94212ec221f3a266942a",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "decad823add6210954cdb80e462f68b7c7357be4586ac4427eea6419ecc8e4bd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.829Z"
    }
   },
   {
@@ -125579,7 +126140,13 @@
     "status": "unconfirmed",
     "originalCategory": "comp"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://store.solidstatelogic.com/plug-ins/harrison-livetrax-3",
+    "hash": "56d0178236e8fe6bcfe4702bb8f61e5e6e7d29f7b6de0ffc1bf144b9afd914d2",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.833Z"
+   }
   },
   {
    "id": "solid-state-logic--harrison-lookahead-compressor",
@@ -125984,8 +126551,9 @@
    },
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/harrison-mpc-channel-strip",
-    "hash": "25802b9d2482f95978430558843c22b94d237341aa74763c89ab331c5bdd1878",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "2fae9e77b76199c10e185c5e73257aa6705d4e81535f96fd216bae44fd5dcaa3",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.847Z"
    }
   },
   {
@@ -126205,8 +126773,9 @@
    },
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/harrison-multi-band-compressor",
-    "hash": "70220eb49fd4160f70137695ee3f897022b93e0883d34c73a0f8e53a81630ea9",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "d1a2405d3b0ca3ca50766fe1da1a64d5eac49ce4fab7e5fe97426d5c701bbaa8",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.851Z"
    }
   },
   {
@@ -127646,8 +128215,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/ssl-lmc",
-    "hash": "52729e0d440b38f214f8a37000cb13c578d753a868d9f6af842a3248fdb4ecfc",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "8b5112c534fa5b73d2cf1e377a3aaf9643cd9a0503a84ac3dd027937a2a1fbb5",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.854Z"
    }
   },
   {
@@ -128063,8 +128633,9 @@
    },
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-comp",
-    "hash": "1cd6af0dc4bb3a76459b9c3400b8339cb9adc0b57004d4e500b3d69ccef1aebc",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "da0ce885aa652df9845822c4cdc5b1331c9548c16f819479d4e179cc42986bdf",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.861Z"
    }
   },
   {
@@ -128260,8 +128831,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-phase",
-    "hash": "3ede02cff0b63008bba71fbe3dae4b6d33abfdc78733ccc8533d6b9a38449ee4",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "79f61b917499cc535a777b159be42f556d9d5fe7eaacdeb6c8ef3b279b42a074",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.866Z"
    }
   },
   {
@@ -128472,8 +129044,9 @@
    },
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/ssl-x-delay",
-    "hash": "49156c8520ef2c4f5cfae9dd103717d435b305052a60440a8821c5b82dc77468",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "c1e8ed4084763fd0a5c5618077020ed3f46cc044a2162911fc0f181ca171f5a2",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.870Z"
    }
   },
   {
@@ -128595,8 +129168,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://store.solidstatelogic.com/plug-ins/ssl-x-limit",
-    "hash": "a10c1d9f71d8f352304672f906ec8ad849265ecc31ac03166ef1a432a1d59275",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
+    "hash": "99dc7a51623ee3e4b3c4bdf73aea765c5e94058d07b03e0d13100aa77574837d",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.873Z"
    }
   },
   {
@@ -132927,6 +133501,12 @@
     "url": "https://www.tokyodawn.net/tdr-collector/",
     "excerpt": "Free software package manager for the Tokyo Dawn Labs product catalogue.",
     "checkedAt": "2026-11-15T21:48:28.712Z"
+   },
+   "presentationSource": {
+    "url": "https://www.tokyodawn.net/tdr-collector/",
+    "hash": "cd97cb8dbadcb0f9eeb03961c8215164e73c16030087f9bf58593bb30d985099",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.875Z"
    }
   },
   {
@@ -134343,7 +134923,13 @@
     "status": "unconfirmed",
     "originalCategory": "other"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://www.toneboosters.com/tb_bitjuggler_v1.html",
+    "hash": "c134e1ff4249e3ddae8373a73b048f10f31e1cd3f57e971d71729f6a39b74cb8",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.876Z"
+   }
   },
   {
    "id": "toneboosters--compressor",
@@ -134468,7 +135054,13 @@
     "status": "unconfirmed",
     "originalCategory": "eq"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://www.toneboosters.com/tb_dualvcf_v1.html",
+    "hash": "0aa7e1dc8c72994e9a57944e117bb1218eb33da56aa3e2b117d49b1ee0590122",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.877Z"
+   }
   },
   {
    "id": "toneboosters--enhancer",
@@ -134834,7 +135426,13 @@
     "status": "unconfirmed",
     "originalCategory": "saturation"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://www.toneboosters.com/tb_mbc_v1.html",
+    "hash": "ecaaee0054217ce991772b0f20771d4026dfb9e641830bbc7fa621819454e216",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.880Z"
+   }
   },
   {
    "id": "toneboosters--morphit",
@@ -135079,7 +135677,13 @@
     "status": "unconfirmed",
     "originalCategory": "deesser"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://www.toneboosters.com/tb_sibalance_v4.html",
+    "hash": "a23de8880aab7afbb0da1b5e0aa54381df11fdd2ea2a4ea86e3274b05f198a96",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.882Z"
+   }
   },
   {
    "id": "toneboosters--spectrogram-free",
@@ -135175,7 +135779,13 @@
     "status": "unconfirmed",
     "originalCategory": "modulation"
    },
-   "recordType": "unknown"
+   "recordType": "unknown",
+   "presentationSource": {
+    "url": "https://www.toneboosters.com/tb_voicepitcher_v4.html",
+    "hash": "62b92a564916d477a1fa904603666f1116f7e150640e54e8082974cb8e551e24",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.884Z"
+   }
   },
   {
    "id": "tritik--echorus",
@@ -139623,8 +140233,11 @@
    "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
    "image": "http://www.uaudio.com/cdn/shop/files/1176ln_classic_limiting_amplifier_gallery_1_24f538ee-9b33-46e3-87f0-7aa4c54f58ee.png?crop=center&height=480&v=1742246800&width=480",
    "description": "Track and mix with the legendary FET-Style Compressor with custom-made class A output transformers \nRecord your tracks through vintage UA, \"handmade in the USA,\" circuits \nHarness ultra-fast attack time on bass, guitars,",
-   "category": "other",
-   "tags": [],
+   "category": "comp",
+   "tags": [
+    "techno:fet",
+    "vitesse:rapide"
+   ],
    "classifiedBy": "auto",
    "source": "shopify",
    "checkedAt": "2026-11-15T16:48:34.130Z",
@@ -139640,34 +140253,51 @@
      }
     ]
    },
-   "featureEvidence": {},
-   "unverifiedTags": [
-    "techno:fet",
-    "vitesse:rapide"
-   ],
+   "featureEvidence": {
+    "techno:fet": {
+     "present": true,
+     "method": "product-description",
+     "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
+     "excerpt": "Classic Limiting Amplifier\nTrack and mix with the legendary FET-Style Compressor with custom-made class A output transformers \nRecord your tracks through vintag",
+     "checkedAt": "2026-11-15T16:48:34.130Z"
+    },
+    "vitesse:rapide": {
+     "present": true,
+     "method": "product-description",
+     "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
+     "excerpt": "hrough vintage UA, \"handmade in the USA,\" circuits \nHarness ultra-fast attack time on bass, guitars,",
+     "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+   },
+   "unverifiedTags": [],
    "featureReview": {
     "version": 1,
     "method": "product-scoped-evidence",
-    "pending": 2
+    "pending": 0
    },
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "comp",
+    "method": "reviewed-source",
     "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Compresseur matériel FET 1176LN, distinct des émulations UAD.",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "limiter"
    },
-   "recordType": "unknown",
+   "recordType": "hardware",
    "presentationSource": {
     "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
     "hash": "688a2de536307d556718bee6d459bc483a677c70cf866debb31e952c9d4eb737",
     "checkedAt": "2026-11-15T16:48:34.130Z"
+   },
+   "recordTypeEvidence": {
+    "type": "hardware",
+    "method": "reviewed-source",
+    "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
+    "excerpt": "Appareil matériel : alimentation secteur 115/230 V, consommation 13 W, châssis rack 2U et connexions XLR."
    }
   },
   {
@@ -140041,8 +140671,9 @@
    },
    "presentationSource": {
     "url": "https://www.uaudio.com/products/akg-bx-20-reverb",
-    "hash": "d5e26d12b275bedc8dbd79e8afac6b5b400d478abb2e03dcbd9e49510634eda9",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "5c4b7ea372bd75f97dc3f027b108a9038213974d9c853c7d9fe5c5f9c49c6220",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.894Z"
    }
   },
   {
@@ -148380,8 +149011,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://www.uaudio.com/products/oxford-inflator",
-    "hash": "93f6aa34d61709bf1693d8312d4b4882251ceca477ef798648d31464cb0ab32f",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "0b575d3d19f571c55edc5278677a22bf946df1a11f33d8c0a9f27ec2f6b8a0f6",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.903Z"
    }
   },
   {
@@ -163454,8 +164086,9 @@
    },
    "presentationSource": {
     "url": "https://www.waves.com/plugins/abbey-road-saturator",
-    "hash": "1ce53cbd7385a9acbfecbd0f6cacbeba4ca7c5f595f379ea0fd4424ebad037a7",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "f547435a1b288cdc632f7e5ad796d744afa73bce692bc44190ffa05b6bf25be1",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.910Z"
    }
   },
   {
@@ -164995,8 +165628,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://www.waves.com/plugins/butch-vig-vocals",
-    "hash": "64cba308909268a74cff06810e9ff95a6d11ab5f4932a2502239484db35c65dd",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "755833941dafd592f7ae695fa916dcc5e0b206cda65db9188056965a017ab6cd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.914Z"
    }
   },
   {
@@ -165454,8 +166088,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://www.waves.com/plugins/center",
-    "hash": "967806f11e0045d3604c99493b49940308dfd6d1425acff35e94de2496c935f2",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "e97e672366fad97c5bfb0b717ecf78f8a86096991eb87930263215bf6612df77",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:04.919Z"
    }
   },
   {
@@ -171786,8 +172421,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://www.waves.com/plugins/infected-mushroom-pusher",
-    "hash": "f46a39df2b2ebe486d96e08e8da5abbbdd91c99451ded4b37b97925250db59d5",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "d2b30efb8d5db448c91a2ba2d4395fe2f2726c81d3af5df3033065fe19a909dd",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:05.007Z"
    }
   },
   {
@@ -181216,8 +181852,9 @@
    },
    "presentationSource": {
     "url": "https://www.waves.com/plugins/sibilance",
-    "hash": "c3afe88b4d68435fe840deffda4684896b6c368f13f6995946e0d93ef43001b1",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "a38bec27bb1ebde74cdd95f2b01b491b31a6018c0fe1e7d38aaf59901e9da086",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:05.010Z"
    }
   },
   {
@@ -185358,8 +185995,9 @@
    "recordType": "unknown",
    "presentationSource": {
     "url": "https://www.waves.com/plugins/z-noise",
-    "hash": "b803ba3d17fcd3eecbaa40f2b7c3ce04eb4775ee6cfc0df74b21d545eac6808c",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "hash": "6df206c04911576c89967aad733a38a8770d0bd2c54e0b070e74fe68e5d71e0b",
+    "method": "recovered-product-page",
+    "checkedAt": "2026-11-16T08:20:05.017Z"
    }
   },
   {

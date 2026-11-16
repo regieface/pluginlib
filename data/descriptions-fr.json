@@ -13216,7 +13216,7 @@
   "checkedAt": "2026-11-16T07:57:51.163Z"
  },
  "universal-audio--1176ln-classic-limiting-amplifier": {
-  "text": "Le 1176LN Classic Limiting Amplifier de Universal Audio est une reproduction fidèle et fabriquée à la main du design visionnaire original de Bill Putnam Sr. – une pièce emblématique de l'histoire de l'audio qui a contribué aux enregistrements classiques de Led Zeppelin, des Rolling Stones, de Michael Jackson, et plus encore.",
+  "text": "Compresseur matériel FET fabriqué à la main, avec étage de sortie classe A et transformateur conçu par Bill Putnam. Son attaque peut descendre à 20 microsecondes ; le circuit peut aussi colorer le signal sans compression. Cette fiche décrit le rack analogique, pas un plugin.",
   "sourceUrl": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
   "sourceHash": "688a2de536307d556718bee6d459bc483a677c70cf866debb31e952c9d4eb737",
   "method": "source-based-synthesis-fr",
@@ -14231,10 +14231,10 @@
   "checkedAt": "2026-11-16T07:57:51.163Z"
  },
  "universal-audio--ua-1176-classic-fet-compressor": {
-  "text": "Obtenez gratuitement le compresseur FET classique UA 1176 avec UAD Explore. Attaque rapide, saturation colorée et mode emblématique All-Button.",
+  "text": "Émulation du compresseur FET 1176, avec les attaques et relâchements rapides qui font son caractère. Le mode « All Buttons In » permet une compression plus agressive et une distorsion marquée, notamment pour les batteries, les basses et les voix.",
   "sourceUrl": "https://www.uaudio.com/products/ua-1176-fet",
   "sourceHash": "6b42ebe757fcbce4f9ce5d2c2eb09ef863170f03b1d70eb45d8469ff21a6b21d",
-  "method": "source-based-synthesis-fr",
+  "method": "reviewed-synthesis",
   "checkedAt": "2026-11-16T07:57:51.163Z"
  },
  "universal-audio--ua-bock-167": {
@@ -17813,5 +17813,831 @@
   "sourceHash": "70cf5587446fd2478e78e84ba4ea06eb6903642dbf44012257689798eff5914c",
   "method": "reviewed-synthesis",
   "checkedAt": "2026-11-16T07:57:48.230295+00:00"
+ },
+ "gvst--gvst-gchorus": {
+  "text": "R Phase : Lorsqu'il est utilisé sur un signal stéréo, GChorus utilise un LFO séparé pour désaccorder chacun des deux canaux. Lorsque R Phase est à 0°, les deux LFO sont synchronisés. À 0 %, vous n’entendrez aucun effet de chorus et à 100 %, vous n’entendrez aucun signal original.",
+  "sourceUrl": "https://gvst.uk/Downloads/GChorus",
+  "sourceHash": "c73bf59e049f0d56ee328e35d6fdc1baee331ea0f8592f1826fa191d211f9efc",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.548Z"
+ },
+ "gvst--gvst-gclip": {
+  "text": "Si ce paramètre est 0% alors GClip se comporte comme un simple écrêteur de signal, tronquant les échantillons qui dépassent le niveau d'écrêtage.",
+  "sourceUrl": "https://gvst.uk/Downloads/GClip",
+  "sourceHash": "9c08bbf3643aeae6b2bf286f46bde046f6cd33d39653b712e4dcd4059898aeef",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gcomp": {
+  "text": "RMS/Peak : GComp suit à la fois le niveau de crête et le niveau RMS (Root Mean Square) du signal entrant. Le mixage est contrôlé par le paramètre RMS/Peak. En pratique, il s'agit d'un deuxième étage de compression avec un rapport infini:1, pour un contrôle plus poussé du signal résultant.",
+  "sourceUrl": "https://gvst.uk/Downloads/GComp",
+  "sourceHash": "ed60dc6e04f2ef631422067281cd20abb9f65beb11f52d7d97762a098d1fdc3a",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gdelay": {
+  "text": "Quatre boutons contrôlent les paramètres de GDelay.",
+  "sourceUrl": "https://gvst.uk/Downloads/GDelay",
+  "sourceHash": "2cc92aa8427052148ed2dd90bfb7566b22658989a7fe089408d4568bff9fd72e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gfader": {
+  "text": "L'interface utilisateur de GFader comporte un seul curseur, intitulé \"Gain\".",
+  "sourceUrl": "https://gvst.uk/Downloads/GFader",
+  "sourceHash": "f62bdfbf7126b41d6f10cd730663ed42e56e6c45eb9b4c14e0abe96a6dafe209",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-ggain": {
+  "text": "L'interface utilisateur de GGain comporte un seul bouton, intitulé « Gain ».",
+  "sourceUrl": "https://gvst.uk/Downloads/GGain",
+  "sourceHash": "0e1eaf1d30513bd154ffc87cccf8a4ec212a68df7d9eded9036a1d54e5657525",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-ggate": {
+  "text": "Trois boutons contrôlent les paramètres de GGate. De plus, un compteur fournit un retour visuel sur le niveau d’activité du portail.",
+  "sourceUrl": "https://gvst.uk/Downloads/GGate",
+  "sourceHash": "4a0806ec07e3760f0a774917086f60febc535f79b0164def3d8d6341e5bae674",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-ggrain": {
+  "text": "Grains : Ceci contrôle le nombre maximum de grains traités par GGrain à tout instant. L’utilisation d’un petit nombre de grains donne un son clairsemé et granuleux. À 0 %, GGrain ne laissera passer que le signal d'entrée, et à 100 %, il ne laissera passer que le signal resynthétisé.",
+  "sourceUrl": "https://gvst.uk/Downloads/GGrain",
+  "sourceHash": "b28a224c80f81fba3f39b808288cdfec2064b3d5c0229431c7b27ad76e196d41",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-ghi": {
+  "text": "Il filtre les fréquences inférieures à une fréquence de coupure définie par l'utilisateur et ajoute des quantités variables de résonance à ce stade. La résonance est créée en augmentant une petite bande de fréquences au point de coupure du filtre. Peak Display : En complément de vos méthodes de mesure existantes, GHi affichera le niveau de crête qu'il a dépassé.",
+  "sourceUrl": "https://gvst.uk/Downloads/GHi",
+  "sourceHash": "9e34c32da1a2c4033ef7919213f2173b570ac3cd4feaadb084d29bddb7a7bd8e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-glfo": {
+  "text": "GLFO utilise trois oscillateurs basse fréquence indépendants pour contrôler l'amplitude, le panoramique stéréo et un filtre passe-bas.",
+  "sourceUrl": "https://gvst.uk/Downloads/GLFO",
+  "sourceHash": "9992506e5bcc7c05a50f6468c2e43c49573a789b69bfbe503e6ea20e61676074",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gloop": {
+  "text": "Ce paramètre contrôle la marge de manœuvre accordée pour un déclenchement tardif. En mode CC, le CC correspondant doit être envoyé avec une valeur égale ou supérieure à 64 pour déclencher la fonction. Ces commandes vous permettent d'attribuer une note spécifique ou un message CC à chaque fonction.",
+  "sourceUrl": "https://gvst.uk/Downloads/GLoop",
+  "sourceHash": "f861e747a6881a20ba3b4fbd78815ae724088dacc6312f4393b0810268eefada",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gmonobass": {
+  "text": "GMonoBass est conçu pour centrer la composante basse d'une piste tout en conservant l'image stéréo des fréquences les plus élevées.",
+  "sourceUrl": "https://gvst.uk/Downloads/GMonoBass",
+  "sourceHash": "d563696a83ae057f15259033cd7fd0b65255eda134c2b38c78c8745e99511828",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gnormal": {
+  "text": "L'interface utilisateur de GNormal dispose de deux boutons pour contrôler les deux paramètres.",
+  "sourceUrl": "https://gvst.uk/Downloads/GNormal",
+  "sourceHash": "fbdb8c5e7a71724dde2aa66d8072da1d2098dc30d045e5f18e72f7ceffd3c207",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gpitchgate": {
+  "text": "GPitchGate est un effet gate à détection de hauteur. Il suit la hauteur de l’audio entrant et l’utilise pour déclencher un effet gate.",
+  "sourceUrl": "https://gvst.uk/Downloads/GPitchGate",
+  "sourceHash": "62be56cf55895cc03292a405259cbcec3a0f8b5a30d6607cbe6b35e53f79a2f4",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gsnap": {
+  "text": "L'audio entrant est d'abord traité par cet ensemble de commandes, qui aident à donner un peu de répit à GSnap en réduisant la gamme de fréquences et de sons que le plug-in doit gérer. Si vous connaissez la fréquence la plus basse qui devrait être rencontrée, le réglage de ce paramètre peut rendre la détection de hauteur plus efficace et plus précise. Une fois la hauteur déterminée, GSnap applique une correction de hauteur en fonction de ces contrôles.",
+  "sourceUrl": "https://gvst.uk/Downloads/GSnap",
+  "sourceHash": "0d6d63588ced017caceeee44cd272eef4133d2e3850cc91bc6d56b91b562f655",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "gvst--gvst-gtrichorus": {
+  "text": "GTriChorus est un effet de chorus filtré sur trois bandes de fréquences indépendantes.",
+  "sourceUrl": "https://gvst.uk/Downloads/GTriChorus",
+  "sourceHash": "b14827968e8708dc7e3e1895b31872d731535fac13055e3ba4e0f99b99c0b57a",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "ik-multimedia--tascam-porta-one": {
+  "text": "TASCAM Porta One Enregistrement en déplacement Par IK Multimedia 99,99 € (hors Mac® (64 bits) Minimum : processeur Apple M1 ou Intel® Core i5, 8 Go de RAM, macOS® 10.15 ou plus récent. Windows® (64 bits) Minimum : processeur Core i5 ou équivalent, 8 Go de RAM, Windows 10 (64 bits) ou plus récent.",
+  "sourceUrl": "https://ikmultimedia.com/en-us/products/trtascamportaone",
+  "sourceHash": "e55379c36ba89f15abaeee2de3accdf48c6a611c9a50936897e1ce84712c6f9e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "ik-multimedia--teac-a-3340s": {
+  "text": "TEAC A-3340S Comment 4 titres sont devenus art Par IK Multimedia 99,99 € (hors Mac® (64 bits) Minimum : processeur Apple M1 ou Intel® Core i5, 8 Go de RAM, macOS® 10.15 ou plus récent. Windows® (64 bits) Minimum : processeur Core i5 ou équivalent, 8 Go de RAM, Windows 10 (64 bits) ou plus récent.",
+  "sourceUrl": "https://ikmultimedia.com/en-us/products/trteaca3340s",
+  "sourceHash": "443e46253b25c3e000171fb736473bfc6143af8c1f61c2198f07a56ba841be29",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "ik-multimedia--teac-a-6100-mkii": {
+  "text": "C'est ainsi que le TEAC A-6100 MKII est né. En fait, l'A-6100, avec son son admirable et sa technologie Simul-Sync®, a été l'unité centrale qui a évolué pour devenir le célèbre multipiste 80-8.",
+  "sourceUrl": "https://ikmultimedia.com/en-us/products/trteaca6100",
+  "sourceHash": "e1c2b139de4f860e3e3745c37fa15e942f72d7bda2d1ff7185425fcdb00bf4eb",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:23.549Z"
+ },
+ "lsp-plugins--artistic-delay": {
+  "text": "Ce plugin permet de construire presque n'importe quel delay souhaité en utilisant jusqu'à 16 lignes de retard et 8 réglages de tempo. Chaque ligne de retard offre la possibilité de contrôler : Le temps de retard à l'aide d'une formule assez flexible. Feedback - le bouton et le bouton qui permettent d'activer ou de désactiver le feedback et de contrôler le gain du feedback pour toutes les lignes à retard et simultanément.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=art_delay_mono",
+  "sourceHash": "5c850ce316f47ef4762c0bbdebd4ac4aeb999d3c5b79bdeb5521d7a1d46824db",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--automatic-gain-control": {
+  "text": "Ce plugin fournit des outils de contrôle automatique du gain qui prennent en charge la correspondance du volume sonore conformément à la recommandation ITU-R BS.1770-4. Selon la recommandation BS.1770-4, la période de mesure d'énergie doit être de 400 millisecondes mais le plugin permet de faire varier cette valeur. En option supplémentaire, il fournit également d'autres types de filtres de pondération fournis par la norme CEI 61672:2003 : filtres de pondération A, B, C et D.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=autogain_mono",
+  "sourceHash": "32feb56d66253d49e3803cdc9a2803fe5abf87166c7928c97befcffaba440d56",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--beat-breather": {
+  "text": "Pour rendre le son beaucoup plus propre, le croisement de phase linéaire est appliqué, ce qui ajoute une certaine latence mais offre plusieurs avantages : contrairement aux croisements classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist. Temps court - la valeur RMS à court terme (par défaut, la période d'estimation est inférieure à 20 ms et dépend de la plage de fréquences) pour estimer l'enveloppe du signal changeant de temps.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=beat_breather_mono",
+  "sourceHash": "47d6594bb34aa524c7bf27bb2c186e2bae2e780de8a4cf165f7144f78b6afb12",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--chorus": {
+  "text": "Un ou plusieurs oscillateurs basse fréquence (LFO) disponibles sont responsables du changement périodique des délais et peuvent également être ajustés pour correspondre à un certain tempo musical. Il existe de nombreux types de formes d'oscillation disponibles, ce qui fait du chœur un bon jouet pour jouer, expérimenter le son et améliorer l'image stéréo du signal.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=chorus_mono",
+  "sourceHash": "c749a67a013147a3c508d2e14d219c1b5d4e03118cc09ed8ba3541a0474a60b7",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--clipper": {
+  "text": "L'option de limitation du volume sonore permet de contrôler le volume sonore d'entrée, le volume sonore par bande et le volume sonore d'entrée au niveau du clipper de sortie. Les mesures de sonie d'entrée et de sortie permettent de contrôler le niveau de sonie du signal en LUFS. Clip Pumping - moyen supplémentaire de pomper le volume de la bande en appliquant une amplification supplémentaire et en maintenant les pics ne dépassant pas 0 dB.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=clipper_mono",
+  "sourceHash": "c149dbbea021c7e8f0c9e4bd1cb894cb28264e25ba57eba2d12cb6d404e81cdd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--compensation-delay": {
+  "text": "Ce plugin permet d'ajouter un court délai au canal mono pour compenser le décalage de phase par rapport aux autres canaux. Parce que la vitesse du son est faible (environ 340 m/s), le signal provenant des sources placées à différentes positions présente des retards différents. En conjonction avec le détecteur de phase LSP, vous pouvez mettre en phase très rapidement vos sources.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=comp_delay_mono",
+  "sourceHash": "9fa0c96bbd86547d9bcfee6ab2c5f881d182312374cf44f95a95d788b5942d45",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--compressor": {
+  "text": "Une configuration flexible de contrôle de sidechain est fournie. Si l'enveloppe du compresseur indiquée par le point sur la courbe de compression est supérieure au « Release Thresh », alors le paramètre « Release Time » est pris comme temps de release pour le traitement. Sinon, si l’enveloppe est inférieure au « Release Thresh », alors le paramètre « Attack Time » est pris comme temps de release pour le traitement.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=compressor_lr",
+  "sourceHash": "cb7e889d49a54729a32f4e80e01a4f04f38e2db5cb1af8156076c6d90ccb815d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--crossover": {
+  "text": "Ce plugin effectue la division des canaux individuels du signal stéréo d'entrée stéréo en bandes de fréquences distinctes transmises aux canaux de sortie stéréo individuels. Par défaut, le plugin active 4 bandes de fréquences mais le nombre total de bandes de fréquences utilisées peut varier de 1 à 8. Cela introduit une latence supplémentaire mais offre plusieurs avantages : Contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=crossover_lr",
+  "sourceHash": "d0829b4b0d95047b881622e4518a8f6c9c94ad01830048fc06510ecec5c14601",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:24.458Z"
+ },
+ "lsp-plugins--deesser": {
+  "text": "Un égaliseur supplémentaire permet d'augmenter la sensibilité pour des fréquences spécifiques et de couper les basses et hautes fréquences qui ne devraient avoir aucun impact. Une configuration flexible de contrôle de sidechain est fournie. Principales caractéristiques : Le mode de division de fréquence est fourni, ce qui permet de séparer les hautes fréquences et de garder les basses fréquences intactes.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=deesser_mono",
+  "sourceHash": "def10874aa011c54cfd8ac0d1e62a7374698f41624b6b416461906d0ff97d5d0",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--dynamics-processor": {
+  "text": "Ce plugin effectue un traitement dynamique du signal d'entrée stéréo en appliquant un traitement individuel aux canaux gauche et droit séparément. Il existe différentes variantes possibles de processeur dynamique à construire : compresseur, limiteur, gate, expandeur, une sorte de concepteur de transitoires et bien d'autres en raison de la possibilité de configuration flexible de la courbe dynamique. La plage dynamique peut également être divisée en sous-plages qui peuvent avoir leurs timings d'attaque et de relâchement individuels.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=dyna_processor_lr",
+  "sourceHash": "9c53d408be87552f581bdf0e9a3cff131cc74c29e6ffe97bd5ec1fd12e68668e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--expander": {
+  "text": "Ce plugin augmente la plage dynamique du signal d'entrée stéréo en appliquant un traitement individuel aux canaux gauche et droit séparément. Une configuration flexible de contrôle de sidechain est fournie. Un contrôle sec/humide supplémentaire permet également de mélanger les signaux traités et non traités.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=expander_lr",
+  "sourceHash": "4d899879489a81c7fb7098e15499711b1392b73bfa6dd6454af44edff4ee13a1",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--filter": {
+  "text": "Cela fait que les filtres ont une faible résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est courte et une très bonne résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est grande. Avec une grande réponse impulsionnelle, les filtres FIR peuvent être plusieurs fois meilleurs que les filtres IIR, mais le principal inconvénient des filtres FIR est la nécessité d'effectuer de nombreux calculs pour effectuer une convolution du signal d'entrée avec la réponse impulsionnelle du filtre. Grâce aux algorithmes de transformation de Fourier rapide (FFT), la convolution peut être calculée plusieurs fois plus rapidement plutôt que d'utiliser un algorithme de convolution directe.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=filter_mono",
+  "sourceHash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--flanger": {
+  "text": "L'oscillateur basse fréquence (LFO) est responsable de la modification périodique du retard et peut également être ajusté pour correspondre à un tempo musical. De plus, il est possible de définir des modes d'oscillation spéciaux qui permettent d'atteindre un effet d'éloignement ou de rapprochement infini du son. Section 'LFO' : Restart - réinitialise la phase actuelle du LFO à la valeur initiale. Linéaire - fondu enchaîné linéaire Puissance constante - fondu enchaîné à puissance constante Phase - la phase initiale du LFO, utilisée par le bouton Restart. Section « Contrôles » : Mi",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=flanger_mono",
+  "sourceHash": "176fe79ac91b64e2aafa94c141177e8e74c51cc55bfe5ff570974dc02ace7f74",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--gate": {
+  "text": "Ce plugin effectue le gate du signal d'entrée stéréo en appliquant un traitement individuel aux canaux gauche et droit séparément. Une configuration flexible de contrôle de sidechain est fournie. Une courbe d'hystérésis supplémentaire est disponible pour fournir un contrôle précis de l'évanouissement du signal.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=gate_lr",
+  "sourceHash": "99ba5df8be13c0b40a8b526c52d74cf79d07aedc8bda559db58a789ec8675b12",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--gott-compressor": {
+  "text": "Le mode Phase Linéaire permet de diviser le signal audio en plusieurs bandes de fréquences avec un déphasage linéaire. Cela introduit une latence supplémentaire mais offre plusieurs avantages : contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=gott_compressor_lr",
+  "sourceHash": "ec857639099c73ecb9d9e084699154f4a50b870a33db2ea2b4bbd595d14c48e7",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:25.887Z"
+ },
+ "lsp-plugins--graphic-equalizer": {
+  "text": "Cela fait que les filtres ont une faible résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est courte et une très bonne résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est grande. Avec une grande réponse impulsionnelle, les filtres FIR peuvent être plusieurs fois meilleurs que les filtres IIR, mais le principal inconvénient des filtres FIR est la nécessité d'effectuer de nombreux calculs pour effectuer une convolution du signal d'entrée avec la réponse impulsionnelle du filtre. Grâce aux algorithmes de transformation de Fourier rapide (FFT), la convolution peut être calculée plusieurs fois plus rapidement plutôt que d'utiliser un algorithme de convolution directe.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=graph_equalizer_x16_lr",
+  "sourceHash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--impulse-responses": {
+  "text": "Ce plugin effectue une convolution en temps réel hautement optimisée sans latence nulle vers le signal d'entrée. Il peut être utilisé comme émulateur d'enceinte, comme sorte d'égaliseur ou comme plugin de simulation de réverbération. Tout ce dont vous avez besoin est un fichier audio avec réponse impulsionnelle provenant du système linéaire (enceinte, égaliseur ou hall/salle).",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=impulse_responses_mono",
+  "sourceHash": "e4fafe2daa934a9b9de825addf5990fa53484f1cdc31ca34b8b65cb0c56644e9",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--impulse-reverb": {
+  "text": "Ce plugin effectue une convolution en temps réel hautement optimisée sans latence nulle vers le signal d'entrée. Il peut être utilisé comme émulateur d'enceinte, comme sorte d'égaliseur ou comme plugin de simulation de réverbération. Contrairement à la série de plugins Impulsantworten (Impulse Responses), jusqu'à quatre fichiers d'entrée et processeurs de convolution peuvent être utilisés pour implémenter et mélanger différents types de réverbérations.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=impulse_reverb_mono",
+  "sourceHash": "6eec0216f1a928ad219a3590ad599ddac8aeec7293f732a3700161bfc41a0166",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--latency-meter": {
+  "text": "Un plugin simple qui permet de mesurer la latence d'une ligne de transmission en utilisant le chirp - convolution de filtre inverse. La latence est déterminée comme le décalage du pic de convolution. Pour mesurer la latence, connectez d'abord la sortie du plugin à l'entrée de la ligne de transmission.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=latency_meter",
+  "sourceHash": "5c8e824ea334e3ce3dc7378f4c2a7b30ede64d0620b570ec20e2df8aed81ebb7",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--limiter": {
+  "text": "Le niveau de réduction de gain est contrôlé par l'enveloppe du signal appliqué à la courbe de réduction de gain du compresseur. La douceur de l'enveloppe est contrôlée par les boutons Attack et Release de la section ALR. La forme du patch est contrôlée par le sélecteur de mode et sa longueur est contrôlée par les boutons Attack et Release correspondants.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=limiter_mono",
+  "sourceHash": "03172bd47c50bc88f8fb0f7fb5a83691c1c8486f03842bfbdcaab016ca2115f0",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--loudness-compensator": {
+  "text": "La figure ci-dessous illustre les contours d'intensité sonore égale mesurés pour les normes précédentes - Fletcher et Munson (publiées en 1933) et Robinson et Dadson (publiées en 1956) et la norme ISO 226:2003 actuelle publiée en 2003 : Les courbes de contour d'intensité sonore égale montrent deux aspects de la façon dont les sons sont perçus. D'une part, les sons à différentes fréquences doivent avoir des niveaux SPL sensiblement différents pour être aussi forts, de sorte que, par exemple, une onde sinusoïdale de 30 Hz et donc le contenu à 30 Hz de tout son en général doivent être plus de 10 dB SPL plus forts que le contenu à 1 000 Hz pour être aussi fort, lorsque ce dernier est à 100 dB SPL, c'est-à-dire à 100 phon. Vu dans l'autre sens, si vous atténuiez simplement tout le contenu de 20 dB SPL, le contenu à 30 Hz semblerait nettement moins fort par rapport au contenu à 1 000 Hz.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=loud_comp_mono",
+  "sourceHash": "01f0a941377ff15e30f365e63c0e583954f5143d29f2b190672aa4da6c19a6fe",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--matcher": {
+  "text": "Ce plugin permet d'introduire la correspondance spectrale à la piste de référence souhaitée dans votre piste ! De plus, vous pouvez charger un fichier séparé et en obtenir le profil ou dessiner votre enveloppe de réponse en fréquence à l'aide de l'égaliseur 10 bandes. Et pour le cas de correspondance dynamique, vous pouvez également contrôler la vitesse de morphing.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=matcher_mono",
+  "sourceHash": "75da5f217da1a47297f38cec1c44116c26ec7fd44c1d8154fda07ef668e45201",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--mixer": {
+  "text": "Ce plugin effectue le mixage de 16 canaux stéréo. Commandes principales : Bypass - commutateur de dérivation, lorsqu'il est allumé (le voyant LED brille), le signal de sortie est similaire au signal d'entrée. Commandes de canal Mixer : Étiquette de canal - étiquette de canal modifiable personnalisée définie par l'utilisateur.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mixer_x16_mono",
+  "sourceHash": "4cedb2ac17ac505c274feb4a52c0284c7692d5e678d31d4beae03fbae5fcb75e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--multiband-clipper": {
+  "text": "Les modes de croisement de phase classique et linéaire permettent d'apporter plus de flexibilité au processus de mastering. Les pré-filtres passe-bas et passe-haut permettent de couper les fréquences inutiles avant le traitement. L'option de limitation du volume sonore permet de contrôler le volume sonore d'entrée, le volume sonore par bande et le volume sonore d'entrée au niveau du clipper de sortie.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_clipper_mono",
+  "sourceHash": "aaa439e8d2a491dce8d2fa1f9a07a89e1f6bec90fe15699c4b200cee5dbf4725",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:26.915Z"
+ },
+ "lsp-plugins--multiband-compressor": {
+  "text": "Le mode Phase Linéaire permet de diviser le signal audio en plusieurs bandes de fréquences avec un déphasage linéaire. Cela introduit une latence supplémentaire mais offre plusieurs avantages : contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_compressor_lr",
+  "sourceHash": "edd93b10faf86836419abc62eb3845ce59daa1c8a26532d15ea80a8e41088ba2",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multiband-dynamics-processor": {
+  "text": "Le mode Phase Linéaire permet de diviser le signal audio en plusieurs bandes de fréquences avec un déphasage linéaire. Cela introduit une latence supplémentaire mais offre plusieurs avantages : contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_dyna_processor_lr",
+  "sourceHash": "c2d3cb3f2dc88bf10af51cb386ec103123a267151ea6f26f76a40211bc879cfe",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multiband-expander": {
+  "text": "Le mode Phase Linéaire permet de diviser le signal audio en plusieurs bandes de fréquences avec un déphasage linéaire. Cela introduit une latence supplémentaire mais offre plusieurs avantages : contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_expander_lr",
+  "sourceHash": "3584fa4516e15a7e36f4c2cfeca2fe15b262d47114dab08d8f7141021a2a43aa",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multiband-gate": {
+  "text": "Le mode Phase Linéaire permet de diviser le signal audio en plusieurs bandes de fréquences avec un déphasage linéaire. Cela introduit une latence supplémentaire mais offre plusieurs avantages : contrairement aux crossovers classiques qui utilisent des filtres IIR (Infinite Impulse Response) pour diviser le signal en plusieurs bandes et décaler la phase du signal audio aux points de partage de bande, la Phase Linéaire permet d'utiliser des filtres FIR (Finite Impulse Response) qui en sont privés. Contrairement à la plupart des filtres IIR conçus à l'aide d'une transformation bilinéaire, les filtres de phase linéaires permettent de simuler leur fonction de transfert pour qu'elle ressemble à la fonction de transfert des filtres analogiques, sans déformer son enveloppe d'amplitude proche de la fréquence de Nyquist.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_gate_lr",
+  "sourceHash": "034454efccdeaa368da15eda1da728d29318893a76f5f39ee255b903ca3fecde",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multiband-limiter": {
+  "text": "L'algorithme de réduction de gain se compose de quatre étapes : Régulation automatique du niveau par bande de fréquence. Cela signifie que le plugin fournit un algorithme de limitation par bande de fréquences et une post-limitation une fois que toutes les bandes de fréquences ont été additionnées. La douceur de l'enveloppe est contrôlée par les boutons Attack et Release de la section ALR.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_limiter_mono",
+  "sourceHash": "c5bf3308ea6a0643150d3077f1e1271a736e1b43258541122dc964ef4926e849",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multiband-ring-modulated-sidechain": {
+  "text": "Ce plugin effectue un sidechaing multibande modulé en anneau du signal audio. Le processus simplifié peut être décrit par les étapes suivantes : Diviser le signal d'entrée et le signal sidechain en plusieurs bandes. Traitez chaque bande indépendamment : rectifiez le signal sidechain.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=mb_ringmod_sc_mono",
+  "sourceHash": "0cc71f840c3a701b59200988861aa50d0ee42382faa02b7def9aa5cd9cdd501f",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:27.414Z"
+ },
+ "lsp-plugins--multisampler": {
+  "text": "Ce plugin implémente un lecteur d'échantillons MIDI de 12 instruments avec entrée stéréo et sortie stéréo. De plus, chaque instrument possède sa propre sortie stéréo qui permet d'enregistrer les sorties des instruments sur des pistes individuelles. Si le nombre d'instruments est supérieur à 12, tous les instruments dépassant ce nombre sont ignorés.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=multisampler_x12_do",
+  "sourceHash": "e359c904cf03c2127129222d1375492d02170450dfad14bef180f39dffde65b4",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--noise-generator": {
+  "text": "Ce plugin implémente un générateur de bruit flexible. Le canal générateur de bruit présente les caractéristiques suivantes : Un canal d'entrée. Un canal de sortie.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=noise_generator_x1",
+  "sourceHash": "9a460ac9ec00d6e3f72a56c4e47c27fe52b9baad47e59b5f78b1d886073493bc",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--oscillator": {
+  "text": "Il peut être utilisé pour fournir des ondes de référence en mode remplacement, additif et multiplicatif (modulation).",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=oscillator_mono",
+  "sourceHash": "f3bdd3c81a851ace4eeae168496020758f6c2f34131d47c851f99ca0700cfd0e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--oscilloscope": {
+  "text": "Les étendues multicanaux disposent également de commandes générales qui peuvent être utilisées pour remplacer plusieurs canaux.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=oscilloscope_x1",
+  "sourceHash": "fa4e43c157c616aa0f90ca15e47313c1948d87103f3d1c5d2f305c0f1fad4b69",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--parametric-equalizer": {
+  "text": "Cela fait que les filtres ont une faible résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est courte et une très bonne résolution dans le domaine fréquentiel lorsque la longueur de la réponse impulsionnelle est grande. Avec une grande réponse impulsionnelle, les filtres FIR peuvent être plusieurs fois meilleurs que les filtres IIR, mais le principal inconvénient des filtres FIR est la nécessité d'effectuer de nombreux calculs pour effectuer une convolution du signal d'entrée avec la réponse impulsionnelle du filtre. Grâce aux algorithmes de transformation de Fourier rapide (FFT), la convolution peut être calculée plusieurs fois plus rapidement plutôt que d'utiliser un algorithme de convolution directe.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=para_equalizer_x16_lr",
+  "sourceHash": "9ff64e0f5f825150f8cc8fd15ebf9fc04e21f5b7922caade909f2adc0c013056",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--phase-detector": {
+  "text": "Ce plugin permet de détecter la phase entre deux sources. L'algorithme interne est basé sur le calcul de fonctions de corrélation entre deux sources.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=phase_detector",
+  "sourceHash": "3b971a30ffb8addc00b72e6ba2d0960efbbb4bbb5d0203a63ae6416f8b1c6fd5",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--phaser": {
+  "text": "L'effet peut être obtenu en appliquant plusieurs filtres passe-tout avec une fréquence variable dans le temps, contrôlée par l'oscillateur basse fréquence (LFO). Le signal traité mélangé au signal non traité donne des séries d'encoches dans le domaine fréquentiel qui appliquent le caractère correspondant au son. Plage de phases - la plage de phases utilisée pour attribuer uniformément la phase à chaque filtre passe-tout. Section 'Contrôles' : Phase - le bouton qui permet d'activer le ph",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=phaser_mono",
+  "sourceHash": "b6ddef8666e4aeee2927bb0bd09e126ef7940bdb3ad85109bc1d2b39cb25a50f",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--profiler": {
+  "text": "Pour un résumé des contrôles, consultez la section Contrôles. Par défaut, afin de supprimer la latence indésirable du profil, le plugin exploite une séquence de profilage qui inclut la détection de la latence. Si cela n'est pas souhaité, il est recommandé d'évaluer d'abord la latence sans système et de désactiver la mesure automatique de la latence pendant le profilage.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=profiler_mono",
+  "sourceHash": "c8d582e4368a4a88845d47559c5601f3dcd773fff273ea42232a319735029109",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--referencer": {
+  "text": "Mesure de paramètres aussi importants que : niveaux de crête et de crête réelle, RMS, momentané, à court terme et LUFS intégré. Mesure dynamique - la mesure de la valeur PSR (Peak-to-Short-Term Loudness Ratio) telle qu'elle est définie dans la Convention AES 143 Brief 373 et sa distribution. Gain Matching - la liste déroulante qui permet de configurer la correspondance de gain : Aucun - la correspondance de gain n'est pas appliquée.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=referencer_mono",
+  "sourceHash": "7498c67ce5d81b123502bac83a865ae2e226a8e64d60b41b9fa8909c4feaac12",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--return": {
+  "text": "Notez que le transfert audio via le lien de mémoire partagée peut introduire une latence aléatoire, il est donc important de ne pas considérer que l'émetteur et le récepteur seront toujours synchronisés à l'échantillon près.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=return_mono",
+  "sourceHash": "d026e45719cc52ae2089bff8cd4190250fcf2974bcfd8fde9d0252a1d8b6d6f7",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--ring-modulated-sidechain": {
+  "text": "Tous les échantillons audio du signal sidechain provenant de l’étape précédente sont limités par le seuil de 0 dBFS. Un tel algorithme permet de mélanger deux signaux avec des valeurs crêtes de 0 dBFS sans sortir de la plage de 0 dBFS. Pour minimiser l'effet de distorsion, des contrôles supplémentaires de lissage, de prédiction et de réactivité ont été ajoutés.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=ringmod_sc_mono",
+  "sourceHash": "05d745ab70b96fe69a7433e0e8a984f31bb699e1ac27e3db9d50f94997abca92",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--room-builder": {
+  "text": "Ce plugin permet de simuler la réponse impulsionnelle de n'importe quelle pièce ou espace modélisé. Le principe de base est basé sur la génération d'une impulsion audio unitaire, puis sur la capture de toutes ses réflexions depuis l'environnement par des objets de capture spéciaux qui simulent des capsules de microphone. Donc, en fait, cet algorithme est une sorte d’algorithme de lancer de rayons, mais au lieu de rayons uniques, il effectue le traçage de groupes de rayons.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=room_builder_mono",
+  "sourceHash": "b3dd078ffbcda8b21257f81948befb2c77b949ca120a66f7476e4ed95c8aab07",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:28.099Z"
+ },
+ "lsp-plugins--send": {
+  "text": "Notez que le transfert audio via le lien de mémoire partagée peut introduire une latence aléatoire, il est donc important de ne pas considérer que l'émetteur et le récepteur seront toujours synchronisés à l'échantillon près.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=send_mono",
+  "sourceHash": "c8bcde5c2f92e1a94e757bed877bd02d1e53d2dbdbc1961c386aaf24d5a711f5",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "lsp-plugins--slap-back-delay": {
+  "text": "Cela permet de rendre l'image stéréo du signal original plus large et la position de la source plus définitive dans le mix. Des mécanismes courants de pré-retard et d'étirement temporel sont également fournis pour permettre à l'image stéréo de changer de manière dynamique. N'oubliez pas que pour une image acoustique plus réaliste, plus le retard est important, plus les basses et hautes fréquences sont coupées du signal retardé. Section « Master Channel » : Bypass - commutateur de bypass, lorsqu'il est allumé (le voyant LED brille), le signal de sortie est similaire au signal d'entrée.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=slap_delay_mono",
+  "sourceHash": "7ed7338212439d2f35b3340a9d91d2240a38719809c76d0f72ac12ac374d8d0d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "lsp-plugins--spectrum-analyzer": {
+  "text": "Ce plugin effectue une analyse spectrale d'un seul canal audio.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=spectrum_analyzer_x1",
+  "sourceHash": "cc4dbfaa694335001e0b716c1472616ad2be4e97ae6ac0ef9174b0deaa378efb",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "lsp-plugins--surge-filter": {
+  "text": "Ce plugin détecte le début et la fin de la lecture en surveillant l'enveloppe RMS du signal. Le plugin déclenche un processus de fondu entrant fluide lorsque l'enveloppe RMS dépasse le seuil de fondu entrant. Pour protéger le plugin contre un fondu sortant accidentel immédiatement après un fondu entrant (qui peut être causé par des oscillations non significatives de l'enveloppe RMS), un délai de fondu entrant supplémentaire est ajouté, ce qui permet à l'enveloppe de croître suffisamment et de ne pas déclencher d'événement de fondu entrant.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=surge_filter_mono",
+  "sourceHash": "a534fe6356632548814888c37d6c2b3dbaff6c6170ceffd1a43b0bf4b5fbc68f",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "lsp-plugins--trigger": {
+  "text": "Ce plugin implémente un déclencheur avec entrée mono et sortie mono. Une sortie MIDI supplémentaire est fournie pour transmettre les notes générées par le déclencheur. Il y a jusqu'à huit échantillons disponibles pour jouer avec différentes vélocités de note.",
+  "sourceUrl": "https://lsp-plug.in/?page=manuals&section=trigger_midi_mono",
+  "sourceHash": "2a407e5f49c8dd8449fe46014a5b8d856dbdda07781bd194969499a5d9fadb9f",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--4020-retro-equalizer": {
+  "text": "Le 4020 Retro EQ est un égaliseur à quatre bandes et un ensemble de filtres gratuits. Les bandes HF et LF sont des égaliseurs en rayon, avec deux égaliseurs paramétriques supplémentaires sur les bandes HMF et LMF. Les filtres HPF et LPF utilisent une conception unique à octave divisée donnant une pente de 12 dB/Oct près de la fréquence sélectionnée et une pente maximale de 24 dB/Oct.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/4020-retro/",
+  "sourceHash": "eb632d00bbc9f1a4aadd96d37175500dfaa465b51d8178b55fd9c0bd96ed7c53",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--4030-retro-compressor": {
+  "text": "Le 4030 Retro Compressor est une topologie de contrôle de plage dynamique unique. Il est couplé à un contrôle de mixage traité/non traité pour équilibrer les signaux compressés et non compressés. Une conception d'attaque et de relâchement active permet des paramètres de compression agressifs avec une génération d'artefacts minimale.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/4030-retro/",
+  "sourceHash": "1a93ca62f2f72c7e8b4a2c7f8768676825a563fd415f5808db0b0bdb5500fdea",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--4040-retro-limiter": {
+  "text": "Le 4040 Retro Limiter combine une fonction de limiteur de mur de briques anticipée avec plusieurs traitements subjectifs pour rendre l'action de limitation subtile et pourtant vintage. Les plug-ins rétro sont une gamme de « classiques » qui peuvent être à la hauteur de leur propre nom sans imiter autre chose.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/4040-retro/",
+  "sourceHash": "c8237dee2f279c49d1f89bf881615eec1af296fda05bfb7fa6b182636012eb76",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--6020-ultimate-eq": {
+  "text": "Le 6020 Ultimate EQ est une collection de dix modèles d'égaliseur utilisant le format de module populaire tirant parti des décennies d'expérience en conception de McDSP. Tous les modules 6020 Ultimate EQ sont conçus par McDSP, ​​en s'inspirant des égaliseurs classiques et modernes. Quel que soit votre style, des émulations de tubes fluides aux conceptions agressives de transistors, le 6020 Ultimate EQ dispose d'un module d'égalisation sur mesure qui vous convient parfaitement.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/6020-ultimate/",
+  "sourceHash": "d4d179c5f815769fa06c502e85850e93f3ec15bb60936874b3671701e6d12453",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--6030-ultimate-compressor": {
+  "text": "Le 6030 Ultimate Compressor est la nouvelle génération de technologie de contrôle de plage dynamique. S'appuyant sur l'intégralité de la base de code de l'algorithme de compression McDSP, le 6030 ajoute de nouvelles capacités sonores, de nouvelles interfaces époustouflantes et une qualité que seul le McDSP peut offrir. Quel que soit votre style, des émulations de tubes fluides aux conceptions agressives à semi-conducteurs, le 6030 Ultimate Compressor dispose d'un module de contrôle de plage dynamique sur mesure qui vous convient parfaitement.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/6030-ultimate/",
+  "sourceHash": "bc335c2271458865de96ad0973b71bb4a094164cc5422a4e8587414d8077c197",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--6034-multi-band-compressor": {
+  "text": "Le 6034 Ultimate Multi-band est un processeur dynamique multibande flexible. Tout comme les modules 6050, les modules 6034 Ultimate Multi-band peuvent être échangés à la volée pour une audition rapide tout en conservant les paramètres relatifs. Les pentes du filtre croisé peuvent être configurées sur 6, 12 ou 24 dB/Oct.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/6034-ultimate/",
+  "sourceHash": "530afc51660b8b115ab540b241f68c41288ddeb80f4858237f867a6b6d620cba",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:29.415Z"
+ },
+ "mcdsp--6050-ultimate-channel-strip": {
+  "text": "Tous les modules des plug-ins primés 6020 Ultimate EQ et 6030 Ultimate Compressor sont inclus. Le 6050 Ultimate Channel Strip dispose d'étages d'entrée et de sortie, enroulés autour de 3 baies de modules dans lesquelles n'importe lequel des plus de 25 modules peut être inséré. Comme les plug-ins originaux 6020 et 6030, chaque nouveau module du 6050 s'inspire des conceptions classiques et modernes des quatre dernières décennies.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/6050-ultimate-channel-strip/",
+  "sourceHash": "3df31f78db8838d51af5cb76952855fbdd608012a838ef2ed15717ee1305e431",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--ae400-active-eq": {
+  "text": "L'AE400 est composé de 4 bandes d'égalisation fixe et active. Chaque bande chevauche complètement toutes les autres bandes et possède ses propres commandes de Q (bande passante), de gain fixe et de gain actif. Un filtre clé pour chaque bande permet à la réponse de gain actif d'être aussi sélective ou large que nécessaire, en fonction du contrôle Q (bande passante).",
+  "sourceUrl": "https://mcdsp.com/plugin-index/ae400/",
+  "sourceHash": "1c232cad25c85426c7a9f20ca94234680ebe364247bdce02bd580eb9cc4a60c3",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--ae600-active-eq": {
+  "text": "De nouveaux modes d'égalisation uniques, un contrôle indépendant des bandes d'égalisation fixes et actives et un algorithme de latence ultra faible font de l'AE600 la solution parfaite pour toute production audio. Chaque bande fixe et active de l'AE600 possède ses propres commandes de gain, de fréquence, de Q et de mode. Toutes les bandes se chevauchent complètement et peuvent utiliser le signal d'entrée ou les entrées de chaîne latérale sélectionnées pour déclencher la réponse active de l'égaliseur.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/ae600/",
+  "sourceHash": "fc12ce32f499ca8424a35ae2b984a1d6c14a8f43ded275414981646d05f7288c",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--analog-channel": {
+  "text": "Le Analog Channel émule les sons des magnétophones analogiques haut de gamme, des amplificateurs de bandes et de canaux. La configuration AC101 agit comme un préampli numérique permettant même des niveaux de gain excessifs sans distorsion numérique. Un contrôle d'entraînement détermine où l'audio « se situe » dans la région de saturation/compression, et même les temps d'attaque et de relâchement du caractère de distorsion sont réglables.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/analog-channel/",
+  "sourceHash": "3472c1d55135e65ac89f72cfd8d853fb1ed5f4c5d7692ce95fb67297f30a7f8e",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--channel-g": {
+  "text": "Toutes les configurations Channel G disposent de modes d'étalonnage pour la musique, la post-production et les modèles des tables de mixage analogiques les plus populaires au monde. L'interface utilisateur Channel G s'intègre parfaitement aux surfaces de contrôle Avid S1, S4 et S6, aux anciennes surfaces de contrôle D-Control et D-Command, ainsi qu'aux consoles de son live S6L.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/channel-g/",
+  "sourceHash": "a1d349c281b75fe8a36a86e47e4a9c304d2c1cda8ff181170e10f3a96dc4ebaa",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--channel-g-compact": {
+  "text": "Le Channel G Compact propose des modes d'étalonnage pour la musique, la post-production et les modèles des tables de mixage analogiques les plus populaires au monde. L'interface utilisateur Channel G Compact s'intègre parfaitement aux surfaces de contrôle Avid S1, S4 et S6, aux anciennes surfaces de contrôle D-Control et D-Command, ainsi qu'aux consoles de son live S6L.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/channel-g-compact/",
+  "sourceHash": "b09b29f62051c23f74ae7894a1f79431bcda86059b509cd379d86f0babfef1cd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--channel-g-surround": {
+  "text": "Channel G Surround est un compresseur/limiteur optimisé pour 5.1 canaux utilisant 4 ensembles de compresseurs : LR, C, LsRs et LFE. Les commandes individuelles du compresseur peuvent être reliées à différents canaux surround, et le canal LFE comprend un filtre passe-bas en option.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/channel-g-surround/",
+  "sourceHash": "d020cb603fe99f3a2ce8c4b89af69fc03d3651697d10f2b8a160072e728aadc3",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--compressorbank": {
+  "text": "CompressorBank est un plug-in de compresseur haut de gamme conçu pour émuler les sons des compresseurs vintage et modernes, tout en offrant un contrôle complet de la compression dynamique. En plus des commandes standard de seuil et de rapport, la forme et la réponse réelles de la courbe de compression peuvent être ajustées avec les commandes Knee et BITE. Le contrôle flexible de la compression est complété par un égaliseur de pré-filtrage et de post-compression.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/compressor-bank/",
+  "sourceHash": "75ced41529634a0914374feaf70d6a08a089b48404f3efa99fdd4ee4d224ec1a",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--de555-advanced-de-esser": {
+  "text": "Le DE555 est une nouvelle génération de technologie de dé-essing, offrant un dé-essing transparent et précis avec une flexibilité unique. L'analyse intelligente du signal permet au DE555 de réduire efficacement n'importe quel niveau de signal – aucun réglage manuel du seuil d'entrée n'est nécessaire. D'autres options incluent des commandes de ratio et de relâchement réglables en continu pour affiner la quantité de dé-essing, ainsi qu'un mode haute fréquence (HF) uniquement pour réduire le niveau du signal uniquement du « sss » et non du dialogue d'origine.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/de555/",
+  "sourceHash": "ecc448d055fbc8c25510c82e7f5cf267a430b648e948f4a3fe2d8d0f538c53b0",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:30.703Z"
+ },
+ "mcdsp--filterbank": {
+  "text": "FilterBank, le premier produit de McDSP, est un plug-in d'égalisation qui rivalise avec n'importe quel égaliseur analogique grâce à sa conception flexible et à son importante collection de fonctionnalités. FilterBank est composé de trois plug-ins : E606 (égaliseur paramétrique, en plateau haut et bas, filtres passe-haut et passe-bas), F202 (filtrage passe-haut et passe-bas avec contrôle Q résonant) et P606 (P606 - égaliseur paramétrique avec modes Q variables). Avec ses commandes uniques Peak, Slope, Dip et ses modes Q variables, le FilterBank peut émuler n'importe quel égaliseur ou être utilisé pour créer un égaliseur personnalisé distinct.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/filterbank/",
+  "sourceHash": "f32b8fea0168580e83b1f272e52bd333f31e3d658e79d55d50337279a400d833",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--futzbox": {
+  "text": "FutzBox est un plug-in générateur de distorsion et de bruit permettant de créer des versions basse fidélité de signaux audio. Ces simulations, appelées SIM (Synthetic Impulse Models) fournissent une modélisation précise dans un format extrêmement optimisé, permettant au FutzBox d'utiliser moins de puissance DSP que les produits classiques basés sur la convolution. En plus de la bibliothèque de sons SIM, FutzBox comprend également un filtrage et un égaliseur, une distorsion, un générateur de bruit et un gate pour compléter la destruction sonore requise.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/futzbox/",
+  "sourceHash": "a3f9479ee272d399668669c6479681caede96e65f29297e1a8defd520df4423d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--futzverb": {
+  "text": "FutzVerb est un filtre, une distorsion, un effet lo-fi, un générateur de sous-octave, un simulateur de périphérique, un réverbérateur, etc.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/futzverb/",
+  "sourceHash": "f3c757510f5b6d0bef5511020faa80d6f96bb21582e13f8d965c856b89838f69",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--mc2000-multi-band-compressor": {
+  "text": "Le MC2000 est un plug-in de compresseur multibande haut de gamme conçu pour émuler les sons des compresseurs vintage et modernes. Le MC2000 est composé de trois plug-ins : MC202 (compression à deux bandes), MC303 (compression à trois bandes) et MC404 (compression à quatre bandes). Il donne à l'utilisateur un contrôle complet sur la compression dynamique multibande.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/mc2000/",
+  "sourceHash": "63c93132a54c6e0c769e0a8261093d4c1867f30a3230ceaaf22d7699500e4a7d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--ml4000-mastering-limiter": {
+  "text": "Le ML4000 est un limiteur haute résolution et un processeur dynamique multibande conçu pour la musique, le mastering, la post-production et le son live. Le ML4000 est composé de deux plug-ins : ML1 (Master Limiter) et ML4 - (Multi-band Gate, Expander et Compresseur introduits dans le limiteur de mastering ML1). Tous les plug-ins McDSP v7 sont optimisés pour le silicium Apple et les derniers processeurs Intel.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/ml4000/",
+  "sourceHash": "8dc236afe0b62f3ce1c43606fdd1afdbfcc5c8003661de64fd02b32036eaca45",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--ml8000-advanced-limiter": {
+  "text": "Le ML8000 Advanced Limiter est la nouvelle génération de technologie de limiteur, utilisant deux étapes de traitement complètement distinctes pour un réglage du niveau de crête considérablement amélioré. Un retour visuel, plusieurs sources de mesure et une interface utilisateur intuitive font du ML8000 un choix facile pour le professionnel de l'audio.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/ml8000/",
+  "sourceHash": "247778307347026abc149e4a4b85bd59ef16ed4ed9aec25e5a13a3b7d06bf27d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--nf575-noise-filter": {
+  "text": "Des filtres passe-haut et passe-bas précis réduisent les grondements à basse fréquence et les sifflements à haute fréquence. Des pentes sélectionnables de 6, 12, 18, 24, 30 et 36 dB/Oct et une plage de contrôle de fréquence couvrant l'ensemble du spectre audible rendent les filtres NF575 extrêmement flexibles. Les cinq filtres coupe-bande NF575 peuvent être liés harmoniquement pour résoudre les problèmes de bruit cyclique courants tels que le bourdonnement de 60 Hz.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/nf575/",
+  "sourceHash": "9166e4ebe1088a8bc7aa7da9cd1a912ee6664f19eab7145be69972970f6df2c8",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--nr800-noise-reduction": {
+  "text": "Le NR800 est un processeur de réduction du bruit en temps réel, utile pour la production musicale, la post-production et le son live. Le NR800 peut fonctionner sur n'importe quoi, mais constitue un outil idéal pour nettoyer les dialogues, éliminer la contamination sonore des enregistrements sur le terrain, minimiser le saignement du microphone et du casque et restaurer l'audio.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/nr800/",
+  "sourceHash": "f76e1ef7b7e72407f88aece386c92fa60d517d4ca7662aa5c1a06a46d7b067b8",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--revolver-convolution-reverb": {
+  "text": "Revolver est une réverbération à convolution de grande puissance qui fonctionne comme aucune autre. Il offre un contrôle total de la réponse impulsionnelle, un égaliseur dédié et routable, deux lignes à retard synchronisables, un réseau de croisement de décroissance de réverbération et une imagerie stéréo spécialisée pour une flexibilité sans précédent. Des espaces acoustiques supplémentaires et des équipements extérieurs peuvent être modélisés en quelques minutes avec Revolver et les outils de réponse impulsionnelle de Revolver.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/revolver/",
+  "sourceHash": "c1711ead787fac0010aef5bbfd30a3b6c783d5555e841351388904c471a150dd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--sa-2-dialog-processor": {
+  "text": "Le SA-2 Dialog Processor est basé sur un matériel conçu à l'origine par le mixeur de réenregistrement Mike Minkler, lauréat d'un Oscar, et utilisé sur plus de 100 films majeurs. Le SA-2 est conçu pour améliorer le son global de la parole enregistrée. Mais le SA-2 n'est pas uniquement destiné au dialogue.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/sa-2/",
+  "sourceHash": "4a8c009fd98fc1e05d31c4138126854f444bbd61422d3b0418bfa9340854c2a4",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.032Z"
+ },
+ "mcdsp--sa-3-spectral-processor": {
+  "text": "Le SA-3 élève les algorithmes du processeur de dialogue SA-2, lauréat d'un Engineering Emmy Award, à un autre niveau. Les nouvelles fonctionnalités incluent l'ajout de plus de 1 000 bandes de traitement, une courbe de biais programmable par l'utilisateur, un contrôle unique de la mise au point, de la plage et de la densité sur le traitement spectral, la prise en charge de la chaîne latérale et le traitement intermédiaire/latéral. Comme le SA-2, le SA-3 est idéal pour supprimer les pics spectraux indésirables dans les dialogues, les voix et de nombreux autres types d'entrées audio.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/sa-3/",
+  "sourceHash": "c5694cd9e7539cd945c56111686572b2ac8c71dfe0646b35403c4863d5627e66",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "mcdsp--spc2000-serial-parallel-compressor": {
+  "text": "Le compresseur SPC2000 propose plusieurs combinaisons de compression parallèle et série. Il reprend la puissance et la flexibilité du désormais classique plug-in CompressorBank de McDSP et propose des configurations à deux (SPC202), trois (SPC203) et quatre (SPC204) étages avec des combinaisons de routage série et parallèle contrairement à n'importe quel processeur dynamique. Associez cette capacité de routage à la possibilité d’émuler n’importe quel autre compresseur, et il est clair que le SPC2000 est un outil audio sérieux.",
+  "sourceUrl": "https://mcdsp.com/plugin-index/spc2000/",
+  "sourceHash": "5779e14fbc44ecf15695aab652e8b52785b1a0f008710ab5234f84b6ea1b8af4",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "plugin-alliance--g8": {
+  "text": "Le G8 Creative Gating rencontre une modulation puissante Ajouter au panier 29,99 $ 35,00 $ 29,99 $ Ce plugin est inclus dans les abonnements CORE et PRO ! En savoir plus Promo Unfiltered Audio G8 Le Unfiltered Audio G8 fait passer la mise en forme dynamique du son à un niveau supérieur. Utilisez G8 pour créer des motifs rythmiques dynamiques sur des sons soutenus ; déclencher une enveloppe sur G8 avec une entrée MIDI ou l'utiliser pour déclencher des notes sur un instrument MIDI ; produisez des séquences fractales intéressantes et des effets de panoramique automatique avec Delay et Output Reject.",
+  "sourceUrl": "https://www.plugin-alliance.com/products/g8",
+  "sourceHash": "4eba8a96338812f43b4070fd120c7f606ae6fb47eeba61dcb238a646a602c4a4",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "sir-audio-tools--standardclip": {
+  "text": "Le plugin offre un suréchantillonnage de haute qualité jusqu'au facteur 256 et propose une grande variété d'options. VST VST3 AU AAX Windows 32 bits Windows 64 bits Apple Silicon",
+  "sourceUrl": "https://www.siraudiotools.com/product.php?id=standardclip",
+  "sourceHash": "8257cdccb2d0071231f9c03c2c8a53393d6d0930cfe31ad6e76888b8d622004d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--harrison-deesser": {
+  "text": "Plug-in Harrison DeEsser ci-dessous. Il vous sera demandé de vous connecter à votre compte iLok et la période d'autorisation d'essai commencera. Téléchargements Utiliser le SSL",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/harrison-deesser",
+  "sourceHash": "decad823add6210954cdb80e462f68b7c7357be4586ac4427eea6419ecc8e4bd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--harrison-livetrax-3": {
+  "text": "Harrison LiveTrax 3 - Windows",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/harrison-livetrax-3",
+  "sourceHash": "56d0178236e8fe6bcfe4702bb8f61e5e6e7d29f7b6de0ffc1bf144b9afd914d2",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--harrison-mpc-channel-strip": {
+  "text": "Plug-in Harrison MPC Channel Strip ci-dessous. Il vous sera demandé de vous connecter à votre compte iLok et la période d'autorisation d'essai commencera. Téléchargements Utiliser le SSL",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/harrison-mpc-channel-strip",
+  "sourceHash": "2fae9e77b76199c10e185c5e73257aa6705d4e81535f96fd216bae44fd5dcaa3",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--harrison-multi-band-compressor": {
+  "text": "Plug-in Harrison Multi-Band Compressor ci-dessous.",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/harrison-multi-band-compressor",
+  "sourceHash": "d1a2405d3b0ca3ca50766fe1da1a64d5eac49ce4fab7e5fe97426d5c701bbaa8",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--ssl-lmc": {
+  "text": "Plug-in SSL LMC+, comprenant une batterie tom des années 80, 808 rythmes et des voix en parallèle. Un incident en studio d'enregistrement a façonné la musique des années 80. Nos amis de Vox adorent la batterie des années 80.",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/ssl-lmc",
+  "sourceHash": "8b5112c534fa5b73d2cf1e377a3aaf9643cd9a0503a84ac3dd027937a2a1fbb5",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--ssl-native-x-comp": {
+  "text": "Exemples audio SSL Native X-Comp Écoutez le son du plug-in SSL Native X-Comp en action. CHARGEMENT PLUS de documents Guide de l'utilisateur X-Comp",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-comp",
+  "sourceHash": "da0ce885aa652df9845822c4cdc5b1331c9548c16f819479d4e179cc42986bdf",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--ssl-native-x-phase": {
+  "text": "Exemples audio SSL Native X-Phase Écoutez le son du plug-in SSL Native X-Phase en action. CHARGEMENT PLUS de documents Guide de l'utilisateur X-Phase",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-phase",
+  "sourceHash": "79f61b917499cc535a777b159be42f556d9d5fe7eaacdeb6c8ef3b279b42a074",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--ssl-x-delay": {
+  "text": "Guide de l'utilisateur SSL X-Delay",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/ssl-x-delay",
+  "sourceHash": "c1e8ed4084763fd0a5c5618077020ed3f46cc044a2162911fc0f181ca171f5a2",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "solid-state-logic--ssl-x-limit": {
+  "text": "X-Limit peut facilement contrôler les pics et apprivoiser les transitoires indésirables, créant ainsi des enregistrements complets et dynamiques – parfaits pour créer des mixages forts avec subtilité et émotion. Doté de 4 caractéristiques allant de l'extrême transparence à la couleur et à la colle, des temps de relâchement variables avec la célèbre relâchement « Auto » et l'algorithme True Peak + Lookahead pour un traitement de précision. Les indicateurs de direction et d'atténuation uniques indiquent comment le processus de limitation peut influencer l'image stéréo de votre signal et fournissent des informations sur la réduction de la dégradation stéréo à l'aide du contrôle de liaison de canal.",
+  "sourceUrl": "https://store.solidstatelogic.com/plug-ins/ssl-x-limit",
+  "sourceHash": "99dc7a51623ee3e4b3c4bdf73aea765c5e94058d07b03e0d13100aa77574837d",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "tokyo-dawn-records--tdr-collector": {
+  "text": "Collector est compatible avec tous les systèmes Windows, MacOS et Linux 64 bits modernes.",
+  "sourceUrl": "https://www.tokyodawn.net/tdr-collector/",
+  "sourceHash": "cd97cb8dbadcb0f9eeb03961c8215164e73c16030087f9bf58593bb30d985099",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:32.647Z"
+ },
+ "toneboosters--bitjuggler": {
+  "text": "Que vous souhaitiez remonter le temps pour créer le son numérique des années 80 de l'ère Commodore ou des premiers ordinateurs personnels, ajouter un caractère d'échantillonneur vintage à vos pistes audio, simuler des codecs audio avec perte des années 90 ou façonner votre audio au-delà de la simulation analogique : BitJuggler fournira les imperfections numériques avec une précision minutieuse. Caractéristiques principales Écrasement de bits Large gamme d'algorithmes Rééchantillonnage Contrôle précis de l'alias Simulation de codec Codecs de parole et de transformation Continuez à bouger LFO synchronisé avec le rythme Laissez-vous immerger Prise en charge de l'audio spatial jusqu'à 16 canaux Perspicace Retour visuel unique 35 € Licence de bureau personnelle et perpétuelle pour Windows, macOS et Linux pour une utilisation jusqu'à 4 ordinateurs.",
+  "sourceUrl": "https://www.toneboosters.com/tb_bitjuggler_v1.html",
+  "sourceHash": "c134e1ff4249e3ddae8373a73b048f10f31e1cd3f57e971d71729f6a39b74cb8",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:33.878Z"
+ },
+ "toneboosters--dualvcf": {
+  "text": "Il contient un total de 68 (!) modèles de filtres analogiques avec ce son recherché des années 70, 80 et 90. De plus, il fournit des filtres multi-résonants uniques, un éditeur de modulation intuitif synchronisé avec le rythme et un suiveur d'enveloppe pour piloter les paramètres de filtre au fil du temps. Caractéristiques principales Bibliothèque étendue 68 types de filtres au choix Routage flexible Exécutez des filtres en parallèle ou en série Filtrez avec du caractère Modèles non linéaires avec un son unique Synchronisation des battements Ajoutez du mouvement et du rythme Immergez-vous Prise en charge de l'audio spatial jusqu'à 16 canaux Retour visuel Voir les réponses des filtres en temps réel 19 € Licence de bureau personnelle et perpétuelle pour Windows, macOS et Linux pour une utilisation jusqu'à 4 ordinateurs.",
+  "sourceUrl": "https://www.toneboosters.com/tb_dualvcf_v1.html",
+  "sourceHash": "0aa7e1dc8c72994e9a57944e117bb1218eb33da56aa3e2b117d49b1ee0590122",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:33.878Z"
+ },
+ "toneboosters--mbc": {
+  "text": "Opération MBC depuis votre inspecteur de pistes ou votre table de mixage virtuelle, sans ouvrir l'interface utilisateur 2 ! Latence ultra faible Conception analogique à latence ultra faible, même avec suréchantillonnage 5 Exécutez un suréchantillonnage de haute qualité dans les cas d'utilisation en direct, en audition et en studio, sans les longues latences typiques introduites par les techniques de suréchantillonnage conventionnelles et les algorithmes de division de bande.",
+  "sourceUrl": "https://www.toneboosters.com/tb_mbc_v1.html",
+  "sourceHash": "ecaaee0054217ce991772b0f20771d4026dfb9e641830bbc7fa621819454e216",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:33.878Z"
+ },
+ "toneboosters--sibalance": {
+  "text": "La réduction ultérieure est effectuée par traitement spectral, ce qui donne un résultat plus propre et plus transparent, sans les artefacts générés par d'autres dé-esseurs. Caractéristiques principales Traitement spectral Pour un résultat plus transparent et plus propre Plusieurs modes Offrent de la variété pour la dé-essing Traitement Mid/side Dé-essing d'éléments spatiaux spécifiques Bénéficiez d'une immersion Prise en charge audio immersive à 16 canaux Retour visuel clair Pour guider le réglage sans devinettes Corriger la dureté Améliorer la musique, la parole et les pistes de podcast 35 € Licence de bureau personnelle et perpétuelle pour Windows, macOS et Linux pour une utilisation jusqu'à 4 ordinateurs.",
+  "sourceUrl": "https://www.toneboosters.com/tb_sibalance_v4.html",
+  "sourceHash": "a23de8880aab7afbb0da1b5e0aa54381df11fdd2ea2a4ea86e3274b05f198a96",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:33.878Z"
+ },
+ "toneboosters--voicepitcher": {
+  "text": "VoicePitcher 4 est un pitch shifter à double voix avec effet de gel créatif. Aidez les voix à se démarquer en ajoutant une ou plusieurs pistes virtuelles, avec un changement de hauteur et un retard dynamiques pilotés par LFO pour un effet de doublage plus naturel qu'un chorus ou des doubleurs conventionnels. Effets créatifs et uniques Contrôle des formants Améliorez le naturel du changement de hauteur Instantanés rapides Modifiez et rappelez instantanément les paramètres Doublage vocal instantané D'une simple pression sur un bouton 35 € Licence de bureau personnelle et perpétuelle pour Windows, macOS et Linux pour une utilisation jusqu'à 4 ordinateurs.",
+  "sourceUrl": "https://www.toneboosters.com/tb_voicepitcher_v4.html",
+  "sourceHash": "62b92a564916d477a1fa904603666f1116f7e150640e54e8082974cb8e551e24",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:33.878Z"
+ },
+ "universal-audio--akg-bx-20-spring-reverb": {
+  "text": "AKG BX 20 Spring Reverb Obtenez l'ambiance dense d'une rare réverbération à ressort de studio. Mixez avec le seul plug-in de réverbération AKG Acoustics BX 20 sous licence et approuvé. Enveloppez les voix et les instruments dans une ambiance dense et claire avec une configuration originale à double réservoir à ressort. Exploitez de nouvelles fonctionnalités « plug-in uniquement » telles que la sélection de réservoir A/B « stéréoisée », la défaite directe du signal et les commandes de tonalité étendues. Mixez avec les préréglages d'artiste de Patrick Carney (The Black Keys), Vance Powell (Jack White) et Jacquire King (Kings of Leon). Fonctionne sur macOS ou Windows. Explorez des effets uniques au-delà des autres réverbérations La personnalité sonore de l'AKG BX 20 vous offre l'apparition rapide d'une réverbération à plaque classique, ainsi que la densité et la diffusion naturelles d'une chambre.",
+  "sourceUrl": "https://www.uaudio.com/products/akg-bx-20-reverb",
+  "sourceHash": "5c4b7ea372bd75f97dc3f027b108a9038213974d9c853c7d9fe5c5f9c49c6220",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "universal-audio--sonnox-oxford-inflator": {
+  "text": "Ajoutez de la puissance, de la présence et une chaleur semblable à celle d'un tube aux mixages. Augmentez le volume perçu de n'importe quelle source, sans affecter de manière audible la qualité sonore. Obtenez une marge virtuelle supérieure au maximum numérique, permettant aux pics de percussion de passer sans surcharge de signal. Utilisez les modes Direct et Band-Split pour une flexibilité maximale et une utilisation optimale du DSP. Fonctionne sur macOS ou Windows. Foire aux questions Le matériel Universal Audio est-il requis pour utiliser ces plug-ins ? Oui, vous aurez besoin d'une interface audio Apollo, d'un satellite UAD-2 ou d'une carte PCIe UAD-2 pour exécuter ces plug-ins, à l'aide du DSP intégré.",
+  "sourceUrl": "https://www.uaudio.com/products/oxford-inflator",
+  "sourceHash": "0b575d3d19f571c55edc5278677a22bf946df1a11f33d8c0a9f27ec2f6b8a0f6",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--abbey-road-saturator": {
+  "text": "Le Abbey Road Saturator est basé sur des décennies de recherche et d'expérimentation dans le domaine audio, menées par les oreilles dorées et le génie des légendaires ingénieurs d'Abbey Road tels que Geoff Emerick et Peter Bown, qui ont contribué à façonner le son de la musique moderne jusqu'à aujourd'hui. Abbey Road Studios, EMI, TG, REDD et ses logos associés sont des marques commerciales d'EMI (IP) Limited. récapitulation",
+  "sourceUrl": "https://www.waves.com/plugins/abbey-road-saturator",
+  "sourceHash": "f547435a1b288cdc632f7e5ad796d744afa73bce692bc44190ffa05b6bf25be1",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--butch-vig-vocals": {
+  "text": "Donnez une voix à vos instruments, trop de fréquences d'instruments se situent dans la plage vocale et pour eux, ce plugin est comme une tranche de console.",
+  "sourceUrl": "https://www.waves.com/plugins/butch-vig-vocals",
+  "sourceHash": "755833941dafd592f7ae695fa916dcc5e0b206cda65db9188056965a017ab6cd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--center": {
+  "text": "centre et côtés (349) Prenez le contrôle du Center et des côtés des pistes déjà mixées Il n'est jamais trop tard pour réparer un mixage stéréo « terminé » : avec le Center, vous pouvez élargir ou rétrécir l'image stéréo, modifier la balance des sons répartis sur les côtés ou au centre, augmenter ou diminuer les voix principales, remixer des boucles de batterie, minimiser la « boue » ou faire ressortir le meilleur des effets de bus, même lorsque vous n'avez pas accès à la séance multipiste. Séparez le canal central « fantôme » des côtés Changez les niveaux vocaux dans les pistes déjà mixées Élargissez l'image stéréo pour plus d'impact et de clarté Avec les pads stéréo, libérez de l'espace pour les sons mixés au centre « Remixez » les anciens mixages lorsque les multipistes originales ne sont pas là Réduisez les basses fréquences pour le mastering du vinyle Regardez-le en action Ce contenu peut être utile : Pour pouvoir le visualiser, activez les technologies fonctionnelles.",
+  "sourceUrl": "https://www.waves.com/plugins/center",
+  "sourceHash": "e97e672366fad97c5bfb0b717ecf78f8a86096991eb87930263215bf6612df77",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--infected-mushroom-pusher": {
+  "text": "Rendez vos masters plus larges et plus gros Ajoutez de l'éclat et de la brillance avec la commande HIGH et utilisez l'IMAGE STÉRÉO pour étendre votre son sur tout le champ stéréo. Mushroom MAGIC : Plus de définition et de punch La commande MAGIC ajoute du punch aux transitoires et une mise au point qui améliore la définition et l'intelligibilité.",
+  "sourceUrl": "https://www.waves.com/plugins/infected-mushroom-pusher",
+  "sourceHash": "d2b30efb8d5db448c91a2ba2d4395fe2f2726c81d3af5df3033065fe19a909dd",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--sibilance": {
+  "text": "Lorsque le Sibilance reconnaît les sons vocaux « ess » et « chut » indésirables, il réduit uniquement leurs niveaux sans affecter les autres composants, même ceux à hautes fréquences. La synthèse organique conserve la luminosité et supprime la dureté Conserve le ton d'origine de la voix, même avec un dé-essing important. Plage de fréquences variable pour le dé-essing, de la bande large à la bande divisée. Un graphique informatif montre l'occurrence et la quantité du dé-essing. Mode de détection variable pour les transitoires ou les sons plus longs. Inclut une version sans latence pour les performances en direct. Regardez-le en action Vous trouverez peut-être ce contenu utile : Pour pouvoir le visualiser, activez les technologies fonctionnelles.",
+  "sourceUrl": "https://www.waves.com/plugins/sibilance",
+  "sourceHash": "a38bec27bb1ebde74cdd95f2b01b491b31a6018c0fe1e7d38aaf59901e9da086",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.207Z"
+ },
+ "waves--z-noise": {
+  "text": "Résoudre les problèmes sur toutes les fréquences grâce au traitement à large bande Pousser le plancher de bruit vers le bas Éviter les « maculages » transitoires avec la préaccentuation/désaccentuation Le mode adaptatif réduit le bruit au fil du temps, même si le profil change Façonner le profil de bruit avec une précision extrême, en utilisant l'égaliseur 5 bandes Optimiser la réduction pour une meilleure résolution basée sur le temps ou la fréquence Simplifier les ajustements en surveillant ce qui est supprimé Idéal pour réduire le bruit de guitare avant les amplis à gain élevé Excellente conservation de la dynamique et de la précision des basses fréquences What Top Les pros disent produit-quote-gallery-app recaptcha",
+  "sourceUrl": "https://www.waves.com/plugins/z-noise",
+  "sourceHash": "6df206c04911576c89967aad733a38a8770d0bd2c54e0b070e74fe68e5d71e0b",
+  "method": "source-based-synthesis-fr",
+  "checkedAt": "2026-11-16T08:20:35.605Z"
  }
 }

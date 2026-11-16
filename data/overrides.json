@@ -5268,5 +5268,21 @@
   "tal-software--tal-software-gmbh": {
     "exclude": true,
     "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "universal-audio--1176ln-classic-limiting-amplifier": {
+    "recordType": "hardware",
+    "recordTypeEvidence": {
+      "type": "hardware",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
+      "excerpt": "Appareil matériel : alimentation secteur 115/230 V, consommation 13 W, châssis rack 2U et connexions XLR."
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
+      "excerpt": "Compresseur matériel FET 1176LN, distinct des émulations UAD."
+    }
   }
 }

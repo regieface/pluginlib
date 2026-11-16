@@ -5,8 +5,19 @@ const boilerplate=/^(?:our range|browse|discover our|pro-grade audio software|vs
 export function publisherPresentation(plugin,html=''){
  const blocks=[];
  if(html){
+  // Certains éditeurs placent le texte produit dans des blocs de mise en page,
+  // ou dans un panneau chargé à la demande qui est masqué hors de son contexte.
+  if(/(^|\.)mcdsp\.com$/.test(new URL(plugin.url).hostname)){
+   for(const m of html.matchAll(/<div\b[^>]*class=["'][^"']*\bmc_text_med\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi)){
+    const text=stripHtml(m[1]);if(text.length>80)blocks.push(text);if(blocks.length>=2)break;
+   }
+  }
+  if(/(^|\.)lsp-plug\.in$/.test(new URL(plugin.url).hostname)){
+   const description=html.match(/<b>Description:<\/b>[\s\S]*?<p>([\s\S]*?)<\/p>/i)?.[1];
+   if(description)blocks.push(stripHtml(description));
+  }
   const visible=visibleProductHtml(html).replace(/<blockquote\b[^>]*>[\s\S]*?<\/blockquote>/gi,''),page=extractPage(html,plugin.url,plugin.vendor);
-  const names=[plugin.name,...(plugin.aliases||[])].map(compact).filter(n=>n.length>=5);
+ const names=[plugin.name,...(plugin.aliases||[]),plugin.name.replace(/^GVST\s+/i,'')].map(compact).filter(n=>n.length>=4);
   const paragraphs=[...visible.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)].map(m=>stripHtml(m[1]).replace(/\s+/g,' ').trim());
   for(const text of paragraphs){
    if(text.length<55||text.length>1800||boilerplate.test(text))continue;

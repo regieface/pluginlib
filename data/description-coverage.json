@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-11-16T08:04:29.716Z",
+ "generatedAt": "2026-11-16T08:23:06.072Z",
  "summary": {
   "visibleRecords": 2690,
-  "frenchPresentations": 2542,
-  "individuallyWritten": 80,
-  "sourceAssisted": 2462,
-  "missing": 148,
+  "frenchPresentations": 2660,
+  "individuallyWritten": 81,
+  "sourceAssisted": 2579,
+  "missing": 30,
   "sourceChanged": 0
  },
  "method": "Synthèses françaises fondées sur les présentations propres aux produits. Les textes assistés ne constituent pas une validation manuelle exhaustive. Aucune définition de famille ne remplace une source manquante.",
@@ -29,102 +29,6 @@
    "url": "https://www.bozdigitallabs.com/plus-10-db/"
   },
   {
-   "id": "gvst--gvst-gchorus",
-   "name": "GVST GChorus",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GChorus"
-  },
-  {
-   "id": "gvst--gvst-gclip",
-   "name": "GVST GClip",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GClip"
-  },
-  {
-   "id": "gvst--gvst-gcomp",
-   "name": "GVST GComp",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GComp"
-  },
-  {
-   "id": "gvst--gvst-gdelay",
-   "name": "GVST GDelay",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GDelay"
-  },
-  {
-   "id": "gvst--gvst-gfader",
-   "name": "GVST GFader",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GFader"
-  },
-  {
-   "id": "gvst--gvst-ggain",
-   "name": "GVST GGain",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GGain"
-  },
-  {
-   "id": "gvst--gvst-ggate",
-   "name": "GVST GGate",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GGate"
-  },
-  {
-   "id": "gvst--gvst-ggrain",
-   "name": "GVST GGrain",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GGrain"
-  },
-  {
-   "id": "gvst--gvst-ghi",
-   "name": "GVST GHi",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GHi"
-  },
-  {
-   "id": "gvst--gvst-glfo",
-   "name": "GVST GLFO",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GLFO"
-  },
-  {
-   "id": "gvst--gvst-gloop",
-   "name": "GVST GLoop",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GLoop"
-  },
-  {
-   "id": "gvst--gvst-gmonobass",
-   "name": "GVST GMonoBass",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GMonoBass"
-  },
-  {
-   "id": "gvst--gvst-gnormal",
-   "name": "GVST GNormal",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GNormal"
-  },
-  {
-   "id": "gvst--gvst-gpitchgate",
-   "name": "GVST GPitchGate",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GPitchGate"
-  },
-  {
-   "id": "gvst--gvst-gsnap",
-   "name": "GVST GSnap",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GSnap"
-  },
-  {
-   "id": "gvst--gvst-gtrichorus",
-   "name": "GVST GTriChorus",
-   "vendor": "GVST",
-   "url": "https://gvst.uk/Downloads/GTriChorus"
-  },
-  {
    "id": "harrison--deesser",
    "name": "DeEsser",
    "vendor": "Harrison",
@@ -141,24 +45,6 @@
    "name": "Vocal Intensity Processor",
    "vendor": "Harrison",
    "url": "https://store.harrisonaudio.com/all-products/vocal-intensity-processor"
-  },
-  {
-   "id": "ik-multimedia--tascam-porta-one",
-   "name": "TASCAM Porta One",
-   "vendor": "IK Multimedia",
-   "url": "https://ikmultimedia.com/en-us/products/trtascamportaone"
-  },
-  {
-   "id": "ik-multimedia--teac-a-3340s",
-   "name": "TEAC A-3340S",
-   "vendor": "IK Multimedia",
-   "url": "https://ikmultimedia.com/en-us/products/trteaca3340s"
-  },
-  {
-   "id": "ik-multimedia--teac-a-6100-mkii",
-   "name": "TEAC A-6100 MKII",
-   "vendor": "IK Multimedia",
-   "url": "https://ikmultimedia.com/en-us/products/trteaca6100"
   },
   {
    "id": "kush-audio--novatron-varitone-tube-compressor",
@@ -191,478 +77,10 @@
    "url": "https://thehouseofkush.com/products/omega-2-model-twk"
   },
   {
-   "id": "lsp-plugins--artistic-delay",
-   "name": "Artistic Delay",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=art_delay"
-  },
-  {
-   "id": "lsp-plugins--automatic-gain-control",
-   "name": "Automatic Gain Control",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=autogain"
-  },
-  {
-   "id": "lsp-plugins--beat-breather",
-   "name": "Beat Breather",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=beat_breather"
-  },
-  {
-   "id": "lsp-plugins--chorus",
-   "name": "Chorus",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=chorus"
-  },
-  {
-   "id": "lsp-plugins--clipper",
-   "name": "Clipper",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=clipper"
-  },
-  {
-   "id": "lsp-plugins--compensation-delay",
-   "name": "Compensation Delay",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=comp_delay"
-  },
-  {
-   "id": "lsp-plugins--compressor",
-   "name": "Compressor",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=compressor"
-  },
-  {
-   "id": "lsp-plugins--crossover",
-   "name": "Crossover",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=crossover"
-  },
-  {
-   "id": "lsp-plugins--deesser",
-   "name": "Deesser",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=deesser"
-  },
-  {
-   "id": "lsp-plugins--dynamics-processor",
-   "name": "Dynamics Processor",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=dyna_processor"
-  },
-  {
-   "id": "lsp-plugins--expander",
-   "name": "Expander",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=expander"
-  },
-  {
-   "id": "lsp-plugins--filter",
-   "name": "Filter",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=filter"
-  },
-  {
-   "id": "lsp-plugins--flanger",
-   "name": "Flanger",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=flanger"
-  },
-  {
-   "id": "lsp-plugins--gate",
-   "name": "Gate",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=gate"
-  },
-  {
-   "id": "lsp-plugins--gott-compressor",
-   "name": "GOTT Compressor",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=gott_compressor"
-  },
-  {
-   "id": "lsp-plugins--graphic-equalizer",
-   "name": "Graphic Equalizer",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=graph_equalizer"
-  },
-  {
-   "id": "lsp-plugins--impulse-responses",
-   "name": "Impulse Responses",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=impulse_responses"
-  },
-  {
-   "id": "lsp-plugins--impulse-reverb",
-   "name": "Impulse Reverb",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=impulse_reverb"
-  },
-  {
-   "id": "lsp-plugins--latency-meter",
-   "name": "Latency Meter",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=latency_meter"
-  },
-  {
-   "id": "lsp-plugins--limiter",
-   "name": "Limiter",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=limiter"
-  },
-  {
-   "id": "lsp-plugins--loudness-compensator",
-   "name": "Loudness Compensator",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=loud_comp"
-  },
-  {
-   "id": "lsp-plugins--matcher",
-   "name": "Matcher",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=matcher"
-  },
-  {
-   "id": "lsp-plugins--mixer",
-   "name": "Mixer",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mixer"
-  },
-  {
-   "id": "lsp-plugins--multiband-clipper",
-   "name": "Multiband Clipper",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_clipper"
-  },
-  {
-   "id": "lsp-plugins--multiband-compressor",
-   "name": "Multiband Compressor",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_compressor"
-  },
-  {
-   "id": "lsp-plugins--multiband-dynamics-processor",
-   "name": "Multiband Dynamics Processor",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_dyna_processor"
-  },
-  {
-   "id": "lsp-plugins--multiband-expander",
-   "name": "Multiband Expander",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_expander"
-  },
-  {
-   "id": "lsp-plugins--multiband-gate",
-   "name": "Multiband Gate",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_gate"
-  },
-  {
-   "id": "lsp-plugins--multiband-limiter",
-   "name": "Multiband Limiter",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_limiter"
-  },
-  {
-   "id": "lsp-plugins--multiband-ring-modulated-sidechain",
-   "name": "Multiband Ring Modulated Sidechain",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=mb_ringmod_sc"
-  },
-  {
-   "id": "lsp-plugins--multisampler",
-   "name": "Multisampler",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=multisampler"
-  },
-  {
-   "id": "lsp-plugins--noise-generator",
-   "name": "Noise Generator",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=noise_generator"
-  },
-  {
-   "id": "lsp-plugins--oscillator",
-   "name": "Oscillator",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=oscillator"
-  },
-  {
-   "id": "lsp-plugins--oscilloscope",
-   "name": "Oscilloscope",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=oscilloscope"
-  },
-  {
-   "id": "lsp-plugins--parametric-equalizer",
-   "name": "Parametric Equalizer",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=para_equalizer"
-  },
-  {
-   "id": "lsp-plugins--phase-detector",
-   "name": "Phase Detector",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=phase_detector"
-  },
-  {
-   "id": "lsp-plugins--phaser",
-   "name": "Phaser",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=phaser"
-  },
-  {
-   "id": "lsp-plugins--profiler",
-   "name": "Profiler",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=profiler"
-  },
-  {
-   "id": "lsp-plugins--referencer",
-   "name": "Referencer",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=referencer"
-  },
-  {
-   "id": "lsp-plugins--return",
-   "name": "Return",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=return"
-  },
-  {
-   "id": "lsp-plugins--ring-modulated-sidechain",
-   "name": "Ring Modulated Sidechain",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=ringmod_sc"
-  },
-  {
-   "id": "lsp-plugins--room-builder",
-   "name": "Room Builder",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=room_builder"
-  },
-  {
-   "id": "lsp-plugins--send",
-   "name": "Send",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=send"
-  },
-  {
-   "id": "lsp-plugins--slap-back-delay",
-   "name": "Slap-back Delay",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=slap_delay"
-  },
-  {
-   "id": "lsp-plugins--spectrum-analyzer",
-   "name": "Spectrum Analyzer",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=spectrum_analyzer"
-  },
-  {
-   "id": "lsp-plugins--surge-filter",
-   "name": "Surge Filter",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=surge_filter"
-  },
-  {
-   "id": "lsp-plugins--trigger",
-   "name": "Trigger",
-   "vendor": "LSP Plugins",
-   "url": "https://lsp-plug.in/ajax/bundle.php?bundle=trigger"
-  },
-  {
-   "id": "mcdsp--4020-retro-equalizer",
-   "name": "4020 Retro Equalizer",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/4020-retro/"
-  },
-  {
-   "id": "mcdsp--4030-retro-compressor",
-   "name": "4030 Retro Compressor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/4030-retro/"
-  },
-  {
-   "id": "mcdsp--4040-retro-limiter",
-   "name": "4040 Retro Limiter",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/4040-retro/"
-  },
-  {
-   "id": "mcdsp--6020-ultimate-eq",
-   "name": "6020 Ultimate EQ",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/6020-ultimate/"
-  },
-  {
-   "id": "mcdsp--6030-ultimate-compressor",
-   "name": "6030 Ultimate Compressor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/6030-ultimate/"
-  },
-  {
-   "id": "mcdsp--6034-multi-band-compressor",
-   "name": "6034 Multi-Band Compressor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/6034-ultimate/"
-  },
-  {
-   "id": "mcdsp--6050-ultimate-channel-strip",
-   "name": "6050 Ultimate Channel Strip",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/6050-ultimate-channel-strip/"
-  },
-  {
-   "id": "mcdsp--ae400-active-eq",
-   "name": "AE400 Active EQ",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/ae400/"
-  },
-  {
-   "id": "mcdsp--ae600-active-eq",
-   "name": "AE600 Active EQ",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/ae600/"
-  },
-  {
-   "id": "mcdsp--analog-channel",
-   "name": "Analog Channel",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/analog-channel/"
-  },
-  {
-   "id": "mcdsp--channel-g",
-   "name": "Channel G",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/channel-g/"
-  },
-  {
-   "id": "mcdsp--channel-g-compact",
-   "name": "Channel G Compact",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/channel-g-compact/"
-  },
-  {
-   "id": "mcdsp--channel-g-surround",
-   "name": "Channel G Surround",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/channel-g-surround/"
-  },
-  {
-   "id": "mcdsp--compressorbank",
-   "name": "CompressorBank",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/compressor-bank/"
-  },
-  {
-   "id": "mcdsp--de555-advanced-de-esser",
-   "name": "DE555 Advanced De-Esser",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/de555/"
-  },
-  {
-   "id": "mcdsp--filterbank",
-   "name": "FilterBank",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/filterbank/"
-  },
-  {
-   "id": "mcdsp--futzbox",
-   "name": "FutzBox",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/futzbox/"
-  },
-  {
-   "id": "mcdsp--futzverb",
-   "name": "FutzVerb",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/futzverb/"
-  },
-  {
-   "id": "mcdsp--mc2000-multi-band-compressor",
-   "name": "MC2000 Multi-Band Compressor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/mc2000/"
-  },
-  {
-   "id": "mcdsp--ml4000-mastering-limiter",
-   "name": "ML4000 Mastering Limiter",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/ml4000/"
-  },
-  {
-   "id": "mcdsp--ml8000-advanced-limiter",
-   "name": "ML8000 Advanced Limiter",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/ml8000/"
-  },
-  {
-   "id": "mcdsp--nf575-noise-filter",
-   "name": "NF575 Noise Filter",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/nf575/"
-  },
-  {
-   "id": "mcdsp--nr800-noise-reduction",
-   "name": "NR800 Noise Reduction",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/nr800/"
-  },
-  {
-   "id": "mcdsp--revolver-convolution-reverb",
-   "name": "Revolver Convolution Reverb",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/revolver/"
-  },
-  {
-   "id": "mcdsp--sa-2-dialog-processor",
-   "name": "SA-2 Dialog Processor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/sa-2/"
-  },
-  {
-   "id": "mcdsp--sa-3-spectral-processor",
-   "name": "SA-3 Spectral Processor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/sa-3/"
-  },
-  {
-   "id": "mcdsp--spc2000-serial-parallel-compressor",
-   "name": "SPC2000 Serial/Parallel Compressor",
-   "vendor": "McDSP",
-   "url": "https://mcdsp.com/plugin-index/spc2000/"
-  },
-  {
-   "id": "plugin-alliance--g8",
-   "name": "G8",
-   "vendor": "Plugin Alliance",
-   "url": "https://www.plugin-alliance.com/products/g8"
-  },
-  {
    "id": "pspaudioware--psp-wobbler-the-alan-parsons-plug-in-project",
    "name": "PSP Wobbler The Alan Parsons Plug-in Project",
    "vendor": "PSPaudioware",
    "url": "https://www.pspaudioware.com/products/psp-wobbler"
-  },
-  {
-   "id": "sir-audio-tools--standardclip",
-   "name": "StandardCLIP",
-   "vendor": "SIR Audio Tools",
-   "url": "https://www.siraudiotools.com/product.php?id=standardclip"
-  },
-  {
-   "id": "solid-state-logic--harrison-deesser",
-   "name": "Harrison DeEsser",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/harrison-deesser"
-  },
-  {
-   "id": "solid-state-logic--harrison-livetrax-3",
-   "name": "Harrison LiveTrax 3",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/harrison-livetrax-3"
   },
   {
    "id": "solid-state-logic--harrison-mixbus-12",
@@ -677,76 +95,16 @@
    "url": "https://store.solidstatelogic.com/plug-ins/mixbus-12-pro"
   },
   {
-   "id": "solid-state-logic--harrison-mpc-channel-strip",
-   "name": "Harrison MPC Channel Strip",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/harrison-mpc-channel-strip"
-  },
-  {
-   "id": "solid-state-logic--harrison-multi-band-compressor",
-   "name": "Harrison Multi-Band Compressor",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/harrison-multi-band-compressor"
-  },
-  {
-   "id": "solid-state-logic--ssl-lmc",
-   "name": "SSL LMC+",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/ssl-lmc"
-  },
-  {
    "id": "solid-state-logic--ssl-native-flexverb",
    "name": "SSL Native FlexVerb",
    "vendor": "Solid State Logic",
    "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-flexverb"
   },
   {
-   "id": "solid-state-logic--ssl-native-x-comp",
-   "name": "SSL Native X-Comp",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-comp"
-  },
-  {
    "id": "solid-state-logic--ssl-native-x-eq-2",
    "name": "SSL Native X-EQ 2",
    "vendor": "Solid State Logic",
    "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-eq-2"
-  },
-  {
-   "id": "solid-state-logic--ssl-native-x-phase",
-   "name": "SSL Native X-Phase",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/ssl-native-x-phase"
-  },
-  {
-   "id": "solid-state-logic--ssl-x-delay",
-   "name": "SSL X-Delay",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/ssl-x-delay"
-  },
-  {
-   "id": "solid-state-logic--ssl-x-limit",
-   "name": "SSL X-Limit",
-   "vendor": "Solid State Logic",
-   "url": "https://store.solidstatelogic.com/plug-ins/ssl-x-limit"
-  },
-  {
-   "id": "tokyo-dawn-records--tdr-collector",
-   "name": "TDR Collector",
-   "vendor": "Tokyo Dawn Records",
-   "url": "https://www.tokyodawn.net/tdr-collector/"
-  },
-  {
-   "id": "toneboosters--bitjuggler",
-   "name": "BitJuggler",
-   "vendor": "ToneBoosters",
-   "url": "https://www.toneboosters.com/tb_bitjuggler_v1.html"
-  },
-  {
-   "id": "toneboosters--dualvcf",
-   "name": "DualVCF",
-   "vendor": "ToneBoosters",
-   "url": "https://www.toneboosters.com/tb_dualvcf_v1.html"
   },
   {
    "id": "toneboosters--goniometer-free",
@@ -761,40 +119,10 @@
    "url": "https://www.toneboosters.com/tb_latent_v1.html"
   },
   {
-   "id": "toneboosters--mbc",
-   "name": "MBC",
-   "vendor": "ToneBoosters",
-   "url": "https://www.toneboosters.com/tb_mbc_v1.html"
-  },
-  {
-   "id": "toneboosters--sibalance",
-   "name": "Sibalance",
-   "vendor": "ToneBoosters",
-   "url": "https://www.toneboosters.com/tb_sibalance_v4.html"
-  },
-  {
    "id": "toneboosters--spectrogram-free",
    "name": "Spectrogram (free!)",
    "vendor": "ToneBoosters",
    "url": "https://www.toneboosters.com/tb_spectrogram_v1.html"
-  },
-  {
-   "id": "toneboosters--voicepitcher",
-   "name": "VoicePitcher",
-   "vendor": "ToneBoosters",
-   "url": "https://www.toneboosters.com/tb_voicepitcher_v4.html"
-  },
-  {
-   "id": "universal-audio--akg-bx-20-spring-reverb",
-   "name": "AKG BX 20 Spring Reverb",
-   "vendor": "Universal Audio",
-   "url": "https://www.uaudio.com/products/akg-bx-20-reverb"
-  },
-  {
-   "id": "universal-audio--sonnox-oxford-inflator",
-   "name": "Sonnox Oxford Inflator",
-   "vendor": "Universal Audio",
-   "url": "https://www.uaudio.com/products/oxford-inflator"
   },
   {
    "id": "universal-audio--uad-spark-studio-tax-free",
@@ -807,24 +135,6 @@
    "name": "UAD Spark Studio Annual (tax free)",
    "vendor": "Universal Audio",
    "url": "https://www.uaudio.com/products/uad-spark-annual-refund"
-  },
-  {
-   "id": "waves--abbey-road-saturator",
-   "name": "Abbey Road Saturator",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/abbey-road-saturator"
-  },
-  {
-   "id": "waves--butch-vig-vocals",
-   "name": "Butch Vig Vocals",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/butch-vig-vocals"
-  },
-  {
-   "id": "waves--center",
-   "name": "Center",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/center"
   },
   {
    "id": "waves--dugan-automixer",
@@ -843,12 +153,6 @@
    "name": "GTR3 Amps",
    "vendor": "Waves",
    "url": null
-  },
-  {
-   "id": "waves--infected-mushroom-pusher",
-   "name": "Infected Mushroom Pusher",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/infected-mushroom-pusher"
   },
   {
    "id": "waves--l3-ll-multimaximizer",
@@ -875,12 +179,6 @@
    "url": null
   },
   {
-   "id": "waves--sibilance",
-   "name": "Sibilance",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/sibilance"
-  },
-  {
    "id": "waves--ssl-ev2-channel",
    "name": "SSL EV2 Channel",
    "vendor": "Waves",
@@ -891,12 +189,6 @@
    "name": "TRACT SPL Meter",
    "vendor": "Waves",
    "url": null
-  },
-  {
-   "id": "waves--z-noise",
-   "name": "Z-Noise",
-   "vendor": "Waves",
-   "url": "https://www.waves.com/plugins/z-noise"
   }
  ],
  "sourceChanged": []

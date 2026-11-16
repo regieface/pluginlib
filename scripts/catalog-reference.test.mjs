@@ -4,6 +4,14 @@ import {defaultSelections,matchesPluginSelections} from '../filters.mjs';
 import {shortDescription} from '../descriptions.mjs';
 const {plugins}=JSON.parse(fs.readFileSync(new URL('../data/plugins.json',import.meta.url)));
 const byId=new Map(plugins.map(p=>[p.id,p]));
+test('UA : le rack 1176LN matériel ne se confond pas avec le plugin 1176',()=>{
+ const hardware=byId.get('universal-audio--1176ln-classic-limiting-amplifier');
+ assert.equal(hardware.recordType,'hardware');assert(!matchesPluginSelections(hardware,defaultSelections()));
+ const software=byId.get('universal-audio--ua-1176-classic-fet-compressor');
+ assert.notEqual(software.recordType,'hardware');
+ const descriptions=JSON.parse(fs.readFileSync(new URL('../data/descriptions-fr.json',import.meta.url)));
+ assert.match(shortDescription(software,descriptions),/Émulation.*1176/);
+});
 test('Valhalla : les six réverbes restent trouvables dans le filtre Réverbération',()=>{
  const selection=defaultSelections();selection.family.include=['reverb'];
  for(const suffix of ['futureverb','plate','room','shimmer','super-massive','vintageverb']){

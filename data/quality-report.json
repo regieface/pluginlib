@@ -1,14 +1,14 @@
 {
- "generatedAt": "2026-11-16T08:00:05.616Z",
+ "generatedAt": "2026-11-16T08:22:35.476Z",
  "scope": "Audit des familles principales, critères techniques et extraits de latence contaminés. Les preuves textuelles ne constituent pas une vérification manuelle exhaustive ; prix et compatibilités sont hors de ce contrôle.",
  "summary": {
   "plugins": 2699,
-  "documentedFamilies": 1416,
-  "pendingFamilies": 1283,
-  "reclassifiedFamilies": 432,
-  "documentedCriteria": 779,
-  "pendingCriteria": 3248,
-  "pluginsWithPendingCriteria": 1595,
+  "documentedFamilies": 1417,
+  "pendingFamilies": 1282,
+  "reclassifiedFamilies": 433,
+  "documentedCriteria": 781,
+  "pendingCriteria": 3246,
+  "pluginsWithPendingCriteria": 1594,
   "suspectLatency": 234
  },
  "byVendor": {
@@ -446,11 +446,11 @@
   },
   "Universal Audio": {
    "plugins": 184,
-   "documentedCriteria": 85,
-   "pendingCriteria": 118,
+   "documentedCriteria": 87,
+   "pendingCriteria": 116,
    "suspectLatency": 0,
-   "documentedFamilies": 93,
-   "pendingFamilies": 91
+   "documentedFamilies": 94,
+   "pendingFamilies": 90
   },
   "Valhalla DSP": {
    "plugins": 10,
@@ -37522,30 +37522,6 @@
     "originalCategory": "saturation"
    },
    "criteria": []
-  },
-  {
-   "id": "universal-audio--1176ln-classic-limiting-amplifier",
-   "name": "1176LN Classic Limiting Amplifier",
-   "vendor": "Universal Audio",
-   "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.uaudio.com/products/1176ln-classic-limiting-amplifier",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "limiter"
-   },
-   "criteria": [
-    "techno:fet",
-    "vitesse:rapide"
-   ]
   },
   {
    "id": "universal-audio--6176-vintage-channel-strip",

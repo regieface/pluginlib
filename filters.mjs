@@ -5,7 +5,7 @@ export function defaultSelections(facetKeys = []) {
   const selections = Object.fromEntries(['platform', 'catalogStatus', 'recordType', 'family', 'maker', 'option', ...facetKeys].map((key) => [key, emptySelection()]));
   selections.catalogStatus.exclude = ['discontinued', 'superseded', 'upcoming'];
   selections.maker.exclude = ['Airwindows'];
-  selections.recordType.exclude = ['instrument', 'bundle', 'application', 'module'];
+  selections.recordType.exclude = ['instrument', 'bundle', 'application', 'module', 'hardware'];
   return selections;
 }
 export function changeSelection(selection, value, mode, enabled) {

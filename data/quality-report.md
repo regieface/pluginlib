@@ -3,11 +3,11 @@
 Audit des familles principales, critères techniques et extraits de latence contaminés. Les preuves textuelles ne constituent pas une vérification manuelle exhaustive ; prix et compatibilités sont hors de ce contrôle.
 
 - 2699 fiches conservées.
-- 1416 familles appuyées par une fonction principale explicite ou une vérification de source.
-- 1283 familles à vérifier, écartées des familles précises dans les filtres.
-- 432 familles connues réattribuées depuis le classement initial.
-- 779 critères avec une preuve propre au produit.
-- 3248 anciens critères retirés des filtres et mis à vérifier.
+- 1417 familles appuyées par une fonction principale explicite ou une vérification de source.
+- 1282 familles à vérifier, écartées des familles précises dans les filtres.
+- 433 familles connues réattribuées depuis le classement initial.
+- 781 critères avec une preuve propre au produit.
+- 3246 anciens critères retirés des filtres et mis à vérifier.
 - 234 extraits de latence contaminés écartés ; les tableaux officiels indépendants sont conservés.
 
 Une description éditeur constitue une source textuelle, pas une validation manuelle complète. Une fonction non confirmée n’est pas déclarée absente. Les cas restants sont conservés dans quality-report.json pour poursuivre la vérification par fabricant.
@@ -19,7 +19,7 @@ Une description éditeur constitue une source textuelle, pas une validation manu
 | MeldaProduction | 76 | 47 | 20 | 258 |
 | Plugin Alliance | 87 | 67 | 58 | 238 |
 | Solid State Logic | 41 | 31 | 19 | 155 |
-| Universal Audio | 93 | 91 | 85 | 118 |
+| Universal Audio | 94 | 90 | 87 | 116 |
 | Softube | 55 | 40 | 24 | 113 |
 | PSPaudioware | 40 | 16 | 19 | 99 |
 | Voxengo | 34 | 13 | 32 | 93 |

@@ -9,7 +9,7 @@
   <script>
     // Les fichiers de l'app sont rechargés à chaque version (évite qu'un ancien app.js
     // resté en cache se mélange avec un nouveau index.html après une mise à jour).
-    window.PL_V = Math.floor(Date.now() / 300000);
+    window.PL_V = Date.now();
     document.write('<link rel="stylesheet" href="styles.css?v=' + window.PL_V + '">');
   </script>
   <noscript><link rel="stylesheet" href="styles.css"></noscript>
