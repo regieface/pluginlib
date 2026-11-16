@@ -1,12 +1,13 @@
 // PluginLib — interface. Les données vivent dans data/*.json (mises à jour toutes les deux semaines par GitHub Actions).
 const moduleVersion = window.PL_V || 1;
-const { shortDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
+const { productDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
 const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceStale } = await import(`./catalog.mjs?v=${moduleVersion}`);
 const { defaultSelections, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
+const descriptionObserver=new ResizeObserver(entries=>{for(const {target:text} of entries){if(!text.isConnected)continue;const block=text.closest('.description'),toggle=block.querySelector('.description-toggle');toggle.hidden=!block.classList.contains('expanded')&&text.scrollHeight<=text.clientHeight+1;}});
 const STATUS_KEY = 'pluginlib.status.v2';
 const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'Abonnement actif', former: 'Ancien abonnement', trial: 'Démo', wishlist: 'Liste d’envies', not_owned: 'Non possédé' };
 const PAGE = 30;
@@ -42,17 +43,18 @@ function lat(p, rate) {
 
 // ---------- Chargement ----------
 async function load() {
-  const [d, m, plans] = await Promise.all([
+  const [d, m, plans, descriptions] = await Promise.all([
     fetch('data/plugins.json', { cache: 'no-cache' }).then((r) => r.json()),
     fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json()),
-    fetch('data/subscriptions.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{plans:[]}).catch(()=>({plans:[]}))
+    fetch('data/subscriptions.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{plans:[]}).catch(()=>({plans:[]})),
+    fetch('data/descriptions-fr.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{}).catch(()=>({}))
   ]);
   META = m; LBL = m.labels;
   PLANS=plans.plans||[];
   ({status,subscriptions,unmatchedLicenses,licenseDetails}=normalizeCollection(currentCollection(),d.plugins,PLANS));
-  DATA = d.plugins.filter(p=>!p.duplicateOf).map((p) => {
-    const summary = shortDescription(p);
-    return { ...p, summary, _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
+  DATA = d.plugins.filter(p=>!p.duplicateOf&&!p.exclude).map((p) => {
+    const presentation = productDescription(p,descriptions),summary=presentation.text;
+    return { ...p, summary, presentation, _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
   });
   save();stats(); fillStatic(); renderSubscriptions();render();
 }
@@ -198,7 +200,13 @@ function card(p) {
   n.querySelector('.ribbon').textContent = l?.zero ? `Zero latency · ${st.rate} kHz` : l?.zeroMode ? `ZL selon mode · ${st.rate} kHz` : '';
   n.querySelector('.maker').textContent = p.vendor;
   n.querySelector('.plugin').textContent = p.name;
-  n.querySelector('.description').textContent = p.summary;
+  const description=n.querySelector('.description');
+  const text=document.createElement('p');text.className='description-text';text.id=`description-${p.id}`;text.textContent=p.summary;
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='description-toggle';toggle.textContent='Lire la suite';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',text.id);toggle.hidden=true;
+  toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Réduire':'Lire la suite';description.classList.toggle('expanded',expanded);});
+  description.append(text,toggle);
+  if(p.presentation.url){const source=document.createElement('a');source.className='description-source';source.href=p.presentation.url;source.target='_blank';source.rel='noopener';source.textContent=p.presentation.label+' ↗';description.append(source);}
+  descriptionObserver.observe(text);
   const tagLabel = (tag) => { const [f, v] = tag.split(':'); return f === 'opt' ? LBL.common[v] : LBL.facets[f]?.values[v]; };
   const tags = p.tags.map((id) => ({ id, label: tagLabel(id) })).filter((t) => t.label);
   const familyEvidence = p.categoryEvidence;
@@ -282,6 +290,7 @@ function card(p) {
 }
 
 function render() {
+  descriptionObserver.disconnect();
   refreshContextualFilters();
   const list = filtered();
   const latKey = (p) => { const l = lat(p, st.rate); return l?.samples ?? (l?.variants ? Math.min(...l.variants.map((v) => v.samples)) : 1e9); };
@@ -294,7 +303,8 @@ function render() {
   $('#cards').replaceChildren(frag);
   $('#more').hidden = list.length <= shown;
   const unmatched=$('#unmatchedCollection');unmatched.hidden=st.scope!=='owned'||!unmatchedLicenses.length;
-  if(!unmatched.hidden){$('#unmatchedSummary').textContent=`${unmatchedLicenses.length} licences importées sans fiche correspondante`;
+  if(!unmatched.hidden){const groups=unmatchedLicenses.filter(l=>l.kind==='group').length,products=unmatchedLicenses.length-groups;
+    $('#unmatchedSummary').textContent=[products?`${products} licences importées sans fiche correspondante`:'',groups?`${groups} groupes d’abonnement importés`:''].filter(Boolean).join(' · ');
     $('#unmatchedList').replaceChildren(...unmatchedLicenses.map(license=>{const li=document.createElement('li');li.textContent=`${license.publisher} — ${license.name} · ${STATUS[license.status]||'À vérifier'}${license.kind==='group'?' · Groupe de licences':''}`;return li;}));
   }
   document.querySelectorAll('.field').forEach((f) => { const s = f.querySelector('select'); if (s) f.classList.toggle('active', !!s.value && !['all', 'Tous', ''].includes(s.value) && s.id !== 'rate'); });

@@ -38,3 +38,17 @@ Validation : 104 tests réussis ; parcours navigateur isolé pour les filtres co
 Le classement reste incomplet : 1294 familles à vérifier. Certaines pages ont une description générique, certains critères ne figurent pas dans les descriptions courtes, et 77 sources restent absentes ou inaccessibles au contrôle. Les extraits mis à l’écart ne sont pas des informations actives. Aucune garantie d’absence totale d’erreurs n’est donnée.
 
 Voir [le rapport de familles et critères](quality-report.md) et [le contrôle de toutes les fiches](integrity-report.md). Les fichiers JSON associés contiennent les identifiants, sources et files de vérification complètes.
+
+## Reprise du 16 novembre 2026
+
+- 72 fiches ajoutées, dont les effets gratuits absents et des modules explicitement distingués des plugins autonomes.
+- Listes officielles : 35 Kilohearts et 38 Melda gratuits ; les mises à niveau payantes Melda ne sont pas assimilées aux éditions gratuites.
+- Six réverbes Valhalla classées avec une preuve explicite ; Space Modulator et UberMod distingués.
+- 27 images Black Rooster Audio remplacées par les captures Frontplate officielles. Les deux packs sont distingués des effets.
+- 2 542 présentations françaises sourcées, dont 80 rédigées individuellement ; 148 présentations restent à compléter. Les définitions génériques par famille ont été supprimées.
+- Les cartes affichent quatre lignes et un bouton accessible pour développer le texte.
+- 21 tarifs actualisés ; les boutons d’achat Slate propres au produit sont distingués des offres d’abonnement et des produits voisins.
+- Six pages administratives/de navigation masquées.
+- Les 57 éditeurs des captures sont comparés dans vendor-coverage.md : 37 ont une référence, 20 sont encore absents. Cette présence ne prouve pas une couverture exhaustive.
+
+Validation : 128 tests JavaScript et un test Python réussis ; import/export, cadres verts, gratuités, descriptions extensibles et affichage mobile contrôlés dans un navigateur isolé. Les captures Black Rooster ont aussi été inspectées visuellement. Les familles et critères encore incertains restent dans la file de vérification.

@@ -4102,5 +4102,1171 @@
         "checkedAt": "2026-11-15T22:39:29.972Z"
       }
     }
+  },
+  "valhalla-dsp--valhalla-futureverb": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhallafutureverb/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "valhalla-dsp--valhalla-plate": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-plate/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "valhalla-dsp--valhalla-room": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-room/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "valhalla-dsp--valhalla-shimmer": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-shimmer/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "valhalla-dsp--valhalla-space-modulator": {
+    "category": "modulation",
+    "categoryEvidence": {
+      "category": "modulation",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/modulation/valhalla-space-modulator/",
+      "excerpt": "Effet de modulation et de flanger.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/modulation/valhalla-space-modulator/",
+      "excerpt": "Téléchargement gratuit proposé par Valhalla DSP.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "valhalla-dsp--valhalla-super-massive": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-supermassive/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-supermassive/",
+      "excerpt": "Téléchargement gratuit proposé par Valhalla DSP.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "valhalla-dsp--valhalla-ubermod": {
+    "category": "delay",
+    "categoryEvidence": {
+      "category": "delay",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/delay/valhalla-uber-mod/",
+      "excerpt": "Délai multitap modulé.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "valhalla-dsp--valhalla-vintageverb": {
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/reverb/valhalla-vintage-verb/",
+      "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+      "checkedAt": "2026-11-16T00:00:00+01:00"
+    }
+  },
+  "slate-digital--aireq-air": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Édition gratuite indiquée par le fabricant.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--aireq-earth": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Édition gratuite indiquée par le fabricant.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--blackbird-studio": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Microphone Slate Digital compatible et licence de base requis."
+  },
+  "slate-digital--classic-87": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Microphone Slate Digital compatible et licence de base requis."
+  },
+  "slate-digital--classic-tubes-3": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Microphone Slate Digital compatible et licence de base requis."
+  },
+  "slate-digital--custom-d-chorus": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--custom-series-eq": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--custom-series-lift": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-116": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-116-modern": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-116-vintage": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-2a": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-401": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-73": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-76": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-ds-902": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-n": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fg-s": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--gate-classic": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--gate-drums": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--hollywood": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--london": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--new-york": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--sd-d-chorus": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--strongroom-london": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Microphone Slate Digital compatible et licence de base requis."
+  },
+  "slate-digital--u73b": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--fresh-air": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/fresh-air/",
+      "excerpt": "Exciteur dynamique pour éclaircir les hautes fréquences.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "saturation",
+    "categoryEvidence": {
+      "category": "saturation",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/fresh-air/",
+      "excerpt": "Exciteur dynamique pour éclaircir les hautes fréquences.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/fresh-air/",
+      "excerpt": "Édition gratuite indiquée par le fabricant.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--heatwave": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/heatwave/",
+      "excerpt": "Saturation à une commande avec contrôle des transitoires.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "saturation",
+    "categoryEvidence": {
+      "category": "saturation",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/heatwave/",
+      "excerpt": "Saturation à une commande avec contrôle des transitoires.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/heatwave/",
+      "excerpt": "Édition gratuite indiquée par le fabricant.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--virtual-mix-rack": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/virtual-mix-rack/",
+      "excerpt": "Hôte modulaire pour créer des tranches de console avec les modules VMR.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "multi",
+    "categoryEvidence": {
+      "category": "multi",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/virtual-mix-rack/",
+      "excerpt": "Hôte modulaire pour créer des tranches de console avec les modules VMR.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--virtual-console-collection": {
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/virtual-console-collection/",
+      "excerpt": "Collection VCC de modélisations de consoles pour canaux et bus.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "channel",
+    "categoryEvidence": {
+      "category": "channel",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/virtual-console-collection/",
+      "excerpt": "Collection VCC de modélisations de consoles pour canaux et bus.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--ana-2": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://slatedigital.com/ana-2-synth/",
+      "excerpt": "Synthétiseur ANA 2 de Sonic Academy proposé par Slate Digital.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--learn-eq": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learneq/",
+      "excerpt": "Égaliseur assisté avec explications pour apprendre le mixage.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learneq/",
+      "excerpt": "Égaliseur assisté avec explications pour apprendre le mixage.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--learn-comp": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learncomp/",
+      "excerpt": "Compresseur assisté avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learncomp/",
+      "excerpt": "Compresseur assisté avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--learn-limit": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnlimit/",
+      "excerpt": "Limiteur assisté avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "limiter",
+    "categoryEvidence": {
+      "category": "limiter",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnlimit/",
+      "excerpt": "Limiteur assisté avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--learn-reverb": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnreverb/",
+      "excerpt": "Réverbération adaptative avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnreverb/",
+      "excerpt": "Réverbération adaptative avec indications pédagogiques.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--learn-unmask": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnunmask/",
+      "excerpt": "Traitement fréquentiel pour réduire le masquage entre pistes.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/products/learnunmask/",
+      "excerpt": "Traitement fréquentiel pour réduire le masquage entre pistes.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "sonible--prime-vocal": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/primevocal/",
+      "excerpt": "Nettoyage des voix en application autonome et plugin ARA.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "restoration",
+    "categoryEvidence": {
+      "category": "restoration",
+      "method": "reviewed-source",
+      "url": "https://www.sonible.com/primevocal/",
+      "excerpt": "Nettoyage des voix en application autonome et plugin ARA.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "solid-state-logic--ssl-gateverb": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/gateverb",
+      "excerpt": "Réverbération non linéaire avec gate.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "reverb",
+    "categoryEvidence": {
+      "category": "reverb",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/gateverb",
+      "excerpt": "Réverbération non linéaire avec gate.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "solid-state-logic--ssl-subgen": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/subgen",
+      "excerpt": "Générateur de sous-harmoniques pour renforcer les graves.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "utility",
+    "categoryEvidence": {
+      "category": "utility",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/subgen",
+      "excerpt": "Générateur de sous-harmoniques pour renforcer les graves.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "solid-state-logic--harrison-dyno-mite": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/harrison-dyno-mite",
+      "excerpt": "Traitement des transitoires, de l’attaque et du sustain.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "transient",
+    "categoryEvidence": {
+      "category": "transient",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/harrison-dyno-mite",
+      "excerpt": "Traitement des transitoires, de l’attaque et du sustain.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "solid-state-logic--harrison-tape-saturator": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/harrison-tape-saturator",
+      "excerpt": "Simulation de bande analogique avec saturation.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "tape",
+    "categoryEvidence": {
+      "category": "tape",
+      "method": "reviewed-source",
+      "url": "https://store.solidstatelogic.com/plug-ins/harrison-tape-saturator",
+      "excerpt": "Simulation de bande analogique avec saturation.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "universal-audio--polymax-synthesizer": {
+    "recordType": "instrument",
+    "recordTypeEvidence": {
+      "type": "instrument",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/polymax-synth",
+      "excerpt": "Synthétiseur polyphonique à modélisation analogique.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "universal-audio--pultec-passive-eq-collection": {
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/pultec-passive-eq-collection",
+      "excerpt": "Collection des égaliseurs Pultec EQP-1A, MEQ-5 et HLF-3C.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "eq",
+    "categoryEvidence": {
+      "category": "eq",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/pultec-passive-eq-collection",
+      "excerpt": "Collection des égaliseurs Pultec EQP-1A, MEQ-5 et HLF-3C.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "universal-audio--teletronix-la-2a-leveler-collection": {
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/teletronix-la-2a-collection",
+      "excerpt": "Collection de trois modélisations du compresseur optique LA-2A.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/teletronix-la-2a-collection",
+      "excerpt": "Collection de trois modélisations du compresseur optique LA-2A.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "universal-audio--vibe-analog-machines-essentials": {
+    "aliases": [
+      "Verve Analog Machines Essentials"
+    ]
+  },
+  "slate-digital--fg-x-virtual-mastering-console": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/14667376282643-FG-X-FGX-2-Frequently-Asked-Questions",
+      "excerpt": "Ancienne édition FG-X ; distincte de FG-X 2.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "mastering",
+    "categoryEvidence": {
+      "category": "mastering",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/14667376282643-FG-X-FGX-2-Frequently-Asked-Questions",
+      "excerpt": "Ancienne édition FG-X ; distincte de FG-X 2.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "catalogStatus": "discontinued",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/14667376282643-FG-X-FGX-2-Frequently-Asked-Questions",
+      "excerpt": "FG-X n’est plus maintenu ; son successeur FG-X 2 reste un plugin distinct.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "slate-digital--kilohearts-snapins": {
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+      "excerpt": "Pack Kilohearts inclus dans Complete Access ; édition distribuée par Slate Digital.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "overloud--th-u-slate-edition": {
+    "recordType": "effect",
+    "recordTypeEvidence": {
+      "type": "effect",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/360035681414-How-to-upgrade-from-TH-U-Slate-Edition-to-TH-U-Full",
+      "excerpt": "Édition Slate de la simulation d’amplis TH-U ; distincte de TH-U Full.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "category": "amp",
+    "categoryEvidence": {
+      "category": "amp",
+      "method": "reviewed-source",
+      "url": "https://support.slatedigital.com/hc/en-us/articles/360035681414-How-to-upgrade-from-TH-U-Slate-Edition-to-TH-U-Full",
+      "excerpt": "Édition Slate de la simulation d’amplis TH-U ; distincte de TH-U Full.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    }
+  },
+  "solid-state-logic--ssl-auto-4kb": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.solidstatelogic.com/hc/en-gb/articles/4408123894417-SSL-360-Downloads-and-Release-Notes",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Channel strip SSL correspondant requis."
+  },
+  "solid-state-logic--ssl-auto-4ke": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.solidstatelogic.com/hc/en-gb/articles/4408123894417-SSL-360-Downloads-and-Release-Notes",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Channel strip SSL correspondant requis."
+  },
+  "solid-state-logic--ssl-auto-4kg": {
+    "recordType": "module",
+    "recordTypeEvidence": {
+      "type": "module",
+      "method": "reviewed-source",
+      "url": "https://support.solidstatelogic.com/hc/en-gb/articles/4408123894417-SSL-360-Downloads-and-Release-Notes",
+      "excerpt": "Module ou extension de Virtual Mix Rack ; ne constitue pas un plugin autonome.",
+      "checkedAt": "2026-11-16T07:13:14.557Z"
+    },
+    "requirementsNoteFr": "Channel strip SSL correspondant requis."
+  },
+  "meldaproduction--mcompare": {
+    "category": "analysis",
+    "categoryEvidence": {
+      "category": "analysis",
+      "method": "reviewed-source",
+      "url": "https://www.meldaproduction.com/MCompare",
+      "excerpt": "Comparaison de références audio avec compensation de niveau et de latence.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "eventide--ultratap": {
+    "category": "delay",
+    "categoryEvidence": {
+      "category": "delay",
+      "method": "reviewed-source",
+      "url": "https://www.eventideaudio.com/plug-ins/ultratap/",
+      "excerpt": "Effet multitap pour délais rythmiques, réverbérations et modulation.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "eventide--mangledverb": {
+    "category": "multi",
+    "categoryEvidence": {
+      "category": "multi",
+      "method": "reviewed-source",
+      "url": "https://www.eventideaudio.com/plug-ins/mangledverb/",
+      "excerpt": "Effet associant réverbération et distorsion.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "meldaproduction--mrhythmizermb": {
+    "category": "multi",
+    "categoryEvidence": {
+      "category": "multi",
+      "method": "reviewed-source",
+      "url": "https://www.meldaproduction.com/MRhythmizerMB",
+      "excerpt": "Multi-effet séquencé contrôlant le temps, le volume et les filtres.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "kiive-audio--xbus": {
+    "category": "comp",
+    "categoryEvidence": {
+      "category": "comp",
+      "method": "reviewed-source",
+      "url": "https://www.kiiveaudio.com/products/xbus",
+      "excerpt": "Compresseur de bus VCA avec saturation et mixage parallèle.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "universal-audio--uad-carlos-de-la-garza-mix-tape": {
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://www.uaudio.com/products/uad-carlos-de-la-garza-mix-tape",
+      "excerpt": "Pack de dix plugins ; ne constitue pas une tranche de console.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    },
+    "recordType": "bundle"
+  },
+  "voxengo--deconvolver": {
+    "recordTypeEvidence": {
+      "type": "application",
+      "method": "reviewed-source",
+      "url": "https://www.voxengo.com/product/deconvolver/",
+      "excerpt": "Application de récupération de réponses impulsionnelles ; ne constitue pas une réverbération.",
+      "checkedAt": "2026-11-15T17:37:41.797Z"
+    },
+    "recordType": "application"
+  },
+  "valhalla-dsp--valhalla-freq-echo": {
+    "catalogStatus": "free",
+    "statusEvidence": {
+      "method": "reviewed-source",
+      "url": "https://valhalladsp.com/shop/delay/valhalla-freq-echo/",
+      "excerpt": "Téléchargement gratuit proposé par Valhalla DSP.",
+      "checkedAt": "2026-11-15T16:48:34.130Z"
+    }
+  },
+  "universal-audio--spl-vitalizer-mk3-t": {
+    "description": "Enhancer psychoacoustique à lampes SPL Vitalizer MK3-T ; contrôle des graves et des hautes fréquences."
+  },
+  "black-rooster-audio--blackash-sc-5": {
+    "image": "https://blackroosteraudio.com/files/content/products/blackash_sc-5/BlackRoosterAudio_BlackAsh_SC-5_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/blackash_sc-5",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.377Z"
+    }
+  },
+  "black-rooster-audio--blueash-sc-5": {
+    "image": "https://blackroosteraudio.com/files/content/products/blueash_sc-5/BlackRoosterAudio_BlueAsh_SC-5_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/blueash_sc-5",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.382Z"
+    }
+  },
+  "black-rooster-audio--cypress-tt-15": {
+    "image": "https://blackroosteraudio.com/files/content/products/cypress_tt-15/BlackRoosterAudio_Cypress_TT-15_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/cypress_tt-15",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.385Z"
+    }
+  },
+  "black-rooster-audio--drum-mix-essentials": {
+    "image": null,
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/drum-mix-essentials",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.387Z"
+    },
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/drum-mix-essentials",
+      "excerpt": "Pack de plusieurs plugins."
+    }
+  },
+  "black-rooster-audio--edelweiss-72": {
+    "image": "https://blackroosteraudio.com/files/content/products/edelweiss72/BlackRoosterAudio_Edelweiss72_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/edelweiss72",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.391Z"
+    }
+  },
+  "black-rooster-audio--ga-gt2": {
+    "image": "https://blackroosteraudio.com/files/content/products/ga-gt2/BlackRoosterAudio_GA-GT2_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/ga-gt2",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.393Z"
+    }
+  },
+  "black-rooster-audio--kh-comp1": {
+    "image": "https://blackroosteraudio.com/files/content/products/kh-comp1/BlackRoosterAudio_KH-COMP1_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/kh-comp1",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.396Z"
+    }
+  },
+  "black-rooster-audio--kh-eq1": {
+    "image": "https://blackroosteraudio.com/files/content/products/kh-eq1/BlackRoosterAudio_KH-EQ1_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/kh-eq1",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.399Z"
+    }
+  },
+  "black-rooster-audio--magnetite": {
+    "image": "https://blackroosteraudio.com/files/content/products/magnetite/BlackRoosterAudio_Magnetite_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/magnetite",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.401Z"
+    }
+  },
+  "black-rooster-audio--omnitec-436c": {
+    "image": "https://blackroosteraudio.com/files/content/products/omnitec-436c/BlackRoosterAudio_OmniTec-436C_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/omnitec-436c",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.403Z"
+    }
+  },
+  "black-rooster-audio--omnitec-67a": {
+    "image": "https://blackroosteraudio.com/files/content/products/omnitec-67a/BlackRoosterAudio_OmniTec-67A_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/omnitec-67a",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.405Z"
+    }
+  },
+  "black-rooster-audio--ps-vc1": {
+    "image": "https://blackroosteraudio.com/files/content/products/ps-vc1/BlackRoosterAudio_PS-VC1_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/ps-vc1",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.407Z"
+    }
+  },
+  "black-rooster-audio--ro-140": {
+    "image": "https://blackroosteraudio.com/files/content/products/ro-140/BlackRoosterAudio_RO-140_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/ro-140",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.409Z"
+    }
+  },
+  "black-rooster-audio--ro-gold": {
+    "image": "https://blackroosteraudio.com/files/content/products/ro-gold/BlackRoosterAudio_RO-GOLD_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/ro-gold",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.411Z"
+    }
+  },
+  "black-rooster-audio--ro-spr": {
+    "image": "https://blackroosteraudio.com/files/content/products/ro-spr/BlackRoosterAudio_RO-SPR_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/ro-spr",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.413Z"
+    }
+  },
+  "black-rooster-audio--td-201": {
+    "image": "https://blackroosteraudio.com/files/content/products/td-201/BlackRoosterAudio_TD-201_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/td-201",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.416Z"
+    }
+  },
+  "black-rooster-audio--the-canary": {
+    "image": "https://blackroosteraudio.com/files/content/products/canary/BlackRoosterAudio_Canary_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/canary",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.417Z"
+    }
+  },
+  "black-rooster-audio--veq-1p": {
+    "image": "https://blackroosteraudio.com/files/content/products/veq-1p/BlackRoosterAudio_VEQ-1P_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/veq-1p",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.419Z"
+    }
+  },
+  "black-rooster-audio--veq-5": {
+    "image": "https://blackroosteraudio.com/files/content/products/veq-5/BlackRoosterAudio_VEQ-5_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/veq-5",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.421Z"
+    }
+  },
+  "black-rooster-audio--vhl-3c": {
+    "image": "https://blackroosteraudio.com/files/content/products/vhl-3c/BlackRoosterAudio_VHL-3C_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vhl-3c",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.424Z"
+    }
+  },
+  "black-rooster-audio--vla-2a": {
+    "image": "https://blackroosteraudio.com/files/content/products/vla-2a/BlackRoosterAudio_VLA-2A_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vla-2a",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.428Z"
+    }
+  },
+  "black-rooster-audio--vla-2a-mark-ii": {
+    "image": "https://blackroosteraudio.com/files/content/products/vla-2a-mark-ii/BlackRoosterAudio_VLA-2A_MarkII_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vla-2a-mark-ii",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.430Z"
+    }
+  },
+  "black-rooster-audio--vla-3a": {
+    "image": "https://blackroosteraudio.com/files/content/products/vla-3a/BlackRoosterAudio_VLA-3A_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vla-3a",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.432Z"
+    }
+  },
+  "black-rooster-audio--vla-fet": {
+    "image": "https://blackroosteraudio.com/files/content/products/vla-fet/BlackRoosterAudio_VLA-FET_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vla-fet",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.434Z"
+    }
+  },
+  "black-rooster-audio--vocal-mix-essentials": {
+    "image": null,
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vocal-mix-essentials",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.436Z"
+    },
+    "recordType": "bundle",
+    "recordTypeEvidence": {
+      "type": "bundle",
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vocal-mix-essentials",
+      "excerpt": "Pack de plusieurs plugins."
+    }
+  },
+  "black-rooster-audio--vpre-73": {
+    "image": "https://blackroosteraudio.com/files/content/products/vpre-73/BlackRoosterAudio_VPRE-73_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vpre-73",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.438Z"
+    }
+  },
+  "black-rooster-audio--vpre-73-halloween-edition": {
+    "image": "https://blackroosteraudio.com/files/content/products/vpre-73-halloween-edition/BlackRoosterAudio_VPRE-73_Halloween_Edition_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vpre-73-halloween-edition",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.439Z"
+    }
+  },
+  "black-rooster-audio--vtc-2": {
+    "image": "https://blackroosteraudio.com/files/content/products/vtc-2/BlackRoosterAudio_VTC-2_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vtc-2",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.441Z"
+    }
+  },
+  "black-rooster-audio--vwb-1x": {
+    "image": "https://blackroosteraudio.com/files/content/products/vwb-1x/BlackRoosterAudio_VWB-1X_Frontplate.jpg",
+    "imageEvidence": {
+      "method": "reviewed-source",
+      "url": "https://blackroosteraudio.com/en/products/vwb-1x",
+      "excerpt": "Capture Frontplate de l’interface du produit ; boîte promotionnelle écartée.",
+      "checkedAt": "2026-11-16T07:27:01.443Z"
+    }
+  },
+  "audiority--license-transfer-fee": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "baby-audio--checkout": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "baby-audio--privacy-policy": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "kazrog--license-transfer": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "tal-software--overview": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
+  },
+  "tal-software--tal-software-gmbh": {
+    "exclude": true,
+    "exclusionReason": "Page de navigation, administrative ou service de transfert ; aucune fiche de plugin autonome."
   }
 }

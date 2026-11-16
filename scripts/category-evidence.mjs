@@ -4,7 +4,7 @@ export const FAMILY_RULES = [
  ['feedback','Simulation de larsen',[/\b(?:acoustic )?feedback simulator\b/i]],
  ['channel','Tranche console / Channel strip',[/\bchannel\s*strip\b/i,/\bconsole emulat(?:ion|or)\b/i]],
  ['deesser','De-esser',[/\bde[- ]?ess(?:er|ing)\b/i]],
- ['multiband','Dynamique multibande',[/\bmulti[- ]?band (?:compressor|compression|dynamics|limiter|expander)\b/i]],
+ ['multiband','Dynamique multibande',[/\bmulti[- ]?band (?:compressor|compression|dynamics|limiter|expander)\b/i,/\b(?:two|three|four|five|six|\d+) bands? of compression\b/i]],
  ['comp','Compresseur',[/\bcompress(?:or|ion|eur)\b/i,/\bcomp\b/i,/\bleveling amplifier\b/i]],
  ['limiter','Limiteur / Maximiseur',[/\blimiter\b/i,/\bmaximi[sz]er\b/i,/\bclip(?:per|ping)?\b/i]],
  ['gate','Gate / Expandeur',[/\bgate\b/i,/(?<!dimensional )(?<!stereo )\bexpander\b/i]],
@@ -14,9 +14,9 @@ export const FAMILY_RULES = [
  ['filter','Filtre',[/\bfilter(?:s)?\b/i]],
  ['saturation','Saturation / Distorsion',[/\bsaturat(?:or|ion)\b/i,/\bdistortion\b/i,/\bwaveshap(?:er|ing)\b/i,/\boverdrive\b/i,/\bexciter\b/i]],
  ['tape','Bande / Émulation magnétique',[/\btape (?:machine|emulat(?:or|ion)|saturat(?:or|ion))\b/i]],
- ['reverb','Réverbération',[/\breverb(?:eration|erating)?\b/i,/\becho chamber\b/i]],
- ['delay','Délai / Écho',[/\bdelay\b/i,/\becho(?:es)?\b(?!\s+chambers?\b)/i]],
- ['modulation','Modulation',[/\bchorus\b/i,/\bflanger\b/i,/\bphaser\b/i,/\btremolo\b/i,/\bvibrato\b/i,/\brotary (?:speaker|effect)\b/i,/\bmodulation (?:effect|plugin|processor)\b/i]],
+ ['reverb','Réverbération',[/\breverb(?:s|eration|erating)?\b/i,/\becho chamber\b/i]],
+ ['delay','Délai / Écho',[/\bdelays?\b/i,/\becho(?:es)?\b(?!\s+chambers?\b)/i]],
+ ['modulation','Modulation',[/\bchorus\b/i,/\bflang(?:er|ing)\b/i,/\bphaser\b/i,/\btremolo\b/i,/\bvibrato\b/i,/\bring[- ]modulat(?:ion|ors?)\b/i,/\brotary (?:speaker|effect)\b/i,/\bmodulation (?:effect|plugin|processor)\b/i]],
  ['pitch','Pitch / Correction vocale',[/\bpitch[- ](?:shift(?:er|ing)?|correct(?:or|ion))\b/i,/\bformant[- ]shift(?:er|ing)?\b/i,/\bharmoni[sz]er\b/i,/\bvocoder\b/i]],
  ['stereo','Image stéréo',[/\bstereo (?:imag(?:er|ing)|widen(?:er|ing)?|width|manipulation|expander)\b/i,/\bdimensional expander\b/i,/\bpann(?:er|ing)\b/i,/\bpan (?:knob|man|shaper)\b/i]],
  ['analysis','Mesure / Analyse',[/\bmeter(?:ing)?\b/i,/\banaly[sz]er\b/i,/\bstereo scope\b/i,/\boscilloscope\b/i]],
@@ -56,13 +56,20 @@ export function inferFamily({name='',description='',vendor=''}) {
  const brand = vendor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  const stripBrand = (value) => brand ? value.replace(new RegExp(`^${brand}(?:\\s|:|[._-])+`, 'i'), '') : value;
  const title=normal(stripBrand(name)),desc=normal(stripBrand(description));
+ if(/\b(?:plug[- ]?ins? included|deconvolution software|same thing as)\b/i.test(desc))return {category:'other',reason:'not-a-primary-effect-definition',candidates:[]};
  if(technicalDelay(title,desc))return {category:'utility',method:'product-description',excerpt:`${name} ${description}`.slice(0,350)};
  const nameMatches=candidates(title),nameCategory=resolve(nameMatches);
  if(nameCategory)return {category:nameCategory,method:'product-title',excerpt:name};
  if(nameMatches.length)return {category:'other',reason:'ambiguous-title',candidates:nameMatches};
  if(/\b(?:our range|range of|browse|we (?:sell|offer)|sample (?:packs|kits)|music loops|sound packs)\b/i.test(desc))return {category:'other',reason:'generic-description',candidates:[]};
  // Une mention de fonction dans la liste des capacités ne définit pas la famille.
- const lead=desc.split(/[.!?](?:\s|$)/)[0].split(/\b(?:with|featuring|includes?|including|equipped|plus|from)\b/i)[0];
+ // Une accroche peut précéder la définition. Seule une phrase qui nomme
+ // exactement ce produit peut remplacer la première phrase ; pas une liste
+ // de fonctions ni la description d’un produit recommandé.
+ const sentences=desc.split(/[.!?](?:\s|$)/);
+ const escaped=title.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+ const definition=sentences.slice(0,3).find(s=>new RegExp(`^(?:The )?${escaped}(?:®|™)? (?:is|was|has been designed)\\b`,'i').test(s.trim()));
+ const lead=(definition||sentences[0]).split(/\b(?:with|featuring|includes?|including|equipped|plus|from)\b/i)[0];
  const found=candidates(lead),category=resolve(found);
  if(category)return {category,method:'product-description',excerpt:lead.slice(0,350)};
  return {category:'other',reason:found.length?'ambiguous-description':'no-primary-function',candidates:found};

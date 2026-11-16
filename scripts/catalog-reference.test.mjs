@@ -4,13 +4,25 @@ import {defaultSelections,matchesPluginSelections} from '../filters.mjs';
 import {shortDescription} from '../descriptions.mjs';
 const {plugins}=JSON.parse(fs.readFileSync(new URL('../data/plugins.json',import.meta.url)));
 const byId=new Map(plugins.map(p=>[p.id,p]));
+test('Valhalla : les six réverbes restent trouvables dans le filtre Réverbération',()=>{
+ const selection=defaultSelections();selection.family.include=['reverb'];
+ for(const suffix of ['futureverb','plate','room','shimmer','super-massive','vintageverb']){
+  const p=byId.get('valhalla-dsp--valhalla-'+suffix);assert(p);assert.equal(p.category,'reverb');assert(matchesPluginSelections(p,selection));
+ }
+});
+test('tous les effets des listes gratuites officielles sont présents et sans prix de mise à niveau',()=>{
+ const free=JSON.parse(fs.readFileSync(new URL('../data/free-products.json',import.meta.url)));
+ const key=url=>url?.replace('://www.', '://').replace(/\/$/,'').toLowerCase();
+ for(const c of free.collections)for(const member of c.products){const p=plugins.find(p=>p.vendor===c.vendor&&key(p.url)===key(member.url));assert(p,member.name);assert.equal(p.catalogStatus,'free');assert.equal(p.pricing,undefined);assert.equal(p.freeEditionInfo.upgradeIncluded,false);}
+ assert.equal(byId.get('meldaproduction--mcompare').catalogStatus,'commercial');
+});
 test('références catalogue : bx_tuner et MicroShift ont leur fonction principale documentée',()=>{
  for(const [id,category] of [['plugin-alliance--bx-tuner','tuner'],['soundtoys--little-microshift','stereo'],['soundtoys--microshift','stereo']]){const p=byId.get(id);assert(p,`Produit manquant : ${id}`);assert.equal(p.category,category);assert.equal(p.categoryEvidence.method,'reviewed-source');assert(p.categoryEvidence.url);}
 });
 test('Pro-Q 4 est effectivement retrouvable parmi les EQ dynamiques',()=>{
  const p=byId.get('fabfilter--fabfilter-pro-q-4');assert(p);assert.equal(p.category,'eq');assert(p.tags.includes('eqtype:dynamique'));assert.equal(p.featureEvidence['eqtype:dynamique'].method,'reviewed-source');
  const selections=defaultSelections(['eqtype']);selections.family.include=['eq'];selections.eqtype.include=['eqtype:dynamique'];assert(matchesPluginSelections(p,selections));
- assert.match(shortDescription(p),/Égaliseur dynamique/);
+ const descriptions=JSON.parse(fs.readFileSync(new URL('../data/descriptions-fr.json',import.meta.url)));assert.match(shortDescription(p,descriptions),/Égaliseur dynamique/);
 });
 test('CLA-2A reste optique sans Mid/Side ni entrée de side-chain externe',()=>{
  const p=byId.get('waves--cla-2a-compressor-limiter');assert(p);assert.equal(p.category,'comp');assert(p.tags.includes('techno:opto'));for(const t of ['techno:varimu','opt:ms','opt:sidechain'])assert(!p.tags.includes(t));

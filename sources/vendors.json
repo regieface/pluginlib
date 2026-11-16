@@ -117,10 +117,10 @@
       "site": "https://www.sonible.com",
       "mode": "sitemap",
       "include": [
-        "/(en/)?[a-z0-9-]+/?$"
+        "/(?:products/|en/)?[a-z0-9-]+/?$"
       ],
       "require": [
-        "smart|pure|true:|prox|entropy|frei:raum|neo|unpack"
+        "smart|pure|true:|prox|entropy|frei:raum|neo|unpack|learn|prime|puffer"
       ]
     },
     {

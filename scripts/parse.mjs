@@ -90,11 +90,18 @@ function pickImage(html, url, name, ogImage, ldImage) {
   try { pageSlug = new URL(url).pathname.split('/').filter((x) => x && !/^(overview|products?|plugins?|plug-ins|software-effects|en|fr)$/i.test(x)).pop() || ''; } catch { /* */ }
   pageSlug = pageSlug.toLowerCase().replace(/\.html?$/, '');
   const isMcDSP = /(^|\.)mcdsp\.com$/i.test(new URL(url).hostname);
+  const isBlackRooster = /(^|\.)blackroosteraudio\.com$/i.test(new URL(url).hostname);
   const nameKey = slug(name || '');
   const cands = new Map();
   const add = (u, base, alt = '') => {
     const a = u && abs(u); if (!a || BAD_IMG.test(a)) return;
     const low = a.toLowerCase(); let sc = base;
+    if (isBlackRooster) {
+      // La vignette Open Graph est une boîte de logiciel. Frontplate est
+      // la capture de l’interface ; les logos de formats et voisins sont exclus.
+      if (!low.includes(`/products/${pageSlug}/`) || !/frontplate|screenshot|[-_]gui[._-]/i.test(low)) return;
+      sc += /frontplate/i.test(low) ? 100 : 80;
+    }
     if (/\b(gui|interface|screenshot|main image|plugin image|plugin ui)\b/i.test(alt)) sc += 20;
     if (pageSlug && pageSlug.length > 2 && low.includes(pageSlug)) sc += 4;
     if (nameKey && nameKey.length > 2 && (low.includes(nameKey) || slug(alt).includes(nameKey))) sc += 3;
@@ -196,6 +203,13 @@ export function extractPage(html, url, vendor = '') {
   const offer = offers?.offers ? [].concat(offers.offers)[0] : offers;
   let pricing = extractPricing({ html: visibleProductHtml(main, {preservePriceMarkup:true}), offer, currency: meta(html, 'product:price:currency'), url: canonical || url, checkedAt: new Date().toISOString() });
   let editionPrice;
+  if (/(^|\.)slatedigital\.com$/i.test(new URL(url).hostname) && pricing) {
+    const handle=new URL(url).pathname.split('/').filter(Boolean).pop();
+    const buy=[...main.matchAll(/<a\b[^>]*>[\s\S]*?<\/a>/gi)].find(m=>{
+      try{return new URL(attr(m[0].split('>')[0]+'>','href'),url).searchParams.get('catalogItemReferenceIdToAddToCart')===handle&&/Buy for/i.test(stripHtml(m[0]));}catch{return false;}
+    });
+    if(buy){const regular=extractPricing({html:`<p class="price">${stripHtml(buy[0])}</p>`,currency:pricing.currency,url:canonical||url,checkedAt:pricing.checkedAt});if(regular?.currency===pricing.currency)pricing=normalizePricing({current:pricing.promo??pricing.normal,regular:regular.normal,currency:pricing.currency,url:pricing.url,checkedAt:pricing.checkedAt});}
+  }
   if (/(^|\.)wavesfactory\.com$/i.test(new URL(url).hostname) && /\/audio-plugins\/[^/]+\/?$/.test(new URL(url).pathname)) {
     const regular=[...main.matchAll(/<span\b[^>]*class=["'][^"']*\bpaddle-gross\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/gi)].map(m=>extractPricing({html:`<p class="price">${m[1]}</p>`,url:canonical||url,checkedAt:new Date().toISOString()})).find(Boolean);
     if(pricing&&regular?.currency===pricing.currency)pricing=normalizePricing({current:pricing.promo??pricing.normal,regular:regular.normal,currency:pricing.currency,url:pricing.url,checkedAt:pricing.checkedAt});

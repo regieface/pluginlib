@@ -9,6 +9,7 @@ import { FAMILY_RULES, inferFamily } from './category-evidence.mjs';
 // Produits hors périmètre, détectés sur le NOM du produit : instruments, synthés,
 // banques de sons, matériel, bundles, versions d'essai ou éducatives, formations…
 const EXCLUDE_NAME = [
+  /^(?:privacy policy|checkout|terms(?: and conditions)?|license transfer(?: fee)?|overview)$/i,
   /\bsynth(esi[sz]er)?s?\b/i, /\binstruments?\b/i, /\bsampler\b/i, /\bpiano(centric)?\b/i, /\borgan\b/i, /\bclavinet\b/i,
   /\bbass (fingers|slapper)\b/i, /\bdrum (machine|kit|sampler)\b/i, /\b(sample|sound|preset) (pack|library|bank)s?\b/i,
   /\bexpansion\b/i, /\bbundle\b/i, /\bcollection\b/i, /\bpick any\b/i, /\b(free )?trial\b/i, /\beducational\b/i,

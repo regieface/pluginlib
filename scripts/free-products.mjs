@@ -1,5 +1,6 @@
 // Listes officielles de produits gratuits, jamais déduites du préfixe d'un nom.
-import {readFile,writeFile} from'node:fs/promises';import{pathToFileURL}from'node:url';import{decode,stripHtml,extractLinks}from'./parse.mjs';
+import {readFile,writeFile} from'node:fs/promises';import{pathToFileURL}from'node:url';import{stripHtml}from'./parse.mjs';
+import {get} from './update.mjs';
 export function parseMeldaFree(html,url){
  const products=[];for(const m of html.matchAll(/<h4\b[^>]*>\s*<a\b[^>]*href=["'](\/M[A-Za-z0-9]+)["'][^>]*>([\s\S]*?)<\/a>\s*<\/h4>/gi)){const name=stripHtml(m[2]);if(name!==m[1].slice(1))continue;products.push({name,url:new URL(m[1],url).href});}
  return [...new Map(products.map(p=>[p.url,p])).values()];
@@ -19,7 +20,7 @@ export function applyFreeProductMetadata(plugin,catalog){
  }return plugin;
 }
 export async function refreshFreeProducts(){
- const {get}=await import('./update.mjs');const path=new URL('../data/free-products.json',import.meta.url);let previous={collections:[]};try{previous=JSON.parse(await readFile(path,'utf8'))}catch{}
+ const path=new URL('../data/free-products.json',import.meta.url);let previous={collections:[]};try{previous=JSON.parse(await readFile(path,'utf8'))}catch{}
  const specs=[{id:'kilohearts-free-effects',vendor:'Kilohearts',name:'Kilohearts Essentials / Free Effects',source:'https://kilohearts.com/products/kilohearts_essentials',parse:parseKhsFree,min:30,freeLabel:'Gratuit avec un compte',noteFr:'Effets gratuits, utilisables seuls ou comme Snapins. Les hôtes et effets Premium ne sont pas inclus.'},{id:'melda-free-fx',vendor:'MeldaProduction',name:'MFreeFXBundle',source:'https://www.meldaproduction.com/MFreeFXBundle',parse:parseMeldaFree,min:30,freeLabel:'Gratuit · mise à niveau optionnelle',noteFr:'Édition gratuite de MFreeFXBundle. La mise à niveau payante et ses fonctions supplémentaires ne sont pas déclarées acquises.'}];
  const collections=[];for(const spec of specs){const r=await get(spec.source,{tries:1});const products=r.status===200?spec.parse(r.text,r.url):[];if(products.length<spec.min){const old=previous.collections.find(c=>c.id===spec.id);if(!old)throw Error('Liste gratuite non reconnue : '+spec.vendor);collections.push(old);console.log(spec.vendor+' : liste précédente conservée.');continue;}const {parse,min,...info}=spec;collections.push({...info,checkedAt:new Date().toISOString(),products});console.log(`${spec.vendor} : ${products.length} produits gratuits référencés.`);}
  await writeFile(path,JSON.stringify({collections},null,1));

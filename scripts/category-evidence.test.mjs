@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {inferFamily,auditCategoryEvidence} from './category-evidence.mjs';import {shortDescription} from '../descriptions.mjs';import {extractLinks} from './parse.mjs';
 test('accordeur : bx_tuner ne devient ni écho ni correcteur de hauteur',()=>{
- const result=inferFamily({name:'bx_tuner',description:'Accurate tuning for guitar & bass.'});assert.equal(result.category,'tuner');assert.match(shortDescription({name:'bx_tuner',category:result.category}),/Accordeur/);
+ const result=inferFamily({name:'bx_tuner',description:'Accurate tuning for guitar & bass.'});assert.equal(result.category,'tuner');assert.match(shortDescription({name:'bx_tuner',category:result.category}),/reste à compléter/);
 });
 test('multibande : une bande de focus ou un filtre multibande ne signifie pas compresseur',()=>{
  assert.notEqual(inferFamily({name:'Little MicroShift',description:'Massive Vocal Stereo Width. Includes a multiband focus control.'}).category,'multiband');

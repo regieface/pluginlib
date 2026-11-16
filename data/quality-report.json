@@ -1,14 +1,14 @@
 {
- "generatedAt": "2026-11-15T22:39:30.166Z",
+ "generatedAt": "2026-11-16T08:00:05.616Z",
  "scope": "Audit des familles principales, critères techniques et extraits de latence contaminés. Les preuves textuelles ne constituent pas une vérification manuelle exhaustive ; prix et compatibilités sont hors de ce contrôle.",
  "summary": {
-  "plugins": 2627,
-  "documentedFamilies": 1333,
-  "pendingFamilies": 1294,
-  "reclassifiedFamilies": 390,
-  "documentedCriteria": 750,
-  "pendingCriteria": 3262,
-  "pluginsWithPendingCriteria": 1598,
+  "plugins": 2699,
+  "documentedFamilies": 1416,
+  "pendingFamilies": 1283,
+  "reclassifiedFamilies": 432,
+  "documentedCriteria": 779,
+  "pendingCriteria": 3248,
+  "pluginsWithPendingCriteria": 1595,
   "suspectLatency": 234
  },
  "byVendor": {
@@ -25,8 +25,8 @@
    "documentedCriteria": 62,
    "pendingCriteria": 321,
    "suspectLatency": 0,
-   "documentedFamilies": 186,
-   "pendingFamilies": 301
+   "documentedFamilies": 191,
+   "pendingFamilies": 296
   },
   "Arturia": {
    "plugins": 40,
@@ -41,8 +41,8 @@
    "documentedCriteria": 5,
    "pendingCriteria": 36,
    "suspectLatency": 0,
-   "documentedFamilies": 12,
-   "pendingFamilies": 11
+   "documentedFamilies": 13,
+   "pendingFamilies": 10
   },
   "Audiority": {
    "plugins": 47,
@@ -54,11 +54,11 @@
   },
   "AudioThing": {
    "plugins": 36,
-   "documentedCriteria": 7,
-   "pendingCriteria": 43,
+   "documentedCriteria": 8,
+   "pendingCriteria": 42,
    "suspectLatency": 0,
-   "documentedFamilies": 24,
-   "pendingFamilies": 12
+   "documentedFamilies": 25,
+   "pendingFamilies": 11
   },
   "Baby Audio": {
    "plugins": 7,
@@ -86,19 +86,19 @@
   },
   "Boz Digital Labs": {
    "plugins": 25,
-   "documentedCriteria": 2,
-   "pendingCriteria": 24,
+   "documentedCriteria": 3,
+   "pendingCriteria": 23,
    "suspectLatency": 0,
-   "documentedFamilies": 7,
-   "pendingFamilies": 18
+   "documentedFamilies": 8,
+   "pendingFamilies": 17
   },
   "Cableguys": {
    "plugins": 18,
    "documentedCriteria": 1,
    "pendingCriteria": 18,
    "suspectLatency": 0,
-   "documentedFamilies": 7,
-   "pendingFamilies": 11
+   "documentedFamilies": 8,
+   "pendingFamilies": 10
   },
   "Chowdhury DSP": {
    "plugins": 6,
@@ -113,8 +113,8 @@
    "documentedCriteria": 2,
    "pendingCriteria": 14,
    "suspectLatency": 0,
-   "documentedFamilies": 13,
-   "pendingFamilies": 2
+   "documentedFamilies": 14,
+   "pendingFamilies": 1
   },
   "DDMF": {
    "plugins": 19,
@@ -145,8 +145,8 @@
    "documentedCriteria": 13,
    "pendingCriteria": 37,
    "suspectLatency": 0,
-   "documentedFamilies": 42,
-   "pendingFamilies": 26
+   "documentedFamilies": 45,
+   "pendingFamilies": 23
   },
   "FabFilter": {
    "plugins": 12,
@@ -201,24 +201,24 @@
    "documentedCriteria": 7,
    "pendingCriteria": 10,
    "suspectLatency": 0,
-   "documentedFamilies": 5,
-   "pendingFamilies": 8
+   "documentedFamilies": 7,
+   "pendingFamilies": 6
   },
   "Kiive Audio": {
    "plugins": 27,
-   "documentedCriteria": 17,
-   "pendingCriteria": 14,
+   "documentedCriteria": 21,
+   "pendingCriteria": 11,
    "suspectLatency": 0,
-   "documentedFamilies": 15,
-   "pendingFamilies": 12
+   "documentedFamilies": 18,
+   "pendingFamilies": 9
   },
   "Kilohearts": {
-   "plugins": 32,
+   "plugins": 44,
    "documentedCriteria": 6,
    "pendingCriteria": 54,
    "suspectLatency": 0,
-   "documentedFamilies": 22,
-   "pendingFamilies": 10
+   "documentedFamilies": 32,
+   "pendingFamilies": 12
   },
   "Klanghelm": {
    "plugins": 9,
@@ -269,12 +269,12 @@
    "pendingFamilies": 8
   },
   "MeldaProduction": {
-   "plugins": 113,
-   "documentedCriteria": 15,
-   "pendingCriteria": 259,
+   "plugins": 123,
+   "documentedCriteria": 20,
+   "pendingCriteria": 258,
    "suspectLatency": 0,
-   "documentedFamilies": 65,
-   "pendingFamilies": 48
+   "documentedFamilies": 76,
+   "pendingFamilies": 47
   },
   "NUGEN Audio": {
    "plugins": 34,
@@ -297,8 +297,8 @@
    "documentedCriteria": 58,
    "pendingCriteria": 238,
    "suspectLatency": 0,
-   "documentedFamilies": 85,
-   "pendingFamilies": 69
+   "documentedFamilies": 87,
+   "pendingFamilies": 67
   },
   "Positive Grid": {
    "plugins": 3,
@@ -349,35 +349,35 @@
    "pendingFamilies": 0
   },
   "Slate Digital": {
-   "plugins": 33,
-   "documentedCriteria": 10,
-   "pendingCriteria": 47,
+   "plugins": 66,
+   "documentedCriteria": 14,
+   "pendingCriteria": 46,
    "suspectLatency": 0,
-   "documentedFamilies": 19,
-   "pendingFamilies": 14
+   "documentedFamilies": 32,
+   "pendingFamilies": 34
   },
   "Softube": {
    "plugins": 95,
    "documentedCriteria": 24,
    "pendingCriteria": 113,
    "suspectLatency": 0,
-   "documentedFamilies": 54,
-   "pendingFamilies": 41
+   "documentedFamilies": 55,
+   "pendingFamilies": 40
   },
   "Solid State Logic": {
-   "plugins": 65,
-   "documentedCriteria": 14,
+   "plugins": 72,
+   "documentedCriteria": 19,
    "pendingCriteria": 155,
    "suspectLatency": 0,
-   "documentedFamilies": 34,
+   "documentedFamilies": 41,
    "pendingFamilies": 31
   },
   "sonible": {
-   "plugins": 19,
+   "plugins": 25,
    "documentedCriteria": 0,
    "pendingCriteria": 19,
    "suspectLatency": 0,
-   "documentedFamilies": 9,
+   "documentedFamilies": 15,
    "pendingFamilies": 10
   },
   "Sonnox": {
@@ -390,11 +390,11 @@
   },
   "Soundtoys": {
    "plugins": 22,
-   "documentedCriteria": 2,
+   "documentedCriteria": 3,
    "pendingCriteria": 27,
    "suspectLatency": 0,
-   "documentedFamilies": 15,
-   "pendingFamilies": 7
+   "documentedFamilies": 16,
+   "pendingFamilies": 6
   },
   "TAL Software": {
    "plugins": 3,
@@ -445,20 +445,20 @@
    "pendingFamilies": 38
   },
   "Universal Audio": {
-   "plugins": 181,
-   "documentedCriteria": 82,
-   "pendingCriteria": 120,
+   "plugins": 184,
+   "documentedCriteria": 85,
+   "pendingCriteria": 118,
    "suspectLatency": 0,
-   "documentedFamilies": 89,
-   "pendingFamilies": 92
+   "documentedFamilies": 93,
+   "pendingFamilies": 91
   },
   "Valhalla DSP": {
    "plugins": 10,
-   "documentedCriteria": 2,
-   "pendingCriteria": 18,
+   "documentedCriteria": 7,
+   "pendingCriteria": 13,
    "suspectLatency": 0,
-   "documentedFamilies": 2,
-   "pendingFamilies": 8
+   "documentedFamilies": 10,
+   "pendingFamilies": 0
   },
   "Variety Of Sound": {
    "plugins": 23,
@@ -489,8 +489,8 @@
    "documentedCriteria": 174,
    "pendingCriteria": 675,
    "suspectLatency": 234,
-   "documentedFamilies": 100,
-   "pendingFamilies": 146
+   "documentedFamilies": 101,
+   "pendingFamilies": 145
   },
   "Wavesfactory": {
    "plugins": 11,
@@ -515,6 +515,14 @@
    "suspectLatency": 0,
    "documentedFamilies": 3,
    "pendingFamilies": 6
+  },
+  "Overloud": {
+   "plugins": 1,
+   "documentedCriteria": 0,
+   "pendingCriteria": 0,
+   "suspectLatency": 0,
+   "documentedFamilies": 1,
+   "pendingFamilies": 0
   }
  },
  "reviewQueue": [
@@ -1538,18 +1546,18 @@
    "name": "BrightAmbience",
    "vendor": "Airwindows",
    "url": "https://www.airwindows.com/brightambience/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "TL;DW: Bright Ambience is a plugin for very bright gated reverbs",
+    "status": "documented",
     "url": "https://www.airwindows.com/brightambience/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -2154,18 +2162,18 @@
    "name": "ClearCoat",
    "vendor": "Airwindows",
    "url": "https://www.airwindows.com/clearcoat/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "TL;DW: Clear Coat is an array of bright ambience reverbs",
+    "status": "documented",
     "url": "https://www.airwindows.com/clearcoat/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -6274,18 +6282,18 @@
    "name": "PocketVerbs",
    "vendor": "Airwindows",
    "url": "https://www.airwindows.com/pocketverbs-vst/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "TL;DW: Pocket Verbs is my popular old special effects reverbs plugin",
+    "status": "documented",
     "url": "https://www.airwindows.com/pocketverbs-vst/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -7128,27 +7136,6 @@
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.airwindows.com/righteous4/",
-    "checkedAt": "2026-11-15T17:37:41.797Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "saturation"
-   },
-   "criteria": []
-  },
-  {
-   "id": "airwindows--ringmodulator",
-   "name": "RingModulator",
-   "vendor": "Airwindows",
-   "url": "https://www.airwindows.com/ringmodulator/",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.airwindows.com/ringmodulator/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
@@ -9196,18 +9183,18 @@
    "name": "ZBandpass2",
    "vendor": "Airwindows",
    "url": "https://www.airwindows.com/zbandpass2/",
-   "category": "other",
+   "category": "filter",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "filter",
+    "method": "product-description",
+    "excerpt": "Z Bandpass2 is the followup that adds coefficient interpolation to my Z-Plane Filter emulation",
+    "status": "documented",
     "url": "https://www.airwindows.com/zbandpass2/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -10273,21 +10260,18 @@
    "name": "AD052 Panstation 2",
    "vendor": "Audio Damage",
    "url": "https://www.audiodamage.com/products/ad028-panstation",
-   "category": "other",
+   "category": "stereo",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "modulation",
-     "stereo"
-    ],
-    "status": "unconfirmed",
+    "category": "stereo",
+    "method": "product-description",
+    "excerpt": "Panstation 2 combines Drawmer M500-style auto-panning ",
+    "status": "documented",
     "url": "https://www.audiodamage.com/products/ad028-panstation",
     "checkedAt": "2026-11-15T17:27:29.400Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "modulation"
    },
    "criteria": [
@@ -11491,24 +11475,23 @@
    "name": "Springs",
    "vendor": "AudioThing",
    "url": "https://www.audiothing.net/effects/springs/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "Springs is a plugin that features a collection of vintage spring reverbs paired ",
+    "status": "documented",
     "url": "https://www.audiothing.net/effects/springs/",
     "checkedAt": "2026-11-15T17:27:29.400Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
     "espace:convolution",
-    "espace:bande",
-    "espace:spring"
+    "espace:bande"
    ]
   },
   {
@@ -13565,23 +13548,22 @@
    "name": "ReCoil",
    "vendor": "Boz Digital Labs",
    "url": "https://www.bozdigitallabs.com/product/recoil/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "Re Coil gives you the authentic sound of real spring reverbs without the hassle, noise or limitations",
+    "status": "documented",
     "url": "https://www.bozdigitallabs.com/product/recoil/",
     "checkedAt": "2026-11-15T17:37:41.797Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
-    "espace:algorithmique",
-    "espace:spring"
+    "espace:algorithmique"
    ]
   },
   {
@@ -13772,18 +13754,18 @@
    "name": "LiquidShaper",
    "vendor": "Cableguys",
    "url": "https://www.cableguys.com/liquidshaper",
-   "category": "other",
+   "category": "modulation",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "modulation",
+    "method": "product-description",
+    "excerpt": "Liquid Shaper (VST/AU/AAX plugin) - For wild jet-plane flanging and deep, lush phasing",
+    "status": "documented",
     "url": "https://www.cableguys.com/liquidshaper",
     "checkedAt": "2026-11-15T17:27:29.400Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "modulation"
    },
    "criteria": [
@@ -14108,27 +14090,6 @@
    "criteria": [
     "techno:diode"
    ]
-  },
-  {
-   "id": "d16-group--godfazer",
-   "name": "Godfazer",
-   "vendor": "D16 Group",
-   "url": "https://d16.pl/godfazer",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://d16.pl/godfazer",
-    "checkedAt": "2026-11-15T17:37:41.797Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "modulation"
-   },
-   "criteria": []
   },
   {
    "id": "d16-group--pulsatec",
@@ -15072,21 +15033,18 @@
    "name": "H3000 Band Delays",
    "vendor": "Eventide",
    "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays/",
-   "category": "other",
+   "category": "delay",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "filter",
-     "delay"
-    ],
-    "status": "unconfirmed",
+    "category": "delay",
+    "method": "product-title",
+    "excerpt": "H3000 Band Delays",
+    "status": "documented",
     "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays/",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -15098,11 +15056,11 @@
    "name": "H3000 Band Delays Mk II",
    "vendor": "Eventide",
    "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays-mk-ii/",
-   "category": "pitch",
+   "category": "delay",
    "categoryEvidence": {
-    "category": "pitch",
-    "method": "product-description",
-    "excerpt": "Creative H3000 Harmonizer plug-in for delays, filtering, stereo-widening, and dynamic rhythmic effects",
+    "category": "delay",
+    "method": "product-title",
+    "excerpt": "H3000 Band Delays Mk II",
     "status": "documented",
     "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays-mk-ii/",
     "checkedAt": "2026-11-15T16:48:34.130Z"
@@ -15121,18 +15079,18 @@
    "name": "H3000 Band Delays TDM",
    "vendor": "Eventide",
    "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays-tdm/",
-   "category": "other",
+   "category": "delay",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "delay",
+    "method": "product-title",
+    "excerpt": "H3000 Band Delays TDM",
+    "status": "documented",
     "url": "https://www.eventideaudio.com/plug-ins/h3000-band-delays-tdm/",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -15622,27 +15580,6 @@
     "espace:room",
     "espace:chambre"
    ]
-  },
-  {
-   "id": "eventide--ultratap",
-   "name": "UltraTap",
-   "vendor": "Eventide",
-   "url": "https://www.eventideaudio.com/plug-ins/ultratap/",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.eventideaudio.com/plug-ins/ultratap/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "delay"
-   },
-   "criteria": []
   },
   {
    "id": "eventide--undulator",
@@ -18232,49 +18169,22 @@
    "criteria": []
   },
   {
-   "id": "kazrog--mhb-green",
-   "name": "MHB Green",
-   "vendor": "Kazrog",
-   "url": "https://kazrog.com/products/mhb-green",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "comp",
-     "saturation"
-    ],
-    "status": "unconfirmed",
-    "url": "https://kazrog.com/products/mhb-green",
-    "checkedAt": "2026-11-15T17:27:29.400Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "comp"
-   },
-   "criteria": []
-  },
-  {
    "id": "kazrog--mhb-red",
    "name": "MHB Red",
    "vendor": "Kazrog",
    "url": "https://kazrog.com/products/mhb-red",
-   "category": "other",
+   "category": "comp",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "comp",
-     "saturation"
-    ],
-    "status": "unconfirmed",
+    "category": "comp",
+    "method": "product-description",
+    "excerpt": "Tube compressor plugin modeled on Michael Brauer's Fairchild 666",
+    "status": "documented",
     "url": "https://kazrog.com/products/mhb-red",
     "checkedAt": "2026-11-15T17:27:29.400Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "comp"
    },
    "criteria": [
@@ -18440,30 +18350,6 @@
    "criteria": []
   },
   {
-   "id": "kiive-audio--distinct-pro",
-   "name": "Distinct Pro!",
-   "vendor": "Kiive Audio",
-   "url": "https://www.kiiveaudio.com/products/distinct-pro",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "eq",
-     "saturation"
-    ],
-    "status": "unconfirmed",
-    "url": "https://www.kiiveaudio.com/products/distinct-pro",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "saturation"
-   },
-   "criteria": []
-  },
-  {
    "id": "kiive-audio--filkchannel-strip-mk2",
    "name": "Filkchannel Strip | MK2",
    "vendor": "Kiive Audio",
@@ -18535,30 +18421,6 @@
    ]
   },
   {
-   "id": "kiive-audio--kstrip",
-   "name": "KStrip",
-   "vendor": "Kiive Audio",
-   "url": "https://www.kiiveaudio.com/products/kstrip",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.kiiveaudio.com/products/kstrip",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "channel"
-   },
-   "criteria": [
-    "eqtype:console",
-    "saturation:console"
-   ]
-  },
-  {
    "id": "kiive-audio--lunchbox-amp",
    "name": "Lunchbox Amp",
    "vendor": "Kiive Audio",
@@ -18605,29 +18467,6 @@
     "originalCategory": "comp"
    },
    "criteria": []
-  },
-  {
-   "id": "kiive-audio--paradox-plasmaverb",
-   "name": "Paradox | PlasmaVerb",
-   "vendor": "Kiive Audio",
-   "url": "https://www.kiiveaudio.com/products/paradox-plasmaverb",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.kiiveaudio.com/products/paradox-plasmaverb",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "reverb"
-   },
-   "criteria": [
-    "espace:plate"
-   ]
   },
   {
    "id": "kiive-audio--paradox-vc-rotary",
@@ -22120,18 +21959,18 @@
    "name": "MChannelMatrix",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MChannelMatrix",
-   "category": "other",
+   "category": "utility",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "utility",
+    "method": "product-description",
+    "excerpt": "M Channel Matrix is a simple but powerful utility, which lets you mix and reroute the channels ",
+    "status": "documented",
     "url": "https://www.meldaproduction.com/MChannelMatrix",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -22242,14 +22081,14 @@
    "name": "MCompare",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MCompare",
-   "category": "mastering",
+   "category": "analysis",
    "categoryEvidence": {
-    "category": "mastering",
-    "method": "product-description",
-    "excerpt": "M Compare is the only plugin that lets you compare your master to the chosen reference tracks, dry mix, different stages of your mastering chain and even different versions of your mastering chain",
-    "status": "documented",
+    "category": "analysis",
+    "method": "reviewed-source",
     "url": "https://www.meldaproduction.com/MCompare",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Comparaison de références audio avec compensation de niveau et de latence.",
+    "checkedAt": "2026-11-15T16:48:34.130Z",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
@@ -22291,25 +22130,24 @@
    "name": "MConvolutionMB",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MConvolutionMB",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "Multiband cabinets Convolution is an essential audio processing technology, capable of recreating extremely realistic reverbs, microphone and box simulations and even simulations of other…",
+    "status": "documented",
     "url": "https://www.meldaproduction.com/MConvolutionMB",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
     "espace:hall",
     "espace:room",
-    "opt:live",
-    "espace:convolution"
+    "opt:live"
    ]
   },
   {
@@ -22363,18 +22201,18 @@
    "name": "MDoubleTracker",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MDoubleTracker",
-   "category": "other",
+   "category": "stereo",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "stereo",
+    "method": "product-description",
+    "excerpt": "M Double Tracker is a marvellous natural-sounding artificial stereo expander",
+    "status": "documented",
     "url": "https://www.meldaproduction.com/MDoubleTracker",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -23328,18 +23166,18 @@
    "name": "MPhatik",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MPhatik",
-   "category": "other",
+   "category": "multi",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "multi",
+    "method": "product-description",
+    "excerpt": "M Phatik is a unique dynamic multi-effect ",
+    "status": "documented",
     "url": "https://www.meldaproduction.com/MPhatik",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -23529,18 +23367,18 @@
    "name": "MRhythmizerMB",
    "vendor": "MeldaProduction",
    "url": "https://www.meldaproduction.com/MRhythmizerMB",
-   "category": "other",
+   "category": "multi",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "multi",
+    "method": "reviewed-source",
     "url": "https://www.meldaproduction.com/MRhythmizerMB",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Multi-effet séquencé contrôlant le temps, le volume et les filtres.",
+    "checkedAt": "2026-11-15T16:48:34.130Z",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -23555,8 +23393,8 @@
    "category": "modulation",
    "categoryEvidence": {
     "category": "modulation",
-    "method": "product-description",
-    "excerpt": "Extremely advanced 6 bands ring-modulation effect Ring-modulators are quite specialized effects used especially on non-harmonic audio materials, such as drums",
+    "method": "product-title",
+    "excerpt": "MRingModulatorMB",
     "status": "documented",
     "url": "https://www.meldaproduction.com/MRingModulatorMB",
     "checkedAt": "2026-11-15T16:48:34.130Z"
@@ -25426,18 +25264,18 @@
    "name": "bx_aura",
    "vendor": "Plugin Alliance",
    "url": "https://www.plugin-alliance.com/products/bx_aura",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "bx aura is the new standard for creative reverbs, ",
+    "status": "documented",
     "url": "https://www.plugin-alliance.com/products/bx_aura",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -27755,18 +27593,18 @@
    "name": "SVT-3PRO",
    "vendor": "Plugin Alliance",
    "url": "https://www.plugin-alliance.com/products/svt-3pro",
-   "category": "other",
+   "category": "amp",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "amp",
+    "method": "product-description",
+    "excerpt": "The SVT-3PRO is still a bass amp in a league of its own",
+    "status": "documented",
     "url": "https://www.plugin-alliance.com/products/svt-3pro",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -30659,18 +30497,18 @@
    "name": "Infinity Horizon",
    "vendor": "Slate Digital",
    "url": "https://slatedigital.com/infinity-horizon/",
-   "category": "other",
+   "category": "resonance",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "resonance",
+    "method": "product-description",
+    "excerpt": "Infinity Horizon is a resonance suppression plugin ",
+    "status": "documented",
     "url": "https://slatedigital.com/infinity-horizon/",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "resonance"
    },
    "criteria": [
@@ -30678,8 +30516,7 @@
     "opt:sidechain",
     "opt:ms",
     "opt:live",
-    "opt:zl",
-    "eqtype:resonance"
+    "opt:zl"
    ]
   },
   {
@@ -31509,7 +31346,7 @@
    "categoryEvidence": {
     "category": "reverb",
     "method": "product-description",
-    "excerpt": "Five high quality reverb algorithms in one easy to use plugin",
+    "excerpt": "Core Dimensions is a collection of five characterful, high-quality reverbs algorithms ",
     "status": "documented",
     "url": "https://www.softube.com/kr/plug-ins/core-dimensions",
     "checkedAt": "2026-11-15T16:48:34.130Z"
@@ -32021,27 +31858,6 @@
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.softube.com/kr/plug-ins/marshall-jmp-2203",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "amp"
-   },
-   "criteria": []
-  },
-  {
-   "id": "softube--marshall-murder-one-lemmy-signature",
-   "name": "Marshall Murder One Lemmy Signature",
-   "vendor": "Softube",
-   "url": "https://www.softube.com/kr/plug-ins/marshall-murder-one-lemmy-signature",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.softube.com/kr/plug-ins/marshall-murder-one-lemmy-signature",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
@@ -35528,18 +35344,18 @@
    "name": "SuperPlate",
    "vendor": "Soundtoys",
    "url": "https://www.soundtoys.com/product/superplate/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "Super Plate brings five classic plate reverbs into your studio, using advanced algorithms to capture unmatched realism and versatility",
+    "status": "documented",
     "url": "https://www.soundtoys.com/product/superplate/",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "saturation"
    },
    "criteria": [
@@ -36668,7 +36484,7 @@
    "categoryEvidence": {
     "category": "reverb",
     "method": "product-description",
-    "excerpt": "Double Reverb, Infinite Impact There are tasks a single reverb cannot handle",
+    "excerpt": "Biverb is a cutting-edge dual reverb plugin designed to elevate your mixes and bring depth to your…",
     "status": "documented",
     "url": "https://unitedplugins.com/Biverb",
     "checkedAt": "2026-11-15T17:37:41.797Z"
@@ -36783,7 +36599,7 @@
    "categoryEvidence": {
     "category": "modulation",
     "method": "product-description",
-    "excerpt": "Double Modulation, Infinite Movement There are tasks a single modulation plugin cannot handle",
+    "excerpt": "Duoflux is a cutting-edge dual-modulation plugin designed to elevate your mixes…",
     "status": "documented",
     "url": "https://unitedplugins.com/Duoflux",
     "checkedAt": "2026-11-15T17:37:41.797Z"
@@ -37803,23 +37619,22 @@
    "name": "Ampex ATR-102 Mastering Tape Recorder",
    "vendor": "Universal Audio",
    "url": "https://www.uaudio.com/products/ampex-atr-102",
-   "category": "other",
+   "category": "tape",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "tape",
+    "method": "product-description",
+    "excerpt": "The only authentic emulation of the Ampex ATR-102 2-track tape machine",
+    "status": "documented",
     "url": "https://www.uaudio.com/products/ampex-atr-102",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "tape"
    },
    "criteria": [
-    "saturation:transfo",
-    "saturation:bande"
+    "saturation:transfo"
    ]
   },
   {
@@ -38471,23 +38286,22 @@
    "name": "EMT 140 Classic Plate Reverberator",
    "vendor": "Universal Audio",
    "url": "https://www.uaudio.com/products/emt-140",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "product-description",
+    "excerpt": "Three legendary EMT 140 plate reverbs, now native ",
+    "status": "documented",
     "url": "https://www.uaudio.com/products/emt-140",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
-    "espace:room",
-    "espace:plate"
+    "espace:room"
    ]
   },
   {
@@ -39454,27 +39268,6 @@
    ]
   },
   {
-   "id": "universal-audio--precision-multiband",
-   "name": "Precision Multiband",
-   "vendor": "Universal Audio",
-   "url": "https://www.uaudio.com/products/precision-multiband",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.uaudio.com/products/precision-multiband",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "multiband"
-   },
-   "criteria": []
-  },
-  {
    "id": "universal-audio--pure-plate-reverb",
    "name": "Pure Plate Reverb",
    "vendor": "Universal Audio",
@@ -39880,29 +39673,6 @@
    ]
   },
   {
-   "id": "universal-audio--studer-a800-multichannel-tape-recorder",
-   "name": "Studer A800 Multichannel Tape Recorder",
-   "vendor": "Universal Audio",
-   "url": "https://www.uaudio.com/products/studer-a800-tape-recorder",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://www.uaudio.com/products/studer-a800-tape-recorder",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "channel"
-   },
-   "criteria": [
-    "saturation:bande"
-   ]
-  },
-  {
    "id": "universal-audio--suhr-pt100-amplifier",
    "name": "Suhr PT100 Amplifier",
    "vendor": "Universal Audio",
@@ -40268,11 +40038,8 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "comp",
-     "eq"
-    ],
+    "reason": "not-a-primary-effect-definition",
+    "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-carlos-de-la-garza-mix-tape",
     "checkedAt": "2026-11-15T16:48:34.130Z"
@@ -40292,22 +40059,23 @@
    "name": "UAD Classic Tone & EQ Mix Tape",
    "vendor": "Universal Audio",
    "url": "https://www.uaudio.com/products/uad-classic-tone-eq-mix-tape",
-   "category": "eq",
+   "category": "other",
    "categoryEvidence": {
-    "category": "eq",
-    "method": "product-title",
-    "excerpt": "UAD Classic Tone & EQ Mix Tape",
-    "status": "documented",
+    "category": "other",
+    "reason": "not-a-primary-effect-definition",
+    "candidates": [],
+    "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-classic-tone-eq-mix-tape",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "documented",
+    "status": "unconfirmed",
     "originalCategory": "eq"
    },
    "criteria": [
-    "eqtype:dynamique"
+    "eqtype:dynamique",
+    "eqtype:passif"
    ]
   },
   {
@@ -40336,18 +40104,18 @@
    "name": "UAD Compressor All Stars Mix Tape",
    "vendor": "Universal Audio",
    "url": "https://www.uaudio.com/products/uad-compressor-all-stars-mix-tape",
-   "category": "comp",
+   "category": "other",
    "categoryEvidence": {
-    "category": "comp",
-    "method": "product-title",
-    "excerpt": "UAD Compressor All Stars Mix Tape",
-    "status": "documented",
+    "category": "other",
+    "reason": "not-a-primary-effect-definition",
+    "candidates": [],
+    "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-compressor-all-stars-mix-tape",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "documented",
+    "status": "unconfirmed",
     "originalCategory": "comp"
    },
    "criteria": [
@@ -40407,7 +40175,7 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "no-primary-function",
+    "reason": "not-a-primary-effect-definition",
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-guitar-mix-tape",
@@ -40674,7 +40442,7 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "no-primary-function",
+    "reason": "not-a-primary-effect-definition",
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-vocal-mix-tape",
@@ -40697,7 +40465,7 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "no-primary-function",
+    "reason": "not-a-primary-effect-definition",
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.uaudio.com/products/uad-will-yip-mix-tape",
@@ -40853,21 +40621,18 @@
    "name": "Valhalla FutureVerb",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/reverb/valhallafutureverb/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "ambiguous-description",
-    "candidates": [
-     "reverb",
-     "delay"
-    ],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/reverb/valhallafutureverb/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -40879,24 +40644,22 @@
    "name": "Valhalla Plate",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/reverb/valhalla-plate/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/reverb/valhalla-plate/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
-    "espace:chambre",
-    "espace:plate",
-    "espace:algorithmique"
+    "espace:chambre"
    ]
   },
   {
@@ -40904,26 +40667,24 @@
    "name": "Valhalla Room",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/reverb/valhalla-room/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/reverb/valhalla-room/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
     "espace:plate",
     "espace:hall",
-    "espace:chambre",
-    "espace:room",
-    "espace:algorithmique"
+    "espace:chambre"
    ]
   },
   {
@@ -40931,85 +40692,42 @@
    "name": "Valhalla Shimmer",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/reverb/valhalla-shimmer/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/reverb/valhalla-shimmer/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
     "espace:hall",
-    "espace:spring",
-    "espace:algorithmique"
+    "espace:spring"
    ]
-  },
-  {
-   "id": "valhalla-dsp--valhalla-space-modulator",
-   "name": "Valhalla Space Modulator",
-   "vendor": "Valhalla DSP",
-   "url": "https://valhalladsp.com/shop/modulation/valhalla-space-modulator/",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://valhalladsp.com/shop/modulation/valhalla-space-modulator/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "modulation"
-   },
-   "criteria": []
-  },
-  {
-   "id": "valhalla-dsp--valhalla-super-massive",
-   "name": "Valhalla Super Massive",
-   "vendor": "Valhalla DSP",
-   "url": "https://valhalladsp.com/shop/reverb/valhalla-supermassive/",
-   "category": "other",
-   "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
-    "url": "https://valhalladsp.com/shop/reverb/valhalla-supermassive/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
-   },
-   "categoryReview": {
-    "version": 1,
-    "status": "unconfirmed",
-    "originalCategory": "delay"
-   },
-   "criteria": []
   },
   {
    "id": "valhalla-dsp--valhalla-ubermod",
    "name": "Valhalla UberMod",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/delay/valhalla-uber-mod/",
-   "category": "other",
+   "category": "delay",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "delay",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/delay/valhalla-uber-mod/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Délai multitap modulé.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "delay"
    },
    "criteria": [
@@ -41021,18 +40739,18 @@
    "name": "Valhalla VintageVerb",
    "vendor": "Valhalla DSP",
    "url": "https://valhalladsp.com/shop/reverb/valhalla-vintage-verb/",
-   "category": "other",
+   "category": "reverb",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "reverb",
+    "method": "reviewed-source",
     "url": "https://valhalladsp.com/shop/reverb/valhalla-vintage-verb/",
-    "checkedAt": "2026-11-15T16:48:34.130Z"
+    "excerpt": "Réverbération algorithmique ; FutureVerb et Supermassive proposent également des échos.",
+    "checkedAt": "2026-11-16T00:00:00+01:00",
+    "status": "documented"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "reverb"
    },
    "criteria": [
@@ -41608,7 +41326,7 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "no-primary-function",
+    "reason": "not-a-primary-effect-definition",
     "candidates": [],
     "status": "unconfirmed",
     "url": "https://www.voxengo.com/product/deconvolver/",
@@ -45191,8 +44909,11 @@
    "category": "other",
    "categoryEvidence": {
     "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
+    "reason": "ambiguous-description",
+    "candidates": [
+     "reverb",
+     "delay"
+    ],
     "status": "unconfirmed",
     "url": "https://www.waves.com/plugins/cla-epic",
     "checkedAt": "2026-11-15T16:48:34.130Z"
@@ -46678,18 +46399,18 @@
    "name": "Enigma",
    "vendor": "Waves",
    "url": "https://www.waves.com/plugins/enigma",
-   "category": "other",
+   "category": "modulation",
    "categoryEvidence": {
-    "category": "other",
-    "reason": "no-primary-function",
-    "candidates": [],
-    "status": "unconfirmed",
+    "category": "modulation",
+    "method": "product-description",
+    "excerpt": "Go beyond phasing and flanging ",
+    "status": "documented",
     "url": "https://www.waves.com/plugins/enigma",
     "checkedAt": "2026-11-15T16:48:34.130Z"
    },
    "categoryReview": {
     "version": 1,
-    "status": "unconfirmed",
+    "status": "documented",
     "originalCategory": "eq"
    },
    "criteria": [
@@ -52424,6 +52145,594 @@
     "espace:room",
     "opt:live"
    ]
+  },
+  {
+   "id": "kilohearts--resonator",
+   "name": "Resonator",
+   "vendor": "Kilohearts",
+   "url": "https://kilohearts.com/products/resonator",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://kilohearts.com/products/resonator",
+    "checkedAt": "2026-11-16T07:12:41.848Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "kilohearts--tape-stop",
+   "name": "Tape Stop",
+   "vendor": "Kilohearts",
+   "url": "https://kilohearts.com/products/tape_stop",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://kilohearts.com/products/tape_stop",
+    "checkedAt": "2026-11-16T07:12:41.852Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "meldaproduction--mdelay",
+   "name": "MDelay",
+   "vendor": "MeldaProduction",
+   "url": "https://www.meldaproduction.com/MDelay",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "not-a-primary-effect-definition",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://www.meldaproduction.com/MDelay",
+    "checkedAt": "2026-11-16T07:12:41.869Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "meldaproduction--mfreqshifter",
+   "name": "MFreqShifter",
+   "vendor": "MeldaProduction",
+   "url": "https://www.meldaproduction.com/MFreqShifter",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://www.meldaproduction.com/MFreqShifter",
+    "checkedAt": "2026-11-16T07:12:41.871Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "meldaproduction--mwavefolder",
+   "name": "MWaveFolder",
+   "vendor": "MeldaProduction",
+   "url": "https://www.meldaproduction.com/MWaveFolder",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://www.meldaproduction.com/MWaveFolder",
+    "checkedAt": "2026-11-16T07:12:41.879Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "meldaproduction--mwaveshaper",
+   "name": "MWaveShaper",
+   "vendor": "MeldaProduction",
+   "url": "https://www.meldaproduction.com/MWaveShaper",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://www.meldaproduction.com/MWaveShaper",
+    "checkedAt": "2026-11-16T07:12:41.880Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--blackbird-studio",
+   "name": "Blackbird Studio",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--classic-87",
+   "name": "Classic 87",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--classic-tubes-3",
+   "name": "Classic Tubes 3",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--custom-series-lift",
+   "name": "Custom Series Lift",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-116",
+   "name": "FG-116",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-116-modern",
+   "name": "FG-116 Modern",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-116-vintage",
+   "name": "FG-116 Vintage",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-2a",
+   "name": "FG-2A",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-401",
+   "name": "FG-401",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-73",
+   "name": "FG-73",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-76",
+   "name": "FG-76",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-ds-902",
+   "name": "FG-DS 902",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-n",
+   "name": "FG-N",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--fg-s",
+   "name": "FG-S",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--hollywood",
+   "name": "Hollywood",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--london",
+   "name": "London",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--new-york",
+   "name": "New York",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--strongroom-london",
+   "name": "Strongroom London",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--u73b",
+   "name": "U73b",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--ana-2",
+   "name": "Ana 2",
+   "vendor": "Slate Digital",
+   "url": "https://slatedigital.com/ana-2-synth/",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://slatedigital.com/ana-2-synth/",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "universal-audio--polymax-synthesizer",
+   "name": "PolyMAX Synthesizer",
+   "vendor": "Universal Audio",
+   "url": "https://www.uaudio.com/products/polymax-synth",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://www.uaudio.com/products/polymax-synth",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
+  },
+  {
+   "id": "slate-digital--kilohearts-snapins",
+   "name": "Kilohearts Snapins",
+   "vendor": "Slate Digital",
+   "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+   "category": "other",
+   "categoryEvidence": {
+    "category": "other",
+    "reason": "no-primary-function",
+    "candidates": [],
+    "status": "unconfirmed",
+    "url": "https://support.slatedigital.com/hc/en-us/articles/40050598065939-What-Comes-with-the-Complete-Access-membership",
+    "checkedAt": "2026-11-16T07:13:14.557Z"
+   },
+   "categoryReview": {
+    "version": 1,
+    "status": "unconfirmed",
+    "originalCategory": "other"
+   },
+   "criteria": []
   }
  ]
 }

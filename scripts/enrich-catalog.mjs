@@ -10,6 +10,7 @@ import { applyColorationMetadata } from '../coloration.mjs';
 import { auditFeatureEvidence } from './feature-evidence.mjs';
 import { auditCategoryEvidence } from './category-evidence.mjs';
 import { auditRecordType } from '../record-types.mjs';
+import { applyFreeProductMetadata } from './free-products.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = new URL('data/plugins.json', root);
@@ -76,9 +77,11 @@ if (process.env.PLUGINLIB_HTTP_CACHE || process.argv.includes('--cache')) {
 for (const p of data.plugins) {
   if (p.vendor === 'Airwindows') p.image = null; // interfaces génériques, pas de GUI propre
 }
+const freeProducts = JSON.parse(await readFile(new URL('data/free-products.json', root), 'utf8'));
 const overrides = JSON.parse(await readFile(new URL('data/overrides.json', root), 'utf8'));
 for (const p of data.plugins) {
   applyCatalogOverride(p, overrides[p.id]);
+  applyFreeProductMetadata(p, freeProducts);
   auditCategoryEvidence(p, overrides[p.id]);
   auditRecordType(p);
   if(p.catalogStatus==='free') delete p.pricing;

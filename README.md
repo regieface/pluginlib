@@ -158,6 +158,18 @@ Le dossier `collection-privee/` reste exclu de Git.
 
 ## Corriger une fiche
 
+Les présentations des cartes viennent de `data/descriptions-fr.json` : une
+synthèse propre au produit, son URL officielle et l’empreinte de l’extrait utilisé.
+Aucune définition générique n’est déduite de la famille du plugin. Les cartes
+affichent quatre lignes, puis « Lire la suite », avec un lien vers l’éditeur.
+`scripts/description-coverage.mjs` recense les textes manquants et les extraits
+sources qui ont changé. `scripts/prepare-presentations.mjs` lit les pages mises
+en cache sans remplacer les synthèses françaises par du texte anglais.
+
+Le contrôle des 57 éditeurs des captures du 16 novembre se trouve dans
+`data/vendor-coverage.md`. La présence d’une référence ne signifie pas que tout
+le catalogue de l’éditeur a été vérifié.
+
 Dans `data/overrides.json`, la clé est l'`id` du plugin (visible dans `data/plugins.json`) :
 
 ```json
@@ -184,6 +196,10 @@ traitent les catalogues officiels qui ne présentent pas de fiches standard.
 node scripts/update.mjs            # collecte complète
 ONLY_VENDOR=Waves node scripts/update.mjs
 node scripts/enrich-catalog.mjs     # complète les métadonnées des fiches existantes
+node scripts/free-products.mjs      # vérifie les listes gratuites officielles
+node scripts/sync-free-products.mjs # ajoute les membres manquants de ces listes
+node scripts/prepare-presentations.mjs # relève les présentations propres aux produits
+node scripts/description-coverage.mjs # signale les textes français à compléter/revoir
 node scripts/retailer-prices.mjs    # prix manquants, éditeur prioritaire
 node scripts/review-coloration.mjs  # réapplique les preuves de coloration sans nouvelle collecte
 node scripts/audit-catalog.mjs      # isole les critères sans preuve et produit le rapport global

@@ -2,6 +2,8 @@
 import argparse, csv, json, re, unicodedata, difflib
 from pathlib import Path
 from collections import Counter, defaultdict
+from datetime import datetime
+from zoneinfo import ZoneInfo
 
 def norm(value):
     value = unicodedata.normalize('NFKD', value.replace('™', '').replace('®', '')).lower()
@@ -78,7 +80,9 @@ def audit(csv_path, root):
         proof=max(proofs,key=lambda p:priority[p['state']]); new=proof['state']; old=previous.get(id)
         if priority.get(old,0)>priority[new]:continue
         if old!=new:changes.append({'id':id,'name':by_id[id]['name'],'vendor':by_id[id]['vendor'],'old':old,'new':new,'sourceLines':[p['line'] for p in proofs if p['state']==new]})
-    summary={'sourceRows':len(rows),'rowsByDecision':dict(Counter(r['decision'] for r in results)),'sourceStates':dict(Counter(r['state'] for r in results)),'distinctGrantedProducts':len(grants),'collectionChanges':len(changes),'unmatchedCurrentProducts':len({(r['publisher'],r['name']) for r in results if r['decision'] in ['unmatched','ambiguous'] and r['state'] in ['owned','subscription']}),'wavesfactorySourceRows':sum('wavesfactory' in norm(r['publisher']) for r in results)}
+    pending={(r['publisher'],r['name']) for r in results if r['decision'] in ['unmatched','ambiguous'] and r['state'] in ['owned','subscription']}
+    groups={(r['publisher'],r['name']) for r in results if (r['publisher'],r['name']) in pending and ('Group' in r['subtype'] or r['name'].startswith('Complete Access:'))}
+    summary={'sourceRows':len(rows),'rowsByDecision':dict(Counter(r['decision'] for r in results)),'sourceStates':dict(Counter(r['state'] for r in results)),'distinctGrantedProducts':len(grants),'collectionChanges':len(changes),'unmatchedCurrentProducts':len(pending-groups),'unmatchedCurrentGroups':len(groups),'wavesfactorySourceRows':sum('wavesfactory' in norm(r['publisher']) for r in results)}
     return {'summary':summary,'changes':changes,'rows':results},current
 
 def main():
@@ -94,7 +98,8 @@ def main():
             if r['decision']!='matched' or r['state'] not in priority:continue
             old=details.get(r['id'])
             if old and priority.get(old.get('status'),0)>priority[r['state']]:continue
-            details[r['id']]={'name':r['name'],'publisher':r['publisher'],'status':r['state'],'expiration':r['expiration'],'sourceLines':[r['line']]}
+            lines=sorted(set((old.get('sourceLines',[]) if old and old.get('status')==r['state'] else [])+[r['line']]))
+            details[r['id']]={'name':r['name'],'publisher':r['publisher'],'status':r['state'],'expiration':r['expiration'],'sourceLines':lines}
         unmatched={}
         for r in report['rows']:
             if r['decision'] not in ['unmatched','ambiguous'] or r['state'] not in ['owned','subscription']:continue
@@ -102,9 +107,9 @@ def main():
             if old and priority[old['status']]>=priority[r['state']]:
                 if old['status']==r['state']:old['sourceLines'].append(r['line'])
                 continue
-            unmatched[key]={'publisher':r['publisher'],'name':r['name'],'status':r['state'],'expiration':r['expiration'],'sourceLines':[r['line']],'kind':'group' if r['subtype']=='Group' or r['name'].startswith('Complete Access:') else 'product'}
+            unmatched[key]={'publisher':r['publisher'],'name':r['name'],'status':r['state'],'expiration':r['expiration'],'sourceLines':[r['line']],'kind':'group' if 'Group' in r['subtype'] or r['name'].startswith('Complete Access:') else 'product'}
         current['unmatchedLicenses']=list(unmatched.values())
-        current['collectionUpdatedOn']='2026-11-15';current['ilokAudit']={'sourceDate':'2026-11-15','rowsChecked':report['summary']['sourceRows']}
+        current['collectionUpdatedOn']=datetime.now(ZoneInfo('Europe/Paris')).date().isoformat();current['ilokAudit']={'sourceDate':'2026-11-15','rowsChecked':report['summary']['sourceRows']}
         path.write_text(json.dumps(current,ensure_ascii=False,indent=1)+'\n')
     (folder/'audit-ilok-complet.json').write_text(json.dumps(report,ensure_ascii=False,indent=1)+'\n')
     md=['# Rapprochement complet iLok au 15 novembre 2026','',f"{report['summary']['sourceRows']} lignes examinées. Le CSV source reste intact. Les numéros ci-dessous correspondent aux lignes du fichier source, en comptant son titre et son en-tête.",'','Les correspondances sont exactes par éditeur et produit, ou reprennent les équivalences du relevé initial. Les suggestions ne sont jamais importées automatiquement. Les versions Native/HD, bundles et versions majeures ne sont pas assimilés. La déclaration d’annulation Softube prime sur cet ancien export : seuls British Class A Drive et Deesser restent possédés.','','## Corrections de collection','','| Plugin | Statut ajouté | Lignes CSV |','|---|---|---|']

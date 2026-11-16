@@ -60,8 +60,13 @@ jobs:
           ONLY_VENDOR: ${{ github.event.inputs.vendor }}
           PLUGINLIB_HTTP_CACHE: ${{ runner.temp }}/pluginlib-http
         run: |
+          node scripts/free-products.mjs
           node scripts/update.mjs
+          node scripts/sync-free-products.mjs
           node scripts/enrich-catalog.mjs
+          node scripts/prepare-presentations.mjs
+          node scripts/description-coverage.mjs
+          node scripts/review-pending-families.mjs
           node scripts/subscription-plans.mjs
           node scripts/audit-catalog.mjs
           node scripts/retailer-prices.mjs
@@ -70,7 +75,7 @@ jobs:
         run: |
           git config user.name "pluginlib-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/plugins.json data/meta.json data/diagnostic.json data/quality-report.json data/quality-report.md data/integrity-report.json data/integrity-report.md data/subscriptions.json sources/retailer-links.json
+          git add data/free-products.json data/family-source-review.json data/description-coverage.json data/plugins.json data/meta.json data/diagnostic.json data/quality-report.json data/quality-report.md data/integrity-report.json data/integrity-report.md data/subscriptions.json sources/retailer-links.json
           if git diff --cached --quiet; then echo "Aucun changement."; exit 0; fi
           git commit -m "données : mise à jour du $(date -u +%Y-%m-%d)"
           # Si quelqu'un a poussé pendant la collecte, on se remet à jour avant d'envoyer

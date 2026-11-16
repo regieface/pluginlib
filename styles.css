@@ -89,7 +89,14 @@ button.outline:hover { background: #2d3b3e; }
 .info { padding: 15px; flex: 1; min-width: 0; }
 .maker { color: #8ad2ca; font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: .8px; }
 .plugin { font-size: 19px; font-weight: 790; letter-spacing: -.4px; line-height: 1.24; margin: 4px 0 7px; overflow-wrap: anywhere; }
-.description { color: #b4bdca; font-size: 12px; min-height: 37px; overflow-wrap: anywhere; }
+.description { color: #d1d7e0; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; margin: 12px 0 15px; padding: 12px 13px; background: #11151b55; border-left: 2px solid #658e97; border-radius: 0 8px 8px 0; }
+.description-text { margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.description.expanded .description-text { display: block; -webkit-line-clamp: unset; overflow: visible; }
+.description-toggle { display: block; color: #a7e0d7; border: 0; background: transparent; padding: 5px 0; font: inherit; font-size: 12px; font-weight: 650; cursor: pointer; text-align: left; }
+.description-toggle[hidden] { display: none; }
+.description-toggle:focus-visible, .description-source:focus-visible { outline: 2px solid #a7e0d7; outline-offset: 3px; border-radius: 2px; }
+.description-source { display: block; color: #a0adbd; font-size: 10px; line-height: 1.5; margin-top: 7px; text-decoration: none; }
+.description-source:hover { color: #b9eee4; text-decoration: underline; }
 .metadata { color: var(--muted); font-size: 11px; margin-top: 8px; overflow-wrap: anywhere; }
 .coloration-note { color: var(--muted); font-size: 11px; margin-top: 7px; overflow-wrap: anywhere; }
 .feature-review { color: var(--muted); font-size: 11px; margin: 8px 0; }

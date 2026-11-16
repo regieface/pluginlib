@@ -20,6 +20,7 @@ import { applyColorationMetadata } from '../coloration.mjs';
 import { auditFeatureEvidence } from './feature-evidence.mjs';
 import { auditCategoryEvidence } from './category-evidence.mjs';
 import { auditRecordType } from '../record-types.mjs';
+import { applyFreeProductMetadata } from './free-products.mjs';
 
 const ROOT = new URL('..', import.meta.url);
 const UA = 'PluginLibBot/1.0 (+https://github.com/regieface/pluginlib; catalogue personnel, 1 passage/14 jours)';
@@ -224,6 +225,7 @@ export async function main() {
   const { vendors } = await readJson('sources/vendors.json', { vendors: [] });
   const previous = await readJson('data/plugins.json', { plugins: [] });
   const overrides = await readJson('data/overrides.json', {});
+  const freeProducts = await readJson('data/free-products.json', { collections: [] });
   const prevMeta = await readJson('data/meta.json', { sources: [] });
   const prevDiagnostic = await readJson('data/diagnostic.json', { vendors: [] });
   const now = new Date().toISOString();
@@ -342,7 +344,7 @@ export async function main() {
   });
   plugins.sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
 
-  plugins.forEach((p) => { auditCategoryEvidence(p, overrides[p.id]); auditRecordType(p); applyColorationMetadata(p); auditFeatureEvidence(p); if(p.catalogStatus==='free')delete p.pricing; });
+  plugins.forEach((p) => { applyFreeProductMetadata(p, freeProducts); auditCategoryEvidence(p, overrides[p.id]); auditRecordType(p); applyColorationMetadata(p); auditFeatureEvidence(p); if(p.catalogStatus==='free')delete p.pricing; });
   await mkdir(new URL('data/', ROOT), { recursive: true });
   await writeFile(new URL('data/plugins.json', ROOT), JSON.stringify({ generatedAt: now, count: plugins.length, plugins }, null, 1));
   const sources = ONLY ? [...prevMeta.sources.filter((s) => !selected(s.vendor)), ...status]
