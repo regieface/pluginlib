@@ -1,0 +1,1621 @@
+{
+  "componentName": "Waves: F6 (m)",
+  "lpPluginName": "F6 (m)",
+  "componentType": 1635083896,
+  "componentSubType": 1363424589,
+  "componentManufacturer": 1802721110,
+  "observedLPVersion": "2026.1.0",
+  "parameters": [
+    {
+      "flags": 3894411264,
+      "id": 0,
+      "index": 0,
+      "max": 1,
+      "min": 0,
+      "name": "HPF On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 1,
+      "index": 1,
+      "max": 3,
+      "min": 0,
+      "name": "HPF Q",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 2,
+      "index": 2,
+      "max": 1000,
+      "min": 0,
+      "name": "HPF Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 3,
+      "index": 3,
+      "max": 1,
+      "min": 0,
+      "name": "HPF Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 4,
+      "index": 4,
+      "max": 1,
+      "min": 0,
+      "name": "LPF On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 5,
+      "index": 5,
+      "max": 3,
+      "min": 0,
+      "name": "LPF Q",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 6,
+      "index": 6,
+      "max": 1000,
+      "min": 0,
+      "name": "LPF Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 7,
+      "index": 7,
+      "max": 1,
+      "min": 0,
+      "name": "LPF Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 8,
+      "index": 8,
+      "max": 1,
+      "min": 0,
+      "name": "Band 1 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 9,
+      "index": 9,
+      "max": 2,
+      "min": 0,
+      "name": "Band 1 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 10,
+      "index": 10,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 11,
+      "index": 11,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 12,
+      "index": 12,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 13,
+      "index": 13,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 14,
+      "index": 14,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 15,
+      "index": 15,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 16,
+      "index": 16,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 17,
+      "index": 17,
+      "max": 1,
+      "min": 0,
+      "name": "Band 1 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 18,
+      "index": 18,
+      "max": 1,
+      "min": 0,
+      "name": "Band 1 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 19,
+      "index": 19,
+      "max": 1,
+      "min": 0,
+      "name": "Band 1 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 20,
+      "index": 20,
+      "max": 1,
+      "min": 0,
+      "name": "Band 2 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 21,
+      "index": 21,
+      "max": 2,
+      "min": 0,
+      "name": "Band 2 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 22,
+      "index": 22,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 23,
+      "index": 23,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 24,
+      "index": 24,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 25,
+      "index": 25,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 26,
+      "index": 26,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 27,
+      "index": 27,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 28,
+      "index": 28,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 29,
+      "index": 29,
+      "max": 1,
+      "min": 0,
+      "name": "Band 2 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 30,
+      "index": 30,
+      "max": 1,
+      "min": 0,
+      "name": "Band 2 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 31,
+      "index": 31,
+      "max": 1,
+      "min": 0,
+      "name": "Band 2 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 32,
+      "index": 32,
+      "max": 1,
+      "min": 0,
+      "name": "Band 3 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 33,
+      "index": 33,
+      "max": 2,
+      "min": 0,
+      "name": "Band 3 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 34,
+      "index": 34,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 35,
+      "index": 35,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 36,
+      "index": 36,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 37,
+      "index": 37,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 38,
+      "index": 38,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 39,
+      "index": 39,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 40,
+      "index": 40,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 41,
+      "index": 41,
+      "max": 1,
+      "min": 0,
+      "name": "Band 3 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 42,
+      "index": 42,
+      "max": 1,
+      "min": 0,
+      "name": "Band 3 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 43,
+      "index": 43,
+      "max": 1,
+      "min": 0,
+      "name": "Band 3 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 44,
+      "index": 44,
+      "max": 1,
+      "min": 0,
+      "name": "Band 4 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 45,
+      "index": 45,
+      "max": 2,
+      "min": 0,
+      "name": "Band 4 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 46,
+      "index": 46,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 47,
+      "index": 47,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 48,
+      "index": 48,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 49,
+      "index": 49,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 50,
+      "index": 50,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 51,
+      "index": 51,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 52,
+      "index": 52,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 53,
+      "index": 53,
+      "max": 1,
+      "min": 0,
+      "name": "Band 4 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 54,
+      "index": 54,
+      "max": 1,
+      "min": 0,
+      "name": "Band 4 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 55,
+      "index": 55,
+      "max": 1,
+      "min": 0,
+      "name": "Band 4 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 56,
+      "index": 56,
+      "max": 1,
+      "min": 0,
+      "name": "Band 5 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 57,
+      "index": 57,
+      "max": 2,
+      "min": 0,
+      "name": "Band 5 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 58,
+      "index": 58,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 59,
+      "index": 59,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 60,
+      "index": 60,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 61,
+      "index": 61,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 62,
+      "index": 62,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 63,
+      "index": 63,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 64,
+      "index": 64,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 65,
+      "index": 65,
+      "max": 1,
+      "min": 0,
+      "name": "Band 5 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 66,
+      "index": 66,
+      "max": 1,
+      "min": 0,
+      "name": "Band 5 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 67,
+      "index": 67,
+      "max": 1,
+      "min": 0,
+      "name": "Band 5 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 68,
+      "index": 68,
+      "max": 1,
+      "min": 0,
+      "name": "Band 6 On/Off",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 69,
+      "index": 69,
+      "max": 2,
+      "min": 0,
+      "name": "Band 6 Type",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 70,
+      "index": 70,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Freq",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 71,
+      "index": 71,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Q",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 72,
+      "index": 72,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Gain",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 73,
+      "index": 73,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Range",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 74,
+      "index": 74,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Threshold",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 75,
+      "index": 75,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Attack",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 76,
+      "index": 76,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Release",
+      "unit": 26
+    },
+    {
+      "flags": 3894411264,
+      "id": 77,
+      "index": 77,
+      "max": 1,
+      "min": 0,
+      "name": "Band 6 SC Source",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 78,
+      "index": 78,
+      "max": 1,
+      "min": 0,
+      "name": "Band 6 SC Mode",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 79,
+      "index": 79,
+      "max": 1,
+      "min": 0,
+      "name": "Band 6 Solo",
+      "unit": 1
+    },
+    {
+      "flags": 3894411264,
+      "id": 80,
+      "index": 80,
+      "max": 1,
+      "min": 0,
+      "name": "Global Release",
+      "unit": 1
+    },
+    {
+      "flags": 3902799872,
+      "id": 81,
+      "index": 81,
+      "max": 1000,
+      "min": 0,
+      "name": "OUT",
+      "unit": 26
+    },
+    {
+      "flags": 3902799872,
+      "id": 82,
+      "index": 82,
+      "max": 1000,
+      "min": 0,
+      "name": "MIX",
+      "unit": 26
+    },
+    {
+      "flags": 1224736768,
+      "id": 83,
+      "index": 83,
+      "max": 1000,
+      "min": 0,
+      "name": "Master Gain",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 84,
+      "index": 84,
+      "max": 1000,
+      "min": 0,
+      "name": "Master Range",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 85,
+      "index": 85,
+      "max": 1000,
+      "min": 0,
+      "name": "Master Threshold",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 86,
+      "index": 86,
+      "max": 1000,
+      "min": 0,
+      "name": "Master Attack",
+      "unit": 1866488300
+    },
+    {
+      "flags": 1224736768,
+      "id": 87,
+      "index": 87,
+      "max": 1000,
+      "min": 0,
+      "name": "Master Release",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 88,
+      "index": 88,
+      "max": 1,
+      "min": 0,
+      "name": "marker 7 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 89,
+      "index": 89,
+      "max": 7,
+      "min": 0,
+      "name": "HPF Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 90,
+      "index": 90,
+      "max": 3,
+      "min": 0,
+      "name": "HPF Q -6",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 91,
+      "index": 91,
+      "max": 3,
+      "min": 0,
+      "name": "HPF Q -12",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 92,
+      "index": 92,
+      "max": 3,
+      "min": 0,
+      "name": "HPF Q -18",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 93,
+      "index": 93,
+      "max": 3,
+      "min": 0,
+      "name": "HPF Q -24",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 94,
+      "index": 94,
+      "max": 1,
+      "min": 0,
+      "name": "marker 8 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 95,
+      "index": 95,
+      "max": 7,
+      "min": 0,
+      "name": "LPF Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 96,
+      "index": 96,
+      "max": 3,
+      "min": 0,
+      "name": "LPF Q -6",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 97,
+      "index": 97,
+      "max": 3,
+      "min": 0,
+      "name": "LPF Q -12",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 98,
+      "index": 98,
+      "max": 3,
+      "min": 0,
+      "name": "LPF Q -18",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 99,
+      "index": 99,
+      "max": 3,
+      "min": 0,
+      "name": "LPF Q -24",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 100,
+      "index": 100,
+      "max": 1000,
+      "min": 0,
+      "name": "Graph",
+      "unit": 1866488298
+    },
+    {
+      "flags": 1224736768,
+      "id": 101,
+      "index": 101,
+      "max": 7,
+      "min": 0,
+      "name": "marker 1 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 102,
+      "index": 102,
+      "max": 7,
+      "min": 0,
+      "name": "Band 1 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 103,
+      "index": 103,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 1 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 104,
+      "index": 104,
+      "max": 1,
+      "min": 0,
+      "name": "marker 2 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 105,
+      "index": 105,
+      "max": 7,
+      "min": 0,
+      "name": "Band 2 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 106,
+      "index": 106,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 2 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 107,
+      "index": 107,
+      "max": 1,
+      "min": 0,
+      "name": "marker 3 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 108,
+      "index": 108,
+      "max": 7,
+      "min": 0,
+      "name": "Band 3 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 109,
+      "index": 109,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 3 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 110,
+      "index": 110,
+      "max": 1,
+      "min": 0,
+      "name": "marker 4 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 111,
+      "index": 111,
+      "max": 7,
+      "min": 0,
+      "name": "Band 4 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 112,
+      "index": 112,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 4 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 113,
+      "index": 113,
+      "max": 1,
+      "min": 0,
+      "name": "marker 5 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 114,
+      "index": 114,
+      "max": 7,
+      "min": 0,
+      "name": "Band 5 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 115,
+      "index": 115,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 5 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 116,
+      "index": 116,
+      "max": 1,
+      "min": 0,
+      "name": "marker 6 onoff",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 117,
+      "index": 117,
+      "max": 7,
+      "min": 0,
+      "name": "Band 6 Marker",
+      "unit": 1866488296
+    },
+    {
+      "flags": 1224736768,
+      "id": 118,
+      "index": 118,
+      "max": 1000,
+      "min": 0,
+      "name": "Band 6 Energy",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 119,
+      "index": 119,
+      "max": 1000,
+      "min": 0,
+      "name": "OUT Dec",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 120,
+      "index": 120,
+      "max": 1000,
+      "min": 0,
+      "name": "OUT Inc",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 121,
+      "index": 121,
+      "max": 1000,
+      "min": 0,
+      "name": "VU-mono",
+      "unit": 1866488301
+    },
+    {
+      "flags": 1224736768,
+      "id": 122,
+      "index": 122,
+      "max": 1000,
+      "min": 0,
+      "name": "Wet Dry Dec",
+      "unit": 1866488299
+    },
+    {
+      "flags": 1224736768,
+      "id": 123,
+      "index": 123,
+      "max": 1000,
+      "min": 0,
+      "name": "Wet Dry Inc",
+      "unit": 1866488299
+    }
+  ],
+  "displayVerification": {
+    "source": "AudioUnit ParameterStringFromValue and ParameterValueFromString, F6 (m), 2026-11-16",
+    "audioUnitInputRange": [
+      0,
+      1000
+    ],
+    "inverseFrequency": [
+      {
+        "text": "100",
+        "auValue": 257.0949
+      },
+      {
+        "text": "1000",
+        "auValue": 576.0
+      },
+      {
+        "text": "10000",
+        "auValue": 894.9051
+      }
+    ],
+    "inverseQ": [
+      {
+        "text": "1",
+        "auValue": 204.08011
+      },
+      {
+        "text": "5",
+        "auValue": 516.9467
+      },
+      {
+        "text": "10",
+        "auValue": 651.69104
+      }
+    ],
+    "samples": [
+      {
+        "normalized": 0.5,
+        "strings": {
+          "10": "578",
+          "11": "4.6",
+          "12": "0.0",
+          "13": "0.0",
+          "14": "-30.0",
+          "15": "15.8",
+          "16": "158",
+          "81": "0.0"
+        }
+      },
+      {
+        "normalized": 0.66571,
+        "strings": {
+          "10": "1911",
+          "11": "10.7",
+          "12": "6.0",
+          "13": "6.0",
+          "14": "-20.1",
+          "15": "49.7",
+          "16": "497",
+          "81": "6.0"
+        }
+      }
+    ]
+  },
+  "sixBandDisplaySamples": [
+    {
+      "id": 10,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 10,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 11,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 11,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 12,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 12,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 13,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 13,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 14,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 14,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 15,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 15,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 16,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 16,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 22,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 22,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 23,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 23,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 24,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 24,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 25,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 25,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 26,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 26,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 27,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 27,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 28,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 28,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 34,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 34,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 35,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 35,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 36,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 36,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 37,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 37,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 38,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 38,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 39,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 39,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 40,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 40,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 46,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 46,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 47,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 47,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 48,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 48,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 49,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 49,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 50,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 50,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 51,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 51,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 52,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 52,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 58,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 58,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 59,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 59,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 60,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 60,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 61,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 61,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 62,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 62,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 63,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 63,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 64,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 64,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 70,
+      "normalized": 0.5,
+      "text": "578"
+    },
+    {
+      "id": 70,
+      "normalized": 0.6657099723815918,
+      "text": "1911"
+    },
+    {
+      "id": 71,
+      "normalized": 0.5,
+      "text": "4.6"
+    },
+    {
+      "id": 71,
+      "normalized": 0.6657099723815918,
+      "text": "10.7"
+    },
+    {
+      "id": 72,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 72,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 73,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 73,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    },
+    {
+      "id": 74,
+      "normalized": 0.5,
+      "text": "-30.0"
+    },
+    {
+      "id": 74,
+      "normalized": 0.6657099723815918,
+      "text": "-20.1"
+    },
+    {
+      "id": 75,
+      "normalized": 0.5,
+      "text": "15.8"
+    },
+    {
+      "id": 75,
+      "normalized": 0.6657099723815918,
+      "text": "49.7"
+    },
+    {
+      "id": 76,
+      "normalized": 0.5,
+      "text": "158"
+    },
+    {
+      "id": 76,
+      "normalized": 0.6657099723815918,
+      "text": "497"
+    },
+    {
+      "id": 81,
+      "normalized": 0.5,
+      "text": "0.0"
+    },
+    {
+      "id": 81,
+      "normalized": 0.6657099723815918,
+      "text": "6.0"
+    }
+  ]
+}

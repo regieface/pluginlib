@@ -206,3 +206,15 @@ node scripts/audit-catalog.mjs      # isole les critères sans preuve et produit
 node --test scripts/*.test.mjs
 python -m http.server              # puis http://localhost:8000
 ```
+
+## PluginLib Controller (macOS)
+
+Le module natif dans [`controller/`](controller/README.md) ajoute une fenêtre
+flottante Compact/Complet et une détection en lecture seule des fenêtres de
+plugins LiveProfessor par accessibilité. Il fonctionne hors ligne, séparément
+du site. Voir son guide pour compiler, autoriser l’accessibilité et effectuer
+les vérifications dans LiveProfessor. Les huit encodeurs MC peuvent être transmis à LP via un port MIDI virtuel,
+avec réception OSC locale et affichage des unités par échelle vérifiée après configuration du mapping
+dans LiveProfessor. Voir le guide du module pour cet essai.
+
+La préparation des huit affectations F6 dans une copie de projet LiveProfessor et les repères de couleur sont décrits dans [le guide d’automatisation](controller/AUTOMATION.md).

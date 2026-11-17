@@ -1,0 +1,44 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:pluginlib}/controller",
+            "name": "Debug PluginLibController (controller)",
+            "target": "PluginLibController",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug PluginLibController (controller)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:pluginlib}/controller",
+            "name": "Release PluginLibController (controller)",
+            "target": "PluginLibController",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release PluginLibController (controller)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:pluginlib}/controller",
+            "name": "Debug ControllerChecks (controller)",
+            "target": "ControllerChecks",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug ControllerChecks (controller)"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:pluginlib}/controller",
+            "name": "Release ControllerChecks (controller)",
+            "target": "ControllerChecks",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release ControllerChecks (controller)"
+        }
+    ]
+}

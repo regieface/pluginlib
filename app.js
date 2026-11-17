@@ -6,13 +6,15 @@ const { defaultSelections, changeSelection, matchesPluginSelections, clearIrrele
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
+const { CONTROLLER_STATUS_LABELS, collectionControllerStatus } = await import(`./controller-status.mjs?v=${moduleVersion}`);
+const { controllerRequestOptions, createControllerRequest } = await import(`./controller-request.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
 const descriptionObserver=new ResizeObserver(entries=>{for(const {target:text} of entries){if(!text.isConnected)continue;const block=text.closest('.description'),toggle=block.querySelector('.description-toggle');toggle.hidden=!block.classList.contains('expanded')&&text.scrollHeight<=text.clientHeight+1;}});
 const STATUS_KEY = 'pluginlib.status.v2';
 const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'Abonnement actif', former: 'Ancien abonnement', trial: 'Démo', wishlist: 'Liste d’envies', not_owned: 'Non possédé' };
 const PAGE = 30;
 
-let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], shown = PAGE;
+let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], CONTROLLER_MANIFEST = { schemaVersion: 1, links: [] }, shown = PAGE;
 const st = { scope: 'all', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
 let selections = defaultSelections();
 const filterControls = new Map(), filterChoices = new Map();
@@ -43,13 +45,15 @@ function lat(p, rate) {
 
 // ---------- Chargement ----------
 async function load() {
-  const [d, m, plans, descriptions] = await Promise.all([
+  const [d, m, plans, descriptions, controllerManifest] = await Promise.all([
     fetch('data/plugins.json', { cache: 'no-cache' }).then((r) => r.json()),
     fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json()),
     fetch('data/subscriptions.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{plans:[]}).catch(()=>({plans:[]})),
-    fetch('data/descriptions-fr.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{}).catch(()=>({}))
+    fetch('data/descriptions-fr.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{}).catch(()=>({})),
+    fetch('controller/profile-manifest.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{schemaVersion:1,links:[]}).catch(()=>({schemaVersion:1,links:[]}))
   ]);
   META = m; LBL = m.labels;
+  CONTROLLER_MANIFEST = controllerManifest;
   PLANS=plans.plans||[];
   ({status,subscriptions,unmatchedLicenses,licenseDetails}=normalizeCollection(currentCollection(),d.plugins,PLANS));
   DATA = d.plugins.filter(p=>!p.duplicateOf&&!p.exclude).map((p) => {
@@ -186,7 +190,8 @@ function latCell(p, rate) {
 
 function card(p) {
   const n = $('#tpl').content.cloneNode(true);
-  n.querySelector('.card').classList.toggle('licensed', ['owned', 'subscription'].includes(licenseStatus(p)));
+  const currentLicenseStatus = licenseStatus(p);
+  n.querySelector('.card').classList.toggle('licensed', ['owned', 'subscription'].includes(currentLicenseStatus));
   const img = n.querySelector('img');
   n.querySelector('.fallback b').textContent = p.vendor.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
   n.querySelector('.fallback span').textContent = LBL.categories[p.category] || '';
@@ -269,11 +274,31 @@ function card(p) {
   }
   const sel = n.querySelector('.own select');
   sel.innerHTML = Object.entries(STATUS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
-  sel.value = licenseStatus(p);
+  sel.value = currentLicenseStatus;
   sel.classList.toggle('set', sel.value !== 'unknown');
   sel.dataset.id = p.id;
   if(licenseDetails[p.id]&&['owned','subscription','former'].includes(sel.value)){
     const details=document.createElement('small');details.className='license-detail';details.textContent=`Licence importée : ${licenseDetails[p.id].name}`;n.querySelector('.own').after(details);
+  }
+  const controllerStatus = collectionControllerStatus(p.id, currentLicenseStatus, st.scope, CONTROLLER_MANIFEST);
+  if (controllerStatus) {
+    const indicator = document.createElement('div');
+    indicator.className = `controller-status ${controllerStatus}`;
+    indicator.textContent = `Controller · ${CONTROLLER_STATUS_LABELS[controllerStatus]}`;
+    n.querySelector('.own').before(indicator);
+    for (const option of controllerRequestOptions(p.id, currentLicenseStatus, st.scope, CONTROLLER_MANIFEST)) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = `Exporter pour Controller · ${option.variant.pluginName} · ${option.variant.format} · ${option.variant.channelLayout}`;
+      button.addEventListener('click', () => {
+        const request = createControllerRequest(p.id, licenseStatus(p), st.scope, CONTROLLER_MANIFEST, option.variant);
+        const url = URL.createObjectURL(new Blob([JSON.stringify(request, null, 2)], { type: 'application/json' }));
+        const link = Object.assign(document.createElement('a'), { href: url, download: `${p.id}.controller-request.json` });
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+      indicator.append(document.createElement('br'), button);
+    }
   }
   const a = n.querySelector('.productlink');
   if (p.url) { a.href = p.url; a.textContent = 'Fiche constructeur ↗'; } else { a.removeAttribute('href'); a.textContent = 'Fiche non trouvée'; a.classList.add('none'); }

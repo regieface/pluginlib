@@ -1,0 +1,203 @@
+{
+  "source": "LiveProfessor test copy; user confirmed six bands disabled then enabled in order",
+  "rawCaptureSHA256": "5c746b3eedb84a3b9e04c27f6bfa132a8de29caf26b2a60a9397678cdf0908fa",
+  "polarity": {
+    "disabled": 0.0,
+    "enabled": 1.0
+  },
+  "scope": "F6 (m) AU test session; observed OSC feedback, not command reception validation",
+  "events": [
+    {
+      "time": 1794871705.722927,
+      "address": "/pluginlib/diagnostic/f6/band1/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871705.723437,
+      "address": "/pluginlib/diagnostic/f6/band2/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871705.723864,
+      "address": "/pluginlib/diagnostic/f6/band3/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871705.7242172,
+      "address": "/pluginlib/diagnostic/f6/band4/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871705.72447,
+      "address": "/pluginlib/diagnostic/f6/band5/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871705.724726,
+      "address": "/pluginlib/diagnostic/f6/band6/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.125066,
+      "address": "/pluginlib/diagnostic/f6/band1/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.125684,
+      "address": "/pluginlib/diagnostic/f6/band2/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.1263099,
+      "address": "/pluginlib/diagnostic/f6/band3/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.126934,
+      "address": "/pluginlib/diagnostic/f6/band4/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.1275709,
+      "address": "/pluginlib/diagnostic/f6/band5/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871720.128206,
+      "address": "/pluginlib/diagnostic/f6/band6/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871745.229739,
+      "address": "/pluginlib/diagnostic/f6/band1/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871746.34608,
+      "address": "/pluginlib/diagnostic/f6/band1/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871748.9232798,
+      "address": "/pluginlib/diagnostic/f6/band2/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871750.131456,
+      "address": "/pluginlib/diagnostic/f6/band2/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871752.5753732,
+      "address": "/pluginlib/diagnostic/f6/band3/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871753.705468,
+      "address": "/pluginlib/diagnostic/f6/band3/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871757.0083652,
+      "address": "/pluginlib/diagnostic/f6/band4/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871758.2578619,
+      "address": "/pluginlib/diagnostic/f6/band4/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871761.3468869,
+      "address": "/pluginlib/diagnostic/f6/band5/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871762.756536,
+      "address": "/pluginlib/diagnostic/f6/band5/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    },
+    {
+      "time": 1794871766.041091,
+      "address": "/pluginlib/diagnostic/f6/band6/onoff",
+      "types": ",f",
+      "values": [
+        0.0
+      ]
+    },
+    {
+      "time": 1794871767.5515661,
+      "address": "/pluginlib/diagnostic/f6/band6/onoff",
+      "types": ",f",
+      "values": [
+        1.0
+      ]
+    }
+  ]
+}

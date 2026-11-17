@@ -1,0 +1,107 @@
+{
+  "id": "khs-compressor",
+  "name": "kHs Compressor",
+  "windowTitles": [
+    "kHs CompressorUI"
+  ],
+  "encoders": [
+    {
+      "id": 1,
+      "name": "Non affecté"
+    },
+    {
+      "id": 2,
+      "name": "Non affecté"
+    },
+    {
+      "id": 3,
+      "name": "Non affecté"
+    },
+    {
+      "id": 4,
+      "name": "Non affecté"
+    },
+    {
+      "id": 5,
+      "name": "Non affecté"
+    },
+    {
+      "id": 6,
+      "name": "Non affecté"
+    },
+    {
+      "id": 7,
+      "name": "Non affecté"
+    },
+    {
+      "id": 8,
+      "name": "Non affecté"
+    }
+  ],
+  "buttons": [
+    {
+      "id": 1,
+      "name": "Non affecté"
+    },
+    {
+      "id": 2,
+      "name": "Non affecté"
+    },
+    {
+      "id": 3,
+      "name": "Non affecté"
+    },
+    {
+      "id": 4,
+      "name": "Non affecté"
+    },
+    {
+      "id": 5,
+      "name": "Non affecté"
+    },
+    {
+      "id": 6,
+      "name": "Non affecté"
+    },
+    {
+      "id": 7,
+      "name": "Non affecté"
+    },
+    {
+      "id": 8,
+      "name": "Non affecté"
+    },
+    {
+      "id": 9,
+      "name": "Non affecté"
+    },
+    {
+      "id": 10,
+      "name": "Non affecté"
+    },
+    {
+      "id": 11,
+      "name": "Non affecté"
+    },
+    {
+      "id": 12,
+      "name": "Non affecté"
+    },
+    {
+      "id": 13,
+      "name": "Non affecté"
+    },
+    {
+      "id": 14,
+      "name": "Non affecté"
+    },
+    {
+      "id": 15,
+      "name": "Non affecté"
+    },
+    {
+      "id": 16,
+      "name": "Non affecté"
+    }
+  ]
+}

@@ -4,3 +4,8 @@ pluginlib.tgz
 collection-privee/
 __pycache__/
 *.pyc
+controller/.build/
+controller/.swiftpm/
+controller/dist/
+controller/generated/
+controller/tools/__pycache__/

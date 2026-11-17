@@ -177,6 +177,10 @@ button.outline:active, .scope button:active, .loadmore:active { transform: trans
 #subscriptionOptions label { display: flex; align-items: center; gap: 8px; margin: 12px 0; }
 #subscriptionOptions input { width: 17px; height: 17px; accent-color: #77b8ad; }
 .license-detail { display: block; margin-top: 8px; color: #b7c2cf; font-size: 11px; }
+.controller-status { margin-top: 10px; padding: 7px 9px; border: 1px solid #4b5664; border-radius: 8px; color: #c6cfdb; background: #1b2027; font-size: 11px; font-weight: 700; }
+.controller-status.verified { border-color: #47785e; color: #9be0b7; background: #20372c; }
+.controller-status.unverified { border-color: #806b42; color: #ebc988; background: #3a3224; }
+.controller-status.none { color: #aeb8c5; }
 .unmatched-collection { margin: 24px 0; padding: 16px; border: 1px solid #455060; border-radius: 12px; color: #c1cad5; background: #22272f; }
 .unmatched-collection li { margin: 8px 0; }
 .loadmore[hidden] { display: none; }

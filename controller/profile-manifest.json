@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "links": [
+    {
+      "pluginId": "waves--f6-floating-band-dynamic-eq",
+      "profiles": [
+        {
+          "profileId": "waves-f6",
+          "profilePath": "Profiles/waves-f6.json",
+          "status": "draft",
+          "variants": [
+            {
+              "format": "AudioUnit",
+              "channelLayout": "mono",
+              "host": {
+                "application": "LiveProfessor",
+                "pluginName": "F6 (m)",
+                "testedVersion": "2026.1.0"
+              },
+              "metadataPath": "Metadata/waves-f6-au.json",
+              "status": "draft"
+            }
+          ],
+          "unresolved": [
+            {
+              "field": "liveValidation",
+              "reason": "Validation partielle seulement : matrice six bandes × huit encodeurs × deux sens et retours OSC à consigner selon F6_VALIDATION.md avant verified."
+            },
+            {
+              "field": "profileRevision",
+              "reason": "Le format de profil Controller ne possède pas encore de numéro de révision."
+            },
+            {
+              "field": "variants[0].pluginVersion",
+              "reason": "La version Waves F6 testée n'est pas enregistrée dans les données locales."
+            },
+            {
+              "field": "variants.stereo",
+              "reason": "Le profil reconnaît F6 (s)UI, mais les métadonnées et affectations validées concernent F6 (m) Audio Unit."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

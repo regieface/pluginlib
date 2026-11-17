@@ -1,0 +1,1431 @@
+{
+  "id": "waves-f6",
+  "name": "Waves F6",
+  "windowTitles": [
+    "F6 (m)UI",
+    "F6 (s)UI"
+  ],
+  "encoders": [
+    {
+      "id": 1,
+      "name": "Band 1 Freq",
+      "hostParameter": "Band 1 Freq",
+      "feedbackAddress": "/pluginlib/waves-f6/e2",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 17,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": 15.625000589054284,
+        "outputMax": 21357.43707403029,
+        "curve": "logarithmic",
+        "unit": "Hz",
+        "decimals": 0,
+        "signed": false
+      }
+    },
+    {
+      "id": 2,
+      "name": "Band 1 Q",
+      "hostParameter": "Band 1 Q",
+      "feedbackAddress": "/pluginlib/waves-f6/e3",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 18,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": 0.35000003004081215,
+        "outputMax": 59.999986152455485,
+        "curve": "logarithmic",
+        "unit": "",
+        "decimals": 1,
+        "signed": false
+      }
+    },
+    {
+      "id": 3,
+      "name": "Band 1 Gain",
+      "feedbackAddress": "/pluginlib/waves-f6/e1",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": -18,
+        "outputMax": 18,
+        "curve": "linear",
+        "unit": "dB",
+        "decimals": 1,
+        "signed": true
+      },
+      "hostParameter": "Band 1 Gain",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 16,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F"
+    },
+    {
+      "id": 4,
+      "name": "Band 1 Range",
+      "hostParameter": "Band 1 Range",
+      "feedbackAddress": "/pluginlib/waves-f6/e4",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 19,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": -18,
+        "outputMax": 18,
+        "curve": "linear",
+        "unit": "dB",
+        "decimals": 1,
+        "signed": true
+      }
+    },
+    {
+      "id": 5,
+      "name": "Band 1 Threshold",
+      "hostParameter": "Band 1 Threshold",
+      "feedbackAddress": "/pluginlib/waves-f6/e5",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 20,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": -60,
+        "outputMax": 0,
+        "curve": "linear",
+        "unit": "dB",
+        "decimals": 1,
+        "signed": false
+      }
+    },
+    {
+      "id": 6,
+      "name": "Band 1 Attack",
+      "hostParameter": "Band 1 Attack",
+      "feedbackAddress": "/pluginlib/waves-f6/e6",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 21,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": 0.5,
+        "outputMax": 500,
+        "curve": "logarithmic",
+        "unit": "ms",
+        "decimals": 1,
+        "signed": false
+      }
+    },
+    {
+      "id": 7,
+      "name": "Band 1 Release",
+      "hostParameter": "Band 1 Release",
+      "feedbackAddress": "/pluginlib/waves-f6/e7",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 22,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#F26B4F",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": 5,
+        "outputMax": 5000,
+        "curve": "logarithmic",
+        "unit": "ms",
+        "decimals": 0,
+        "signed": false
+      }
+    },
+    {
+      "id": 8,
+      "name": "OUT",
+      "hostParameter": "OUT",
+      "feedbackAddress": "/pluginlib/waves-f6/e8",
+      "midi": {
+        "message": "controlChange",
+        "channel": 1,
+        "number": 23,
+        "encoding": "relativeSignMagnitude"
+      },
+      "color": "#8CD6C7",
+      "valueScale": {
+        "inputMin": 0,
+        "inputMax": 1,
+        "outputMin": -18,
+        "outputMax": 18,
+        "curve": "linear",
+        "unit": "dB",
+        "decimals": 1,
+        "signed": true
+      }
+    }
+  ],
+  "buttons": [
+    {
+      "id": 1,
+      "name": "Band 1",
+      "color": "#F26B4F",
+      "selectBank": 1
+    },
+    {
+      "id": 2,
+      "name": "Band 2",
+      "color": "#B6D84B",
+      "selectBank": 2
+    },
+    {
+      "id": 3,
+      "name": "Band 3",
+      "color": "#58BDB9",
+      "selectBank": 3
+    },
+    {
+      "id": 4,
+      "name": "Band 4",
+      "color": "#18A5D1",
+      "selectBank": 4
+    },
+    {
+      "id": 5,
+      "name": "Band 5",
+      "color": "#697EEF",
+      "selectBank": 5
+    },
+    {
+      "id": 6,
+      "name": "Band 6",
+      "color": "#ED4F88",
+      "selectBank": 6
+    },
+    {
+      "id": 7,
+      "name": "Non affecté"
+    },
+    {
+      "id": 8,
+      "name": "Non affecté"
+    },
+    {
+      "id": 9,
+      "name": "Non affecté"
+    },
+    {
+      "id": 10,
+      "name": "Non affecté"
+    },
+    {
+      "id": 11,
+      "name": "Non affecté"
+    },
+    {
+      "id": 12,
+      "name": "Non affecté"
+    },
+    {
+      "id": 13,
+      "name": "Non affecté"
+    },
+    {
+      "id": 14,
+      "name": "Non affecté"
+    },
+    {
+      "id": 15,
+      "name": "Non affecté"
+    },
+    {
+      "id": 16,
+      "name": "Non affecté"
+    }
+  ],
+  "accentColor": "#F26B4F",
+  "banks": [
+    {
+      "id": 1,
+      "name": "Band 1",
+      "accentColor": "#F26B4F",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 1 Freq",
+          "hostParameter": "Band 1 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 17,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 1 Q",
+          "hostParameter": "Band 1 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 18,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 1 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 1 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 16,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F"
+        },
+        {
+          "id": 4,
+          "name": "Band 1 Range",
+          "hostParameter": "Band 1 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 19,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 1 Threshold",
+          "hostParameter": "Band 1 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 20,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 1 Attack",
+          "hostParameter": "Band 1 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 21,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 1 Release",
+          "hostParameter": "Band 1 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 22,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#F26B4F",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Band 2",
+      "accentColor": "#B6D84B",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 2 Freq",
+          "hostParameter": "Band 2 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 25,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 2 Q",
+          "hostParameter": "Band 2 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 26,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 2 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 2 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 24,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B"
+        },
+        {
+          "id": 4,
+          "name": "Band 2 Range",
+          "hostParameter": "Band 2 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 27,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 2 Threshold",
+          "hostParameter": "Band 2 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 28,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 2 Attack",
+          "hostParameter": "Band 2 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 29,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 2 Release",
+          "hostParameter": "Band 2 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/band2/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 30,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#B6D84B",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Band 3",
+      "accentColor": "#58BDB9",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 3 Freq",
+          "hostParameter": "Band 3 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 33,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 3 Q",
+          "hostParameter": "Band 3 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 34,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 3 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 3 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 32,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9"
+        },
+        {
+          "id": 4,
+          "name": "Band 3 Range",
+          "hostParameter": "Band 3 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 35,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 3 Threshold",
+          "hostParameter": "Band 3 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 36,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 3 Attack",
+          "hostParameter": "Band 3 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 37,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 3 Release",
+          "hostParameter": "Band 3 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/band3/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 38,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#58BDB9",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Band 4",
+      "accentColor": "#18A5D1",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 4 Freq",
+          "hostParameter": "Band 4 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 41,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 4 Q",
+          "hostParameter": "Band 4 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 42,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 4 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 4 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 40,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1"
+        },
+        {
+          "id": 4,
+          "name": "Band 4 Range",
+          "hostParameter": "Band 4 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 43,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 4 Threshold",
+          "hostParameter": "Band 4 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 44,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 4 Attack",
+          "hostParameter": "Band 4 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 45,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 4 Release",
+          "hostParameter": "Band 4 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/band4/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 46,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#18A5D1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Band 5",
+      "accentColor": "#697EEF",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 5 Freq",
+          "hostParameter": "Band 5 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 49,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 5 Q",
+          "hostParameter": "Band 5 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 50,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 5 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 5 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 48,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF"
+        },
+        {
+          "id": 4,
+          "name": "Band 5 Range",
+          "hostParameter": "Band 5 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 51,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 5 Threshold",
+          "hostParameter": "Band 5 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 52,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 5 Attack",
+          "hostParameter": "Band 5 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 53,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 5 Release",
+          "hostParameter": "Band 5 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/band5/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 54,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#697EEF",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Band 6",
+      "accentColor": "#ED4F88",
+      "encoders": [
+        {
+          "id": 1,
+          "name": "Band 6 Freq",
+          "hostParameter": "Band 6 Freq",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e2",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 57,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 15.625000589054284,
+            "outputMax": 21357.43707403029,
+            "curve": "logarithmic",
+            "unit": "Hz",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 2,
+          "name": "Band 6 Q",
+          "hostParameter": "Band 6 Q",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e3",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 58,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.35000003004081215,
+            "outputMax": 59.999986152455485,
+            "curve": "logarithmic",
+            "unit": "",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 3,
+          "name": "Band 6 Gain",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e1",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          },
+          "hostParameter": "Band 6 Gain",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 56,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88"
+        },
+        {
+          "id": 4,
+          "name": "Band 6 Range",
+          "hostParameter": "Band 6 Range",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e4",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 59,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        },
+        {
+          "id": 5,
+          "name": "Band 6 Threshold",
+          "hostParameter": "Band 6 Threshold",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e5",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 60,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -60,
+            "outputMax": 0,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 6,
+          "name": "Band 6 Attack",
+          "hostParameter": "Band 6 Attack",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e6",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 61,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 0.5,
+            "outputMax": 500,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 1,
+            "signed": false
+          }
+        },
+        {
+          "id": 7,
+          "name": "Band 6 Release",
+          "hostParameter": "Band 6 Release",
+          "feedbackAddress": "/pluginlib/waves-f6/band6/e7",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 62,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#ED4F88",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": 5,
+            "outputMax": 5000,
+            "curve": "logarithmic",
+            "unit": "ms",
+            "decimals": 0,
+            "signed": false
+          }
+        },
+        {
+          "id": 8,
+          "name": "OUT",
+          "hostParameter": "OUT",
+          "feedbackAddress": "/pluginlib/waves-f6/e8",
+          "midi": {
+            "message": "controlChange",
+            "channel": 1,
+            "number": 23,
+            "encoding": "relativeSignMagnitude"
+          },
+          "color": "#8CD6C7",
+          "valueScale": {
+            "inputMin": 0,
+            "inputMax": 1,
+            "outputMin": -18,
+            "outputMax": 18,
+            "curve": "linear",
+            "unit": "dB",
+            "decimals": 1,
+            "signed": true
+          }
+        }
+      ]
+    }
+  ],
+  "bandSelectorLayout": {
+    "windowTitle": "F6 (m)UI",
+    "width": 802,
+    "height": 602,
+    "firstX": 160,
+    "firstY": 409,
+    "lastX": 410,
+    "lastY": 409,
+    "resizing": "proportional"
+  }
+}
