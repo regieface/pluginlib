@@ -1,6 +1,6 @@
 # PluginLib
 
-Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni de synthés), consultable dans le navigateur, avec des données mises à jour automatiquement toutes les deux semaines.
+Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni de synthés), consultable dans le navigateur, avec des données mises à jour à la demande.
 
 Le catalogue couvre Windows, macOS et Linux. Par défaut, **Toutes les plateformes**
 inclut aussi les compatibilités encore inconnues. Les produits abandonnés,
@@ -41,7 +41,7 @@ n'est disponible ; il ne se superpose jamais à une image transparente.
 | `sources/retailer-links.json` | Revendeurs et liens de repli vérifiés pour les prix |
 | `scripts/update.mjs` | Le script de collecte (Node 22, aucune dépendance) |
 | `scripts/retailer-prices.mjs` | Recherche les prix manquants chez les revendeurs référencés |
-| `.github/workflows/update-data.yml` | Lance la collecte toutes les deux semaines (03:17 UTC) et publie le résultat |
+| `.github/workflows/update-data.yml` | Lance la collecte à la demande depuis GitHub Actions et publie le résultat |
 
 La collecte a lieu un dimanche sur deux, avec pour ancrage le 15 novembre 2026
 (puis le 29 novembre, le 13 décembre, etc.). GitHub Actions vérifie le calendrier
@@ -118,7 +118,7 @@ En cas d'échec, le dernier prix connu et sa date sont conservés avec la mentio
 14 jours ou après une date d'expiration publiée. Une promotion est présentée
 comme un relevé daté, sans garantie qu'elle reste disponible entre deux collectes.
 Les correspondances non confirmées restent sans prix. Tous les liens de repli
-connus sont revérifiés à chaque quinzaine. La découverte traite en plus
+connus sont revérifiés à chaque collecte. La découverte traite en plus
 jusqu'à 200 fiches par collecte, en faisant tourner les fiches à vérifier, et
 interrompt les recherches si le revendeur limite les accès, puis essaie le
 revendeur suivant. Les pages d'annuaire et de catalogue sont partagées entre
@@ -145,8 +145,8 @@ Le menu « Ma licence » distingue licence perpétuelle, abonnement, ancien abon
 L'import conserve également les abonnements déclarés, les noms exacts des licences
 et les licences encore sans fiche. « Mes abonnements » permet d'activer ou de
 désactiver Waves Ultimate. Son périmètre vient de la liste officielle
-`data/subscriptions.json`, mise à jour par `scripts/subscription-plans.mjs` chaque
-quinzaine ; il n'attribue pas indistinctement toute la marque Waves. Les droits
+`data/subscriptions.json`, mise à jour par `scripts/subscription-plans.mjs` lors de la
+collecte ; il n'attribue pas indistinctement toute la marque Waves. Les droits
 de licence perpétuelle restent prioritaires. L'export v3 contient aussi les
 statuts calculés pour les lecteurs du format v2.
 

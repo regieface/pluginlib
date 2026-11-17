@@ -20,7 +20,7 @@ Profils Controller ──> cœur Swift ──> UI macOS / MIDI / OSC / AX
 - `data/overrides.json`, `data/descriptions-fr.json` : corrections et synthèses durables.
 - `sources/vendors.json`, `sources/retailer-links.json` : sources de collecte.
 - `scripts/*.mjs` : collecte, enrichissement, audits et tests Node.
-- `.github/workflows/update-data.yml` : tests puis collecte planifiée et publication des données.
+- `.github/workflows/update-data.yml` : tests puis collecte sur déclenchement manuel et publication des données.
 - `collection-privee/` : données personnelles ignorées par Git; hors architecture publiée.
 
 Le site n’a pas de serveur applicatif ni de dépendance d’exécution distante. Les informations collectées sont matérialisées dans les JSON du dépôt.
