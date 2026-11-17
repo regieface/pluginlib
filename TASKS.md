@@ -7,6 +7,10 @@
 - **1C** — Visibilité des plugins abandonnés encore licenciés et badge « Abandonné », vérifié dans Live Server.
 - **2A** — Recherche prioritaire dans « Ma collection », extension explicite et retour avec les mêmes filtres, accès direct aux archives. Parcours validé dans Live Server.
 
+## PluginLib — Comparateur terminé
+
+- Comparateur et corrections d’affichage validés dans Live Server. Sélection, mode « Différences uniquement », navigation vers les fiches et retour, défilements vertical et horizontal sur fenêtres étroites vérifiés.
+
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 
 **Prochaine tâche : intégrer Low Cut / High Cut de Waves F6.** Commencer par

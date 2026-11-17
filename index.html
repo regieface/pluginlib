@@ -121,6 +121,13 @@
       </div>
     </div>
 
+    <section id="comparisonBar" class="panel comparison-bar" aria-label="Plugins à comparer" hidden>
+      <ul id="comparisonSelection" aria-label="Sélection"></ul>
+      <div class="actions">
+        <button type="button" class="outline" id="openComparison" disabled>Comparer</button>
+        <button type="button" class="outline" id="clearComparison">Vider</button>
+      </div>
+    </section>
     <div class="cards" id="cards"></div>
     <button class="loadmore" id="more" hidden>Afficher plus de plugins</button>
     <details id="unmatchedCollection" class="unmatched-collection" hidden><summary id="unmatchedSummary"></summary><p>Ces licences sont conservées dans ta collection. Le nom exact de l’export est affiché tant qu’une fiche de la même version ou édition n’est pas identifiée.</p><ul id="unmatchedList"></ul></details>
@@ -132,6 +139,26 @@
     </details>
     <div class="smallprint">PluginLib · Les données inconnues restent inconnues : rien n’est estimé. Ta collection est enregistrée dans ce navigateur — pense à l’exporter.</div>
   </main>
+
+  <dialog id="comparisonDialog" aria-labelledby="comparisonTitle">
+    <header class="comparison-header">
+      <h2 id="comparisonTitle">Comparer les plugins</h2>
+      <div class="actions">
+        <label id="comparisonDifferencesLabel"><input type="checkbox" id="comparisonDifferences"> Différences uniquement</label>
+        <button type="button" class="outline" id="comparisonBack" hidden>Retour au comparateur</button>
+        <form method="dialog"><button class="outline">Fermer</button></form>
+      </div>
+    </header>
+    <div id="comparisonScroll" class="comparison-scroll" hidden>
+      <small id="comparisonScrollHint"></small>
+      <div class="actions">
+        <button type="button" class="outline" id="comparisonScrollLeft" aria-controls="comparisonTable">← Précédent</button>
+        <button type="button" class="outline" id="comparisonScrollRight" aria-controls="comparisonTable">Suivant →</button>
+      </div>
+    </div>
+    <div id="comparisonTable" class="comparison-table" tabindex="0" role="region" aria-label="Tableau des caractéristiques"></div>
+    <div id="comparisonDetail" hidden></div>
+  </dialog>
 
   <template id="tpl">
     <article class="card">
@@ -146,6 +173,7 @@
         <div class="latbox"></div>
         <div class="own"><label>Ma licence</label><select></select></div>
       </div>
+      <div class="card-comparison"><button type="button" class="outline compare-plugin" aria-pressed="false">Comparer</button></div>
       <div class="footer"><span class="footnote"></span><a class="productlink" target="_blank" rel="noopener"></a></div>
     </article>
   </template>

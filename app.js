@@ -8,6 +8,7 @@ const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, matchesCollectionScope, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
 const { bindCollectionImport, previewCollectionImport } = await import(`./collection-import.mjs?v=${moduleVersion}`);
 const { CONTROLLER_STATUS_LABELS, collectionControllerStatus } = await import(`./controller-status.mjs?v=${moduleVersion}`);
+const { buildComparison, comparisonScrollState, hasComparisonDifference } = await import(`./comparison.mjs?v=${moduleVersion}`);
 const { controllerRequestOptions, createControllerRequest } = await import(`./controller-request.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
 const descriptionObserver=new ResizeObserver(entries=>{for(const {target:text} of entries){if(!text.isConnected)continue;const block=text.closest('.description'),toggle=block.querySelector('.description-toggle');toggle.hidden=!block.classList.contains('expanded')&&text.scrollHeight<=text.clientHeight+1;}});
@@ -188,25 +189,40 @@ function latCell(p, rate) {
   return `<div class="lat"><span>${rate} kHz</span><small title="${esc(l.note)}">${esc(l.note).slice(0, 80)}</small></div>`;
 }
 
-function card(p) {
+function fillPluginArt(art, p) {
+  const img = art.querySelector('img');
+  art.querySelector('.fallback b').textContent = p.vendor.split(/\s+/).map(word => word[0]).join('').slice(0, 2).toUpperCase();
+  art.querySelector('.fallback span').textContent = LBL.categories[p.category] || '';
+  if (!p.image) { img.remove(); return; }
+  img.onload = () => art.classList.add('has-image');
+  img.onerror = () => { art.classList.remove('has-image'); img.remove(); };
+  img.alt = p.name;
+  img.src = p.image;
+}
+
+function card(p, detail = false) {
   const n = $('#tpl').content.cloneNode(true);
   const currentLicenseStatus = licenseStatus(p);
   n.querySelector('.card').classList.toggle('licensed', ['owned', 'subscription'].includes(currentLicenseStatus));
-  const img = n.querySelector('img');
-  n.querySelector('.fallback b').textContent = p.vendor.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
-  n.querySelector('.fallback span').textContent = LBL.categories[p.category] || '';
-  if (p.image) {
-    const art = n.querySelector('.art');
-    img.onload = () => art.classList.add('has-image');
-    img.onerror = () => { art.classList.remove('has-image'); img.remove(); };
-    img.alt = p.name; img.src = p.image;
-  } else img.remove();
+  fillPluginArt(n.querySelector('.art'), p);
+  const compare = n.querySelector('.compare-plugin');
+  if (detail) n.querySelector('.card-comparison').remove();
+  else {
+    compare.dataset.pluginId = p.id;
+    compare.setAttribute('aria-label', `Comparer ${p.name}`);
+    compare.setAttribute('aria-pressed', String(comparisonSelection.has(p.id)));
+    compare.addEventListener('click', () => {
+      if (comparisonSelection.has(p.id)) comparisonSelection.delete(p.id);
+      else comparisonSelection.set(p.id, p);
+      renderComparisonSelection();
+    });
+  }
   const l = lat(p, st.rate);
   n.querySelector('.ribbon').textContent = l?.zero ? `Zero latency · ${st.rate} kHz` : l?.zeroMode ? `ZL selon mode · ${st.rate} kHz` : '';
   n.querySelector('.maker').textContent = p.vendor;
   n.querySelector('.plugin').textContent = p.name;
   const description=n.querySelector('.description');
-  const text=document.createElement('p');text.className='description-text';text.id=`description-${p.id}`;text.textContent=p.summary;
+  const text=document.createElement('p');text.className='description-text';text.id=`description-${detail ? 'comparison-' : ''}${p.id}`;text.textContent=p.summary;
   const toggle=document.createElement('button');toggle.type='button';toggle.className='description-toggle';toggle.textContent='Lire la suite';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',text.id);toggle.hidden=true;
   toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Réduire':'Lire la suite';description.classList.toggle('expanded',expanded);});
   description.append(text,toggle);
@@ -281,6 +297,7 @@ function card(p) {
   sel.value = currentLicenseStatus;
   sel.classList.toggle('set', sel.value !== 'unknown');
   sel.dataset.id = p.id;
+  sel.disabled = detail;
   if(licenseDetails[p.id]&&['owned','subscription','former'].includes(sel.value)){
     const details=document.createElement('small');details.className='license-detail';details.textContent=`Licence importée : ${licenseDetails[p.id].name}`;n.querySelector('.own').after(details);
   }
@@ -317,6 +334,142 @@ function card(p) {
   }
   return n;
 }
+
+const comparisonSelection = new Map();
+const comparisonDialog = $('#comparisonDialog');
+const comparisonViewport = $('#comparisonTable');
+
+function updateComparisonScroll() {
+  const { left, right } = comparisonScrollState(comparisonViewport);
+  $('#comparisonScroll').hidden = !left && !right;
+  $('#comparisonScrollLeft').disabled = !left;
+  $('#comparisonScrollRight').disabled = !right;
+  const direction = left && right ? 'à gauche et à droite' : left ? 'à gauche' : 'à droite';
+  $('#comparisonScrollHint').textContent = `Colonnes hors écran ${direction}`;
+}
+
+comparisonViewport.addEventListener('scroll', updateComparisonScroll, { passive: true });
+new ResizeObserver(updateComparisonScroll).observe(comparisonViewport);
+for (const [id, direction] of [['comparisonScrollLeft', -1], ['comparisonScrollRight', 1]]) {
+  $(`#${id}`).addEventListener('click', () => {
+    const column = comparisonViewport.querySelector('.comparison-plugin-heading');
+    if (column) comparisonViewport.scrollBy({ left: direction * column.getBoundingClientRect().width });
+  });
+}
+const qualityLabels = {
+  verified: 'Vérifié', conditional: 'Selon le mode ou les conditions',
+  pending: 'À confirmer', collection: 'Ma collection'
+};
+
+function renderComparisonSelection() {
+  const count = comparisonSelection.size;
+  $('#comparisonBar').hidden = !count;
+  $('#openComparison').disabled = count < 2;
+  $('#comparisonSelection').innerHTML = [...comparisonSelection.values()].map(p =>
+    `<li><button type="button" class="outline" data-remove="${esc(p.id)}" aria-label="Retirer ${esc(p.name)}">${esc(p.name)} · ×</button></li>`
+  ).join('');
+  for (const button of $('#cards').querySelectorAll('.compare-plugin')) {
+    button.setAttribute('aria-pressed', String(comparisonSelection.has(button.dataset.pluginId)));
+  }
+}
+
+function comparisonCell(cell) {
+  return `<td><ul>${cell.map(({ value, quality, source, context }) => {
+    const sourceLink = /^https?:\/\//i.test(source || '') ? ` · <a href="${esc(source)}" target="_blank" rel="noopener" title="${esc(context)}">Source ↗</a>` : '';
+    const qualityLabel = qualityLabels[quality];
+    return `<li>${esc(value)}${qualityLabel || sourceLink ? `<small data-quality="${quality}">${qualityLabel || ''}${sourceLink}</small>` : ''}</li>`;
+  }).join('')}</ul></td>`;
+}
+
+function renderComparison() {
+  const plugins = [...comparisonSelection.values()];
+  const sections = buildComparison(plugins, LBL, licenseStatus, STATUS);
+  const differencesOnly = $('#comparisonDifferences').checked;
+  const container = comparisonViewport;
+  const { scrollLeft, scrollTop } = container;
+  const headers = plugins.map(p => `<th scope="col" class="comparison-plugin-heading">
+    <div class="art"><div class="fallback"><b></b><span></span></div><img referrerpolicy="no-referrer" alt=""></div>
+    ${esc(p.name)}<small>${esc(p.vendor)}</small>
+    <div class="actions">
+      <button type="button" class="outline" data-detail="${esc(p.id)}">Fiche PluginLib</button>
+      <button type="button" class="outline" data-remove="${esc(p.id)}" aria-label="Retirer ${esc(p.name)}">Retirer</button>
+    </div></th>`).join('');
+  const bodies = sections.map(({ title, rows }) => {
+    const visible = differencesOnly ? rows.filter(hasComparisonDifference) : rows;
+    if (!visible.length) return '';
+    return `<tbody><tr class="comparison-section"><th scope="rowgroup" class="comparison-criterion">${esc(title)}</th><td colspan="${plugins.length}"></td></tr>
+      ${visible.map(({ label, cells }) => `<tr><th scope="row" class="comparison-criterion">${esc(label)}</th>${cells.map(comparisonCell).join('')}</tr>`).join('')}</tbody>`;
+  }).join('');
+  const empty = `<tbody><tr><td colspan="${plugins.length + 1}">Aucune différence documentée.</td></tr></tbody>`;
+  container.innerHTML = `<table aria-labelledby="comparisonTitle" style="--plugin-count: ${plugins.length}"><colgroup><col class="comparison-criterion-column"><col span="${plugins.length}"></colgroup><thead><tr><th scope="col" class="comparison-criterion">Critère</th>${headers}</tr></thead>${bodies || empty}</table>`;
+  container.querySelectorAll('.art').forEach((art, index) => fillPluginArt(art, plugins[index]));
+  container.scrollLeft = scrollLeft;
+  container.scrollTop = scrollTop;
+  updateComparisonScroll();
+}
+
+function showComparisonTable() {
+  $('#comparisonDetail').hidden = true;
+  $('#comparisonDetail').replaceChildren();
+  $('#comparisonBack').hidden = true;
+  $('#comparisonTable').hidden = false;
+  $('#comparisonDifferencesLabel').hidden = false;
+  updateComparisonScroll();
+}
+
+function removeComparisonPlugin(id) {
+  const button = [...$('#cards').querySelectorAll('.compare-plugin')].find(control => control.dataset.pluginId === id);
+  comparisonSelection.delete(id);
+  renderComparisonSelection();
+  if (!comparisonDialog.open) {
+    ($('#comparisonSelection button') || button || $('#query')).focus();
+    return;
+  }
+  if (comparisonSelection.size < 2) {
+    comparisonDialog.close();
+    ($('#comparisonSelection button') || button || $('#query')).focus();
+  } else {
+    renderComparison();
+    $('#comparisonTable').focus();
+  }
+}
+
+$('#comparisonSelection').addEventListener('click', event => {
+  const button = event.target.closest('[data-remove]');
+  if (button) removeComparisonPlugin(button.dataset.remove);
+});
+$('#clearComparison').addEventListener('click', () => {
+  comparisonSelection.clear();
+  renderComparisonSelection();
+  $('#query').focus();
+});
+$('#openComparison').addEventListener('click', () => {
+  if (comparisonSelection.size < 2) return;
+  showComparisonTable();
+  renderComparison();
+  comparisonDialog.showModal();
+  updateComparisonScroll();
+});
+$('#comparisonDifferences').addEventListener('change', renderComparison);
+$('#comparisonTable').addEventListener('click', event => {
+  const button = event.target.closest('button');
+  if (button?.dataset.remove) removeComparisonPlugin(button.dataset.remove);
+  const plugin = comparisonSelection.get(button?.dataset.detail);
+  if (!plugin) return;
+  const detail = $('#comparisonDetail');
+  detail.replaceChildren(card(plugin, true));
+  detail.hidden = false;
+  $('#comparisonTable').hidden = true;
+  updateComparisonScroll();
+  $('#comparisonDifferencesLabel').hidden = true;
+  const back = $('#comparisonBack');
+  back.hidden = false;
+  back.focus();
+});
+$('#comparisonBack').addEventListener('click', () => {
+  showComparisonTable();
+  $('#comparisonTable').focus();
+});
 
 function render() {
   descriptionObserver.disconnect();

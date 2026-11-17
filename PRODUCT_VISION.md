@@ -70,6 +70,7 @@ Chaque groupe peut nécessiter une architecture très différente : nombre d'art
 - ✅ Rechercher **d'abord dans la collection personnelle** ; étendre au catalogue global **uniquement à la demande**, en conservant les critères.
 - ✅ Fiches individuelles détaillées avec alternatives suggérées.
 - ✅ **Comparateur côte à côte** de plusieurs plugins, adaptable à leur famille et à leurs caractéristiques.
+  - **État actuel** — Comparateur implémenté avec les données documentées du catalogue et les droits de la collection. Le mode « Différences uniquement » conserve les informations incertaines ou manquantes. Parcours et affichage sur fenêtres étroites validés manuellement dans Live Server. Les mesures CPU et les résultats de tests de stabilité restent à renseigner.
 - 🎯 Recommandations motivées, qui prennent en compte les exigences de latence, CPU et stabilité live ; les incertitudes restent affichées.
 - 🟡 Une recherche en langage naturel pourrait renseigner des filtres techniques modifiables ; modalité non décidée.
 

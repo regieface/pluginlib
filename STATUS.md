@@ -12,6 +12,10 @@ Les trois chantiers ont été validés par l’utilisateur. L’archivage prése
 
 **2A** — Parcours vérifié manuellement dans Live Server : ouverture dans « Ma collection », extension à toute la bibliothèque, retour en conservant les mots-clés et les filtres, accès aux archives. Le périmètre et le nombre de résultats sont affichés ensemble.
 
+## PluginLib — Comparateur de plugins validé
+
+La sélection persiste pendant les changements de recherche, de filtres et de périmètre. Le tableau compare les caractéristiques documentées, indique leur niveau de confiance et permet d’ouvrir les fiches PluginLib. Les données CPU et les tests de stabilité ne sont pas structurés dans le catalogue. Validation manuelle dans Live Server : sélection, comparaison, mode « Différences uniquement », ouverture des fiches et retour au tableau, défilements vertical et horizontal sur fenêtres étroites.
+
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 
 **Prochaine tâche : intégrer Low Cut / High Cut de Waves F6.** Commencer par
