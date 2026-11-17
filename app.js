@@ -5,7 +5,8 @@ const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceS
 const { defaultSelections, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
-const { normalizeCollection, mergeCollection, collectionStatus, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
+const { normalizeCollection, mergeCollection, collectionStatus, matchesCollectionScope, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
+const { bindCollectionImport, previewCollectionImport } = await import(`./collection-import.mjs?v=${moduleVersion}`);
 const { CONTROLLER_STATUS_LABELS, collectionControllerStatus } = await import(`./controller-status.mjs?v=${moduleVersion}`);
 const { controllerRequestOptions, createControllerRequest } = await import(`./controller-request.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
@@ -17,6 +18,8 @@ const PAGE = 30;
 let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], CONTROLLER_MANIFEST = { schemaVersion: 1, links: [] }, shown = PAGE;
 const st = { scope: 'all', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
 let selections = defaultSelections();
+const availabilityFilters = new Map();
+const availabilityGroup = scope => (scope === 'owned' || scope === 'archives') ? 'collection' : 'catalogue';
 const filterControls = new Map(), filterChoices = new Map();
 
 // Collection : statut par plugin (reprise de l'ancien format « étoile » si présent)
@@ -61,6 +64,7 @@ async function load() {
     return { ...p, summary, presentation, _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
   });
   save();stats(); fillStatic(); renderSubscriptions();render();
+  $('#import').disabled = false;
 }
 
 function renderSubscriptions(){
@@ -150,10 +154,7 @@ function filtered(ignoreSelections = false) {
   const terms = norm(st.q).split(/\s+/).filter(Boolean);
   return DATA.filter((p) => {
     if (!ignoreSelections && !matchesPluginSelections(p, selections)) return false;
-    const s = licenseStatus(p);
-    if (st.scope === 'owned' && !['owned', 'subscription'].includes(s)) return false;
-    if (st.scope === 'wishlist' && s !== 'wishlist') return false;
-    if (st.scope === 'discover' && ['owned', 'subscription', 'former'].includes(s)) return false;
+    if (!matchesCollectionScope(licenseStatus(p), st.scope)) return false;
     if (terms.length && !terms.every((t) => p._s.includes(t))) return false;
     const l = lat(p, st.rate);
     if (st.zl === 'zero' && !(l && l.zero)) return false;
@@ -219,7 +220,10 @@ function card(p) {
   const familyBadge = p.category !== 'other' && familyEvidence?.url
     ? `<a class="badge fam" href="${esc(familyEvidence.url)}" target="_blank" rel="noopener" title="${esc(familyEvidence.excerpt || 'Fonction principale documentée')}">${familyLabel} ↗</a>`
     : `<span class="badge fam" title="Fonction principale non confirmée">${familyLabel}</span>`;
-  n.querySelector('.badges').innerHTML = familyBadge + tags.map(({id,label}) => {
+  const discontinuedBadge = p.catalogStatus === 'discontinued'
+    ? `<span class="badge discontinued"${p.statusEvidence?.url ? ` title="${esc(p.statusEvidence.url)}"` : ''}>${CATALOG_STATUSES.discontinued}</span>`
+    : '';
+  n.querySelector('.badges').innerHTML = discontinuedBadge + familyBadge + tags.map(({id,label}) => {
     const proof = p.featureEvidence?.[id];
     const level = proof?.method === 'reviewed-source' ? 'Source vérifiée' : proof?.method === 'latency-table' ? 'Tableau officiel' : 'Annoncé dans le nom ou la description éditeur';
     return proof?.url ? `<a class="badge" href="${esc(proof.url)}" target="_blank" rel="noopener" title="${esc(`${level} · ${proof.excerpt || 'Source propre au produit'}`)}">${esc(label)} ↗</a>` : `<span class="badge">${esc(label)}</span>`;
@@ -231,7 +235,8 @@ function card(p) {
     review.append(summary,text); n.querySelector('.badges').after(review);
   }
   const metadata = n.querySelector('.metadata');
-  metadata.textContent = `${p.platforms?.length ? p.platforms.map((id) => PLATFORMS[id]).filter(Boolean).join(' · ') : 'Plateformes à vérifier'} · ${CATALOG_STATUSES[p.catalogStatus] || CATALOG_STATUSES.unknown}${p.recordType && !['effect','unknown'].includes(p.recordType) ? ` · ${RECORD_TYPES[p.recordType]}` : ''}`;
+  const availability = p.catalogStatus === 'discontinued' ? '' : ` · ${CATALOG_STATUSES[p.catalogStatus] || CATALOG_STATUSES.unknown}`;
+  metadata.textContent = `${p.platforms?.length ? p.platforms.map((id) => PLATFORMS[id]).filter(Boolean).join(' · ') : 'Plateformes à vérifier'}${availability}${p.recordType && !['effect','unknown'].includes(p.recordType) ? ` · ${RECORD_TYPES[p.recordType]}` : ''}`;
   metadata.title = [p.platformEvidence?.url, p.statusEvidence?.url].filter(Boolean).join('\n');
   if (p.replacedBy) {
     const successor = document.createElement(p.replacedBy.url ? 'a' : 'span');
@@ -322,6 +327,8 @@ function render() {
   const by = { az: (a, b) => a.name.localeCompare(b.name), brand: (a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name), images: (a, b) => (!!b.image - !!a.image) || a.name.localeCompare(b.name), latency: (a, b) => latKey(a) - latKey(b) || a.name.localeCompare(b.name) };
   list.sort(by[st.sort]);
   $('#matched').textContent = fmt(list.length);
+  $('#archiveHelp').hidden = st.scope !== 'archives';
+  $('#hint').hidden = availabilityGroup(st.scope) === 'collection';
   const frag = document.createDocumentFragment();
   list.slice(0, shown).forEach((p) => frag.append(card(p)));
   if (!list.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Aucun plugin ne correspond à ces filtres.'; frag.append(e); }
@@ -347,6 +354,12 @@ document.addEventListener('keydown', (event) => { if (event.key === 'Escape') do
 $('#scope').addEventListener('click', (e) => {
   const b = e.target.closest('button'); if (!b) return;
   $('#scope').querySelectorAll('button').forEach((x) => x.classList.toggle('active', x === b));
+  const group = availabilityGroup(b.dataset.scope);
+  if (group !== availabilityGroup(st.scope)) {
+    availabilityFilters.set(availabilityGroup(st.scope), selections.catalogStatus);
+    selections.catalogStatus = availabilityFilters.get(group) || defaultSelections([], b.dataset.scope).catalogStatus;
+    renderActiveFilters();
+  }
   st.scope = b.dataset.scope; rerender();
 });
 $('#cards').addEventListener('change', (e) => {
@@ -358,7 +371,7 @@ $('#cards').addEventListener('change', (e) => {
 $('#more').addEventListener('click', () => { shown += PAGE; render(); });
 $('#reset').addEventListener('click', () => {
   Object.assign(st, { q: '', zl: 'all', links: 'all', visual: 'all' });
-  selections = defaultSelections(Object.keys(LBL.facets));
+  selections = defaultSelections(Object.keys(LBL.facets), st.scope);
   $('#query').value = '';
   $('#filterNotice').hidden = true;
   document.querySelectorAll('.multi-select').forEach((details) => {
@@ -377,17 +390,50 @@ $('#export').addEventListener('click', () => {
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 });
 $('#import').addEventListener('click', () => $('#importFile').click());
-$('#importFile').addEventListener('change', async (e) => {
-  const f = e.target.files[0]; if (!f) return;
-  try {
-    const j = JSON.parse(await f.text());
-    ({status,subscriptions,unmatchedLicenses,licenseDetails}=mergeCollection(currentCollection(),j,DATA,PLANS));
-    save(); renderSubscriptions();render();
-    const counts={owned:0,subscription:0};for(const p of DATA){const s=licenseStatus(p);if(s in counts)counts[s]++;}
-    const active=subscriptions.filter(s=>s.status==='active').map(s=>`${s.vendor} ${s.plan}${planFor(s,PLANS)?` : ${DATA.filter(p=>isPlanMember(p,planFor(s,PLANS))&&licenseStatus(p)==='subscription').length} plugins reconnus`:' : périmètre à vérifier'}`);
-    $('#collectionNotice').hidden=false;$('#collectionNotice').textContent=`Collection importée : ${counts.owned} licences perpétuelles · ${counts.subscription} abonnements actifs.${active.length?' '+active.join(' · '):''}`;
-  } catch { alert('Fichier non reconnu.'); }
-  e.target.value = '';
+function showCollectionImport({ added, modified, unchanged, subscriptions, unmatchedAdded }) {
+  const label = status => status === 'unknown' ? 'Aucun statut' : STATUS[status] || 'Non renseigné';
+  $('#importUnchanged').textContent = `Plugins inchangés dans la collection et son historique · ${fmt(unchanged)}`;
+  for (const [selector, changes] of [['#importAdded', added], ['#importModified', modified]]) {
+    const list = $(selector);
+    list.replaceChildren();
+    for (const change of changes) {
+      const item = document.createElement('li');
+      const name = document.createElement('strong');
+      name.textContent = change.name;
+      const notes = [`${label(change.before)} → ${label(change.after)}`];
+      if (change.detailsChanged) notes.push('Informations de licence mises à jour');
+      if (change.before === change.after && change.declaredBefore !== change.declaredAfter) {
+        notes.push(`Déclaration de licence · ${label(change.declaredBefore)} → ${label(change.declaredAfter)}`);
+      }
+      item.append(name, ` · ${notes.join(' · ')}`);
+      list.append(item);
+    }
+    list.hidden = !changes.length;
+    list.previousElementSibling.hidden = !!changes.length;
+  }
+  const extra = subscriptions.map(plan => `${plan.vendor} ${plan.plan} · ${plan.status === 'active' ? 'Abonnement actif' : 'Abonnement non actif'}`);
+  if (unmatchedAdded > 0) extra.push(`Licences sans fiche à ajouter · ${fmt(unmatchedAdded)}`);
+  $('#importExtra').textContent = extra.join(' / ');
+  $('#importExtra').hidden = !extra.length;
+}
+
+bindCollectionImport({
+  input: $('#importFile'),
+  dialog: $('#collectionImport'),
+  prepare: source => previewCollectionImport(source, currentCollection(), DATA, PLANS),
+  show: showCollectionImport,
+  apply: next => {
+    ({status,subscriptions,unmatchedLicenses,licenseDetails}=next);
+    save(); renderSubscriptions(); render();
+    const notice = $('#collectionNotice');
+    notice.hidden = false;
+    notice.textContent = 'Collection importée.';
+  },
+  onInvalid: () => {
+    const notice = $('#collectionNotice');
+    notice.hidden = false;
+    notice.textContent = 'Fichier JSON de collection non reconnu.';
+  }
 });
 
 load().catch((e) => { $('#cards').innerHTML = `<div class="empty">Impossible de charger les données : ${esc(e.message)}</div>`; });

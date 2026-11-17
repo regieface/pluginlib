@@ -1,5 +1,11 @@
 # Tâches
 
+## PluginLib — « Ma collection », chantiers terminés
+
+- **1A** — Aperçu et confirmation avant import JSON.
+- **1B** — Archives des abonnements inactifs et retour dans la collection active après réactivation.
+- **1C** — Visibilité des plugins abandonnés encore licenciés et badge « Abandonné », vérifié dans Live Server.
+
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 
 **Prochaine tâche : intégrer Low Cut / High Cut de Waves F6.** Commencer par

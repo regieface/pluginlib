@@ -1,5 +1,13 @@
 # État du projet
 
+## PluginLib — « Ma collection », chantiers 1A à 1C validés
+
+- **1A** — L’import JSON affiche les ajouts, les changements de droits et le nombre de plugins inchangés. La confirmation applique la fusion. L’annulation et les fichiers invalides laissent la collection intacte.
+- **1B** — La vue « Archives » présente les anciens abonnements sans droit actif. La réactivation remet les plugins dans « Ma collection ». Une licence perpétuelle ou un autre abonnement actif maintient l’accès.
+- **1C** — Les fiches concernées affichent le badge « Abandonné », vérifié manuellement dans Live Server. Un plugin abandonné encore licencié reste visible dans « Ma collection ». Le catalogue global continue de masquer ces fiches par défaut.
+
+Les trois chantiers ont été validés par l’utilisateur. L’archivage préserve les fiches, les informations de licence et les références PLC.
+
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 
 **Prochaine tâche : intégrer Low Cut / High Cut de Waves F6.** Commencer par

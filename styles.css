@@ -111,7 +111,7 @@ button.outline:hover { background: #2d3b3e; }
 .badge { background: #363d48; border-radius: 8px; padding: 5px 8px; font-size: 11px; font-weight: 700; color: #c7d0dd; }
 .badge.fam { background: var(--light); color: #a7e4db; }
 .badge.ok { background: #244338; color: #90ddb3; }
-.badge.unknown { background: #463c2b; color: #ebc988; }
+.badge.unknown, .badge.discontinued { background: #463c2b; color: #ebc988; }
 .latbox { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0; }
 .latbox:empty { display: none; }
 .lat { border: 1px solid #45505e; background: #1b2027; border-radius: 8px; padding: 8px; }
@@ -184,3 +184,10 @@ button.outline:active, .scope button:active, .loadmore:active { transform: trans
 .unmatched-collection { margin: 24px 0; padding: 16px; border: 1px solid #455060; border-radius: 12px; color: #c1cad5; background: #22272f; }
 .unmatched-collection li { margin: 8px 0; }
 .loadmore[hidden] { display: none; }
+
+#collectionImport { width: min(640px, calc(100% - 32px)); background: var(--surface); color: var(--txt); border: 1px solid var(--line); border-radius: 15px; padding: 20px; }
+#collectionImport::backdrop { background: #111318bf; }
+#collectionImport h2 { margin: 0; }
+#collectionImport .import-changes { max-height: 45vh; overflow: auto; overflow-wrap: anywhere; }
+#collectionImport .actions { justify-content: flex-end; margin-top: 16px; }
+#collectionImport button[value="confirm"] { border-color: var(--teal); }

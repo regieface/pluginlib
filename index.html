@@ -39,17 +39,36 @@
         <div class="scope" id="scope">
           <button data-scope="all" class="active">Toute la bibliothèque</button>
           <button data-scope="owned">Ma collection</button>
+          <button data-scope="archives" aria-label="Archives de ma collection">Archives</button>
           <button data-scope="wishlist">Liste d’envies</button>
           <button data-scope="discover">À découvrir</button>
         </div>
         <div class="actions">
           <button class="outline" id="reset">Réinitialiser</button>
-          <button class="outline" id="import">Importer ma collection</button>
+          <button class="outline" id="import" disabled>Importer ma collection</button>
           <button class="outline" id="export">Exporter ma collection</button>
           <input id="importFile" type="file" accept="application/json,.json">
         </div>
       </div>
+      <p id="archiveHelp" class="filter-help" hidden>Archives de ma collection · anciens abonnements sans licence active.</p>
       <p id="collectionNotice" class="filter-help" role="status" hidden></p>
+      <dialog id="collectionImport" aria-labelledby="importTitle">
+        <h2 id="importTitle">Aperçu de l’import</h2>
+        <p id="importUnchanged"></p>
+        <div class="import-changes">
+          <h3>Plugins à ajouter</h3>
+          <p>Aucun ajout.</p>
+          <ul id="importAdded"></ul>
+          <h3>Plugins à modifier</h3>
+          <p>Aucune modification.</p>
+          <ul id="importModified"></ul>
+          <p id="importExtra" hidden></p>
+        </div>
+        <form method="dialog" class="actions">
+          <button class="outline" value="cancel" autofocus>Annuler</button>
+          <button class="outline" value="confirm">Confirmer l’import</button>
+        </form>
+      </dialog>
       <details class="collection-subscriptions"><summary>Mes abonnements</summary><div id="subscriptionOptions"></div><p class="filter-help">Les plugins inclus dans un abonnement actif apparaissent dans « Ma collection » et s’encadrent en vert.</p></details>
       <div class="searchbar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 5 5"></path></svg>

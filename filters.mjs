@@ -1,9 +1,9 @@
 // Les valeurs cochées se combinent avec OU dans un critère, puis ET entre critères.
 // Une exclusion l'emporte toujours, y compris pour un plugin multiplateforme.
 export const emptySelection = () => ({ include: [], exclude: [] });
-export function defaultSelections(facetKeys = []) {
+export function defaultSelections(facetKeys = [], scope) {
   const selections = Object.fromEntries(['platform', 'catalogStatus', 'recordType', 'family', 'maker', 'option', ...facetKeys].map((key) => [key, emptySelection()]));
-  selections.catalogStatus.exclude = ['discontinued', 'superseded', 'upcoming'];
+  if (scope !== 'owned' && scope !== 'archives') selections.catalogStatus.exclude = ['discontinued', 'superseded', 'upcoming'];
   selections.maker.exclude = ['Airwindows'];
   selections.recordType.exclude = ['instrument', 'bundle', 'application', 'module', 'hardware'];
   return selections;
