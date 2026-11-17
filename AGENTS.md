@@ -5,6 +5,7 @@ Ce dépôt contient deux composants liés mais exécutés séparément : le cata
 ## Inspection ciblée
 
 - Commencer par `STATUS.md`, `TASKS.md` et `ARCHITECTURE.md`, puis ouvrir seulement les fichiers associés à la tâche.
+- Pour les décisions de conception, consulter `PRODUCT_VISION.md`, référence produit évolutive de PluginLib et PLC. Ce document ne décrit pas l’état du code : ne pas considérer ses fonctionnalités comme développées ni transformer automatiquement ses objectifs en tâches de développement.
 - Pour PluginLib, privilégier `app.js`, les modules `*.mjs`, `data/overrides.json`, `data/descriptions-fr.json`, `sources/vendors.json` et le script concerné. Ne pas charger tout `data/plugins.json` sans besoin précis.
 - Pour Controller, partir de `controller/Profiles/`, puis de `ControllerCore`; n’ouvrir les adaptateurs AppKit/CoreMIDI/OSC/Accessibility utiles qu’ensuite.
 - Chercher avec `rg` avant d’ajouter un type, un protocole, une adresse OSC, un mapping MIDI ou un outil déjà présent.
