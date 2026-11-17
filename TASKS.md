@@ -5,6 +5,7 @@
 - **1A** — Aperçu et confirmation avant import JSON.
 - **1B** — Archives des abonnements inactifs et retour dans la collection active après réactivation.
 - **1C** — Visibilité des plugins abandonnés encore licenciés et badge « Abandonné », vérifié dans Live Server.
+- **2A** — Recherche prioritaire dans « Ma collection », extension explicite et retour avec les mêmes filtres, accès direct aux archives. Parcours validé dans Live Server.
 
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 

@@ -2,7 +2,7 @@
 const moduleVersion = window.PL_V || 1;
 const { productDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
 const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceStale } = await import(`./catalog.mjs?v=${moduleVersion}`);
-const { defaultSelections, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
+const { defaultSelections, availabilityGroup, availabilityOnScopeChange, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, matchesCollectionScope, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
@@ -16,10 +16,9 @@ const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'A
 const PAGE = 30;
 
 let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], CONTROLLER_MANIFEST = { schemaVersion: 1, links: [] }, shown = PAGE;
-const st = { scope: 'all', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
-let selections = defaultSelections();
+const st = { scope: 'owned', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
+let selections = defaultSelections([], st.scope);
 const availabilityFilters = new Map();
-const availabilityGroup = scope => (scope === 'owned' || scope === 'archives') ? 'collection' : 'catalogue';
 const filterControls = new Map(), filterChoices = new Map();
 
 // Collection : statut par plugin (reprise de l'ancien format « étoile » si présent)
@@ -93,7 +92,7 @@ function stats() {
 }
 
 function fillStatic() {
-  selections = defaultSelections(Object.keys(LBL.facets));
+  selections = defaultSelections(Object.keys(LBL.facets), st.scope);
   const fam = {}; DATA.forEach((p) => { fam[p.category] = (fam[p.category] || 0) + 1; });
   addMulti('family', 'Familles', 'Toutes les familles', Object.entries(LBL.categories).filter(([id]) => fam[id]).sort((a, b) => a[1].localeCompare(b[1])).map(([id, label]) => [id, label, fam[id]]));
   const mk = {}; DATA.forEach((p) => { mk[p.vendor] = (mk[p.vendor] || 0) + 1; });
@@ -327,8 +326,13 @@ function render() {
   const by = { az: (a, b) => a.name.localeCompare(b.name), brand: (a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name), images: (a, b) => (!!b.image - !!a.image) || a.name.localeCompare(b.name), latency: (a, b) => latKey(a) - latKey(b) || a.name.localeCompare(b.name) };
   list.sort(by[st.sort]);
   $('#matched').textContent = fmt(list.length);
+  const activeScope = $('#scope').querySelector('.active');
+  $('#resultScope').textContent = activeScope.textContent;
+  const searchScope = $('#searchScope');
+  searchScope.hidden = !st.q.trim() || !['owned', 'all'].includes(st.scope);
+  searchScope.textContent = st.scope === 'owned' ? 'Étendre à toute la bibliothèque' : 'Revenir à Ma collection';
   $('#archiveHelp').hidden = st.scope !== 'archives';
-  $('#hint').hidden = availabilityGroup(st.scope) === 'collection';
+  $('#hint').hidden = availabilityGroup(st.scope) === 'collection' || !!st.q.trim();
   const frag = document.createDocumentFragment();
   list.slice(0, shown).forEach((p) => frag.append(card(p)));
   if (!list.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Aucun plugin ne correspond à ces filtres.'; frag.append(e); }
@@ -345,23 +349,33 @@ function render() {
 // ---------- Événements ----------
 const rerender = () => { shown = PAGE; render(); };
 let t;
-$('#query').addEventListener('input', (e) => { clearTimeout(t); t = setTimeout(() => { st.q = e.target.value; rerender(); }, 120); });
+$('#query').addEventListener('input', (e) => {
+  st.q = e.target.value;
+  clearTimeout(t);
+  t = setTimeout(rerender, 120);
+});
 for (const k of ['zl', 'rate', 'links', 'visual', 'sort']) {
   $('#' + k).addEventListener('change', (e) => { st[k] = e.target.value; rerender(); });
 }
 document.addEventListener('click', (event) => document.querySelectorAll('.multi-select[open]').forEach((details) => { if (!details.contains(event.target)) details.open = false; }));
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') document.querySelectorAll('.multi-select[open]').forEach((details) => { details.open = false; details.querySelector('summary').focus(); }); });
-$('#scope').addEventListener('click', (e) => {
-  const b = e.target.closest('button'); if (!b) return;
-  $('#scope').querySelectorAll('button').forEach((x) => x.classList.toggle('active', x === b));
-  const group = availabilityGroup(b.dataset.scope);
-  if (group !== availabilityGroup(st.scope)) {
-    availabilityFilters.set(availabilityGroup(st.scope), selections.catalogStatus);
-    selections.catalogStatus = availabilityFilters.get(group) || defaultSelections([], b.dataset.scope).catalogStatus;
-    renderActiveFilters();
+function selectScope(scope) {
+  clearTimeout(t);
+  selections.catalogStatus = availabilityOnScopeChange(st.scope, scope, selections.catalogStatus, availabilityFilters, !!st.q.trim());
+  st.scope = scope;
+  for (const button of $('#scope').querySelectorAll('button')) {
+    const active = button.dataset.scope === scope;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
   }
-  st.scope = b.dataset.scope; rerender();
+  renderActiveFilters();
+  rerender();
+}
+$('#scope').addEventListener('click', (e) => {
+  const button = e.target.closest('button');
+  if (button) selectScope(button.dataset.scope);
 });
+$('#searchScope').addEventListener('click', () => selectScope(st.scope === 'owned' ? 'all' : 'owned'));
 $('#cards').addEventListener('change', (e) => {
   const s = e.target.closest('.own select'); if (!s) return;
   if (s.value === 'unknown') delete status[s.dataset.id]; else status[s.dataset.id] = s.value;
@@ -370,6 +384,7 @@ $('#cards').addEventListener('change', (e) => {
 });
 $('#more').addEventListener('click', () => { shown += PAGE; render(); });
 $('#reset').addEventListener('click', () => {
+  clearTimeout(t);
   Object.assign(st, { q: '', zl: 'all', links: 'all', visual: 'all' });
   selections = defaultSelections(Object.keys(LBL.facets), st.scope);
   $('#query').value = '';

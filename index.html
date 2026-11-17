@@ -37,11 +37,11 @@
     <section class="panel">
       <div class="upper">
         <div class="scope" id="scope">
-          <button data-scope="all" class="active">Toute la bibliothèque</button>
-          <button data-scope="owned">Ma collection</button>
-          <button data-scope="archives" aria-label="Archives de ma collection">Archives</button>
-          <button data-scope="wishlist">Liste d’envies</button>
-          <button data-scope="discover">À découvrir</button>
+          <button data-scope="all" aria-pressed="false">Toute la bibliothèque</button>
+          <button data-scope="owned" class="active" aria-pressed="true">Ma collection</button>
+          <button data-scope="archives" aria-pressed="false" aria-label="Archives de ma collection">Archives</button>
+          <button data-scope="wishlist" aria-pressed="false">Liste d’envies</button>
+          <button data-scope="discover" aria-pressed="false">À découvrir</button>
         </div>
         <div class="actions">
           <button class="outline" id="reset">Réinitialiser</button>
@@ -106,9 +106,10 @@
 
     <div class="resulthead">
       <div>
-        <h2><span id="matched">0</span> résultats</h2>
+        <h2 aria-live="polite"><span id="resultScope">Ma collection</span> · <span id="matched">0</span> résultats</h2>
         <small id="hint">Par défaut : toutes les plateformes, y compris les compatibilités à vérifier, hors Airwindows, abandonnés, anciennes versions remplacées et sorties à venir.</small>
       </div>
+      <button type="button" id="searchScope" class="outline" hidden>Étendre à toute la bibliothèque</button>
       <div class="resultsort">
         <label for="sort">Trier :</label>
         <select id="sort">

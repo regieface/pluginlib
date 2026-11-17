@@ -8,6 +8,17 @@ export function defaultSelections(facetKeys = [], scope) {
   selections.recordType.exclude = ['instrument', 'bundle', 'application', 'module', 'hardware'];
   return selections;
 }
+export const availabilityGroup = scope => (scope === 'owned' || scope === 'archives') ? 'collection' : 'catalogue';
+
+export function availabilityOnScopeChange(current, next, selection, saved, searching) {
+  const from = availabilityGroup(current), to = availabilityGroup(next);
+  if (from === to) return selection;
+  // Un aller-retour pendant la recherche garde aussi le filtre Disponibilité.
+  if (searching && [current, next].every(scope => scope === 'owned' || scope === 'all')) return selection;
+  saved.set(from, selection);
+  return saved.get(to) || defaultSelections([], next).catalogStatus;
+}
+
 export function changeSelection(selection, value, mode, enabled) {
   const next = { include: selection.include.filter((v) => v !== value), exclude: selection.exclude.filter((v) => v !== value) };
   if (enabled) next[mode].push(value);

@@ -8,6 +8,10 @@
 
 Les trois chantiers ont été validés par l’utilisateur. L’archivage préserve les fiches, les informations de licence et les références PLC.
 
+## PluginLib — Recherche prioritaire dans « Ma collection » validée
+
+**2A** — Parcours vérifié manuellement dans Live Server : ouverture dans « Ma collection », extension à toute la bibliothèque, retour en conservant les mots-clés et les filtres, accès aux archives. Le périmètre et le nombre de résultats sont affichés ensemble.
+
 ## Reprise immédiate — sauvegarde du 17 novembre 2026
 
 **Prochaine tâche : intégrer Low Cut / High Cut de Waves F6.** Commencer par
