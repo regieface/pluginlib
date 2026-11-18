@@ -54,7 +54,9 @@ test('un statut ancien abonnement importé seul laisse la licence perpétuelle l
 test('l’export préserve l’archive et l’aperçu JSON propose la réactivation sans mutation', () => {
   const archived = changePlan(start(), 'expired');
   const exported = exportCollection(archived, plugins, plans);
-  const reimported = normalizeCollection(exported, plugins, plans);
+  assert.equal(exported.app, 'PluginLib');
+  assert.equal(exported.version, 3);
+  const reimported = normalizeCollection(JSON.parse(JSON.stringify(exported)), plugins, plans);
   assert.equal(rights(reimported), 'former');
   assert.deepEqual(reimported.licenseDetails, licenseDetails);
 
@@ -82,4 +84,15 @@ test('la collection active et les archives suivent les droits indépendamment du
   assert.equal(visible(maintained, active, 'owned'), true);
   assert.equal(visible(plugin, perpetual, 'all'), false);
   assert.equal(visible(maintained, active, 'all'), true);
+});
+
+test('un export historique owned retrouve la fiche canonique avec son ancien ID', () => {
+  const historicalId = 'test--old-eq';
+  const canonical = { ...plugin, legacyIds: [historicalId] };
+  const before = normalizeCollection({ status: {} }, [canonical], []);
+  const preview = previewCollectionImport(JSON.stringify({ owned: [historicalId] }), before, [canonical], []);
+  assert.equal(rights(before), 'unknown');
+  assert.equal(rights(preview.next), 'owned');
+  assert.deepEqual(preview.next.status, { [canonical.id]: 'owned' });
+  assert.equal(preview.added.length, 1);
 });

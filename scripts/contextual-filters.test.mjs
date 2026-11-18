@@ -37,3 +37,9 @@ test('des tags d’une autre dimension ne rendent pas un critère disponible',()
  const s=defaultSelections(Object.keys(facets));
  assert.equal(contextualCounts([{...data[0],tags:['opt:zl']}],s,'vitesse',facets).size,0);
 });
+
+test('le compteur compte une seule fois une valeur répétée sur la même fiche', () => {
+  const selections = defaultSelections(Object.keys(facets));
+  const first = { ...data[0], tags: ['techno:fet', 'techno:fet'] };
+  assert.equal(contextualCounts([first, data[1]], selections, 'techno', facets).get('techno:fet'), 1);
+});
