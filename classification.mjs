@@ -1,3 +1,4 @@
+import { resolveCatalogLatency, wavesLatencySource } from './latency-resolution.mjs';
 import { ARCHITECTURES, CRITERIA, FORMATS, PROCESSES, TREATMENTS } from './treatment-taxonomy.mjs';
 
 export const CLASSIFICATION_VERSION = 1;
@@ -108,6 +109,7 @@ function legacyFact(field, proof, state = 'present') {
     state: confidence === 'unverified' ? 'pending' : state,
     confidence,
     origin: { kind: 'legacy', field },
+    ...(isRecord(proof?.conditions) ? { conditions: proof.conditions } : {}),
     ...(proof ? { evidence: [proof] } : {})
   };
 }
@@ -129,6 +131,13 @@ function legacyType(plugin, proof) {
     const clipper = /\bclipper\b/i.test(title);
     const limiter = /\b(?:limiter|maximi[sz]er)\b/i.test(title);
     if (clipper !== limiter) return clipper ? 'clipper' : 'limiter';
+  }
+  if (category === 'multiband' && isText(title)) {
+    // A single explicit product title can establish both the treatment and its architecture.
+    const match = /\bmulti[- ]?band\s+(compressor|limiter|expander)\s*$/i.exec(title);
+    if (match && !/\b(?:limiter|compressor|expander|gate|no|not|without)\b/i.test(title.slice(0, match.index))) {
+      return { compressor: 'compressor', limiter: 'limiter', expander: 'gate-expander' }[match[1].toLowerCase()];
+    }
   }
   if (category === 'channel' && proof && /\bchannel[ -]*strip\b/i.test(proof.excerpt || '') &&
     (proof.method === 'product-title' || (plugin.recordType === 'effect' &&
@@ -173,45 +182,31 @@ function legacyFamilies(plugin, type) {
 }
 
 function legacyMeasurements(plugin) {
-  const latency = plugin.latency || {};
-  const info = plugin.latencyInfo;
+  const latency = resolveCatalogLatency(plugin);
   const measurements = {};
   for (const rate of [48, 96]) {
     const cell = latency[rate];
-    const tableProof = cell && latency.source ? {
-      url: latency.source,
-      method: latency.source === 'https://www.waves.com/support/tech-specs/plugin-latency'
-        ? 'latency-table' : 'legacy-latency-source',
-      ...(cell.note ? { excerpt: cell.note } : {})
-    } : undefined;
-    const publishedProof = info?.sampleRate === rate ? info : undefined;
-    const proof = tableProof || publishedProof;
-    if (!sourced(proof)) continue;
-
+    if (!cell) continue;
     const facts = [];
-    const measurement = (field, source, value, unit, conditions) => ({
-      ...legacyFact(field, source), value: { value, unit }, conditions: { sampleRateKHz: rate, ...conditions }
-    });
-    const addModes = (modes, field, source) => {
-      for (const mode of modes || []) {
-        if (!Number.isFinite(mode.samples) || !isText(mode.label)) continue;
-        facts.push(measurement(field, source, mode.samples, 'samples', { conditional: true, mode: mode.label }));
-      }
+    const add = (reading, value, unit, conditions) => {
+      const url = reading.source || cell.source;
+      if (!url || !Number.isFinite(value)) return;
+      const confidence = reading.confidence || cell.confidence;
+      const method = confidence === 'verified' ? 'reviewed-source' :
+        url === wavesLatencySource ? 'latency-table' : 'legacy-latency-source';
+      const proof = { url, method, ...(reading.excerpt || cell.excerpt || cell.note ? { excerpt: reading.excerpt || cell.excerpt || cell.note } : {}),
+        ...(reading.checkedAt || cell.checkedAt ? { checkedAt: reading.checkedAt || cell.checkedAt } : {}) };
+      const pending = ['unverified', 'pending', 'estimated'].includes(confidence);
+      facts.push({
+        ...legacyFact(`latency.${rate}`, proof, pending ? 'pending' : 'present'),
+        value: { value, unit }, conditions: { ...conditions, sampleRateKHz: rate }
+      });
     };
-    addModes(cell?.variants, `latency.${rate}.variants`, proof);
-    if (!facts.length && Number.isFinite(cell?.samples)) {
-      facts.push(measurement(`latency.${rate}.samples`, proof, cell.samples, 'samples', {
-        ...(cell.zeroMode || (!tableProof && info?.conditional) ? { conditional: true } : {})
-      }));
+    for (const mode of cell.variants || []) {
+      add(mode, mode.samples, 'samples', { ...mode.conditions, conditional: true, mode: mode.label });
     }
-    if (!facts.length && sourced(publishedProof)) {
-      addModes(info.modes, 'latencyInfo.modes', publishedProof);
-      if (!facts.length) {
-        for (const value of info.values || []) {
-          if (!Number.isFinite(value.value) || !['ms', 'samples'].includes(value.unit)) continue;
-          facts.push(measurement('latencyInfo.values', publishedProof, value.value, value.unit, info.conditional ? { conditional: true } : {}));
-        }
-      }
+    if (!cell.conflict && !cell.uncertain && !facts.length) {
+      add(cell, cell.samples, cell.unit || 'samples', { ...cell.conditions, ...(cell.zeroMode ? { conditional: true } : {}) });
     }
     if (facts.length) measurements[`latency${rate}`] = facts;
   }
@@ -244,6 +239,7 @@ export function normalizeClassification(plugin) {
     const classificationFact = clipperStatement ? legacyFact('description', clipperStatement) :
       legacyFact(proof ? 'categoryEvidence' : 'category', proof);
     const treatment = { type, ...classificationFact, families };
+    if (plugin.category === 'multiband') treatment.architectures = [{ id: 'multiband', ...classificationFact }];
     if (type === 'compressor') {
       treatment.technologies = families.map(fact => ({ ...fact }));
     }

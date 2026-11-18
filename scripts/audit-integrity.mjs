@@ -1,6 +1,8 @@
 // Contrôles indépendants de cohérence sur toutes les fiches et leurs sources publiques.
 import {readFile,writeFile} from 'node:fs/promises';
 import {get,isHome} from './update.mjs';import {extractPage,stripHtml} from './parse.mjs';
+import {latencyIssues} from '../latency-resolution.mjs';
+import {classificationReviewReason} from './catalog-classification.mjs';
 const root=new URL('../',import.meta.url),data=JSON.parse(await readFile(new URL('data/plugins.json',root),'utf8'));
 const cache=process.env.PLUGINLIB_HTTP_CACHE||(process.argv.includes('--cache')?process.argv[process.argv.indexOf('--cache')+1]:undefined);
 const fetchMissing=process.argv.includes('--fetch-missing');
@@ -21,8 +23,12 @@ const add=(p,field,severity,reason,detail={})=>findings.push({id:p.id,name:p.nam
 const seenIds=new Set();for(const p of data.plugins){if(seenIds.has(p.id))add(p,'identity','confirmed','duplicate-identifier');seenIds.add(p.id);}
 await Promise.all(Array.from({length:6},async()=>{while(cursor<data.plugins.length){const p=data.plugins[cursor++];const row={id:p.id,fieldsChecked:['identity','family','criteria','latency','status','platforms','pricing','image','scope','description'],source:'not-available'};
  if(!p.url)add(p,'url','unverified','missing-product-source');
+ const classificationReview=classificationReviewReason(p);
+ if(classificationReview)add(p,'classification','unverified',classificationReview);
  if(p.category==='other')add(p,'family','unverified','primary-function-unconfirmed');
  if(p.unverifiedTags?.length)add(p,'criteria','unverified','unsupported-technical-criteria',{tags:p.unverifiedTags});
+ const issues=latencyIssues(p);
+ if(issues.length)add(p,'latency','unverified','latency-conflict',{rates:issues.map(issue=>issue.rate),issues});
  if(p.unverifiedLatencyInfo)add(p,'latency','confirmed','catalog-contamination-quarantined');
  if(p.pricing){const q=p.pricing;if(!q.url||!q.currency||!q.checkedAt||![q.normal,q.promo].some(Number.isFinite))add(p,'pricing','confirmed','incomplete-price-record');if(q.normal!=null&&q.promo!=null&&q.promo>=q.normal)add(p,'pricing','confirmed','invalid-discount');if(p.catalogStatus==='free'&&(q.normal>0||q.promo>0))add(p,'pricing','conflict','free-status-with-paid-price',{pricing:q});}
  if(p.platforms?.length&&/documentUrlPath|skuInStoreFrom|subscriptionPlans|\\u00|\\"/.test(p.platformEvidence?.excerpt||''))add(p,'platforms','unverified','embedded-data-used-as-platform-proof',{evidence:p.platformEvidence});

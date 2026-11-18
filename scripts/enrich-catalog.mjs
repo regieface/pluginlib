@@ -1,20 +1,23 @@
 // Complète les métadonnées du catalogue existant sans relancer sa découverte.
 // Usage : node scripts/enrich-catalog.mjs (sources : fiches constructeur déjà référencées).
 import { readFile, writeFile } from 'node:fs/promises';
+import { mergeLatencyInfo } from '../latency-resolution.mjs';
 import { get } from './update.mjs';
 import { extractPage } from './parse.mjs';
-import { inferCatalogMetadata, resolveReplacements, applyCatalogOverride } from '../catalog.mjs';
-import { extractPublishedLatency, normalizePricing, fullLicenseVariant } from './product-facts.mjs';
+import { inferCatalogMetadata, resolveReplacements, mergeCatalogLatency } from '../catalog.mjs';
+import { extractPublishedLatency, normalizePricing, fullLicenseVariant, discardSyntheticLatency } from './product-facts.mjs';
 import {productStatement} from './source-statements.mjs';
 import { applyColorationMetadata } from '../coloration.mjs';
 import { auditFeatureEvidence } from './feature-evidence.mjs';
 import { auditCategoryEvidence } from './category-evidence.mjs';
 import { auditRecordType } from '../record-types.mjs';
+import { applyProducerOverride } from './catalog-classification.mjs';
 import { applyFreeProductMetadata } from './free-products.mjs';
 
 const root = new URL('../', import.meta.url);
 const path = new URL('data/plugins.json', root);
 const data = JSON.parse(await readFile(path, 'utf8'));
+data.plugins.forEach(discardSyntheticLatency);
 let index = 0, checked = 0, enriched = 0;
 const now = new Date().toISOString();
 const names = new Set((process.env.ONLY_VENDOR || '').split(',').map((s) => s.trim()).filter(Boolean));
@@ -39,8 +42,12 @@ await Promise.all(Array.from({ length: 8 }, async () => {
       // Le tableau Waves reste prioritaire sur une formulation commerciale qui
       // peut concerner une variante Live ou un réglage particulier.
       if (p.vendor === 'Waves' && p.latency) delete latency.latency;
-      if (latency.latencyInfo) Object.assign(p, latency);
+      if (latency.latencyInfo) {
+        p.latencyInfo = mergeLatencyInfo(p.latencyInfo, latency.latencyInfo);
+        if (latency.latency) p.latency = mergeCatalogLatency(p.latency, latency.latency);
+      }
       else if (p.latencyInfo && /\b(?:Apollo|ASIO|audio interface|driver|buffer size|round.trip|monitoring)\b/i.test(p.latencyInfo.excerpt || '')) {
+        p.unverifiedLatencyInfo = p.latencyInfo;
         delete p.latencyInfo;
         if (p.vendor !== 'Waves') delete p.latency;
       }
@@ -80,7 +87,7 @@ for (const p of data.plugins) {
 const freeProducts = JSON.parse(await readFile(new URL('data/free-products.json', root), 'utf8'));
 const overrides = JSON.parse(await readFile(new URL('data/overrides.json', root), 'utf8'));
 for (const p of data.plugins) {
-  applyCatalogOverride(p, overrides[p.id]);
+  applyProducerOverride(p, overrides[p.id]);
   applyFreeProductMetadata(p, freeProducts);
   auditCategoryEvidence(p, overrides[p.id]);
   auditRecordType(p);

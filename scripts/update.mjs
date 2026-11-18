@@ -12,14 +12,15 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { classify, isOutOfScope, labels } from './classify.mjs';
 import { parseWavesLatency, matchWaves, norm } from './waves.mjs';
 import { extractPage, parseSitemap, stripHtml, slug, extractLinks } from './parse.mjs';
-import { inferCatalogMetadata, mergeVendorProducts, resolveReplacements, applyCatalogOverride } from '../catalog.mjs';
+import { inferCatalogMetadata, mergeVendorProducts, resolveReplacements, mergeCatalogLatency } from '../catalog.mjs';
 import { pathToFileURL } from 'node:url';
 import { parseDownloadTable, parseLSP, parseChow, parseAirwindowsPosts, parseWavesfactoryFree } from './catalog-parsers.mjs';
-import { normalizePricing, extractPublishedLatency, fullLicenseVariant } from './product-facts.mjs';
+import { normalizePricing, extractPublishedLatency, fullLicenseVariant, discardSyntheticLatency } from './product-facts.mjs';
 import { applyColorationMetadata } from '../coloration.mjs';
 import { auditFeatureEvidence } from './feature-evidence.mjs';
 import { auditCategoryEvidence } from './category-evidence.mjs';
 import { auditRecordType } from '../record-types.mjs';
+import { applyProducerOverride } from './catalog-classification.mjs';
 import { applyFreeProductMetadata } from './free-products.mjs';
 
 const ROOT = new URL('..', import.meta.url);
@@ -221,9 +222,55 @@ async function readJson(path, fallback) {
   try { return JSON.parse(await readFile(new URL(path, ROOT), 'utf8')); } catch { return fallback; }
 }
 
+// Les producteurs de fiches peuvent retourner plusieurs résultats pour un même
+// ID (notamment la boutique Waves et son tableau). La fiche historique est
+// prioritaire sur ces résultats pour les champs que la collecte ne connaît pas.
+export function assembleCatalogProducts(previous, incoming, vendors, overrides, freeProducts, selected = () => true) {
+  const existing = new Map(previous.map(p => [p.id, p]));
+  const byId = new Map();
+  const score = p => (p.url ? 2 : 0) + (p.image ? 1 : 0) + (p.latency ? 1 : 0);
+  for (const product of incoming) {
+    const current = byId.get(product.id);
+    if (!current) { byId.set(product.id, product); continue; }
+    const [preferred, fallback] = score(product) > score(current) ? [product, current] : [current, product];
+    const combined = mergeVendorProducts([fallback], [preferred])[0];
+    if (preferred.latency || fallback.latency) combined.latency = mergeCatalogLatency(preferred.latency, fallback.latency);
+    byId.set(product.id, combined);
+  }
+  const vendorConfig = new Map(vendors.map(v => [v.name, v]));
+  const refreshed = [...byId.values()].filter(p => selected(p.vendor));
+  const retained = previous.filter(p => !selected(p.vendor));
+  const plugins = mergeVendorProducts(previous.filter(p => selected(p.vendor)), refreshed)
+    .filter(p => {
+      if (existing.has(p.id)) return true;
+      const candidate = applyProducerOverride({ ...p }, overrides[p.id]);
+      if (candidate.recordTypeEvidence?.method === 'reviewed-source' &&
+        !['effect', 'unknown'].includes(candidate.recordTypeEvidence.type)) return true;
+      const vendor = vendorConfig.get(p.vendor);
+      return !candidate.exclude && !isOutOfScope(candidate.name, candidate.description)
+        && !(vendor?.excludeNames || []).some(pattern => new RegExp(pattern, 'i').test(candidate.name))
+        && (!vendor?.requireBrand || candidate.brand)
+        && (!vendor?.requireProductMarker || candidate.catalogValidated);
+    })
+    .map(p => {
+      const override = overrides[p.id];
+      const product = applyProducerOverride({ ...p, ...(override?.category || override?.tags ? { classifiedBy: 'manuel' } : {}) }, override);
+      applyFreeProductMetadata(product, freeProducts);
+      auditCategoryEvidence(product, override);
+      auditRecordType(product);
+      applyColorationMetadata(product);
+      auditFeatureEvidence(product);
+      if (product.catalogStatus === 'free') delete product.pricing;
+      return product;
+    });
+  resolveReplacements(plugins);
+  return [...retained, ...plugins].sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
+}
+
 export async function main() {
   const { vendors } = await readJson('sources/vendors.json', { vendors: [] });
   const previous = await readJson('data/plugins.json', { plugins: [] });
+  previous.plugins.forEach(discardSyntheticLatency);
   const overrides = await readJson('data/overrides.json', {});
   const freeProducts = await readJson('data/free-products.json', { collections: [] });
   const prevMeta = await readJson('data/meta.json', { sources: [] });
@@ -314,43 +361,13 @@ export async function main() {
     console.log(`Latences Waves : ${JSON.stringify(latencyStatus)}`);
   }
 
-  // Doublons (même id) : on garde l'entrée la plus complète
-  const byId = new Map();
-  for (const p of all) {
-    const score = (x) => (x.url ? 2 : 0) + (x.image ? 1 : 0) + (x.latency ? 1 : 0);
-    const cur = byId.get(p.id);
-    if (!cur || score(p) > score(cur)) byId.set(p.id, cur && !p.latency && cur.latency ? { ...p, latency: cur.latency } : p);
-  }
-  // Corrections manuelles
-  let plugins = [...byId.values()].map((p) => {
-    const o = overrides[p.id];
-    return o ? applyCatalogOverride({ ...p, classifiedBy: o.category || o.tags ? 'manuel' : p.classifiedBy }, o) : p;
-  }).filter((p) => !p.exclude);
-  resolveReplacements(plugins);
-  plugins.sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
-
-  // Mode test sur un seul constructeur : on ne remplace pas tout le catalogue
-  if (ONLY) {
-    plugins = [...previous.plugins.filter((p) => !selected(p.vendor)), ...plugins.filter((p) => selected(p.vendor))];
-  }
-  const vendorConfig = new Map(vendors.map((v) => [v.name, v]));
-  plugins = plugins.filter((p) => {
-    if (p.recordTypeEvidence?.method === 'reviewed-source' && !['effect','unknown'].includes(p.recordTypeEvidence.type)) return true;
-    const v = vendorConfig.get(p.vendor);
-    return !isOutOfScope(p.name, p.description)
-      && !(v?.excludeNames || []).some((pattern) => new RegExp(pattern, 'i').test(p.name))
-      && (!v?.requireBrand || new RegExp(v.requireBrand, 'i').test(p.brand || ''))
-      && (!v?.requireProductMarker || p.catalogValidated);
-  });
-  plugins.sort((a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name));
-
-  plugins.forEach((p) => { applyFreeProductMetadata(p, freeProducts); auditCategoryEvidence(p, overrides[p.id]); auditRecordType(p); applyColorationMetadata(p); auditFeatureEvidence(p); if(p.catalogStatus==='free')delete p.pricing; });
+  const plugins = assembleCatalogProducts(previous.plugins, all, vendors, overrides, freeProducts, selected);
   await mkdir(new URL('data/', ROOT), { recursive: true });
   await writeFile(new URL('data/plugins.json', ROOT), JSON.stringify({ generatedAt: now, count: plugins.length, plugins }, null, 1));
   const sources = ONLY ? [...prevMeta.sources.filter((s) => !selected(s.vendor)), ...status]
     : [...prevMeta.sources.filter((s) => !configuredVendors.has(s.vendor)), ...status];
   sources.forEach((s) => { s.kept = plugins.filter((p) => p.vendor === s.vendor).length; });
-  await writeFile(new URL('data/meta.json', ROOT), JSON.stringify({ generatedAt: now, count: plugins.length, latency: latencyStatus, sources, labels: labels() }, null, 1));
+  await writeFile(new URL('data/meta.json', ROOT), JSON.stringify({ ...prevMeta, generatedAt: now, count: plugins.length, latency: latencyStatus, sources, labels: labels() }, null, 1));
   const diagnosticVendors = ONLY ? [...prevDiagnostic.vendors.filter((v) => !selected(v.vendor)), ...diagnostics]
     : [...prevDiagnostic.vendors.filter((v) => !configuredVendors.has(v.vendor)), ...diagnostics];
   await writeFile(new URL('data/diagnostic.json', ROOT), JSON.stringify({ generatedAt: now, vendors: diagnosticVendors }, null, 1));

@@ -6,11 +6,13 @@ import {inferCatalogMetadata} from '../catalog.mjs';
 import {applyFreeProductMetadata} from './free-products.mjs';
 import {auditCategoryEvidence} from './category-evidence.mjs';
 import {auditRecordType} from '../record-types.mjs';
+import {applyProducerOverride} from './catalog-classification.mjs';
 import {auditFeatureEvidence} from './feature-evidence.mjs';
 const root=new URL('../',import.meta.url);
 const data=JSON.parse(await readFile(new URL('data/plugins.json',root),'utf8'));
 const free=JSON.parse(await readFile(new URL('data/free-products.json',root),'utf8'));
-const key=url=>url.replace('://www.', '://').replace(/\/$/,'').toLowerCase();
+const overrides=JSON.parse(await readFile(new URL('data/overrides.json',root),'utf8'));
+const key=(url='')=>String(url||'').replace('://www.', '://').replace(/\/$/,'').toLowerCase();
 let added=0;
 for(const collection of free.collections)for(const member of collection.products){
  let p=data.plugins.find(p=>p.vendor===collection.vendor&&key(p.url)===key(member.url));
@@ -23,7 +25,7 @@ for(const collection of free.collections)for(const member of collection.products
   p={id,name:member.name,vendor:collection.vendor,url:member.url,image:page.image,description:page.description||'',category:'other',tags:[],source:'liste gratuite officielle',checkedAt,...inferCatalogMetadata({text:page.metadataText,operatingSystem:page.operatingSystem,url:r.url,checkedAt,listed:true})};
   data.plugins.push(p);added++;
  }
- applyFreeProductMetadata(p,free);auditCategoryEvidence(p);auditRecordType(p);auditFeatureEvidence(p);
+ const override=overrides[p.id];applyProducerOverride(p,override);applyFreeProductMetadata(p,free);auditCategoryEvidence(p,override);auditRecordType(p);auditFeatureEvidence(p);
 }
 data.count=data.plugins.length;
 await writeFile(new URL('data/plugins.json',root),JSON.stringify(data,null,1));

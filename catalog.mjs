@@ -1,3 +1,6 @@
+import { mergeCatalogLatency, mergeLatencyInfo } from './latency-resolution.mjs';
+export { mergeCatalogLatency };
+
 // Règles communes à la collecte et aux filtres. Une absence d'information n'est
 // ni une incompatibilité, ni une preuve d'abandon.
 export const PLATFORMS = { macos: 'macOS', windows: 'Windows', linux: 'Linux' };
@@ -103,16 +106,20 @@ export function applyCatalogOverride(plugin, override, today = new Date().toISOS
 // (les collections personnelles sont attachées à ces identifiants).
 export function mergeVendorProducts(previous, collected) {
   const result = new Map(previous.map((p) => [p.id, p]));
+  const urlKey = p => p.url && JSON.stringify([p.vendor, p.url.replace(/\/$/, '')]);
   const urlCounts = new Map();
-  for (const p of collected) if (p.url) urlCounts.set(p.url.replace(/\/$/, ''), (urlCounts.get(p.url.replace(/\/$/, '')) || 0) + 1);
+  for (const p of collected) if (p.url) {
+    const key = urlKey(p);
+    urlCounts.set(key, (urlCounts.get(key) || 0) + 1);
+  }
   const byURL = new Map();
   for (const p of previous) if (p.url) {
-    const url = p.url.replace(/\/$/, '');
-    byURL.set(url, byURL.has(url) ? null : p);
+    const key = urlKey(p);
+    byURL.set(key, byURL.has(key) ? null : p);
   }
   for (const product of collected) {
-    const url = product.url?.replace(/\/$/, '');
-    const old = result.get(product.id) || (urlCounts.get(url) === 1 && byURL.get(url));
+    const key = urlKey(product);
+    const old = result.get(product.id) || (urlCounts.get(key) === 1 && byURL.get(key));
     const combined = { ...old, ...product, id: old?.id || product.id };
     if (!product.platforms?.length && old?.platforms?.length) {
       combined.platforms = old.platforms;
@@ -122,7 +129,26 @@ export function mergeVendorProducts(previous, collected) {
       combined.catalogStatus = old.catalogStatus;
       combined.statusEvidence = old.statusEvidence;
     }
-    if (!product.latency && old?.latency) combined.latency = old.latency;
+    if (old) {
+      for (const key of ['url', 'image', 'description', 'pricing', 'source']) {
+        if ((product[key] == null || product[key] === '') && Object.hasOwn(old, key)) combined[key] = old[key];
+      }
+      if (old.latencyInfo && product.latencyInfo) combined.latencyInfo = mergeLatencyInfo(old.latencyInfo, product.latencyInfo);
+      if (old.latency || product.latency) combined.latency = mergeCatalogLatency(old.latency, product.latency);
+      if (old.featureEvidence && product.featureEvidence) {
+        combined.featureEvidence = { ...old.featureEvidence, ...product.featureEvidence };
+        for (const [tag, evidence] of Object.entries(old.featureEvidence)) {
+          if (evidence?.method === 'reviewed-source' && evidence.url) combined.featureEvidence[tag] = evidence;
+        }
+      }
+      if (old.aliases || product.aliases || (old.name && old.name !== combined.name)) {
+        combined.aliases = [...new Set([...(old.aliases || []), ...(product.aliases || []),
+          ...(old.name && old.name !== combined.name ? [old.name] : [])])];
+      }
+      for (const key of ['classification', 'legacyIds', 'duplicateOf', 'exclude']) {
+        if (Object.hasOwn(old, key)) combined[key] = old[key];
+      }
+    }
     result.set(combined.id, combined);
   }
   return [...result.values()];

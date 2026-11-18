@@ -1,6 +1,7 @@
 // Latences officielles Waves : https://www.waves.com/support/tech-specs/plugin-latency
 // La page embarque un objet JSON {"latency":[{documentName, native44, native48, native88, native96, ...}]}
 // dont les valeurs sont des chaînes (nombre de samples, ou texte décrivant plusieurs variantes).
+import { mergeCatalogLatency } from '../catalog.mjs';
 import { stripHtml, slug } from './parse.mjs';
 
 function sliceArray(text, from) {
@@ -61,7 +62,7 @@ export function matchWaves(products, rows) {
       const cands = rowsN.filter((x) => x.n && pn && (pn.startsWith(x.n + ' ') || x.n.startsWith(pn + ' ')));
       best = cands.sort((a, b) => b.n.length - a.n.length)[0];
     }
-    if (best) { p.latency = best.r.latency; used.add(best.r); matched++; }
+    if (best) { p.latency = mergeCatalogLatency(p.latency, best.r.latency); used.add(best.r); matched++; }
   }
   return { matched, orphans: rows.filter((r) => !used.has(r)) };
 }

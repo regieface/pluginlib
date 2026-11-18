@@ -58,3 +58,52 @@ test('compteur global : un plugin multiformat et multifréquence compte une fois
   assert.equal(plugins.filter(hasDocumentedLatency).length, 2);
   assert.equal(matchesCatalogFilters({ platforms: ['macos', 'windows', 'linux'] }), true);
 });
+
+const latencySource = 'https://example.test/latency';
+const parseLatency = text => extractPublishedLatency(text, latencySource, '2026-11-18');
+
+test('les annonces ZL restent qualitatives, y compris les annonces de mode', () => {
+  for (const text of [
+    'This plugin has zero latency.', 'Zero-latency mode.', 'No additional latency.',
+    'No added latency.', 'Latency free.', 'Zero latency at 48 kHz.'
+  ]) {
+    const result = parseLatency(text);
+    assert.equal(result.latency, undefined, text);
+    assert.equal(result.latencyInfo.zero, true, text);
+    assert.equal(result.latencyInfo.url, latencySource);
+    assert.deepEqual(result.latencyInfo.values, []);
+    assert.deepEqual(parseLatency(text), result);
+  }
+  assert.equal(parseLatency('Zero-latency mode.').latencyInfo.conditional, true);
+});
+
+test('un zéro numérique n’est publié que pour la fréquence explicitement associée', () => {
+  assert.deepEqual(parseLatency('0 samples at 48 kHz').latency, { 48: { samples: 0 } });
+  const noRate = parseLatency('Latency: 0 samples.');
+  assert.equal(noRate.latency, undefined);
+  assert.deepEqual(noRate.latencyInfo.values, [{ value: 0, unit: 'samples' }]);
+  assert.equal(noRate.latencyInfo.sampleRate, null);
+  const unrelatedRate = parseLatency('Latency: 0 samples; a preset is recommended at 48 kHz.');
+  assert.equal(unrelatedRate.latency, undefined);
+  assert.equal(unrelatedRate.latencyInfo.sampleRate, null);
+  assert.equal(parseLatency('Latency: 0 samples at 48 kHz in a special mode.').latency, undefined);
+  assert.deepEqual(parseLatency('Latency: 128 samples at 96 kHz.').latency, { 96: { samples: 128 } });
+});
+
+test('des modes explicites et une mesure à 96 kHz restent distincts d’une annonce ZL', () => {
+  const text = 'This plugin has zero latency. 64 samples Live / 512 samples Studio at 48 kHz. Latency: 128 samples at 96 kHz.';
+  const result = parseLatency(text);
+  assert.deepEqual(result.latency[48].variants.map(({ label, samples }) => ({ label, samples })),
+    [{ label: 'Live', samples: 64 }, { label: 'Studio', samples: 512 }]);
+  assert.ok(result.latency[48].variants.every(mode => mode.excerpt.includes('48 kHz')));
+  assert.equal(result.latency[48].samples, null);
+  assert.equal(result.latency[96].samples, 128);
+  const announcement = result.latencyInfo.reports.find(report => report.zero);
+  assert.ok(announcement);
+  assert.deepEqual(announcement.values, []);
+  assert.equal(result.latencyInfo.conditional, true);
+  assert.deepEqual(parseLatency(text), result);
+  const unscopedMode = parseLatency('64 samples Live at 48 kHz / 512 samples Studio.');
+  assert.equal(unscopedMode.latency, undefined);
+  assert.equal(unscopedMode.latencyInfo.sampleRate, null);
+});
