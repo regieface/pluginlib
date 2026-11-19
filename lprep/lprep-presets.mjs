@@ -1,6 +1,7 @@
 import { createStableId, isStableId } from './lprep-identifiers.mjs';
 import { hasUnresolvedVariant, validateProject } from './lprep-project.mjs';
 import { ProjectTransaction } from './lprep-transactions.mjs';
+import { MAIN_AUDIO_FORMATS, legacyChainFormats } from './lprep-audio-graph.mjs';
 
 const clone = value => structuredClone(value);
 const err = (path, code, message, severity = 'error') => ({ severity, path, code, message });
@@ -55,6 +56,10 @@ export function validateChainPreset(preset, { path = 'preset' } = {}) {
     if (!ports.has(connection?.sourcePortId) || !ports.has(connection?.destinationPortId)) issues.push(err(`${path}.structure.connections[${index}]`, 'preset.connection-port', 'Port interne introuvable.'));
   }
   const chain = structure.chain;
+  const formats = chain?.audioFormat === undefined ? chain : legacyChainFormats(chain.audioFormat);
+  if (!MAIN_AUDIO_FORMATS.has(formats?.inputFormat) || !MAIN_AUDIO_FORMATS.has(formats?.outputFormat)) {
+    issues.push(err(`${path}.structure.chain`, 'preset.chain-formats', 'Formats principaux Mono ou Stéréo requis.'));
+  }
   if (chain?.sidechainNodeRef !== undefined) {
     const scPorts = [...ports.values()].filter(port => port.nodeId === chain.sidechainNodeRef);
     if (nodes.get(chain.sidechainNodeRef)?.type !== 'bus' || !scPorts.length ||
@@ -113,7 +118,8 @@ export function createChainPresetFromSession(session, chainId, { presetId = crea
         'preset.external-sidechain', 'Sidechain externe conservé comme interface non résolue.', 'warning'));
     }
   }
-  const structure = { chain: { name: chain.name, role: chain.role, audioFormat: chain.audioFormat, color: chain.color,
+  const structure = { chain: { name: chain.name, role: chain.role,
+    inputFormat: chain.inputFormat, outputFormat: chain.outputFormat, color: chain.color,
     ...(chain.sidechainNodeRef ? { sidechainNodeRef: chain.sidechainNodeRef } : {}),
     allocationEligibility: chain.allocationEligibility, pluginOrder: [...chain.pluginOrder],
     mainPath: clone(chain.mainPath), presentationLinks: chain.presentationLinks.filter(id => memberIds.has(id)) },
@@ -151,9 +157,11 @@ export function preparePresetInsertion(project, sessionId, preset, { idFactory =
     const connections = structure.connections.map(value => ({ ...clone(value), connectionId: ids.get(value.connectionId),
       graphId: session.audioGraph.graphId, sourcePortId: ids.get(value.sourcePortId), destinationPortId: ids.get(value.destinationPortId),
       originAssignmentId: null, hostBindingRef: null }));
+    const formats = structure.chain.audioFormat === undefined ? structure.chain : legacyChainFormats(structure.chain.audioFormat);
     const chain = { chainId, sessionId, name: structure.chain.name, role: structure.chain.role,
       ...(structure.chain.sidechainNodeRef ? { sidechainNodeRef: ids.get(structure.chain.sidechainNodeRef) } : {}),
-      audioFormat: structure.chain.audioFormat, color: structure.chain.color, compensationGroupId,
+      inputFormat: formats.inputFormat, outputFormat: formats.outputFormat,
+      color: structure.chain.color, compensationGroupId,
       pluginOrder: structure.chain.pluginOrder.map(id => ids.get(id)),
       mainPath: { inputBoundaryPortRef: ids.get(structure.chain.mainPath.inputBoundaryPortRef),
         outputBoundaryPortRef: ids.get(structure.chain.mainPath.outputBoundaryPortRef),

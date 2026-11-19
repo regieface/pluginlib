@@ -182,7 +182,7 @@ function insertPathStage(session, chain, stage, beforeId, idFactory) {
   const path = pathData(session.audioGraph, chain);
   assertExclusivePath(session, chain, path);
   const stages = [...path.stages];
-  if (chain.audioFormat === 'mono-to-stereo' && stages.length === 1 && stages[0].node.type === 'bus') {
+  if (stages.length === 1 && stages[0].node.type === 'bus') {
     // Keep both declared boundaries on real bus ports when a plugin joins the path.
     const graph = session.audioGraph;
     const entry = stages[0];
@@ -190,11 +190,11 @@ function insertPathStage(session, chain, stage, beforeId, idFactory) {
     if (entry.node.hostBindingRef || output.hostBindingRef) throw new Error('La sortie reste liée à un hôte.');
     const exit = createAudioNode({ nodeId: idFactory('node'), graphId: graph.graphId, type: 'bus',
       metadata: { lprepOutputBoundary: true } });
-    const stereo = chainFormatPortProperties(chain.audioFormat, 'output');
+    const outputFormat = chainFormatPortProperties(chain, 'output');
     const entryOutput = createAudioPort({ portId: idFactory('port'), nodeId: entry.node.nodeId,
-      role: 'main', direction: 'output', ...stereo });
+      role: 'main', direction: 'output', ...outputFormat });
     const exitInput = createAudioPort({ portId: idFactory('port'), nodeId: exit.nodeId,
-      role: 'main', direction: 'input', ...stereo });
+      role: 'main', direction: 'input', ...outputFormat });
     output.nodeId = exit.nodeId;
     graph.nodes.push(exit);
     graph.ports.push(entryOutput, exitInput);

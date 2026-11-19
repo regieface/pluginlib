@@ -12,10 +12,32 @@ export const ROUTING_ROLES = new Set(['main', 'sidechain', 'secondary', 'auxilia
 export const CHAIN_FORMAT_PORTS = Object.freeze({
   mono: Object.freeze({ input: 1, output: 1 }),
   stereo: Object.freeze({ input: 2, output: 2 }),
-  'mono-to-stereo': Object.freeze({ input: 1, output: 2 })
+  'mono-to-stereo': Object.freeze({ input: 1, output: 2 }),
+  'stereo-to-mono': Object.freeze({ input: 2, output: 1 })
 });
 
-export function chainFormatPortProperties(format, direction) {
+export const MAIN_AUDIO_FORMATS = new Set(['mono', 'stereo']);
+
+export function chainFormatKey(inputFormat, outputFormat) {
+  if (!MAIN_AUDIO_FORMATS.has(inputFormat) || !MAIN_AUDIO_FORMATS.has(outputFormat)) {
+    throw new Error('Formats principaux de chaîne non pris en charge.');
+  }
+  if (inputFormat === outputFormat) return inputFormat;
+  return `${inputFormat}-to-${outputFormat}`;
+}
+
+export function legacyChainFormats(audioFormat) {
+  const ports = CHAIN_FORMAT_PORTS[audioFormat];
+  if (!ports) throw new Error('Format historique de chaîne non pris en charge.');
+  return {
+    inputFormat: ports.input === 1 ? 'mono' : 'stereo',
+    outputFormat: ports.output === 1 ? 'mono' : 'stereo'
+  };
+}
+
+export function chainFormatPortProperties(formatOrChain, direction) {
+  const format = typeof formatOrChain === 'string' ? formatOrChain :
+    chainFormatKey(formatOrChain?.inputFormat, formatOrChain?.outputFormat);
   const channelCount = CHAIN_FORMAT_PORTS[format]?.[direction];
   if (!channelCount) throw new Error('Format de chaîne non pris en charge.');
   return { channelCount, channelLayout: channelCount === 1 ? 'mono' : 'stereo' };

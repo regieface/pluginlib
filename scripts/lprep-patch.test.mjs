@@ -67,6 +67,7 @@ test('une proposition obsolète ou sans capacité échoue sans mutation partiell
   constrained.environmentConfiguration.virtualResources.forEach(value => { value.availability = 'unavailable'; });
   const before = structuredClone(constrained), invalid = proposeQuickPatch(constrained);
   assert.equal(invalid.valid, false);
+  assert.equal(invalid.status, 'impossible');
   assert.ok(invalid.issues.some(value => value.code === 'patch.capacity'));
   assert.deepEqual(constrained, before);
   assert.throws(() => applyPatchProposal(constrained, invalid), PatchTransactionError);

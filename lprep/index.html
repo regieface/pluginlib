@@ -70,6 +70,7 @@
             <div class="session-header">
               <h2 id="session-name">—</h2>
               <p id="session-meta"></p>
+              <p id="session-creation-warning" class="session-creation-warning" role="status" hidden></p>
             </div>
             <div class="chain-scroll" role="region" aria-label="Chaînes de la session" tabindex="0">
               <div id="chain-list"></div>
@@ -145,6 +146,38 @@
         <button type="submit" class="primary">Créer</button>
         <button type="button" id="cancel-create-document">Annuler</button>
       </div>
+    </form>
+  </dialog>
+  <dialog id="create-session-dialog" aria-labelledby="create-session-title">
+    <form id="create-session-form">
+      <header class="session-draft-header">
+        <div><h2 id="create-session-title">Nouvelle session</h2><p>Préparez la session et ses chaînes.</p></div>
+        <div class="session-draft-fields">
+          <label>Nom de session<input name="sessionName" autocomplete="off" autofocus></label>
+          <label>Machine cible<select name="machine"></select></label>
+          <label>Profil d’environnement<select name="environment"></select></label>
+          <label>Fréquence<select name="sampleRate"><option value="48000">48 kHz</option><option value="96000">96 kHz</option></select></label>
+        </div>
+        <div id="session-draft-general-errors" class="field-errors" role="alert"></div>
+        <div class="session-chain-counts" role="group" aria-label="Nombre de chaînes">
+          <label>Inserts <input name="insertCount" type="number" min="0" step="1" value="0"></label>
+          <label>FX <input name="fxCount" type="number" min="0" step="1" value="0"></label>
+          <label>Monitoring <input name="monitoringCount" type="number" min="0" step="1" value="0"></label>
+        </div>
+        <div id="session-resource-summary" class="session-resource-summary" role="status"></div>
+      </header>
+      <div class="session-chain-table-wrap" tabindex="0">
+        <table class="session-chain-table"><thead><tr><th>Type</th><th>Nom</th><th>Entrée</th><th>Sortie</th><th>Preset</th><th>Couleur</th><th>DLY</th></tr></thead>
+          <tbody id="session-draft-rows"></tbody></table>
+        <p id="session-draft-empty">Aucune chaîne — cette session reste valide.</p>
+      </div>
+      <footer class="session-draft-footer">
+        <p>La session, ses presets et son patch seront enregistrés en une seule opération.</p>
+        <div class="proposal-actions">
+          <button type="submit" id="prepare-session" class="primary" disabled>Créer la session</button>
+          <button type="button" id="cancel-create-session">Annuler</button>
+        </div>
+      </footer>
     </form>
   </dialog>
   <dialog id="plugin-variant-dialog" class="audio-dialog" aria-labelledby="plugin-variant-title">

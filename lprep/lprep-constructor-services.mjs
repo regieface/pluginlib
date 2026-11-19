@@ -1,5 +1,5 @@
 import { createCompensationGroup, createPluginInstance, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
-import { chainFormatPortProperties, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, createAudioNode, createAudioPort, legacyChainFormats } from './lprep-audio-graph.mjs';
 import { createStableId, isStableId } from './lprep-identifiers.mjs';
 import { createPresetInsertionTransaction } from './lprep-presets.mjs';
 import { proposeQuickPatch } from './lprep-patch.mjs';
@@ -101,15 +101,20 @@ export class LPrepConstructorService {
         if (typeof allocationEligibility !== 'boolean') throw new Error('Éligibilité au Patch rapide invalide.');
         chain.allocationEligibility = allocationEligibility;
       }
-      if (audioFormat !== undefined && audioFormat !== chain.audioFormat) {
+      const requestedFormats = audioFormat === undefined
+        ? { inputFormat: changes.inputFormat ?? chain.inputFormat, outputFormat: changes.outputFormat ?? chain.outputFormat }
+        : legacyChainFormats(audioFormat);
+      if (requestedFormats.inputFormat !== chain.inputFormat || requestedFormats.outputFormat !== chain.outputFormat) {
         const ports = editableFormatPorts(session, chain);
         if (!ports) {
           throw new Error('Le format peut être modifié sur une chaîne vide et sans routing.');
         }
-        for (const [index, port] of ports.entries()) {
-          Object.assign(port, chainFormatPortProperties(audioFormat, index === 0 ? 'input' : 'output'));
-        }
-        chain.audioFormat = audioFormat;
+        const inputPort = session.audioGraph.ports.find(port => port.portId === chain.mainPath.inputBoundaryPortRef);
+        const outputPort = session.audioGraph.ports.find(port => port.portId === chain.mainPath.outputBoundaryPortRef);
+        Object.assign(inputPort, chainFormatPortProperties(requestedFormats, 'input'));
+        Object.assign(outputPort, chainFormatPortProperties(requestedFormats, 'output'));
+        chain.inputFormat = requestedFormats.inputFormat;
+        chain.outputFormat = requestedFormats.outputFormat;
       }
       let { compensationGroupId } = changes;
       if (changes.dlNumber !== undefined) {

@@ -1,5 +1,6 @@
 import { validateProject } from './lprep-project.mjs';
 import { freezeEnvironmentSnapshot } from './lprep-environment.mjs';
+import { migrateProject } from './lprep-migrations.mjs';
 
 export class LPrepValidationError extends Error {
   constructor(issues) {
@@ -12,6 +13,9 @@ export class LPrepValidationError extends Error {
 const blocking = issues => issues.filter(issue => issue.severity === 'error');
 
 export function serializeProject(project, { space = 2 } = {}) {
+  const migration = migrateProject(project);
+  if (migration.status !== 'migrated') throw new LPrepValidationError(migration.diagnostics || []);
+  project = migration.project;
   const issues = validateProject(project);
   if (blocking(issues).length) throw new LPrepValidationError(issues);
   return `${JSON.stringify(project, null, space)}\n`;
@@ -22,6 +26,9 @@ export function deserializeProject(source) {
   let project;
   try { project = JSON.parse(source); }
   catch (error) { throw new SyntaxError(`JSON L-Prep invalide : ${error.message}`); }
+  const migration = migrateProject(project);
+  if (migration.status !== 'migrated') throw new LPrepValidationError(migration.diagnostics || []);
+  project = migration.project;
   const issues = validateProject(project);
   if (blocking(issues).length) throw new LPrepValidationError(issues);
   for (const session of project.sessions || []) {

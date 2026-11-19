@@ -1,9 +1,10 @@
-import { CHAIN_FORMAT_PORTS, createAudioConnection, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, createAudioConnection, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
 import { virtualResourceId } from './lprep-environment.mjs';
 import { isStableId } from './lprep-identifiers.mjs';
 
 const clone = value => structuredClone(value);
 const issue = (issues, path, code, message) => issues.push({ severity: 'error', path, code, message });
+const warning = (issues, path, code, message) => issues.push({ severity: 'warning', path, code, message });
 
 export function createPatchAssignment({ assignmentId, sessionId, chainId, direction, purpose = 'chain',
   resourceRefs = [], targetPortRefs = [], channelMap = null, connectionRefs = [], origin = 'automatic',
@@ -74,6 +75,12 @@ function takeChannels(session, direction, count, occupied, reserved) {
   return [];
 }
 
+function availableChannelCount(session, direction, occupied, reserved) {
+  return session.environmentConfiguration.virtualResources.filter(value =>
+    value.direction === `virtual-${direction}` && value.availability === 'available' &&
+    !occupied.has(value.resourceId) && !reserved.has(value.resourceId)).length;
+}
+
 function fingerprint(session) {
   return JSON.stringify({ graph: session.audioGraph, assignments: session.patchAssignments || [], environment: session.environmentConfiguration });
 }
@@ -91,7 +98,7 @@ export function proposeQuickPatch(session) {
   const roleRank = new Map((original.environmentConfiguration?.allocationPolicy?.rolePriority || ['insert', 'fx']).map((value, index) => [value, index]));
   const chains = [...original.chains].filter(value => value.allocationEligibility !== false)
     .sort((a, b) => (roleRank.get(a.role) ?? 99) - (roleRank.get(b.role) ?? 99) || original.chainOrder.indexOf(a.chainId) - original.chainOrder.indexOf(b.chainId) || a.chainId.localeCompare(b.chainId));
-  const assignments = [...retained], issues = [];
+  const assignments = [...retained], issues = [], missingAssignments = [];
   for (const chain of chains) for (const direction of ['input', 'output']) {
     if (retained.some(value => value.chainId === chain.chainId && value.direction === direction && value.purpose !== 'sidechain')) continue;
     const boundary = direction === 'input' ? chain.mainPath.inputBoundaryPortRef : chain.mainPath.outputBoundaryPortRef;
@@ -100,9 +107,19 @@ export function proposeQuickPatch(session) {
     if (graph.connections.some(edge => edge.enabledState !== 'disabled' && !internal.has(edge.connectionId) &&
       edge.routingRole === 'main' && edge[localEndpoint] === boundary &&
       (edge.channelMap || existing.get(chain.chainId)?.[direction].length))) continue;
-    const count = CHAIN_FORMAT_PORTS[chain.audioFormat]?.[direction] ?? 1;
+    const count = chainFormatPortProperties(chain, direction).channelCount;
     const chosen = takeChannels(original, direction, count, occupied, direction === 'output' ? reserved : new Set());
-    if (chosen.length !== count) { issue(issues, `session.chains.${chain.chainId}`, 'patch.capacity', `Canaux ${direction} insuffisants.`); continue; }
+    if (chosen.length !== count) {
+      const availableChannels = availableChannelCount(original, direction, occupied,
+        direction === 'output' ? reserved : new Set());
+      const missing = { chainId: chain.chainId, chainName: chain.name, direction,
+        boundaryPortRef: boundary, format: direction === 'input' ? chain.inputFormat : chain.outputFormat,
+        requiredChannels: count, availableChannels, reason: 'insufficient-contiguous-capacity' };
+      missingAssignments.push(missing);
+      warning(issues, `session.chains.${chain.chainId}.${direction}`, 'patch.capacity',
+        `${chain.name} : ${count} canal${count > 1 ? 'aux' : ''} ${direction} requis, ${availableChannels} disponible${availableChannels > 1 ? 's' : ''}.`);
+      continue;
+    }
     chosen.forEach(value => occupied.add(value.resourceId));
     const assignmentId = `assignment:auto:${original.sessionId}:${chain.chainId}:${direction}`;
     const nodeId = `node:auto:${original.sessionId}:${chain.chainId}:${direction}`;
@@ -116,16 +133,20 @@ export function proposeQuickPatch(session) {
     graph.connections.push(createAudioConnection({ connectionId, graphId: graph.graphId,
       sourcePortId: direction === 'input' ? portId : targetPort, destinationPortId: direction === 'input' ? targetPort : portId,
       routingRole: 'main', originAssignmentId: assignmentId,
-      channelMap: chain.audioFormat === 'mono-to-stereo'
-        ? Array.from({ length: count }, (_, index) => ({ sourceChannel: index + 1, destinationChannel: index + 1 })) : null }));
+      channelMap: null }));
     assignments.push(createPatchAssignment({ assignmentId, sessionId: original.sessionId, chainId: chain.chainId, direction,
       resourceRefs: chosen.map(value => value.resourceId), targetPortRefs: [targetPort], connectionRefs: [connectionId] }));
   }
   const candidate = { ...original, audioGraph: graph, patchAssignments: assignments };
-  issues.push(...validatePatchState(candidate));
+  const validationIssues = validatePatchState(candidate);
+  issues.push(...validationIssues);
   const retainedIds = new Set(retained.map(value => value.assignmentId));
   const addedAssignments = assignments.filter(value => !retainedIds.has(value.assignmentId));
-  return { valid: !issues.some(value => value.severity === 'error'), issues, baseFingerprint: fingerprint(session), candidate,
+  const hasErrors = validationIssues.some(value => value.severity === 'error');
+  const status = hasErrors ? 'error' : missingAssignments.length === 0 ? 'complete' :
+    addedAssignments.length > 0 ? 'partial' : 'impossible';
+  return { status, valid: status === 'complete' || status === 'partial', issues, missingAssignments,
+    baseFingerprint: fingerprint(session), candidate,
     diff: { removedConnectionRefs: [],
       addedAssignmentRefs: addedAssignments.map(value => value.assignmentId),
       addedConnectionRefs: addedAssignments.flatMap(value => value.connectionRefs),

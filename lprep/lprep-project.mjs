@@ -1,12 +1,12 @@
 import { createStableId, isStableId } from './lprep-identifiers.mjs';
-import { CHAIN_FORMAT_PORTS, createAudioGraph, validateAudioGraph, validateChainMainPath } from './lprep-audio-graph.mjs';
+import { MAIN_AUDIO_FORMATS, createAudioGraph, legacyChainFormats, validateAudioGraph, validateChainMainPath } from './lprep-audio-graph.mjs';
 import { freezeEnvironmentSnapshot, validateSessionEnvironment } from './lprep-environment.mjs';
 import { validatePatchState } from './lprep-patch.mjs';
 import { validateTemporaryReplacements } from './lprep-replacements.mjs';
 
-export const L_PREP_SCHEMA_VERSION = 1;
+export const L_PREP_SCHEMA_VERSION = 2;
 export const CHAIN_ROLES = new Set(['insert', 'fx', 'monitoring']);
-export const AUDIO_FORMATS = new Set([...Object.keys(CHAIN_FORMAT_PORTS), 'multichannel', 'unknown']);
+export const AUDIO_FORMATS = MAIN_AUDIO_FORMATS;
 
 export function hasUnresolvedVariant(instance) {
   return instance?.resolutionStatus === 'unresolved' && instance.variantRef === null;
@@ -46,10 +46,14 @@ export function createPluginInstance({ instanceId = createStableId('instance'), 
     metadata: clone(metadata), extensions: clone(extensions) };
 }
 
-export function createChain({ chainId = createStableId('chain'), sessionId, name, role, audioFormat = 'unknown',
+export function createChain({ chainId = createStableId('chain'), sessionId, name, role,
+  inputFormat, outputFormat, audioFormat,
   color = null, compensationGroupId = null, pluginOrder = [], mainPath, presentationLinks = [],
   interfaces = [], allocationEligibility = true, metadata = {}, extensions = {} } = {}) {
-  return { chainId, sessionId, name, role, audioFormat, color, compensationGroupId,
+  const legacy = audioFormat === undefined ? null : legacyChainFormats(audioFormat);
+  inputFormat ??= legacy?.inputFormat ?? 'stereo';
+  outputFormat ??= legacy?.outputFormat ?? 'stereo';
+  return { chainId, sessionId, name, role, inputFormat, outputFormat, color, compensationGroupId,
     pluginOrder: clone(pluginOrder), mainPath: clone(mainPath), presentationLinks: clone(presentationLinks), interfaces: clone(interfaces),
     allocationEligibility, metadata: clone(metadata), extensions: clone(extensions) };
 }
@@ -203,7 +207,8 @@ function validateSession(session, projectId, path, registry) {
     if (chain?.sessionId !== sessionValue.sessionId) issue(issues, `${at}.sessionId`, 'chain.session', 'La chaîne doit appartenir à sa session.');
     if (typeof chain?.name !== 'string' || !chain.name.trim()) issue(issues, `${at}.name`, 'chain.name', 'Nom de chaîne requis.');
     if (!CHAIN_ROLES.has(chain?.role)) issue(issues, `${at}.role`, 'chain.role', 'Rôle de chaîne invalide.');
-    if (!AUDIO_FORMATS.has(chain?.audioFormat)) issue(issues, `${at}.audioFormat`, 'chain.audio-format', 'Format audio invalide.');
+    if (!AUDIO_FORMATS.has(chain?.inputFormat)) issue(issues, `${at}.inputFormat`, 'chain.input-format', 'Format d’entrée invalide.');
+    if (!AUDIO_FORMATS.has(chain?.outputFormat)) issue(issues, `${at}.outputFormat`, 'chain.output-format', 'Format de sortie invalide.');
     const pluginOrder = array(chain?.pluginOrder, issues, `${at}.pluginOrder`);
     const local = new Set();
     for (const instanceId of pluginOrder) {
@@ -217,13 +222,19 @@ function validateSession(session, projectId, path, registry) {
     }
     issues.push(...validateChainMainPath(chain, sessionValue.audioGraph, graphResult.indexes, instances, at));
     const mainPath = chain?.mainPath;
-    if (chain?.audioFormat === 'mono-to-stereo') {
-      const input = graphResult.indexes.ports.get(mainPath?.inputBoundaryPortRef);
-      const output = graphResult.indexes.ports.get(mainPath?.outputBoundaryPortRef);
-      if (input?.channelCount !== 1 || output?.channelCount !== 2 ||
-        input.channelLayout !== 'mono' || output.channelLayout !== 'stereo') {
-        issue(issues, at, 'chain.asymmetric-format', 'Une chaîne Mono vers Stéréo doit garder une entrée mono et une sortie stéréo.');
-      }
+    const input = graphResult.indexes.ports.get(mainPath?.inputBoundaryPortRef);
+    const output = graphResult.indexes.ports.get(mainPath?.outputBoundaryPortRef);
+    const expectedInputChannels = chain?.inputFormat === 'mono' ? 1 : 2;
+    const expectedOutputChannels = chain?.outputFormat === 'mono' ? 1 : 2;
+    if (AUDIO_FORMATS.has(chain?.inputFormat) && input &&
+        ((input.channelCount !== null && input.channelCount !== expectedInputChannels) ||
+         (input.channelLayout !== 'unknown' && input.channelLayout !== chain.inputFormat))) {
+      issue(issues, `${at}.inputFormat`, 'chain.input-format-ports', 'Le format d’entrée doit correspondre au port principal déclaré.');
+    }
+    if (AUDIO_FORMATS.has(chain?.outputFormat) && output &&
+        ((output.channelCount !== null && output.channelCount !== expectedOutputChannels) ||
+         (output.channelLayout !== 'unknown' && output.channelLayout !== chain.outputFormat))) {
+      issue(issues, `${at}.outputFormat`, 'chain.output-format-ports', 'Le format de sortie doit correspondre au port principal déclaré.');
     }
     for (const ref of [mainPath?.inputBoundaryPortRef, mainPath?.outputBoundaryPortRef]) {
       mainPathNodes.add(graphResult.indexes.ports.get(ref)?.nodeId);

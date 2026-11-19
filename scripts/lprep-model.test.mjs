@@ -165,8 +165,8 @@ test('les constructeurs produisent un projet minimal sérialisable', () => {
     catalogRef: { pluginId: 'example--plugin', fallback: { name: 'Plugin', vendor: 'Example' } },
     variantRef: { variantId: 'variant:example', revision: 1, fallback: { name: 'AU mono' } } });
   const node = createAudioNode({ nodeId: id('node'), graphId, type: 'plugin-instance', instanceRef: instance.instanceId });
-  const input = createAudioPort({ portId: id('port'), nodeId: node.nodeId, direction: 'input', role: 'main', channelCount: 1 });
-  const output = createAudioPort({ portId: id('port'), nodeId: node.nodeId, direction: 'output', role: 'main', channelCount: 1 });
+  const input = createAudioPort({ portId: id('port'), nodeId: node.nodeId, direction: 'input', role: 'main', channelCount: 1, channelLayout: 'mono' });
+  const output = createAudioPort({ portId: id('port'), nodeId: node.nodeId, direction: 'output', role: 'main', channelCount: 1, channelLayout: 'mono' });
   const graph = createAudioGraph({ graphId, sessionId, nodes: [node], ports: [input, output] });
   const chain = createChain({ chainId: id('chain'), sessionId, name: 'Mono', role: 'insert', audioFormat: 'mono',
     pluginOrder: [instance.instanceId], mainPath: { inputBoundaryPortRef: input.portId,

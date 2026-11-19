@@ -52,7 +52,8 @@ test('un conflit de Patch rapide est exposé et ne modifie pas le projet', async
   project.sessions[0].environmentConfiguration.virtualResources.forEach(value => { value.availability = 'unavailable'; });
   const controller = new LPrepUIController(); controller.openProject(project);
   const before = structuredClone(controller.project), proposal = controller.proposePatch();
-  assert.equal(proposal.valid, false); assert.ok(proposal.issues.some(value => value.code === 'patch.capacity'));
+  assert.equal(proposal.valid, false); assert.equal(proposal.status, 'impossible');
+  assert.ok(proposal.issues.some(value => value.code === 'patch.capacity'));
   assert.equal(controller.applyPatch().status, 'invalid'); assert.deepEqual(controller.project, before);
 });
 

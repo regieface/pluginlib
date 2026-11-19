@@ -1,6 +1,6 @@
 import { planClearPatch } from './lprep-patch-edit.mjs';
 import { setSessionMachine, setSessionSampleRate } from './lprep-audio-settings.mjs';
-import { chainFormatPortProperties, createAudioGraph, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, createAudioGraph, createAudioNode, createAudioPort, legacyChainFormats } from './lprep-audio-graph.mjs';
 import { BrowserRevisionEngine } from './lprep-browser-persistence.mjs';
 import { LPrepConstructorService } from './lprep-constructor-services.mjs';
 import { createDefaultEnvironmentProfile, instantiateEnvironmentProfile } from './lprep-environment.mjs';
@@ -9,6 +9,7 @@ import { applyPatchProposal } from './lprep-patch.mjs';
 import { createChain, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
 import { createChainPresetFromSession, MemoryPresetStore } from './lprep-presets.mjs';
 import { deserializeProject, serializeProject } from './lprep-serialization.mjs';
+import { prepareSessionCreation } from './lprep-session-creation.mjs';
 import { ProjectTransaction } from './lprep-transactions.mjs';
 import { setChainSidechainCount } from './lprep-chain-edits.mjs';
 
@@ -19,6 +20,7 @@ export class LPrepUIController {
     this.idFactory = idFactory; this.revisions = revisionStore ? new BrowserRevisionEngine(revisionStore) : null;
     this.presets = new MemoryPresetStore(); this.service = null; this.activeSessionId = null;
     this.patchProposal = null; this.lastRevisionId = null;
+    this.lastSessionCreation = null;
     this.savedHistoryRevisionId = null;
   }
   createProject(name = 'Nouveau projet') {
@@ -35,7 +37,7 @@ export class LPrepUIController {
     const diagnostics = validateProject(project).filter(value => value.severity === 'error');
     if (diagnostics.length) return { status: 'invalid', diagnostics };
     this.service = new LPrepConstructorService(project); this.activeSessionId = project.sessions[0]?.sessionId || null;
-    this.patchProposal = null; this.lastRevisionId = null;
+    this.patchProposal = null; this.lastSessionCreation = null; this.lastRevisionId = null;
     this.savedHistoryRevisionId = this.service.history.revisionId;
     return { status: 'opened', project: this.project };
   }
@@ -89,21 +91,39 @@ export class LPrepUIController {
       apply: project => { project.sessions.push(session); return project; } }));
     if (result.status === 'committed') this.activeSessionId = sessionId; return result;
   }
+  createSessionFromDraft(draft, { profiles = [createDefaultEnvironmentProfile()] } = {}) {
+    let prepared;
+    try {
+      prepared = prepareSessionCreation(this.project, draft, { profiles, presets: this.presets.list(),
+        idFactory: this.idFactory, baseRevisionId: this.service.history.revisionId });
+    } catch (cause) {
+      return { status: 'error', diagnostics: [{ code: 'session-creation.exception', message: cause.message }] };
+    }
+    if (prepared.status !== 'prepared') return prepared;
+    const result = this.commit(prepared.transaction);
+    if (result.status !== 'committed') return result;
+    this.activeSessionId = prepared.sessionId;
+    this.lastSessionCreation = { sessionId: prepared.sessionId, allocation: clone(prepared.allocation) };
+    return { ...result, sessionId: prepared.sessionId, allocation: clone(prepared.allocation),
+      createdChainIds: [...prepared.createdChainIds] };
+  }
   duplicateActiveSession() {
     const transaction = this.service.duplicateSession(this.activeSessionId, { idFactory: this.idFactory });
     const result = this.commit(transaction);
     if (result.status === 'committed') this.activeSessionId = result.project.sessions.at(-1).sessionId;
     return result;
   }
-  createChain({ name = 'Nouvelle chaîne', role = 'insert', audioFormat = 'stereo', color = '#6574d8', sidechainCount = 0 } = {}) {
+  createChain({ name = 'Nouvelle chaîne', role = 'insert', audioFormat, inputFormat, outputFormat,
+    color = '#6574d8', sidechainCount = 0 } = {}) {
+    const formats = audioFormat === undefined ? { inputFormat: inputFormat ?? 'stereo', outputFormat: outputFormat ?? 'stereo' } : legacyChainFormats(audioFormat);
     const sessionId = this.activeSessionId, graphId = this.activeSession.audioGraph.graphId;
     const nodeId = this.idFactory('node'), inputId = this.idFactory('port'), outputId = this.idFactory('port'), chainId = this.idFactory('chain');
     return this.commit(new ProjectTransaction({ baseRevisionId: this.service.history.revisionId, apply: project => {
       const session = project.sessions.find(value => value.sessionId === sessionId);
       session.audioGraph.nodes.push(createAudioNode({ nodeId, graphId, type: 'bus', label: name }));
       session.audioGraph.ports.push(...[['input', inputId], ['output', outputId]].map(([direction, portId]) =>
-        createAudioPort({ portId, nodeId, direction, role: 'main', ...chainFormatPortProperties(audioFormat, direction) })));
-      const chain = createChain({ chainId, sessionId, name, role, audioFormat, color, pluginOrder: [],
+        createAudioPort({ portId, nodeId, direction, role: 'main', ...chainFormatPortProperties(formats, direction) })));
+      const chain = createChain({ chainId, sessionId, name, role, ...formats, color, pluginOrder: [],
         mainPath: { inputBoundaryPortRef: inputId, outputBoundaryPortRef: outputId, connectionRefs: [] } });
       setChainSidechainCount(session, chain, sidechainCount, this.idFactory);
       session.chains.push(chain);

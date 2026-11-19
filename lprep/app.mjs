@@ -9,23 +9,27 @@ import { catalogEntries, existingVariants, filterCatalog, importCatalogRights, i
 import { bindBuilderDrag, bindContextMenu } from './lprep-builder-interactions.mjs';
 import { createThumbnailView } from './lprep-thumbnails.mjs';
 import { classifiedTreatments, factStateLabel, navigationFacets, sharedClassificationDetails, treatmentDetails, TREATMENT_OPTIONS } from '../treatment-navigation.mjs';
-import { CHAIN_FORMAT_PORTS, chainSidechainPorts } from './lprep-audio-graph.mjs';
+import { CHAIN_FORMAT_PORTS, chainFormatKey, chainSidechainPorts } from './lprep-audio-graph.mjs';
 import { graphPatchChannels } from './lprep-patch.mjs';
 import { virtualPatchOptions } from './lprep-patch-edit.mjs';
 import { patchChannelName as channelName, patchDisplayCells, patchRows } from './lprep-patch-view.mjs';
 import { editableFormatPorts } from './lprep-chain-edits.mjs';
 import { CHAIN_ROLES } from './lprep-project.mjs';
 import { prepareDemoProject } from './lprep-demo.mjs';
-import { virtualResourceId } from './lprep-environment.mjs';
+import { createDefaultEnvironmentProfile, virtualResourceId } from './lprep-environment.mjs';
+import { applySessionChainCount, createSessionDraft, planSessionChainCount, sessionDraftCapacity,
+  sessionDraftNeeds, validateSessionDraft } from './lprep-session-draft.mjs';
 import { LPrepUIController } from './lprep-ui-controller.mjs';
 
 const controller = new LPrepUIController({ revisionStore: new IndexedDBRevisionStore() });
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+const chainAudioFormat = chain => chainFormatKey(chain.inputFormat, chain.outputFormat);
 
 const roleLabels = { insert: 'Insert', fx: 'FX', monitoring: 'Monitoring' };
-const formatLabels = { mono: 'Mono', stereo: 'Stéréo', 'mono-to-stereo': 'Mono vers Stéréo', multichannel: 'Multicanal', unknown: 'Inconnu' };
+const formatLabels = { mono: 'Mono', stereo: 'Stéréo', 'mono-to-stereo': 'Mono vers Stéréo',
+  'stereo-to-mono': 'Stéréo vers Mono', multichannel: 'Multicanal', unknown: 'Inconnu' };
 const chainPalette = [
   ['Corail', '#e25d3a'], ['Ocre', '#d8a23c'], ['Turquoise', '#35a8a3'], ['Indigo', '#6574d8'],
   ['Vert', '#66a357'], ['Bleu', '#3887c7'], ['Prune', '#9564b4'], ['Rose', '#cf668d']
@@ -287,11 +291,11 @@ function renderSelection() {
   const options = (entries, selected) => entries.map(([value, text]) =>
     `<option value="${escapeHtml(value)}"${value === selected ? ' selected' : ''}>${escapeHtml(text)}</option>`).join('');
   const formats = Object.entries(formatLabels).filter(([value]) =>
-    value === chain.audioFormat || (editFormat && Object.hasOwn(CHAIN_FORMAT_PORTS, value)));
+    value === chainAudioFormat(chain) || (editFormat && Object.hasOwn(CHAIN_FORMAT_PORTS, value)));
   content.innerHTML = `<form class="chain-settings-form">
       <label>Nom<input name="name" value="${escapeHtml(chain.name)}" required></label>
       <label>Type<select name="role">${options(Object.entries(roleLabels), chain.role)}</select></label>
-      <label>Format<select name="audioFormat"${editFormat ? '' : ' disabled'}>${options(formats, chain.audioFormat)}</select></label>
+      <label>Format<select name="audioFormat"${editFormat ? '' : ' disabled'}>${options(formats, chainAudioFormat(chain))}</select></label>
       ${editFormat ? '' : '<small>Modifiable sur une chaîne vide et sans routing.</small>'}
       <label>Entrées Sidechain (SC)<input type="number" name="sidechainCount" min="0" max="32" step="1" required
         value="${chainSidechainPorts(session.audioGraph, chain).length}"></label>
@@ -394,7 +398,7 @@ function renderChains() {
     if (CSS.supports('color', chain.color)) select.style.setProperty('--chain-color', chain.color);
     const scCount = chainSidechainPorts(session.audioGraph, chain).length;
     select.innerHTML = `<strong>${escapeHtml(chain.name)}</strong>
-      <small>${escapeHtml(formatLabels[chain.audioFormat])} · ${scCount} SC</small>
+      <small>${escapeHtml(formatLabels[chainAudioFormat(chain)])} · ${scCount} SC</small>
       <small>${escapeHtml(roleLabels[chain.role])}</small>`;
     select.title = `${chain.name} · Glisser pour déplacer · Double-clic pour renommer`;
     startDrag(select, { kind: 'chain', chainId: chain.chainId, label: chain.name });
@@ -887,7 +891,7 @@ function renderPatchTable(session, focus) {
       <td>${patchSide(input, 'input')}${patchSidechains(sidechains)}</td>
       <th scope="row" class="patch-chain-info">
         <button type="button" class="patch-chain-select" aria-pressed="${selected}">${escapeHtml(chain.name)}</button>
-        <small>${escapeHtml(roleLabels[chain.role])} · ${escapeHtml(formatLabels[chain.audioFormat])}</small>
+        <small>${escapeHtml(roleLabels[chain.role])} · ${escapeHtml(formatLabels[chainAudioFormat(chain)])}</small>
         <button type="button" class="patch-info-button" aria-label="Informations techniques de ${escapeHtml(chain.name)}" title="Informations techniques">ⓘ</button>
       </th>
       <td>${patchSide(output, 'output')}</td>
@@ -943,7 +947,7 @@ function renderPatch({ preserveRows = false } = {}) {
   const proposal = controller.patchProposal, root = $('#patch-proposal');
   if (!proposal) root.innerHTML = '';
   else if (!proposal.valid) root.innerHTML = `<div class="proposal error"><strong>Proposition impossible</strong><div>${proposal.issues.map(value => escapeHtml(value.message)).join('<br>')}</div><div class="proposal-actions"><button id="cancel-proposal">Fermer</button></div></div>`;
-  else root.innerHTML = `<div class="proposal"><strong>Proposition prête</strong><div>${proposal.diff.addedAssignmentRefs.length} affectations et ${proposal.diff.addedConnectionRefs.length} connexions à créer.</div><div class="proposal-actions"><button id="apply-proposal" class="primary">Confirmer l’application</button><button id="cancel-proposal">Annuler</button></div></div>`;
+  else root.innerHTML = `<div class="proposal"><strong>${proposal.status === 'partial' ? 'Proposition partielle' : 'Proposition prête'}</strong><div>${proposal.diff.addedAssignmentRefs.length} affectations et ${proposal.diff.addedConnectionRefs.length} connexions à créer.</div>${proposal.missingAssignments.length ? `<div>${proposal.issues.filter(value => value.code === 'patch.capacity').map(value => escapeHtml(value.message)).join('<br>')}</div>` : ''}<div class="proposal-actions"><button id="apply-proposal" class="primary">Confirmer l’application</button><button id="cancel-proposal">Annuler</button></div></div>`;
   $('#apply-proposal')?.addEventListener('click', () => resultNotice(controller.applyPatch(), 'Patch appliqué atomiquement.'));
   $('#cancel-proposal')?.addEventListener('click', () => { controller.cancelPatch(); renderPatch(); });
 }
@@ -992,6 +996,14 @@ function render() {
   $('#routing-status').title = 'Chaînes avec au moins une liaison virtuelle';
   renderSaveStatus();
   $('#session-meta').textContent = session ? `${session.targetMachineRef?.fallback?.name || 'Machine non définie'} · ${session.environmentSourceRef?.fallback?.name || 'Environnement non défini'}` : '—';
+  const creation = controller.lastSessionCreation;
+  const warning = $('#session-creation-warning');
+  const allocation = creation?.sessionId === session?.sessionId ? creation.allocation : null;
+  const incompletePatch = allocation && ['partial', 'impossible'].includes(allocation.status);
+  warning.hidden = !incompletePatch;
+  warning.textContent = incompletePatch ? (allocation.status === 'partial' ?
+    `Patch automatique partiel : ${allocation.missingAssignments.length} affectation(s) restent à compléter dans Patch rapide.` :
+    `Aucune affectation automatique possible : complétez le routing dans Patch rapide.`) : '';
   renderSessions(); renderChains(); renderLibrary(); renderPatch(); renderDiagnostics(); renderSaved();
 }
 
@@ -1028,7 +1040,6 @@ function requestDocumentName(project) {
   name.select();
 }
 $('#new-project').onclick = () => requestDocumentName(true);
-$('#add-session').onclick = () => requestDocumentName(false);
 $('#cancel-create-document').onclick = () => createDocumentDialog.close();
 createDocumentForm.onsubmit = event => {
   event.preventDefault();
@@ -1051,6 +1062,144 @@ createDocumentForm.onsubmit = event => {
     createDocumentError.textContent = error.message;
     createDocumentError.hidden = false;
   }
+};
+
+const createSessionDialog = $('#create-session-dialog');
+const createSessionForm = $('#create-session-form');
+const sessionDraftRows = $('#session-draft-rows');
+const sessionEnvironmentProfiles = [createDefaultEnvironmentProfile()];
+let sessionDraft;
+
+function sessionDraftContext() {
+  return { machines: projectMachines(controller.project), profiles: sessionEnvironmentProfiles,
+    presets: controller.presets.list() };
+}
+
+function selectedSessionProfile() {
+  return sessionEnvironmentProfiles.find(profile => profile.environmentProfileId === sessionDraft.environmentProfileId) || null;
+}
+
+function updateSessionDraftStatus() {
+  const context = sessionDraftContext();
+  const issues = validateSessionDraft(sessionDraft, context);
+  const profile = selectedSessionProfile();
+  const capacity = sessionDraftCapacity(profile), needs = sessionDraftNeeds(sessionDraft);
+  const exceeded = needs.inputs > capacity.inputs || needs.outputs > capacity.outputs;
+  const summary = $('#session-resource-summary');
+  summary.textContent = `Entrées : ${needs.inputs}/${capacity.inputs} · Sorties : ${needs.outputs}/${capacity.outputs}` +
+    (exceeded ? ' — capacité dépassée, la création restera autorisée dans S2.' : '');
+  summary.classList.toggle('warning', exceeded);
+  const general = issues.filter(issue => !issue.path.startsWith('chains.'));
+  $('#session-draft-general-errors').textContent = general.map(issue => issue.message).join(' ');
+  for (const row of sessionDraftRows.rows) {
+    const prefix = `chains.${row.dataset.draftChainId}.`;
+    const rowIssues = issues.filter(issue => issue.path.startsWith(prefix));
+    row.querySelector('.row-error').textContent = rowIssues.map(issue => issue.message).join(' ');
+    for (const field of row.querySelectorAll('[name]')) {
+      field.classList.toggle('invalid', rowIssues.some(issue => issue.path === `${prefix}${field.name}`));
+    }
+  }
+  createSessionForm.elements.sessionName.classList.toggle('invalid', issues.some(issue => issue.path === 'name'));
+  $('#prepare-session').disabled = issues.length > 0;
+  return { issues, capacity, needs, exceeded };
+}
+
+function renderSessionDraftRows() {
+  const presets = controller.presets.list();
+  const presetOptions = ['<option value="">Aucun</option>', ...presets.map(preset => {
+    const key = `${preset.presetId}@${preset.revision}`;
+    return `<option value="${escapeHtml(key)}">${escapeHtml(preset.name)}</option>`;
+  })].join('');
+  sessionDraftRows.innerHTML = sessionDraft.chains.map(chain => {
+    const selectedPreset = chain.presetRef ? `${chain.presetRef.presetId}@${chain.presetRef.revision}` : '';
+    const options = presetOptions.replace(`value="${escapeHtml(selectedPreset)}"`, `value="${escapeHtml(selectedPreset)}" selected`);
+    return `<tr data-draft-chain-id="${escapeHtml(chain.draftChainId)}"><td>${escapeHtml(roleLabels[chain.role])}</td>
+      <td><input name="name" value="${escapeHtml(chain.name)}" aria-label="Nom ${escapeHtml(roleLabels[chain.role])}"><div class="row-error"></div></td>
+      <td><select name="inputFormat"><option value="mono"${chain.inputFormat === 'mono' ? ' selected' : ''}>Mono</option><option value="stereo"${chain.inputFormat === 'stereo' ? ' selected' : ''}>Stéréo</option></select></td>
+      <td><select name="outputFormat"><option value="mono"${chain.outputFormat === 'mono' ? ' selected' : ''}>Mono</option><option value="stereo"${chain.outputFormat === 'stereo' ? ' selected' : ''}>Stéréo</option></select></td>
+      <td><select name="presetRef">${options}</select></td>
+      <td><input name="color" type="color" value="${escapeHtml(chain.color)}" aria-label="Couleur ${escapeHtml(chain.name || roleLabels[chain.role])}"></td>
+      <td><input name="dlNumber" type="number" min="1" step="1" value="${chain.dlNumber ?? ''}" placeholder="—" aria-label="Groupe DLY"></td></tr>`;
+  }).join('');
+  $('#session-draft-empty').hidden = sessionDraft.chains.length > 0;
+  for (const row of sessionDraftRows.rows) {
+    const chain = sessionDraft.chains.find(value => value.draftChainId === row.dataset.draftChainId);
+    for (const field of row.querySelectorAll('[name]')) field.oninput = () => {
+      if (field.name === 'presetRef') {
+        const preset = presets.find(value => `${value.presetId}@${value.revision}` === field.value);
+        chain.presetRef = preset ? { presetId: preset.presetId, revision: preset.revision } : null;
+      } else if (field.name === 'dlNumber') chain.dlNumber = field.value === '' ? null : field.valueAsNumber;
+      else chain[field.name] = field.value;
+      updateSessionDraftStatus();
+    };
+  }
+  updateSessionDraftStatus();
+}
+
+function openSessionDraft() {
+  const machines = projectMachines(controller.project);
+  const current = controller.activeSession;
+  const machineId = current?.targetMachineRef?.machineId || machines[0]?.machineId || null;
+  const sampleRate = [48000, 96000].includes(current?.audioGraph?.sampleRate) ? current.audioGraph.sampleRate : 48000;
+  sessionDraft = createSessionDraft({ idFactory: controller.idFactory, machineId,
+    environmentProfileId: sessionEnvironmentProfiles[0].environmentProfileId, sampleRate });
+  createSessionForm.reset();
+  const machineSelect = createSessionForm.elements.machine;
+  machineSelect.replaceChildren(new Option('Non définie', ''), ...machines.map(machine =>
+    new Option(machine.fallback.name, machine.machineId, false, machine.machineId === machineId)));
+  const environmentSelect = createSessionForm.elements.environment;
+  environmentSelect.replaceChildren(...sessionEnvironmentProfiles.map(profile =>
+    new Option(profile.name, profile.environmentProfileId, false, profile.environmentProfileId === sessionDraft.environmentProfileId)));
+  createSessionForm.elements.sampleRate.value = String(sampleRate);
+  for (const menu of headerMenus) menu.open = false;
+  renderSessionDraftRows();
+  createSessionDialog.showModal();
+  createSessionForm.elements.sessionName.focus();
+}
+
+$('#add-session').onclick = openSessionDraft;
+$('#cancel-create-session').onclick = () => createSessionDialog.close();
+for (const [role, fieldName] of [['insert', 'insertCount'], ['fx', 'fxCount'], ['monitoring', 'monitoringCount']]) {
+  const updateCount = event => {
+    const previous = sessionDraft.counts[role];
+    const count = Math.max(0, event.target.valueAsNumber || 0);
+    if (count === previous) return;
+    const plan = planSessionChainCount(sessionDraft, role, count, controller.idFactory);
+    if (plan.confirmationRequired && !confirm('Supprimer les chaînes renseignées situées à la fin de ce groupe ?')) {
+      event.target.value = String(previous);
+      return;
+    }
+    sessionDraft = applySessionChainCount(sessionDraft, plan);
+    event.target.value = String(count);
+    renderSessionDraftRows();
+  };
+  createSessionForm.elements[fieldName].oninput = updateCount;
+  createSessionForm.elements[fieldName].onchange = updateCount;
+  createSessionForm.elements[fieldName].onblur = updateCount;
+}
+for (const field of ['sessionName', 'machine', 'environment', 'sampleRate']) {
+  createSessionForm.elements[field].oninput = event => {
+    const key = { sessionName: 'name', machine: 'machineId', environment: 'environmentProfileId' }[field] || field;
+    sessionDraft[key] = field === 'sampleRate' ? Number(event.target.value) : event.target.value || null;
+    updateSessionDraftStatus();
+  };
+}
+createSessionForm.onsubmit = event => {
+  event.preventDefault();
+  const { issues } = updateSessionDraftStatus();
+  if (issues.length) return;
+  const result = controller.createSessionFromDraft(sessionDraft, { profiles: sessionEnvironmentProfiles });
+  if (result.status !== 'committed') {
+    const message = result.diagnostics?.[0]?.message || result.diagnostics?.[0]?.code || 'Création impossible.';
+    $('#session-draft-general-errors').textContent = message;
+    notify(message, true);
+    return;
+  }
+  createSessionDialog.close(); selectedChainId = null; showView('builder'); render();
+  const allocation = result.allocation;
+  if (allocation.status === 'partial') notify(`Session créée · patch partiel, ${allocation.missingAssignments.length} affectation(s) à compléter.`);
+  else if (allocation.status === 'impossible') notify('Session créée · routing automatique impossible, Patch rapide reste disponible.');
+  else notify('Session créée et patchée automatiquement.');
 };
 $('#demo-project').onclick = async () => {
   try {

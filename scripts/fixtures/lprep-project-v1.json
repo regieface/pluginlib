@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "projectId": "project:reference",
   "name": "DRUM / BASS / FX / INSTRUS",
   "metadata": {
@@ -153,15 +153,16 @@
         "extensions": { "futureGraphField": { "preserve": true } }
       },
       "chains": [
-        { "chainId": "chain:drum", "sessionId": "session:main", "name": "DRUM", "role": "insert", "audioFormat": "stereo", "color": "#E25D3A", "compensationGroupId": "compensation-group:1", "pluginOrder": ["instance:drum-a", "instance:drum-b"], "mainPath": { "inputBoundaryPortRef": "port:drum-a-in", "outputBoundaryPortRef": "port:drum-b-out", "connectionRefs": ["connection:drum-main"] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
-        { "chainId": "chain:bass", "sessionId": "session:main", "name": "BASS", "role": "insert", "audioFormat": "mono", "color": "#D8A23C", "compensationGroupId": null, "pluginOrder": ["instance:bass"], "mainPath": { "inputBoundaryPortRef": "port:bass-in", "outputBoundaryPortRef": "port:bass-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
-        { "chainId": "chain:fx", "sessionId": "session:main", "name": "FX", "role": "fx", "audioFormat": "stereo", "color": "#35A8A3", "compensationGroupId": null, "pluginOrder": ["instance:fx"], "mainPath": { "inputBoundaryPortRef": "port:fx-in", "outputBoundaryPortRef": "port:fx-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
-        { "chainId": "chain:instrus", "sessionId": "session:main", "name": "INSTRUS", "role": "insert", "audioFormat": "stereo", "color": "#6574D8", "compensationGroupId": null, "pluginOrder": ["instance:instrus"], "mainPath": { "inputBoundaryPortRef": "port:instrus-in", "outputBoundaryPortRef": "port:instrus-out", "connectionRefs": [] }, "presentationLinks": ["instance:independent"], "allocationEligibility": true, "metadata": {}, "extensions": {} }
+        { "chainId": "chain:drum", "sessionId": "session:main", "name": "DRUM", "role": "insert", "inputFormat": "stereo", "outputFormat": "stereo", "color": "#E25D3A", "compensationGroupId": "compensation-group:1", "pluginOrder": ["instance:drum-a", "instance:drum-b"], "mainPath": { "inputBoundaryPortRef": "port:drum-a-in", "outputBoundaryPortRef": "port:drum-b-out", "connectionRefs": ["connection:drum-main"] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:bass", "sessionId": "session:main", "name": "BASS", "role": "insert", "inputFormat": "mono", "outputFormat": "mono", "color": "#D8A23C", "compensationGroupId": null, "pluginOrder": ["instance:bass"], "mainPath": { "inputBoundaryPortRef": "port:bass-in", "outputBoundaryPortRef": "port:bass-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:fx", "sessionId": "session:main", "name": "FX", "role": "fx", "inputFormat": "stereo", "outputFormat": "stereo", "color": "#35A8A3", "compensationGroupId": null, "pluginOrder": ["instance:fx"], "mainPath": { "inputBoundaryPortRef": "port:fx-in", "outputBoundaryPortRef": "port:fx-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:instrus", "sessionId": "session:main", "name": "INSTRUS", "role": "insert", "inputFormat": "stereo", "outputFormat": "stereo", "color": "#6574D8", "compensationGroupId": null, "pluginOrder": ["instance:instrus"], "mainPath": { "inputBoundaryPortRef": "port:instrus-in", "outputBoundaryPortRef": "port:instrus-out", "connectionRefs": [] }, "presentationLinks": ["instance:independent"], "allocationEligibility": true, "metadata": {}, "extensions": {} }
       ],
       "chainOrder": ["chain:drum", "chain:bass", "chain:fx", "chain:instrus"],
       "compensationGroups": [
         { "compensationGroupId": "compensation-group:1", "sessionId": "session:main", "name": "Groupe 1", "memberChainRefs": ["chain:drum"], "policy": "declarative", "metadata": {}, "extensions": {} }
       ],
+      "temporaryReplacements": [],
       "extensions": { "futureSessionState": "unknown-preserved" }
     },
     {
@@ -184,6 +185,7 @@
       "chains": [],
       "chainOrder": [],
       "compensationGroups": [],
+      "temporaryReplacements": [],
       "extensions": {}
     }
   ],

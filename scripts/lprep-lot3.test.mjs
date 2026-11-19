@@ -144,9 +144,10 @@ test('un document futur est refusé en écriture et une migration échoue sans a
   const before = clone(future), migration = migrateProject(future);
   assert.equal(migration.status, 'unsupported'); assert.deepEqual(future, before);
   const old = clone(project); delete old.sessions[0].temporaryReplacements;
+  const oldBefore = clone(old);
   const migrated = migrateProject(old);
   assert.equal(migrated.status, 'migrated'); assert.deepEqual(migrated.project.sessions[0].temporaryReplacements, []);
-  assert.deepEqual(old, project); // la fixture ne possédait déjà pas ce champ
+  assert.deepEqual(old, oldBefore);
 });
 
 test('un remplacement actif ne concerne que sa session, sa machine et son instance', async () => {

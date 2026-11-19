@@ -1,5 +1,5 @@
 import { virtualChannelRefs } from './lprep-patch.mjs';
-import { chainSidechainPorts } from './lprep-audio-graph.mjs';
+import { chainFormatKey, chainSidechainPorts } from './lprep-audio-graph.mjs';
 
 const numbers = values => [...new Set(values)].sort((a, b) => a - b);
 const widthOf = port => port?.channelCount ?? ({ mono: 1, stereo: 2 })[port?.channelLayout] ?? null;
@@ -103,8 +103,9 @@ export function patchRows(session) {
   return session.chainOrder.map(chainId => {
     const chain = chains.get(chainId);
     const path = chain.mainPath;
-    const input = boundary(path.inputBoundaryPortRef, 'input', chain.audioFormat);
-    const output = boundary(path.outputBoundaryPortRef, 'output', chain.audioFormat);
+    const format = chainFormatKey(chain.inputFormat, chain.outputFormat);
+    const input = boundary(path.inputBoundaryPortRef, 'input', format);
+    const output = boundary(path.outputBoundaryPortRef, 'output', format);
     const shown = new Set([...input.connectionIds, ...output.connectionIds]);
     const internal = new Set(path.connectionRefs);
     const ownedNodes = new Set([endpoint(path.inputBoundaryPortRef).node?.nodeId, endpoint(path.outputBoundaryPortRef).node?.nodeId]);

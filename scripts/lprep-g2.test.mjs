@@ -55,7 +55,9 @@ test('un ajout construit le chemin principal et reste valide dans une révision 
   assert.equal(instance.resolutionStatus, 'unresolved');
   assert.deepEqual(controller.activeSession.chains[0].pluginOrder, [instance.instanceId]);
   assert.deepEqual(validateProject(added).filter(issue => issue.severity === 'error'), []);
-  assert.equal(controller.activeSession.audioGraph.ports.at(-1).channelCount, null);
+  const pluginNode = controller.activeSession.audioGraph.nodes.find(node => node.instanceRef === instance.instanceId);
+  assert.ok(controller.activeSession.audioGraph.ports
+    .filter(port => port.nodeId === pluginNode.nodeId).every(port => port.channelCount === null));
   assert.ok(!JSON.stringify(added).includes(plugin.image));
   assert.equal(controller.undo().status, 'undone');
   assert.deepEqual(controller.activeSession.chains[0].pluginOrder, []);
