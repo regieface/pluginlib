@@ -52,3 +52,18 @@ test('le tri prix ignore abonnements, devises, tarifs périmés et gratuités no
   assert.deepEqual(ranking([paid, ...bad, gratis], 'price', -1), ['F', 'E', 'A', 'B', 'C', 'D']);
   assert.match(sortValue(paid, 'price', undefined, now).text, /15\/11\/2026/);
 });
+
+test('la fréquence et le fabricant utilisent le tri commun sans déplacer les données d’origine', () => {
+  const plugins = [
+    plugin('Alpha', { vendor: 'Zeta', latency: { source: official, 48: { samples: 0 }, 96: { samples: 22 } } }),
+    plugin('Zed', { vendor: 'Beta', latency: { source: official, 48: { samples: 15 }, 96: { samples: 0 } } }),
+    plugin('Inconnu', { vendor: 'Beta' })
+  ];
+  const ids = (key, rate) => rankResults(plugins, key, 1, null, now, rate).map(item => item.plugin.id);
+  assert.deepEqual(ids('latency', 48), ['Alpha', 'Zed', 'Inconnu']);
+  assert.deepEqual(ids('latency', 96), ['Zed', 'Alpha', 'Inconnu']);
+  assert.deepEqual(ids('latency', null), ['Alpha', 'Inconnu', 'Zed']);
+  assert.deepEqual(ids('vendor', 48), ['Inconnu', 'Zed', 'Alpha']);
+  assert.deepEqual(plugins.map(plugin => plugin.id), ['Alpha', 'Zed', 'Inconnu']);
+  assert.equal(documentedLatency(plugins[0], 96).text, '22 éch. · 96 kHz');
+});

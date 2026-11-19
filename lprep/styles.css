@@ -349,6 +349,8 @@ button:disabled { cursor: default; opacity: .55; }
 #plugin-search { width: 100%; margin: 6px 0; }
 #library-results { max-height: 66vh; overflow: auto; }
 .library-filters { display: grid; gap: 4px; margin-bottom: 6px; }
+.library-sort { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 5px; }
+.library-sort select { min-width: 0; width: 100%; }
 .catalog-entry {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
@@ -644,3 +646,22 @@ body:has(#builder-view.active) .workspace {
 .plugin-detail-zoom:disabled { opacity: 1; }
 .plugin-detail-zoom[aria-pressed="true"]:has(img.ready) { cursor: zoom-out; }
 .plugin-tile figcaption { cursor: pointer; }
+
+.workspace { position: relative; }
+#full-library-view {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--surface);
+}
+.full-library-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--line);
+}
+#full-library-frame { flex: 1; width: 100%; min-height: 0; border: 0; }

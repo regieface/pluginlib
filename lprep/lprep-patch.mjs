@@ -1,4 +1,4 @@
-import { createAudioConnection, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { CHAIN_FORMAT_PORTS, createAudioConnection, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
 import { virtualResourceId } from './lprep-environment.mjs';
 import { isStableId } from './lprep-identifiers.mjs';
 
@@ -100,7 +100,7 @@ export function proposeQuickPatch(session) {
     if (graph.connections.some(edge => edge.enabledState !== 'disabled' && !internal.has(edge.connectionId) &&
       edge.routingRole === 'main' && edge[localEndpoint] === boundary &&
       (edge.channelMap || existing.get(chain.chainId)?.[direction].length))) continue;
-    const count = chain.audioFormat === 'stereo' ? 2 : 1;
+    const count = CHAIN_FORMAT_PORTS[chain.audioFormat]?.[direction] ?? 1;
     const chosen = takeChannels(original, direction, count, occupied, direction === 'output' ? reserved : new Set());
     if (chosen.length !== count) { issue(issues, `session.chains.${chain.chainId}`, 'patch.capacity', `Canaux ${direction} insuffisants.`); continue; }
     chosen.forEach(value => occupied.add(value.resourceId));
@@ -115,7 +115,9 @@ export function proposeQuickPatch(session) {
       channelCount: count, channelLayout: count === 2 ? 'stereo' : 'mono', extensions: { originAssignmentId: assignmentId } }));
     graph.connections.push(createAudioConnection({ connectionId, graphId: graph.graphId,
       sourcePortId: direction === 'input' ? portId : targetPort, destinationPortId: direction === 'input' ? targetPort : portId,
-      routingRole: 'main', originAssignmentId: assignmentId }));
+      routingRole: 'main', originAssignmentId: assignmentId,
+      channelMap: chain.audioFormat === 'mono-to-stereo'
+        ? Array.from({ length: count }, (_, index) => ({ sourceChannel: index + 1, destinationChannel: index + 1 })) : null }));
     assignments.push(createPatchAssignment({ assignmentId, sessionId: original.sessionId, chainId: chain.chainId, direction,
       resourceRefs: chosen.map(value => value.resourceId), targetPortRefs: [targetPort], connectionRefs: [connectionId] }));
   }

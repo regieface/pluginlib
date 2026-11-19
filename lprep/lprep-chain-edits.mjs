@@ -1,4 +1,4 @@
-import { chainSidechainPorts, createAudioConnection, createAudioNode, createAudioPort, introducesAudioCycle } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, chainSidechainPorts, createAudioConnection, createAudioNode, createAudioPort, introducesAudioCycle } from './lprep-audio-graph.mjs';
 
 export function moveBefore(order, id, beforeId) {
   if (!order.includes(id) || (beforeId !== null && !order.includes(beforeId))) {
@@ -62,17 +62,26 @@ export function setChainSidechainCount(session, chain, count, idFactory) {
 }
 
 export function editableFormatPorts(session, chain) {
-  if (chain.pluginOrder.length || chain.mainPath.connectionRefs.length || chain.interfaces?.length ||
+  if (chain.pluginOrder.length || chain.interfaces?.length ||
     (session.patchAssignments || []).some(assignment => assignment.chainId === chain.chainId)) return null;
-  const { stages: [stage], ports } = pathData(session.audioGraph, chain);
-  const boundary = [ports.get(stage.input), ports.get(stage.output)];
-  if (stage.node.type !== 'bus' || stage.node.hostBindingRef || boundary.some(port => port.hostBindingRef) ||
-    session.audioGraph.ports.filter(port => port.nodeId === stage.node.nodeId).length !== 2 ||
-    session.audioGraph.connections.some(edge => edge.sourcePortId === stage.output || edge.destinationPortId === stage.input) ||
-    session.chains.some(other => other !== chain && pathNodeIds(pathData(session.audioGraph, other)).includes(stage.node.nodeId))) {
-    return null;
-  }
-  return boundary;
+  const graph = session.audioGraph;
+  const path = pathData(graph, chain);
+  const { stages, ports, edges } = path;
+  const splitBoundaries = stages.length === 2 && stages[1].node.metadata?.lprepOutputBoundary === true &&
+    edges[0].channelMap === null && !edges[0].hostBindingRef && !edges[0].originAssignmentId &&
+    edges[0].gain == null && edges[0].enabledState !== 'disabled' && edges[0].polarity === 'unknown' &&
+    !Object.keys(edges[0].extensions || {}).length;
+  if (stages.length !== 1 && !splitBoundaries) return null;
+  const boundaries = stages.flatMap(stage => [ports.get(stage.input), ports.get(stage.output)]);
+  if (stages.some(({ node }) => node.type !== 'bus' || node.hostBindingRef ||
+    graph.ports.filter(port => port.nodeId === node.nodeId).length !== 2) ||
+    boundaries.some(port => port.hostBindingRef)) return null;
+  const ids = new Set(boundaries.map(port => port.portId));
+  if (graph.connections.some(edge => !edges.includes(edge) &&
+    (ids.has(edge.sourcePortId) || ids.has(edge.destinationPortId))) ||
+    session.chains.some(other => other !== chain && pathNodeIds(pathData(graph, other))
+      .some(id => stages.some(stage => stage.node.nodeId === id)))) return null;
+  return boundaries;
 }
 
 function assertExclusivePath(session, chain, path) {
@@ -173,9 +182,29 @@ function insertPathStage(session, chain, stage, beforeId, idFactory) {
   const path = pathData(session.audioGraph, chain);
   assertExclusivePath(session, chain, path);
   const stages = [...path.stages];
+  if (chain.audioFormat === 'mono-to-stereo' && stages.length === 1 && stages[0].node.type === 'bus') {
+    // Keep both declared boundaries on real bus ports when a plugin joins the path.
+    const graph = session.audioGraph;
+    const entry = stages[0];
+    const output = path.ports.get(entry.output);
+    if (entry.node.hostBindingRef || output.hostBindingRef) throw new Error('La sortie reste liée à un hôte.');
+    const exit = createAudioNode({ nodeId: idFactory('node'), graphId: graph.graphId, type: 'bus',
+      metadata: { lprepOutputBoundary: true } });
+    const stereo = chainFormatPortProperties(chain.audioFormat, 'output');
+    const entryOutput = createAudioPort({ portId: idFactory('port'), nodeId: entry.node.nodeId,
+      role: 'main', direction: 'output', ...stereo });
+    const exitInput = createAudioPort({ portId: idFactory('port'), nodeId: exit.nodeId,
+      role: 'main', direction: 'input', ...stereo });
+    output.nodeId = exit.nodeId;
+    graph.nodes.push(exit);
+    graph.ports.push(entryOutput, exitInput);
+    stages[0] = { ...entry, output: entryOutput.portId };
+    stages.push({ node: exit, input: exitInput.portId, output: output.portId });
+  }
+
   const lastPlugin = stages.findLastIndex(stage => stage.node.instanceRef);
   const index = beforeId === null
-    ? (lastPlugin === -1 ? stages.length : lastPlugin + 1)
+    ? (lastPlugin === -1 ? (stages.at(-1).node.metadata?.lprepOutputBoundary ? stages.length - 1 : stages.length) : lastPlugin + 1)
     : stages.findIndex(stage => stage.node.instanceRef === beforeId);
   if (index < 0) throw new Error('Emplacement de dépôt introuvable.');
   stages.splice(index, 0, stage);

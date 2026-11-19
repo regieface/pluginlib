@@ -313,3 +313,50 @@ button.outline.treatment-button, button.outline.family-button { min-height: 28px
 .result-list[data-view="grid"] :is(.result-value, .result-actions) { grid-column: 1; grid-row: auto; }
 .result-list[data-view="grid"] .result-actions { flex-direction: row; justify-content: start; align-self: end; }
 .result-list[data-view="grid"] .empty { grid-column: 1 / -1; }
+
+.lprep-library body > header, .lprep-library .summary { display: none; }
+.lprep-library main { padding-top: 8px; }
+:root.lprep-library {
+  color-scheme: light;
+  --bg: #f4f6f9;
+  --navy: #eef2f7;
+  --surface: #fff;
+  --txt: #1c2838;
+  --muted: #506277;
+  --line: #cbd5e1;
+  --teal: #135d6b;
+  --light: #e7f4f5;
+  --amber: #795217;
+}
+.lprep-library :is(.panel, .card, .multi-panel, .art, .scope) {
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: none;
+}
+.lprep-library :is(.art .fallback, .comparison-table tbody tr:nth-child(odd):not(.comparison-section) > *, .lat, .unmatched-collection, th) {
+  background: var(--navy);
+  color: var(--txt);
+}
+.lprep-library :is(button.outline, .scope button.active, .loadmore, .searchbar input, .multi-select > summary,
+  .field select, .multi-panel input[type="search"], .resultsort select, .own select) {
+  color: var(--txt);
+  background: var(--surface);
+  border-color: var(--line);
+  box-shadow: none;
+}
+.lprep-library :is(.scope button.active, .field.active .multi-select > summary, .field.active select, .own select.set, button.outline:hover, .loadmore) {
+  background: var(--light);
+  color: var(--teal);
+}
+.lprep-library :is(a, .maker, .multi-toolbar button, .description-toggle, .scope button, .badge.fam) { color: var(--teal); }
+.lprep-library :is(.field label, .filter-label, .description-source, .lat span, .lat small, .own label, .footnote,
+  .productlink.none, .empty, .about, .smallprint, .art .fallback span, .license-detail) { color: var(--muted); }
+.lprep-library :is(.description, .multi-row:hover, .badge) { background: var(--navy); color: var(--txt); }
+.lprep-library :is(.badge.ok, .lat.zero, .controller-status.verified) { background: #e5f5ea; color: #206239; }
+.lprep-library :is(.badge.unknown, .badge.discontinued, .controller-status.unverified) { background: #fff3dc; color: var(--amber); }
+.lprep-library :is(.prices .promo b, td.ok) { color: #206239; }
+.lprep-library :is(.prices .price-stale, td.ko) { color: var(--amber); }
+.lprep-library :is(th, td, .footer, .art) { border-color: var(--line); }
+.lprep-library :is(.filter-chip, .exclude-option) { color: var(--teal); box-shadow: none; }
+.lprep-library :is(.filter-chip.exclude, .multi-row.excluded, .multi-row.excluded .exclude-option) { background: #fbeceb; color: #8a3434; }
+.lprep-library .multi-row.excluded label span { color: #8a3434; }

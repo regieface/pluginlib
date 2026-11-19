@@ -18,7 +18,7 @@ async function cachedImage(request) {
 }
 
 self.addEventListener('fetch', event => {
-  if (event.request.destination === 'image' && event.request.method === 'GET') {
+  if (event.request.destination === 'image' && event.request.method === 'GET' && /^https?:/.test(event.request.url)) {
     event.respondWith(cachedImage(event.request));
   }
 });

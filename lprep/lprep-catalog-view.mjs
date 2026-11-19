@@ -1,30 +1,27 @@
-import { collectionStatus, matchesCollectionScope, normalizeCollection } from '../collection.mjs';
-import { normalizeClassification } from '../classification.mjs';
+import { collectionStatus, matchesCollectionScope, mergeCollection, normalizeCollection } from '../collection.mjs';
+import { readCollectionStorage, writeCollectionStorage } from '../collection-storage.mjs';
+export { loadPluginCatalog as loadCatalog } from '../catalog-data.mjs';
 import { currentLatency } from '../result-sorting.mjs';
 import { classificationSearchText, classifiedTreatments, treatmentFacetValues } from '../treatment-navigation.mjs';
 
-export async function loadCatalog() {
-  async function readData(name) {
-    const response = await fetch(new URL(`../data/${name}.json`, import.meta.url));
-    if (!response.ok) throw new Error('Catalogue PluginLib indisponible.');
-    return response.json();
-  }
-  const [{ plugins }, { plans = [] }] = await Promise.all([readData('plugins'), readData('subscriptions')]);
-  return { plugins: plugins.map(normalizeClassification), plans };
+function storedCollection({ plugins, plans }, storage) {
+  return normalizeCollection(readCollectionStorage(storage), plugins, plans);
 }
 
-function readStored(storage, key, fallback) {
-  try { return JSON.parse(storage?.getItem(key)) ?? fallback; }
-  catch { return fallback; }
+export function importCatalogRights(catalog, storage, data) {
+  if (data?.app !== 'PluginLib' || ![2, 3].includes(data.version)) {
+    throw new Error('Sélectionnez un export JSON « Ma collection » de PluginLib.');
+  }
+  const incoming = normalizeCollection(data, catalog.plugins, catalog.plans);
+  const subscriptions = incoming.subscriptions.map(({ id, vendor, plan, status }) => ({ id, vendor, plan, status }));
+  const rights = mergeCollection(storedCollection(catalog, storage),
+    { status: data.status, owned: data.owned, subscriptions }, catalog.plugins, catalog.plans);
+  writeCollectionStorage(storage, rights);
 }
 
 export function catalogEntries({ plugins, plans }, storage, scope) {
-  const collection = normalizeCollection({
-    status: readStored(storage, 'pluginlib.status.v2', {}),
-    owned: readStored(storage, 'pluginlib.owned.v1', []),
-    subscriptions: readStored(storage, 'pluginlib.subscriptions.v1', [])
-  }, plugins, plans);
-  return plugins.filter(plugin => !plugin.duplicateOf && !plugin.exclude &&
+  const collection = storedCollection({ plugins, plans }, storage);
+  return plugins.filter(plugin => !plugin.duplicateOf && !plugin.exclude && plugin.recordType !== 'instrument' &&
     matchesCollectionScope(collectionStatus(plugin, collection, plans), scope));
 }
 

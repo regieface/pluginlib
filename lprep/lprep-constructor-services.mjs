@@ -1,5 +1,5 @@
 import { createCompensationGroup, createPluginInstance, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
-import { createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
 import { createStableId, isStableId } from './lprep-identifiers.mjs';
 import { createPresetInsertionTransaction } from './lprep-presets.mjs';
 import { proposeQuickPatch } from './lprep-patch.mjs';
@@ -103,12 +103,11 @@ export class LPrepConstructorService {
       }
       if (audioFormat !== undefined && audioFormat !== chain.audioFormat) {
         const ports = editableFormatPorts(session, chain);
-        if (!ports || !['mono', 'stereo'].includes(audioFormat)) {
+        if (!ports) {
           throw new Error('Le format peut être modifié sur une chaîne vide et sans routing.');
         }
-        for (const port of ports) {
-          port.channelCount = audioFormat === 'mono' ? 1 : 2;
-          port.channelLayout = audioFormat;
+        for (const [index, port] of ports.entries()) {
+          Object.assign(port, chainFormatPortProperties(audioFormat, index === 0 ? 'input' : 'output'));
         }
         chain.audioFormat = audioFormat;
       }

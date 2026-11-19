@@ -9,6 +9,18 @@ export const MEDIA_TYPES = new Set(['audio', 'midi', 'unknown']);
 export const FAN_IN_POLICIES = new Set(['single', 'multiple', 'unknown']);
 export const ROUTING_ROLES = new Set(['main', 'sidechain', 'secondary', 'auxiliary', 'unknown']);
 
+export const CHAIN_FORMAT_PORTS = Object.freeze({
+  mono: Object.freeze({ input: 1, output: 1 }),
+  stereo: Object.freeze({ input: 2, output: 2 }),
+  'mono-to-stereo': Object.freeze({ input: 1, output: 2 })
+});
+
+export function chainFormatPortProperties(format, direction) {
+  const channelCount = CHAIN_FORMAT_PORTS[format]?.[direction];
+  if (!channelCount) throw new Error('Format de chaîne non pris en charge.');
+  return { channelCount, channelLayout: channelCount === 1 ? 'mono' : 'stereo' };
+}
+
 const clone = value => structuredClone(value);
 
 export function chainSidechainPorts(graph, chain) {

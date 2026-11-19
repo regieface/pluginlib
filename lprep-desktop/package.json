@@ -1,0 +1,7 @@
+{
+  "name": "l-prep-desktop",
+  "productName": "L-Prep",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.cjs"
+}

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import test from 'node:test';
 import { runInNewContext } from 'node:vm';
+import { normalizeClassification } from '../classification.mjs';
 
 function element() {
   const children = new Map();
@@ -74,7 +75,7 @@ test('les sélections du comparateur survivent à la recherche, au filtrage et a
         return filterChoices.get('treatmentFamily').root.items;
       }
     };
-  }`, { clearTimeout() {}, setTimeout(callback) { callback(); } });
+  }`, { normalizeClassification, clearTimeout() {}, setTimeout(callback) { callback(); } });
   const document = { querySelector: find, querySelectorAll: () => [], createElement: element,
     createDocumentFragment: element, addEventListener() {} };
   globalThis.document = document;

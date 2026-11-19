@@ -17,17 +17,20 @@ export function currentLatency(plugin, rate) {
   return latencyValues.get(plugin)[rate];
 }
 
-export function documentedLatency(plugin) {
-  if (!cachedLatency.has(plugin)) {
-    const cell = currentLatency(plugin, SORT_RATE);
+export function documentedLatency(plugin, rate = SORT_RATE) {
+  if (!Number.isFinite(rate) || rate <= 0) return null;
+  if (!cachedLatency.has(plugin)) cachedLatency.set(plugin, new Map());
+  const byRate = cachedLatency.get(plugin);
+  if (!byRate.has(rate)) {
+    const cell = currentLatency(plugin, rate);
     const valid = cell?.source && Number.isInteger(cell.samples) && cell.samples >= 0 &&
       !cell.conflict && !cell.uncertain && !cell.variants?.length && !cell.zeroMode &&
       (!cell.unit || cell.unit === 'samples') && !Object.keys(cell.conditions || {}).length &&
       !['pending', 'unverified', 'estimated'].includes(cell.confidence);
-    cachedLatency.set(plugin, valid ? { key: cell.samples, text: `${cell.samples} éch. · ${SORT_RATE} kHz`,
+    byRate.set(rate, valid ? { key: cell.samples, text: `${cell.samples} éch. · ${rate} kHz`,
       title: cell.source, url: cell.source } : null);
   }
-  return cachedLatency.get(plugin);
+  return byRate.get(rate);
 }
 
 function priceValue(plugin, now) {
@@ -42,9 +45,10 @@ function priceValue(plugin, now) {
     title: `${price.sourceName || 'Source du tarif'} · ${price.url}`, url: price.url };
 }
 
-export function sortValue(plugin, key, type, now) {
+export function sortValue(plugin, key, type, now, rate = SORT_RATE) {
   if (key === 'name') return { key: plugin.name, text: '' };
-  if (key === 'latency') return documentedLatency(plugin);
+  if (key === 'vendor') return plugin.vendor ? { key: plugin.vendor, text: plugin.vendor } : null;
+  if (key === 'latency') return documentedLatency(plugin, rate);
   if (key === 'price') return priceValue(plugin, now);
   if (key !== 'attack' && key !== 'release') return null;
   const ranges = measurements(plugin, key, type).filter(fact => known(fact, 'ms') &&
@@ -54,21 +58,31 @@ export function sortValue(plugin, key, type, now) {
   return { key: fact.value.min, text: `${fact.value.min} ms`, title: fact.evidence?.find(proof => proof.url)?.url };
 }
 
+export function basicSortOptions(plugins, rate = SORT_RATE) {
+  return [
+    ['name', 'Nom', true],
+    ['vendor', 'Fabricant', plugins.some(plugin => Boolean(plugin.vendor))],
+    ['latency', rate ? `Latence à ${rate} kHz` : 'Latence · fréquence inconnue',
+      plugins.some(plugin => documentedLatency(plugin, rate))]
+  ];
+}
+
 export function sortOptions(type, plugins, now) {
+  const [name, vendor, latency] = basicSortOptions(plugins);
   const criteria = COMPARISON_CRITERIA[type] || [];
   const specs = [
-    ['name', 'Nom', true],
+    name, vendor,
     ...['attack', 'release'].filter(key => criteria.includes(key))
       .map(key => [key, key === 'release' ? 'Release minimal' : `${CRITERIA[key].label} minimale`, plugins.some(plugin => sortValue(plugin, key, type, now))]),
-    ...(!type || criteria.includes('latency48') ? [['latency', `Latence à ${SORT_RATE} kHz`, plugins.some(plugin => documentedLatency(plugin))]] : []),
+    ...(!type || criteria.includes('latency48') ? [latency] : []),
     ...(criteria.includes('cpu') || !type ? [['cpu', 'CPU · mesures non comparables', false]] : []),
     ['price', 'Prix catalogue en €', plugins.some(plugin => priceValue(plugin, now))]
   ];
   return specs;
 }
 
-export function rankResults(plugins, key, direction, type, now) {
-  return plugins.map(plugin => ({ plugin, value: sortValue(plugin, key, type, now) })).sort((a, b) => {
+export function rankResults(plugins, key, direction, type, now, rate = SORT_RATE) {
+  return plugins.map(plugin => ({ plugin, value: sortValue(plugin, key, type, now, rate) })).sort((a, b) => {
     if (!a.value || !b.value) {
       if (a.value !== b.value) return a.value ? -1 : 1;
     } else {

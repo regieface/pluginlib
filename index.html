@@ -6,13 +6,7 @@
   <title>PluginLib — Mix & Master</title>
   <meta name="description" content="Bibliothèque de plugins de mixage et de mastering, mise à jour à la demande.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect width='48' height='48' rx='13' fill='%2305a4b4'/><g fill='white'><rect x='11' y='15' width='4' height='18' rx='2'/><rect x='18' y='9' width='4' height='31' rx='2'/><rect x='25' y='12' width='4' height='24' rx='2'/><rect x='32' y='6' width='4' height='37' rx='2'/></g></svg>">
-  <script>
-    // Les fichiers de l'app sont rechargés à chaque version (évite qu'un ancien app.js
-    // resté en cache se mélange avec un nouveau index.html après une mise à jour).
-    window.PL_V = Date.now();
-    document.write('<link rel="stylesheet" href="styles.css?v=' + window.PL_V + '">');
-  </script>
-  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
@@ -203,6 +197,6 @@
     </article>
   </template>
 
-  <script>document.write('<script type="module" src="app.js?v=' + window.PL_V + '"><\/script>');</script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

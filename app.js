@@ -1,9 +1,14 @@
 // PluginLib — interface. Les données vivent dans data/*.json (mises à jour à la demande via GitHub Actions).
-const moduleVersion = window.PL_V || 1;
-const { productDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
+const moduleVersion = Date.now();
+const embedded = window.parent && window.parent !== window && new URLSearchParams(window.location.search).get('embed') === 'lprep';
+if (embedded) document.documentElement.classList.add('lprep-library');
+if (embedded && navigator.serviceWorker) {
+  // The root scope also covers PluginLib cards and details, sharing the L-Prep image cache.
+  navigator.serviceWorker.register('./pluginlib-worker.mjs', { type: 'module' }).catch(() => {});
+}
+const { loadPluginCatalog } = await import(`./catalog-data.mjs?v=${moduleVersion}`);
 const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceStale } = await import(`./catalog.mjs?v=${moduleVersion}`);
 const { emptySelection, defaultSelections, availabilityGroup, availabilityOnScopeChange, changeSelection, matchesPluginSelections, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
-const { normalizeClassification } = await import(`./classification.mjs?v=${moduleVersion}`);
 const { FORMATS, TREATMENTS } = await import(`./treatment-taxonomy.mjs?v=${moduleVersion}`);
 const { TREATMENT_OPTIONS, CLASSIFICATION_OPTIONS, classifiedTreatments, selectedTreatmentIds,
   navigationFacets, classificationSearchText, factStateLabel, treatmentDetails, sharedClassificationDetails, needsCatalogueReview } = await import(`./treatment-navigation.mjs?v=${moduleVersion}`);
@@ -11,13 +16,13 @@ const { SORT_RATE, currentLatency, documentedLatency, sortOptions, rankResults }
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, matchesCollectionScope, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
+const { isCollectionStorageKey, readCollectionStorage, writeCollectionStorage } = await import(`./collection-storage.mjs?v=${moduleVersion}`);
 const { bindCollectionImport, previewCollectionImport } = await import(`./collection-import.mjs?v=${moduleVersion}`);
 const { CONTROLLER_STATUS_LABELS, collectionControllerStatus } = await import(`./controller-status.mjs?v=${moduleVersion}`);
 const { buildComparison, comparisonScrollState, hasComparisonDifference } = await import(`./comparison.mjs?v=${moduleVersion}`);
 const { controllerRequestOptions, createControllerRequest } = await import(`./controller-request.mjs?v=${moduleVersion}`);
 const $ = (s) => document.querySelector(s);
 const descriptionObserver=new ResizeObserver(entries=>{for(const {target:text} of entries){if(!text.isConnected)continue;const block=text.closest('.description'),toggle=block.querySelector('.description-toggle');toggle.hidden=!block.classList.contains('expanded')&&text.scrollHeight<=text.clientHeight+1;}});
-const STATUS_KEY = 'pluginlib.status.v2';
 const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'Abonnement actif', former: 'Ancien abonnement', trial: 'Démo', wishlist: 'Liste d’envies', not_owned: 'Non possédé' };
 const PAGE = 30;
 
@@ -30,17 +35,21 @@ let selections = navigationSelections(st.scope);
 const availabilityFilters = new Map();
 const filterControls = new Map(), filterChoices = new Map();
 
-// Collection : statut par plugin (reprise de l'ancien format « étoile » si présent)
-try {
-  status = JSON.parse(localStorage.getItem(STATUS_KEY) || '{}') || {};
-  subscriptions = JSON.parse(localStorage.getItem('pluginlib.subscriptions.v1') || '[]') || [];
-  unmatchedLicenses=JSON.parse(localStorage.getItem('pluginlib.unmatchedLicenses.v1')||'[]');
-  licenseDetails=JSON.parse(localStorage.getItem('pluginlib.licenseDetails.v1')||'{}');
-  const old = JSON.parse(localStorage.getItem('pluginlib.owned.v1') || '[]');
-  old.forEach((id) => { if (!status[id]) status[id] = 'owned'; });
-} catch { status = {}; }
-const save = () => { try { localStorage.setItem(STATUS_KEY, JSON.stringify(status)); localStorage.setItem('pluginlib.subscriptions.v1',JSON.stringify(subscriptions));localStorage.setItem('pluginlib.unmatchedLicenses.v1',JSON.stringify(unmatchedLicenses));localStorage.setItem('pluginlib.licenseDetails.v1',JSON.stringify(licenseDetails)); } catch { /* stockage indisponible */ } };
 const currentCollection=()=>({status,subscriptions,unmatchedLicenses,licenseDetails});
+function reloadCollection(plugins = DATA) {
+  ({status, subscriptions, unmatchedLicenses, licenseDetails} = normalizeCollection(readCollectionStorage(localStorage), plugins, PLANS));
+}
+const save = () => {
+  try {
+    writeCollectionStorage(localStorage, currentCollection());
+    return true;
+  } catch {
+    const notice = $('#collectionNotice');
+    notice.hidden = false;
+    notice.textContent = 'Impossible d’enregistrer la collection dans ce navigateur.';
+    return false;
+  }
+};
 const licenseStatus=p=>collectionStatus(p,currentCollection(),PLANS);
 
 const norm = (s) => (s || '').normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -58,23 +67,20 @@ function lat(p, rate) {
 
 // ---------- Chargement ----------
 async function load() {
-  const [d, m, plans, descriptions, controllerManifest] = await Promise.all([
-    fetch('data/plugins.json', { cache: 'no-cache' }).then((r) => r.json()),
+  const [{ plugins, plans }, m, controllerManifest] = await Promise.all([
+    loadPluginCatalog(),
     fetch('data/meta.json', { cache: 'no-cache' }).then((r) => r.json()),
-    fetch('data/subscriptions.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{plans:[]}).catch(()=>({plans:[]})),
-    fetch('data/descriptions-fr.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{}).catch(()=>({})),
     fetch('controller/profile-manifest.json', { cache: 'no-cache' }).then(r=>r.ok?r.json():{schemaVersion:1,links:[]}).catch(()=>({schemaVersion:1,links:[]}))
   ]);
   META = m; LBL = m.labels;
   CONTROLLER_MANIFEST = controllerManifest;
-  PLANS=plans.plans||[];
-  ({status,subscriptions,unmatchedLicenses,licenseDetails}=normalizeCollection(currentCollection(),d.plugins,PLANS));
-  DATA = d.plugins.filter(p=>!p.duplicateOf&&!p.exclude).map((p) => {
-    const classified = normalizeClassification(p);
-    const presentation = productDescription(p,descriptions),summary=presentation.text;
-    return { ...classified, summary, presentation, review: needsCatalogueReview(classified), _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${classificationSearchText(classified)} ${LBL.categories[p.category] || ''}`) };
+  PLANS = plans;
+  reloadCollection(plugins);
+  DATA = plugins.filter(p=>!p.duplicateOf&&!p.exclude).map((p) => {
+    const summary = p.presentation.text;
+    return { ...p, summary, review: needsCatalogueReview(p), _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${classificationSearchText(p)} ${LBL.categories[p.category] || ''}`) };
   });
-  save();stats(); fillStatic(); renderSubscriptions();render();
+  stats(); fillStatic(); renderSubscriptions();render();
   $('#import').disabled = false;
 }
 
@@ -229,6 +235,7 @@ function renderActiveFilters() {
 function filtered(ignoreSelections = false) {
   const terms = norm(st.q).split(/\s+/).filter(Boolean);
   return DATA.filter((p) => {
+    if (embedded && p.recordType === 'instrument') return false;
     if (!ignoreSelections && !matchesPluginSelections(p, selections)) return false;
     if (!matchesCollectionScope(licenseStatus(p), st.scope)) return false;
     if (terms.length && !terms.every((t) => p._s.includes(t))) return false;
@@ -721,7 +728,7 @@ $('#scope').addEventListener('click', (e) => {
 $('#searchScope').addEventListener('click', () => selectScope(st.scope === 'owned' ? 'all' : 'owned'));
 $('#pluginDetailContent').addEventListener('change', (e) => {
   const s = e.target.closest('.own select'); if (!s) return;
-  if (s.value === 'unknown') delete status[s.dataset.id]; else status[s.dataset.id] = s.value;
+  status[s.dataset.id] = s.value;
   save();
   const plugin = DATA.find(entry => entry.id === s.dataset.id);
   if (plugin) {
@@ -790,7 +797,8 @@ bindCollectionImport({
   show: showCollectionImport,
   apply: next => {
     ({status,subscriptions,unmatchedLicenses,licenseDetails}=next);
-    save(); renderSubscriptions(); render();
+    const saved = save(); renderSubscriptions(); render();
+    if (!saved) return;
     const notice = $('#collectionNotice');
     notice.hidden = false;
     notice.textContent = 'Collection importée.';
@@ -800,6 +808,13 @@ bindCollectionImport({
     notice.hidden = false;
     notice.textContent = 'Fichier JSON de collection non reconnu.';
   }
+});
+
+window.addEventListener?.('storage', event => {
+  if (!LBL || !isCollectionStorageKey(event.key)) return;
+  reloadCollection();
+  renderSubscriptions();
+  render();
 });
 
 load().catch((e) => { $('#cards').innerHTML = `<div class="empty">Impossible de charger les données : ${esc(e.message)}</div>`; });

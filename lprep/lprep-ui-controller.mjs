@@ -1,6 +1,6 @@
 import { planClearPatch } from './lprep-patch-edit.mjs';
 import { setSessionMachine, setSessionSampleRate } from './lprep-audio-settings.mjs';
-import { createAudioGraph, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
+import { chainFormatPortProperties, createAudioGraph, createAudioNode, createAudioPort } from './lprep-audio-graph.mjs';
 import { BrowserRevisionEngine } from './lprep-browser-persistence.mjs';
 import { LPrepConstructorService } from './lprep-constructor-services.mjs';
 import { createDefaultEnvironmentProfile, instantiateEnvironmentProfile } from './lprep-environment.mjs';
@@ -27,7 +27,9 @@ export class LPrepUIController {
     const environment = instantiateEnvironmentProfile(createDefaultEnvironmentProfile(), sessionId);
     const session = createSession({ sessionId, projectId, name: 'Session 1', audioGraph: graph, ...environment });
     const project = createProject({ projectId, name, sessions: [session] });
-    this.openProject(project); return clone(project);
+    const result = this.openProject(project);
+    if (result.status !== 'opened') throw new Error(result.diagnostics[0]?.message || 'Création du projet impossible.');
+    return result.project;
   }
   openProject(project) {
     const diagnostics = validateProject(project).filter(value => value.severity === 'error');
@@ -99,8 +101,8 @@ export class LPrepUIController {
     return this.commit(new ProjectTransaction({ baseRevisionId: this.service.history.revisionId, apply: project => {
       const session = project.sessions.find(value => value.sessionId === sessionId);
       session.audioGraph.nodes.push(createAudioNode({ nodeId, graphId, type: 'bus', label: name }));
-      session.audioGraph.ports.push(createAudioPort({ portId: inputId, nodeId, direction: 'input', role: 'main', channelCount: audioFormat === 'mono' ? 1 : 2 }),
-        createAudioPort({ portId: outputId, nodeId, direction: 'output', role: 'main', channelCount: audioFormat === 'mono' ? 1 : 2 }));
+      session.audioGraph.ports.push(...[['input', inputId], ['output', outputId]].map(([direction, portId]) =>
+        createAudioPort({ portId, nodeId, direction, role: 'main', ...chainFormatPortProperties(audioFormat, direction) })));
       const chain = createChain({ chainId, sessionId, name, role, audioFormat, color, pluginOrder: [],
         mainPath: { inputBoundaryPortRef: inputId, outputBoundaryPortRef: outputId, connectionRefs: [] } });
       setChainSidechainCount(session, chain, sidechainCount, this.idFactory);
@@ -198,5 +200,11 @@ export class LPrepUIController {
     return record;
   }
   async listSavedProjects() { return this.revisions ? this.revisions.listProjects() : []; }
-  async openRevision(revisionId) { const loaded = await this.revisions.load(revisionId); this.openProject(loaded.project); this.lastRevisionId = revisionId; return loaded; }
+  async openRevision(revisionId) {
+    const loaded = await this.revisions.load(revisionId);
+    const result = this.openProject(loaded.project);
+    if (result.status !== 'opened') throw new Error(result.diagnostics[0]?.message || 'Révision illisible.');
+    this.lastRevisionId = revisionId;
+    return loaded;
+  }
 }

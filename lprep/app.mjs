@@ -1,13 +1,15 @@
+import { basicSortOptions, rankResults } from '../result-sorting.mjs';
+import { isCollectionStorageKey } from '../collection-storage.mjs';
 import { CATALOG_STATUSES, PLATFORMS } from '../catalog.mjs';
 import { cleanPublisherDescription } from '../descriptions.mjs';
 import { dlGroupNumbers } from './lprep-constructor-services.mjs';
 import { MACHINE_SAMPLE_RATES, machineSampleRates, projectMachines } from './lprep-audio-settings.mjs';
 import { IndexedDBRevisionStore } from './lprep-browser-persistence.mjs';
-import { catalogEntries, existingVariants, filterCatalog, instancePluginDetail, loadCatalog, sessionLatency, sessionRows } from './lprep-catalog-view.mjs';
+import { catalogEntries, existingVariants, filterCatalog, importCatalogRights, instancePluginDetail, loadCatalog, sessionLatency, sessionRows } from './lprep-catalog-view.mjs';
 import { bindBuilderDrag, bindContextMenu } from './lprep-builder-interactions.mjs';
 import { createThumbnailView } from './lprep-thumbnails.mjs';
 import { classifiedTreatments, factStateLabel, navigationFacets, sharedClassificationDetails, treatmentDetails, TREATMENT_OPTIONS } from '../treatment-navigation.mjs';
-import { chainSidechainPorts } from './lprep-audio-graph.mjs';
+import { CHAIN_FORMAT_PORTS, chainSidechainPorts } from './lprep-audio-graph.mjs';
 import { graphPatchChannels } from './lprep-patch.mjs';
 import { virtualPatchOptions } from './lprep-patch-edit.mjs';
 import { patchChannelName as channelName, patchDisplayCells, patchRows } from './lprep-patch-view.mjs';
@@ -23,7 +25,7 @@ const $$ = selector => [...document.querySelectorAll(selector)];
 const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 
 const roleLabels = { insert: 'Insert', fx: 'FX', monitoring: 'Monitoring' };
-const formatLabels = { mono: 'Mono', stereo: 'Stéréo', multichannel: 'Multicanal', unknown: 'Inconnu' };
+const formatLabels = { mono: 'Mono', stereo: 'Stéréo', 'mono-to-stereo': 'Mono vers Stéréo', multichannel: 'Multicanal', unknown: 'Inconnu' };
 const chainPalette = [
   ['Corail', '#e25d3a'], ['Ocre', '#d8a23c'], ['Turquoise', '#35a8a3'], ['Indigo', '#6574d8'],
   ['Vert', '#66a357'], ['Bleu', '#3887c7'], ['Prune', '#9564b4'], ['Rose', '#cf668d']
@@ -37,6 +39,11 @@ try { storage = window.localStorage; } catch { /* Le stockage peut être désact
 let catalog, catalogError, catalogById = new Map();
 let selectedChainId = null, patchFocus = null;
 let libraryScope = 'owned', libraryLimit = 40;
+const librarySort = $('#plugin-sort');
+const librarySortKey = 'lprep.library-sort';
+let librarySortPreference = 'name';
+try { librarySortPreference = storage?.getItem(librarySortKey) || 'name'; } catch { /* Préférence de session. */ }
+
 
 const orientationButton = $('#builder-orientation');
 const editor = $('.editor');
@@ -280,7 +287,7 @@ function renderSelection() {
   const options = (entries, selected) => entries.map(([value, text]) =>
     `<option value="${escapeHtml(value)}"${value === selected ? ' selected' : ''}>${escapeHtml(text)}</option>`).join('');
   const formats = Object.entries(formatLabels).filter(([value]) =>
-    value === chain.audioFormat || (editFormat && ['mono', 'stereo'].includes(value)));
+    value === chain.audioFormat || (editFormat && Object.hasOwn(CHAIN_FORMAT_PORTS, value)));
   content.innerHTML = `<form class="chain-settings-form">
       <label>Nom<input name="name" value="${escapeHtml(chain.name)}" required></label>
       <label>Type<select name="role">${options(Object.entries(roleLabels), chain.role)}</select></label>
@@ -463,20 +470,33 @@ function addLibraryPlugin(plugin, chainId = selectedChainId, beforeId = null) {
     return;
   }
   const variants = existingVariants(controller.project, plugin.id);
-  let variantRef = null;
   if (variants.length) {
-    const choices = variants.map((ref, index) =>
-      `${index + 1}. ${ref.fallback.name} · ${ref.variantId} · rév. ${ref.revision}`);
-    const answer = prompt([`Variante pour ${plugin.name}`, ...choices, '0. Ajouter avec variante à résoudre'].join('\n'))?.trim();
-    if (answer === undefined) return;
-    if (answer !== '0') {
-      variantRef = /^[1-9]\d*$/.test(answer) ? variants[Number(answer) - 1] : null;
-      if (!variantRef) {
-        notify('Choix de variante invalide.', true);
+    const dialog = $('#plugin-variant-dialog');
+    if (dialog.open) return;
+    const form = dialog.querySelector('form');
+    const revision = controller.service.history.revisionId;
+    const activeSessionId = controller.activeSessionId;
+    const service = controller.service;
+    $('#plugin-variant-title').textContent = plugin.name;
+    form.elements.variant.replaceChildren(new Option('Variante à résoudre', ''),
+      ...variants.map((ref, index) => new Option(`${ref.fallback.name} · ${ref.variantId} · rév. ${ref.revision}`, String(index))));
+    form.onsubmit = event => {
+      event.preventDefault();
+      dialog.close();
+      if (service !== controller.service || revision !== service.history.revisionId || activeSessionId !== controller.activeSessionId) {
+        notify('Le projet a changé. Recommencez l’ajout.', true);
         return;
       }
-    }
+      insertLibraryPlugin(plugin, chainId, beforeId, variants[form.elements.variant.value] || null);
+    };
+    $('#cancel-plugin-variant').onclick = () => dialog.close();
+    dialog.showModal();
+    return;
   }
+  insertLibraryPlugin(plugin, chainId, beforeId, null);
+}
+
+function insertLibraryPlugin(plugin, chainId, beforeId, variantRef) {
   try {
     const result = controller.insertCatalogPlugin(chainId, plugin, beforeId, variantRef);
     if (result.status === 'committed') selectedChainId = chainId;
@@ -535,7 +555,8 @@ function openPluginDetails(plugin, trigger, instanceRows = []) {
       ...treatmentDetails(plugin, treatment).map(({ label, value, fact }) => `${label} · ${value || factStateLabel(fact)}`)]),
     ...sharedClassificationDetails(plugin).map(({ label, value, fact }) => `${label} · ${value || factStateLabel(fact)}`)];
   const rows = [['Fabricant', plugin.vendor], ['Catégorie', plugin.category], ['Sous-type', plugin.subcategory],
-    ['Latence', [label, detail].filter(Boolean).join(' · ')], ['Plateformes', plugin.platforms?.map(id => PLATFORMS[id]).filter(Boolean).join(', ')],
+    ['Latence de la session', [label, detail].filter(Boolean).join(' · ')],
+    ...[48, 96].map(rate => [`Latence à ${rate} kHz`, sessionLatency(plugin, rate * 1000).label]), ['Plateformes', plugin.platforms?.map(id => PLATFORMS[id]).filter(Boolean).join(', ')],
     ['Statut', CATALOG_STATUSES[plugin.catalogStatus]], ['Caractéristiques', facts.join(' · ')], ...instanceRows];
   body.innerHTML = `<dl>${rows.filter(([, value]) => typeof value === 'string' && value.trim()).map(([key, value]) =>
     `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>`;
@@ -550,9 +571,10 @@ function openPluginDetails(plugin, trigger, instanceRows = []) {
     zoom.append(art);
     body.prepend(zoom);
   } else body.prepend(art);
-  if (typeof plugin.description === 'string' && plugin.description.trim()) {
+  const summary = plugin.presentation?.kind === 'summary' ? plugin.presentation.text : plugin.description;
+  if (typeof summary === 'string' && summary.trim()) {
     const description = document.createElement('p');
-    description.textContent = cleanPublisherDescription(plugin.description);
+    description.textContent = cleanPublisherDescription(summary);
     body.append(description);
   }
   if (/^https?:\/\//i.test(plugin.url || '')) {
@@ -579,10 +601,16 @@ function renderLibrary({ resetScroll = false } = {}) {
   }
   const entries = filterCatalog(catalogEntries(catalog, storage, libraryScope), {
     query: $('#plugin-search').value, treatment: treatmentFilter.value, family: familyFilter.value
-  }).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+  });
   if (!entries.length) results.textContent = 'Aucun plugin dans ce périmètre avec les filtres actuels.';
   const rate = controller.activeSession?.audioGraph.sampleRate;
-  for (const plugin of entries.slice(0, libraryLimit)) {
+  const rateKHz = Number.isFinite(rate) && rate > 0 ? rate / 1000 : null;
+  const sortOptions = basicSortOptions(entries, rateKHz);
+  if (!sortOptions.some(([key]) => key === librarySortPreference)) librarySortPreference = 'name';
+  librarySort.replaceChildren(...sortOptions.map(([key, label]) => new Option(label, key)));
+  librarySort.value = librarySortPreference;
+  const ranked = rankResults(entries, librarySortPreference, 1, null, undefined, rateKHz);
+  for (const { plugin } of ranked.slice(0, libraryLimit)) {
     const row = document.createElement('button');
     row.type = 'button';
     row.className = 'catalog-entry';
@@ -969,7 +997,61 @@ function render() {
 
 function download(name, content) { const link = document.createElement('a'); link.href = URL.createObjectURL(new Blob([content], { type: 'application/json' })); link.download = name; link.click(); setTimeout(() => URL.revokeObjectURL(link.href), 1000); }
 
-$('#new-project').onclick = () => { controller.createProject(prompt('Nom du projet', 'Nouveau projet') || 'Nouveau projet'); rememberRevision(null); selectedChainId = null; $('.project-menu').open = false; notify('Projet créé.'); render(); };
+const headerMenus = $$('.topbar .project-menu');
+document.addEventListener('click', event => {
+  for (const menu of headerMenus) if (!menu.contains(event.target)) menu.open = false;
+});
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape') return;
+  const menu = headerMenus.find(item => item.open);
+  if (!menu) return;
+  menu.open = false;
+  menu.querySelector('summary').focus();
+});
+
+const createDocumentDialog = $('#create-document-dialog');
+const createDocumentForm = createDocumentDialog.querySelector('form');
+const createDocumentError = $('#create-document-error');
+let creatingProject;
+function requestDocumentName(project) {
+  creatingProject = project;
+  createDocumentForm.reset();
+  const { name, replace } = createDocumentForm.elements;
+  const mustConfirm = project && controller.hasUnsavedChanges;
+  $('#replace-unsaved-project').hidden = !mustConfirm;
+  replace.required = mustConfirm;
+  name.value = project ? 'Nouveau projet' : 'Nouvelle session';
+  $('#create-document-title').textContent = name.value;
+  createDocumentError.hidden = true;
+  for (const menu of headerMenus) menu.open = false;
+  createDocumentDialog.showModal();
+  name.select();
+}
+$('#new-project').onclick = () => requestDocumentName(true);
+$('#add-session').onclick = () => requestDocumentName(false);
+$('#cancel-create-document').onclick = () => createDocumentDialog.close();
+createDocumentForm.onsubmit = event => {
+  event.preventDefault();
+  const name = createDocumentForm.elements.name.value.trim();
+  try {
+    if (!name) throw new Error('Saisissez un nom.');
+    if (creatingProject) {
+      controller.createProject(name);
+      patchFocus = null;
+      showView('builder');
+    } else {
+      const result = controller.createSession(name);
+      if (result.status !== 'committed') throw new Error(result.diagnostics?.[0]?.message || 'Création de la session impossible.');
+    }
+    selectedChainId = null;
+    createDocumentDialog.close();
+    notify(creatingProject ? 'Projet créé.' : 'Session créée et ouverte.');
+    render();
+  } catch (error) {
+    createDocumentError.textContent = error.message;
+    createDocumentError.hidden = false;
+  }
+};
 $('#demo-project').onclick = async () => {
   try {
     const response = await fetch('../scripts/fixtures/lprep-project-v1.json');
@@ -1040,11 +1122,12 @@ $('#open-presets').onclick = () => {
     $('#save-preset').focus();
   }
 };
-$('#add-session').onclick = () => resultNotice(controller.createSession(prompt('Nom de la session', 'Nouvelle session') || 'Nouvelle session'), 'Session créée et ouverte.');
 $('#duplicate-session').onclick = () => resultNotice(controller.duplicateActiveSession(), 'Session dupliquée.');
 $('#session-list').onchange = event => { controller.selectSession(event.target.value); render(); };
 const createChainDialog = $('#create-chain-dialog');
 const createChainForm = createChainDialog.querySelector('form');
+createChainForm.elements.audioFormat.append(...Object.keys(CHAIN_FORMAT_PORTS).map(format =>
+  new Option(formatLabels[format], format, format === 'stereo')));
 let pendingChainRole;
 for (const role of CHAIN_ROLES) {
   const button = document.createElement('button');
@@ -1062,9 +1145,9 @@ for (const role of CHAIN_ROLES) {
 $('#cancel-create-chain').onclick = () => createChainDialog.close();
 createChainForm.onsubmit = event => {
   event.preventDefault();
-  const { name, sidechainCount } = createChainForm.elements;
+  const { name, sidechainCount, audioFormat } = createChainForm.elements;
   if (!name.value.trim()) return;
-  const result = controller.createChain({ name: name.value.trim(), role: pendingChainRole, sidechainCount: sidechainCount.valueAsNumber });
+  const result = controller.createChain({ name: name.value.trim(), role: pendingChainRole, audioFormat: audioFormat.value, sidechainCount: sidechainCount.valueAsNumber });
   if (result.status === 'committed') {
     selectedChainId = controller.activeSession.chainOrder.at(-1);
     createChainDialog.close();
@@ -1094,15 +1177,48 @@ for (const button of $$('[data-scope]')) {
     renderLibrary({ resetScroll: true });
   };
 }
+if (window.location.protocol === 'lprep:') {
+  const picker = document.createElement('input');
+  picker.type = 'file';
+  picker.accept = '.json,application/json';
+  picker.hidden = true;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.id = 'import-catalog-rights';
+  button.textContent = 'Importer ma collection PluginLib';
+  button.title = 'Importer les droits depuis un export JSON PluginLib';
+  button.onclick = () => picker.click();
+  $('#plugin-library .library-tabs').after(button, picker);
+  picker.onchange = async () => {
+    const file = picker.files[0];
+    if (!file) return;
+    try {
+      if (!catalog) throw new Error('Catalogue indisponible.');
+      importCatalogRights(catalog, storage, JSON.parse(await file.text()));
+      $('[data-scope="owned"]').click();
+      notify('Droits de collection importés.');
+    } catch (error) {
+      notify(error.message, true);
+    } finally {
+      picker.value = '';
+    }
+  };
+}
+
 function libraryFilterChanged() {
   libraryLimit = 40;
   renderLibrary({ resetScroll: true });
 }
+librarySort.onchange = () => {
+  librarySortPreference = librarySort.value;
+  try { storage?.setItem(librarySortKey, librarySortPreference); } catch { /* Préférence de session. */ }
+  libraryFilterChanged();
+};
 $('#plugin-search').oninput = libraryFilterChanged;
 treatmentFilter.onchange = () => { refreshFamilies(); libraryFilterChanged(); };
 familyFilter.onchange = libraryFilterChanged;
 window.addEventListener('storage', event => {
-  if (!event.key || event.key.startsWith('pluginlib.')) renderLibrary();
+  if (isCollectionStorageKey(event.key)) renderLibrary();
 });
 window.addEventListener('online', () => { renderChains(); renderLibrary(); });
 $('#clear-patch').onclick = () => {
@@ -1168,12 +1284,35 @@ $('#open-file').onchange = async event => {
   } catch (error) { notify(error.message, true); }
   finally { event.target.value = ''; }
 };
+const fullLibrary = $('#full-library-view');
+const fullLibraryFrame = $('#full-library-frame');
+const openFullLibrary = $('#open-full-library');
+function setFullLibraryOpen(open) {
+  fullLibrary.hidden = !open;
+  $('#builder-view').inert = open;
+  openFullLibrary.setAttribute('aria-expanded', String(open));
+  if (open) {
+    if (!$('#builder-view').classList.contains('active')) showView('builder');
+    if (!fullLibraryFrame.hasAttribute('src')) fullLibraryFrame.src = '../index.html?embed=lprep';
+    $('#close-full-library').focus({ preventScroll: true });
+  } else {
+    renderLibrary();
+    $('#secondary-menu summary').focus({ preventScroll: true });
+  }
+}
+openFullLibrary.onclick = () => {
+  $('#secondary-menu').open = false;
+  setFullLibraryOpen(fullLibrary.hidden);
+};
+$('#close-full-library').onclick = () => setFullLibraryOpen(false);
+
 $('#return-builder').onclick = () => {
   showView('builder');
   const trigger = [...$$('.chain-row')].find(row => row.dataset.chain === patchFocus?.chainId)?.querySelector('.chain-patch');
   trigger?.focus({ preventScroll: true });
 };
 function showView(view) {
+  if (view === 'diagnostics' && !fullLibrary.hidden) setFullLibraryOpen(false);
   const patchOpen = view === 'patch';
   $('#builder-content').inert = patchOpen;
   $('#patch-view').inert = !patchOpen;

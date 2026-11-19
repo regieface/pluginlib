@@ -1,12 +1,12 @@
 import { createStableId, isStableId } from './lprep-identifiers.mjs';
-import { createAudioGraph, validateAudioGraph, validateChainMainPath } from './lprep-audio-graph.mjs';
+import { CHAIN_FORMAT_PORTS, createAudioGraph, validateAudioGraph, validateChainMainPath } from './lprep-audio-graph.mjs';
 import { freezeEnvironmentSnapshot, validateSessionEnvironment } from './lprep-environment.mjs';
 import { validatePatchState } from './lprep-patch.mjs';
 import { validateTemporaryReplacements } from './lprep-replacements.mjs';
 
 export const L_PREP_SCHEMA_VERSION = 1;
 export const CHAIN_ROLES = new Set(['insert', 'fx', 'monitoring']);
-export const AUDIO_FORMATS = new Set(['mono', 'stereo', 'multichannel', 'unknown']);
+export const AUDIO_FORMATS = new Set([...Object.keys(CHAIN_FORMAT_PORTS), 'multichannel', 'unknown']);
 
 export function hasUnresolvedVariant(instance) {
   return instance?.resolutionStatus === 'unresolved' && instance.variantRef === null;
@@ -217,6 +217,14 @@ function validateSession(session, projectId, path, registry) {
     }
     issues.push(...validateChainMainPath(chain, sessionValue.audioGraph, graphResult.indexes, instances, at));
     const mainPath = chain?.mainPath;
+    if (chain?.audioFormat === 'mono-to-stereo') {
+      const input = graphResult.indexes.ports.get(mainPath?.inputBoundaryPortRef);
+      const output = graphResult.indexes.ports.get(mainPath?.outputBoundaryPortRef);
+      if (input?.channelCount !== 1 || output?.channelCount !== 2 ||
+        input.channelLayout !== 'mono' || output.channelLayout !== 'stereo') {
+        issue(issues, at, 'chain.asymmetric-format', 'Une chaîne Mono vers Stéréo doit garder une entrée mono et une sortie stéréo.');
+      }
+    }
     for (const ref of [mainPath?.inputBoundaryPortRef, mainPath?.outputBoundaryPortRef]) {
       mainPathNodes.add(graphResult.indexes.ports.get(ref)?.nodeId);
     }
