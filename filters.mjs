@@ -1,3 +1,5 @@
+import { classifiedTreatments, isTreatmentFacet, treatmentFacetValues } from './treatment-navigation.mjs';
+
 // Les valeurs cochées se combinent avec OU dans un critère, puis ET entre critères.
 // Une exclusion l'emporte toujours, y compris pour un plugin multiplateforme.
 export const emptySelection = () => ({ include: [], exclude: [] });
@@ -29,10 +31,14 @@ export function matchesSelection(values, { include = [], exclude = [] } = {}) {
   return !include.length || values.some((value) => include.includes(value));
 }
 export function matchesPluginSelections(plugin, selections) {
-  return Object.entries(selections).every(([key, selection]) => matchesSelection(valuesForFilter(plugin, key), selection));
+  return Object.entries(selections).every(([key, selection]) => (!selection.include?.length && !selection.exclude?.length) || matchesSelection(valuesForFilter(plugin, key, selections), selection));
 }
 
-export function valuesForFilter(plugin, key) {
+export function valuesForFilter(plugin, key, selections = {}) {
+  if (key === 'treatment') return classifiedTreatments(plugin).map(({ type }) => type);
+  if (key === 'classificationStatus') return [classifiedTreatments(plugin).length ? 'classified' : 'unclassified'];
+  if (key === 'format') return (plugin.classification?.formats || []).filter(fact => fact.state === 'present').map(fact => fact.id);
+  if (isTreatmentFacet(key)) return treatmentFacetValues(plugin, key, selections.treatment);
   if (key === 'platform') return plugin.platforms?.length ? plugin.platforms : ['unknown'];
   if (key === 'catalogStatus') return [plugin.catalogStatus || 'unknown'];
   if (key === 'family') return [plugin.category];
@@ -55,12 +61,12 @@ export function clearIrrelevantFacets(plugins, selections, facets) {
 export function contextualCounts(plugins, selections, key, facets) {
   // Ignorer le critère lui-même permet toujours d'ajouter un choix avec OU.
   // La famille reste modifiable même si un ancien critère technique est actif.
-  const ignored = new Set(key === 'family' ? ['family', ...Object.keys(facets)] : [key]);
+  const ignored = new Set(['family', 'treatment'].includes(key) ? [key, ...Object.keys(facets)] : [key]);
   const other = Object.fromEntries(Object.entries(selections).filter(([id]) => !ignored.has(id)));
   const counts = new Map();
   for (const p of plugins) {
-    if (!matchesPluginSelections(p, other) || (facets[key] && !facets[key].for.includes(p.category))) continue;
-    for (const value of new Set(valuesForFilter(p, key))) counts.set(value, (counts.get(value) || 0) + 1);
+    if (!matchesPluginSelections(p, other) || (facets[key] && !isTreatmentFacet(key) && !facets[key].for.includes(p.category))) continue;
+    for (const value of new Set(valuesForFilter(p, key, selections))) counts.set(value, (counts.get(value) || 0) + 1);
   }
   return counts;
 }

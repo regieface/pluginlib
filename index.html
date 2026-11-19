@@ -74,33 +74,35 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 5 5"></path></svg>
         <input id="query" placeholder="Rechercher un effet, un fabricant, un modèle (1176, Pultec…)" autocomplete="off">
       </div>
-      <div class="filters">
+      <section class="treatment-nav" aria-label="Traitements">
+        <div class="treatment-navigation-header">
+          <span class="filter-label">Traitements</span>
+          <button id="resetTreatment" class="outline treatment-button" type="button" aria-label="Réinitialiser les traitements et leurs critères" disabled>Réinitialiser</button>
+        </div>
+        <div id="treatmentGrid" class="treatment-grid"></div>
+        <div id="familySlot"></div>
+      </section>
+      <div class="filters compact-filters">
         <div class="field"><div class="filter-label">Plateformes</div><div id="platform"></div></div>
         <div class="field"><div class="filter-label">Disponibilité</div><div id="catalogStatus"></div></div>
-        <div class="field"><div class="filter-label">Type de fiche</div><div id="recordType"></div></div>
-        <div class="field"><div class="filter-label">Familles</div><div id="family"></div></div>
-        <div class="field"><div class="filter-label">Fabricants</div><div id="maker"></div></div>
-        <div id="facetFilters" class="facet-fields"></div>
-        <div class="field"><div class="filter-label">Fonctions</div><div id="option"></div></div>
-        <div class="field"><label for="zl">Zero Latency</label>
-          <select id="zl">
-            <option value="all">Indifférent</option>
-            <option value="zero">0 sample (mode standard)</option>
-            <option value="zeromode">0 sample, y compris selon mode</option>
-            <option value="announced">Annoncé par le fabricant</option>
-            <option value="known">Latence publiée</option>
-          </select></div>
-        <div class="field"><label for="rate">Fréquence</label>
-          <select id="rate"><option value="96">96 kHz</option><option value="48">48 kHz</option></select></div>
-        <div class="field"><label for="links">Fiche constructeur</label>
-          <select id="links"><option value="all">Indifférent</option><option value="yes">Avec fiche</option><option value="no">Sans fiche</option></select></div>
-        <div class="field"><label for="visual">Visuels</label>
-          <select id="visual"><option value="all">Tous</option><option value="yes">Avec visuel</option><option value="no">Sans visuel</option></select></div>
+        <label class="zero-filter"><input type="checkbox" id="zl"> Zéro documenté · 48 kHz</label>
       </div>
-      <p class="filter-help">Coche plusieurs choix pour les inclure. Le bouton − exclut un choix ; × retire un filtre. Les choix et leurs nombres s’ajustent aux filtres actifs.</p>
+      <details class="search-details" id="advancedSearch"><summary>Recherche avancée <small id="advancedCount" hidden></small></summary>
+        <div class="filters">
+          <div class="field"><div class="filter-label">Format</div><div id="format"></div></div>
+          <div class="field"><div class="filter-label">Fabricants</div><div id="maker"></div></div>
+          <div id="facetFilters" class="facet-fields"></div>
+        </div>
+      </details>
+      <details class="search-details" id="catalogManagement"><summary>Gestion du catalogue</summary>
+        <div class="filters">
+          <div class="field"><div class="filter-label">Classification</div><div id="classificationStatus"></div></div>
+          <label><input type="checkbox" id="missingVisual"> Visuel manquant</label>
+          <label><input type="checkbox" id="needsReview"> Informations à vérifier</label>
+        </div>
+        <p id="classificationCoverage" class="filter-help"></p>
+      </details>
       <p id="filterNotice" class="filter-help" role="status" hidden></p>
-      <p class="filter-help">Les critères sans preuve propre au produit restent « à vérifier » et sont écartés des filtres. Clique sur un critère affiché sur une fiche pour consulter sa source.</p>
-      <p id="familyCoverage" class="filter-help"></p>
       <div id="activeFilters" class="active-filters" aria-label="Filtres actifs"></div>
     </section>
 
@@ -111,13 +113,20 @@
       </div>
       <button type="button" id="searchScope" class="outline" hidden>Étendre à toute la bibliothèque</button>
       <div class="resultsort">
-        <label for="sort">Trier :</label>
-        <select id="sort">
-          <option value="az">Plugin A–Z</option>
-          <option value="brand">Fabricant A–Z</option>
-          <option value="images">Visuels en premier</option>
-          <option value="latency">Latence croissante</option>
-        </select>
+        <label for="sort">Trier par</label>
+        <select id="sort"><option value="name">Nom</option></select>
+        <button id="sortDirection" class="outline" type="button" aria-label="Tri croissant. Inverser le sens du tri." title="Inverser le sens du tri">↑</button>
+        <div class="result-view" role="group" aria-label="Affichage des résultats">
+          <button id="viewList" class="outline" type="button" aria-pressed="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 4h9M5 8h9M5 12h9M2 4h1M2 8h1M2 12h1"/></svg>
+            Liste
+          </button>
+          <button id="viewGrid" class="outline" type="button" aria-pressed="false">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 2h5v5H2zM9 2h5v5H9zM2 9h5v5H2zM9 9h5v5H9z"/></svg>
+            Vignettes
+          </button>
+        </div>
+        <small id="sortBasis" hidden></small>
       </div>
     </div>
 
@@ -128,7 +137,7 @@
         <button type="button" class="outline" id="clearComparison">Vider</button>
       </div>
     </section>
-    <div class="cards" id="cards"></div>
+    <div class="result-list" id="cards" data-view="list"></div>
     <button class="loadmore" id="more" hidden>Afficher plus de plugins</button>
     <details id="unmatchedCollection" class="unmatched-collection" hidden><summary id="unmatchedSummary"></summary><p>Ces licences sont conservées dans ta collection. Le nom exact de l’export est affiché tant qu’une fiche de la même version ou édition n’est pas identifiée.</p><ul id="unmatchedList"></ul></details>
 
@@ -160,6 +169,23 @@
     <div id="comparisonDetail" hidden></div>
   </dialog>
 
+  <dialog id="pluginDetail" aria-label="Fiche du plugin">
+    <form method="dialog" class="detail-close"><button class="outline" autofocus>Fermer</button></form>
+    <div id="pluginDetailContent"></div>
+  </dialog>
+
+  <template id="resultTpl">
+    <article class="result-row">
+      <div class="art"><div class="fallback"><b></b><span></span></div><img loading="lazy" referrerpolicy="no-referrer" alt=""></div>
+      <div class="result-identity"><strong class="plugin"></strong><span class="maker"></span></div>
+      <div class="result-value"></div>
+      <div class="result-actions">
+        <button type="button" class="outline open-plugin">Fiche</button>
+        <button type="button" class="outline compare-plugin" aria-pressed="false">Comparer</button>
+      </div>
+    </article>
+  </template>
+
   <template id="tpl">
     <article class="card">
       <div class="art"><div class="fallback"><b></b><span></span></div><img loading="lazy" referrerpolicy="no-referrer" alt=""><span class="ribbon"></span></div>
@@ -173,7 +199,6 @@
         <div class="latbox"></div>
         <div class="own"><label>Ma licence</label><select></select></div>
       </div>
-      <div class="card-comparison"><button type="button" class="outline compare-plugin" aria-pressed="false">Comparer</button></div>
       <div class="footer"><span class="footnote"></span><a class="productlink" target="_blank" rel="noopener"></a></div>
     </article>
   </template>

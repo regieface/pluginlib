@@ -1,6 +1,6 @@
 // Contrôle natif <details> : sélection multiple au clavier et exclusions explicites.
 export function mountMultiSelect(root, { label, emptyLabel = 'Tous', options, getSelection, onChange }) {
-  let counts = null, query = '';
+  let counts = null, query = '', allowed = () => true, showEmpty = false;
   const norm = (s) => s.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const details = document.createElement('details'); details.className = 'multi-select';
   const summary = document.createElement('summary');
@@ -37,6 +37,8 @@ export function mountMultiSelect(root, { label, emptyLabel = 'Tous', options, ge
   }
   function refresh(context) {
     if (context?.counts) counts = context.counts;
+    if (context?.allowed) allowed = context.allowed;
+    if (context?.showEmpty !== undefined) showEmpty = context.showEmpty;
     const { include, exclude } = getSelection();
     const selected = options.filter(([value]) => include.includes(value)).map(([, text]) => text);
     summary.textContent = selected.length ? `${selected.length === 1 ? selected[0] : `${selected.length} sélectionnés`}${exclude.length ? ` · ${exclude.length} exclus` : ''}` : exclude.length ? `Tous sauf ${exclude.length}` : emptyLabel;
@@ -47,7 +49,7 @@ export function mountMultiSelect(root, { label, emptyLabel = 'Tous', options, ge
       const excluded = exclude.includes(value);
       const available = counts ? counts.get(value) || 0 : count;
       const active = checkbox.checked || excluded;
-      row.hidden = (counts && available === 0 && !active) || !norm(text).includes(query);
+      row.hidden = (!active && (!allowed(value) || (counts && available === 0 && !showEmpty))) || !norm(text).includes(query);
       caption.textContent = `${text}${available != null ? ` (${available})` : ''}`;
       row.classList.toggle('excluded', excluded);
       button.textContent = excluded ? '↶' : '−'; button.setAttribute('aria-pressed', String(excluded));

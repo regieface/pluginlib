@@ -218,3 +218,20 @@ avec réception OSC locale et affichage des unités par échelle vérifiée apr�
 dans LiveProfessor. Voir le guide du module pour cet essai.
 
 La préparation des huit affectations F6 dans une copie de projet LiveProfessor et les repères de couleur sont décrits dans [le guide d’automatisation](controller/AUTOMATION.md).
+
+## L-Prep
+
+Ouvrez le dépôt à sa racine dans VS Code, démarrez Live Server, puis ouvrez
+`http://localhost:5500/lprep/` avec le port affiché par l’extension. Le dossier
+servi doit être la racine du dépôt pour que la démo puisse charger sa fixture
+dans `scripts/fixtures/`. L-Prep fonctionne hors ligne et ne nécessite aucune compilation.
+
+Les révisions enregistrées dans le navigateur utilisent IndexedDB et sont
+propres à l’origine HTTP. Gardez le même hôte et le même port pour les retrouver
+dans « Projets enregistrés ». Exportez un projet en JSON pour le transférer.
+Utilisez `localhost` ou `127.0.0.1` pour que Web Crypto soit disponible.
+
+Les modules sont regroupés dans `lprep/`. Le moteur de révisions commun est
+utilisé par l’adaptateur IndexedDB et les adaptateurs Node (mémoire et fichier).
+Les tests se lancent depuis la racine avec
+`sh scripts/with-dev-env.sh node --test scripts/lprep*.test.mjs`.

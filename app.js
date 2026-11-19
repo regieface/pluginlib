@@ -2,7 +2,12 @@
 const moduleVersion = window.PL_V || 1;
 const { productDescription } = await import(`./descriptions.mjs?v=${moduleVersion}`);
 const { PLATFORMS, CATALOG_STATUSES, hasDocumentedLatency, formatPrice, isPriceStale } = await import(`./catalog.mjs?v=${moduleVersion}`);
-const { defaultSelections, availabilityGroup, availabilityOnScopeChange, changeSelection, matchesPluginSelections, clearIrrelevantFacets, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
+const { emptySelection, defaultSelections, availabilityGroup, availabilityOnScopeChange, changeSelection, matchesPluginSelections, contextualCounts } = await import(`./filters.mjs?v=${moduleVersion}`);
+const { normalizeClassification } = await import(`./classification.mjs?v=${moduleVersion}`);
+const { FORMATS, TREATMENTS } = await import(`./treatment-taxonomy.mjs?v=${moduleVersion}`);
+const { TREATMENT_OPTIONS, CLASSIFICATION_OPTIONS, classifiedTreatments, selectedTreatmentIds,
+  navigationFacets, classificationSearchText, factStateLabel, treatmentDetails, sharedClassificationDetails, needsCatalogueReview } = await import(`./treatment-navigation.mjs?v=${moduleVersion}`);
+const { SORT_RATE, currentLatency, documentedLatency, sortOptions, rankResults } = await import(`./result-sorting.mjs?v=${moduleVersion}`);
 const { mountMultiSelect } = await import(`./multi-select.mjs?v=${moduleVersion}`);
 const { RECORD_TYPES } = await import(`./record-types.mjs?v=${moduleVersion}`);
 const { normalizeCollection, mergeCollection, collectionStatus, matchesCollectionScope, exportCollection, planFor, isPlanMember, subscriptionKey } = await import(`./collection.mjs?v=${moduleVersion}`);
@@ -17,8 +22,11 @@ const STATUS = { unknown: '—', owned: 'Licence perpétuelle', subscription: 'A
 const PAGE = 30;
 
 let DATA = [], META = null, LBL = null, status = {}, subscriptions = [], unmatchedLicenses = [], licenseDetails = {}, PLANS = [], CONTROLLER_MANIFEST = { schemaVersion: 1, links: [] }, shown = PAGE;
-const st = { scope: 'owned', q: '', zl: 'all', rate: '96', links: 'all', visual: 'all', sort: 'az' };
-let selections = defaultSelections([], st.scope);
+const st = { scope: 'owned', q: '', zl: false, missingVisual: false, needsReview: false, sort: 'name', direction: 1 };
+let treatmentFacets = {};
+const navigationSelections = scope => defaultSelections(
+  ['treatment', 'classificationStatus', 'format', ...Object.keys(treatmentFacets)], scope);
+let selections = navigationSelections(st.scope);
 const availabilityFilters = new Map();
 const filterControls = new Map(), filterChoices = new Map();
 
@@ -41,7 +49,9 @@ const ms = (samples, khz) => (samples / (Number(khz) * 1000) * 1000).toLocaleStr
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function lat(p, rate) {
-  const c = p.latency?.[rate];
+  const c = currentLatency(p, rate);
+  if (c?.conflict || c?.uncertain) return { ...c, samples: null, zero: false, zeroMode: false };
+  if (!c?.source && !c?.variants?.some(mode => mode.source)) return null;
   if (!c) return null;
   return { ...c, zero: c.samples === 0, zeroMode: (c.variants || []).some((v) => v.samples === 0) };
 }
@@ -60,8 +70,9 @@ async function load() {
   PLANS=plans.plans||[];
   ({status,subscriptions,unmatchedLicenses,licenseDetails}=normalizeCollection(currentCollection(),d.plugins,PLANS));
   DATA = d.plugins.filter(p=>!p.duplicateOf&&!p.exclude).map((p) => {
+    const classified = normalizeClassification(p);
     const presentation = productDescription(p,descriptions),summary=presentation.text;
-    return { ...p, summary, presentation, _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${LBL.categories[p.category] || ''}`) };
+    return { ...classified, summary, presentation, review: needsCatalogueReview(classified), _s: norm(`${p.name} ${(p.aliases || []).join(' ')} ${p.vendor} ${p.description} ${summary} ${classificationSearchText(classified)} ${LBL.categories[p.category] || ''}`) };
   });
   save();stats(); fillStatic(); renderSubscriptions();render();
   $('#import').disabled = false;
@@ -81,8 +92,8 @@ function stats() {
   $('#makers').textContent = fmt(new Set(DATA.map((p) => p.vendor)).size);
   $('#latstat').textContent = fmt(DATA.filter(hasDocumentedLatency).length);
   $('#linkstat').textContent = fmt(DATA.filter((p) => p.url).length);
-  const pendingFamilies = DATA.filter((p) => p.category === 'other').length;
-  $('#familyCoverage').textContent = `Catalogue : ${fmt(DATA.length - pendingFamilies)} familles renseignées · ${fmt(pendingFamilies)} familles à vérifier.`;
+  const unclassified = DATA.filter(p => !classifiedTreatments(p).length).length;
+  $('#classificationCoverage').textContent = `Catalogue : ${fmt(DATA.length - unclassified)} fiches classées · ${fmt(unclassified)} à classer.`;
   if (META.generatedAt) {
     const d = new Date(META.generatedAt);
     $('#headright').innerHTML = `Mise à jour du catalogue à la demande<br>Dernière : ${d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} à ${d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}`;
@@ -93,41 +104,107 @@ function stats() {
 }
 
 function fillStatic() {
-  selections = defaultSelections(Object.keys(LBL.facets), st.scope);
-  const fam = {}; DATA.forEach((p) => { fam[p.category] = (fam[p.category] || 0) + 1; });
-  addMulti('family', 'Familles', 'Toutes les familles', Object.entries(LBL.categories).filter(([id]) => fam[id]).sort((a, b) => a[1].localeCompare(b[1])).map(([id, label]) => [id, label, fam[id]]));
-  const mk = {}; DATA.forEach((p) => { mk[p.vendor] = (mk[p.vendor] || 0) + 1; });
-  addMulti('maker', 'Fabricants', 'Tous les fabricants', Object.keys(mk).sort((a, b) => a.localeCompare(b)).map((value) => [value, value, mk[value]]));
-  addMulti('option', 'Fonctions', 'Toutes les fonctions', Object.entries(LBL.common).map(([key, label]) => [`opt:${key}`, label]));
+  treatmentFacets = navigationFacets(DATA);
+  selections = navigationSelections(st.scope);
+  mountTreatmentNavigation();
+  addMulti('classificationStatus', 'Classification', 'Toutes les fiches', CLASSIFICATION_OPTIONS);
+  addMulti('format', 'Format', 'Tous les formats', Object.entries(FORMATS));
+  const makers = [...new Set(DATA.map(p => p.vendor))].sort((a, b) => a.localeCompare(b));
+  addMulti('maker', 'Fabricants', 'Tous les fabricants', makers.map(value => [value, value]));
   addMulti('platform', 'Plateformes', 'Toutes les plateformes', [...Object.entries(PLATFORMS), ['unknown', 'Compatibilité à vérifier']]);
   addMulti('catalogStatus', 'Disponibilité', 'Tous les statuts', Object.entries(CATALOG_STATUSES));
-  addMulti('recordType', 'Type de fiche', 'Tous les types', Object.entries(RECORD_TYPES));
-  for (const [key, def] of Object.entries(LBL.facets)) {
+  for (const [key, definition] of Object.entries(treatmentFacets)) {
     const field = document.createElement('div'); field.className = 'field';
     const label = document.createElement('div'); label.className = 'filter-label';
-    label.textContent = key === 'espace' ? 'Type d’espace' : def.label;
+    label.textContent = definition.label;
     const root = document.createElement('div'); root.id = `facet-${key}`;
-    field.append(label, root); $('#facetFilters').append(field);
-    const options = Object.entries(def.values).map(([value, text]) => [`${key}:${value}`, text, DATA.filter((p) => p.tags.includes(`${key}:${value}`)).length]).filter(([, , count]) => count);
-    addMulti(key, label.textContent, 'Indifférent', options, root);
+    field.append(label, root); $(key === 'treatmentFamily' ? '#familySlot' : '#facetFilters').append(field);
+    if (key === 'treatmentFamily') mountFamilyButtons(root, definition);
+    else addMulti(key, definition.label, 'Indifférent', definition.options, root);
   }
   renderActiveFilters();
+}
+
+function mountTreatmentNavigation() {
+  const grid = $('#treatmentGrid');
+  grid.replaceChildren(...TREATMENT_OPTIONS.map(([id, name]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'outline treatment-button';
+    button.dataset.treatment = id;
+    button.textContent = name;
+    button.addEventListener('click', () => selectTreatment(id));
+    return button;
+  }));
+  refreshTreatmentNavigation();
+}
+
+function refreshTreatmentNavigation() {
+  const [id] = selections.treatment.include;
+  $('#resetTreatment').disabled = !id && !Object.keys(treatmentFacets).some(key =>
+    selections[key].include.length || selections[key].exclude.length);
+  for (const button of $('#treatmentGrid').querySelectorAll('button')) {
+    button.setAttribute('aria-pressed', String(button.dataset.treatment === id));
+  }
+}
+
+function selectTreatment(id) {
+  const [previous] = selections.treatment.include;
+  if (id && previous === id) return;
+  for (const [key, definition] of Object.entries(treatmentFacets)) {
+    if (!id || key === 'treatmentFamily' || !definition.for.includes(id)) selections[key] = emptySelection();
+  }
+  selections.treatment = { include: id ? [id] : [], exclude: [] };
+  refreshTreatmentNavigation();
+  renderActiveFilters();
+  rerender();
+}
+
+$('#resetTreatment').addEventListener('click', () => {
+  const [previous] = selections.treatment.include;
+  selectTreatment();
+  [...$('#treatmentGrid').querySelectorAll('button')].find(button => button.dataset.treatment === previous)?.focus();
+});
+
+function mountFamilyButtons(root, { label, options }) {
+  const key = 'treatmentFamily';
+  root.className = 'family-buttons';
+  root.setAttribute('role', 'group');
+  root.setAttribute('aria-label', label);
+  const rows = options.map(([value, contextualLabel]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'outline family-button';
+    button.hidden = true;
+    const [type, family] = value.split('/');
+    const name = TREATMENTS[type].families[family];
+    button.textContent = name;
+    button.setAttribute('aria-label', contextualLabel);
+    button.addEventListener('click', () => {
+      const selection = selections[key];
+      selections[key] = changeSelection(selection, value, 'include', !selection.include.includes(value));
+      renderActiveFilters();
+      rerender();
+    });
+    return { value, name, button };
+  });
+  root.replaceChildren(...rows.map(({ button }) => button));
+  filterChoices.set(key, { label, options, root });
+  filterControls.set(key, (context = {}) => {
+    for (const { value, name, button } of rows) {
+      if (context.allowed) button.hidden = !context.allowed(value);
+      if (context.counts) button.textContent = `${name} (${context.counts.get(value) || 0})`;
+      button.setAttribute('aria-pressed', String(selections[key].include.includes(value)));
+    }
+  });
 }
 
 function addMulti(key, label, emptyLabel, options, root = $('#' + key)) {
   filterChoices.set(key, { label, options, root });
   filterControls.set(key, mountMultiSelect(root, { label, emptyLabel, options, getSelection: () => selections[key], onChange: (next) => {
     selections[key] = next;
-    if (key === 'family') reconcileFamilyCriteria();
     renderActiveFilters(); rerender();
   } }));
-}
-
-function reconcileFamilyCriteria() {
-  const cleared = clearIrrelevantFacets(DATA, selections, LBL.facets);
-  const notice = $('#filterNotice');
-  notice.textContent = cleared.length ? `Critères retirés car sans objet pour les familles choisies : ${cleared.map((key) => LBL.facets[key].label).join(', ')}.` : '';
-  notice.hidden = !cleared.length;
 }
 
 function renderActiveFilters() {
@@ -140,7 +217,6 @@ function renderActiveFilters() {
       button.setAttribute('aria-label', `Retirer le filtre ${label} : ${mode === 'exclude' ? 'exclure ' : ''}${text}`);
       button.addEventListener('click', () => {
         selections[key] = changeSelection(selections[key], value, mode, false);
-        if (key === 'family') reconcileFamilyCriteria();
         filterControls.get(key)(); renderActiveFilters(); rerender();
       });
       chips.append(button);
@@ -156,43 +232,55 @@ function filtered(ignoreSelections = false) {
     if (!ignoreSelections && !matchesPluginSelections(p, selections)) return false;
     if (!matchesCollectionScope(licenseStatus(p), st.scope)) return false;
     if (terms.length && !terms.every((t) => p._s.includes(t))) return false;
-    const l = lat(p, st.rate);
-    if (st.zl === 'zero' && !(l && l.zero)) return false;
-    if (st.zl === 'zeromode' && !(l && (l.zero || l.zeroMode)) && !p.latencyInfo?.zero) return false;
-    if (st.zl === 'announced' && !p.tags.includes('opt:zl') && !(l && l.zero) && !p.latencyInfo?.zero) return false;
-    if (st.zl === 'known' && !hasDocumentedLatency(p)) return false;
-    if (st.links === 'yes' && !p.url) return false;
-    if (st.links === 'no' && p.url) return false;
-    if (st.visual === 'yes' && !p.image) return false;
-    if (st.visual === 'no' && p.image) return false;
+    if (st.zl && documentedLatency(p)?.key !== 0) return false;
+    if (st.missingVisual && p.image) return false;
+    if (st.needsReview && !p.review) return false;
     return true;
   });
 }
 
 function refreshContextualFilters() {
+  if (!filterChoices.size) return;
+  const advancedActive = [...filterChoices].filter(([key]) =>
+    !['platform', 'catalogStatus', 'treatmentFamily', 'classificationStatus'].includes(key) &&
+    (selections[key].include.length || selections[key].exclude.length)).length;
+  $('#advancedCount').hidden = !advancedActive;
+  $('#advancedCount').textContent = advancedActive ? `${advancedActive} actif${advancedActive === 1 ? '' : 's'}` : '';
   const candidates = filtered(true);
+  const types = selectedTreatmentIds(selections.treatment, true);
+  let outsideSelection = false;
   for (const [key, { root }] of filterChoices) {
-    const counts = contextualCounts(candidates, selections, key, LBL.facets);
-    const active = selections[key].include.length || selections[key].exclude.length;
-    const hidden = !!LBL.facets[key] && !counts.size && !active;
+    const definition = treatmentFacets[key];
+    const applicable = !definition || definition.for.some(type => types.includes(type));
+    const { include, exclude } = selections[key];
+    const active = include.length || exclude.length;
+    const allowed = value => key !== 'treatmentFamily' || types.includes(value.split('/')[0]);
+    if (active && definition && (!applicable || [...include, ...exclude].some(value => !allowed(value)))) outsideSelection = true;
+    const counts = applicable || active ? contextualCounts(candidates, selections, key, treatmentFacets) : new Map();
+    const showEmpty = ['classificationStatus', 'treatmentFamily'].includes(key);
+    const hidden = !!definition && !active && (!applicable || (!showEmpty && counts.size === 0));
     root.closest('.field').hidden = hidden;
-    if (hidden) root.querySelector('details').open = false;
-    filterControls.get(key)({ counts });
+    if (hidden && key !== 'treatmentFamily') root.querySelector('details').open = false;
+    filterControls.get(key)({ counts, allowed, showEmpty });
   }
+  const notice = $('#filterNotice');
+  notice.hidden = !outsideSelection;
+  notice.textContent = outsideSelection ? 'Certains critères actifs concernent un autre traitement. Ils restent modifiables dans les filtres actifs.' : '';
 }
 
 function latCell(p, rate) {
   const l = lat(p, rate);
   if (!l) return `<div class="lat"><span>${rate} kHz</span><b>—</b><small>non publiée</small></div>`;
-  if (l.samples != null) return `<div class="lat ${l.zero ? 'zero' : ''}"><span>${rate} kHz</span><b>${l.samples} sample${l.samples > 1 ? 's' : ''}</b><small>${ms(l.samples, rate)} ms</small></div>`;
-  if (l.variants) return `<div class="lat ${l.zeroMode ? 'zero' : ''}"><span>${rate} kHz · selon mode</span>${l.variants.map((v) => `<small>${esc(v.label)} : <b style="display:inline">${v.samples}</b></small>`).join('')}</div>`;
-  return `<div class="lat"><span>${rate} kHz</span><small title="${esc(l.note)}">${esc(l.note).slice(0, 80)}</small></div>`;
+  if (l.samples != null && (!l.unit || l.unit === 'samples') && !Object.keys(l.conditions || {}).length) return `<div class="lat ${l.zero ? 'zero' : ''}"><span>${rate} kHz</span><b>${l.samples} sample${l.samples > 1 ? 's' : ''}</b><small>${ms(l.samples, rate)} ms</small></div>`;
+  if (l.variants?.length) return `<div class="lat ${l.zeroMode ? 'zero' : ''}"><span>${rate} kHz · selon mode</span>${l.variants.map((v) => `<small>${esc(v.label)} : <b style="display:inline">${v.samples}</b></small>`).join('')}</div>`;
+  return `<div class="lat"><span>${rate} kHz</span><small title="${esc(l.note)}">${esc(l.note || 'Latence selon les conditions').slice(0, 80)}</small></div>`;
 }
 
-function fillPluginArt(art, p) {
+function fillPluginArt(art, p, comparison = false) {
   const img = art.querySelector('img');
   art.querySelector('.fallback b').textContent = p.vendor.split(/\s+/).map(word => word[0]).join('').slice(0, 2).toUpperCase();
-  art.querySelector('.fallback span').textContent = LBL.categories[p.category] || '';
+  art.querySelector('.fallback span').textContent = comparison ? LBL.categories[p.category] || '' :
+    classifiedTreatments(p).map(({ type }) => TREATMENTS[type].label).join(' · ') || 'À classer';
   if (!p.image) { img.remove(); return; }
   img.onload = () => art.classList.add('has-image');
   img.onerror = () => { art.classList.remove('has-image'); img.remove(); };
@@ -200,29 +288,28 @@ function fillPluginArt(art, p) {
   img.src = p.image;
 }
 
-function card(p, detail = false) {
+function factBadge(label, fact, classes = '', showState = false) {
+  const state = factStateLabel(fact);
+  const proof = fact.evidence?.find(evidence => /^https?:\/\//i.test(evidence.url || ''));
+  const scope = Object.entries(fact.conditions || {}).map(([key, value]) =>
+    key === 'sampleRateKHz' ? `${value} kHz` : key === 'conditional' && value && !fact.conditions.mode ? 'Selon les conditions' :
+      typeof value === 'boolean' ? '' : value).filter(Boolean).join(' · ');
+  const text = [label, showState ? state : '', scope].filter(Boolean).join(' · ');
+  const attributes = `class="badge ${classes}" title="${esc([state, proof?.excerpt].filter(Boolean).join(' · '))}"`;
+  return proof ? `<a ${attributes} href="${esc(proof.url)}" target="_blank" rel="noopener">${esc(text)} ↗</a>` :
+    `<span ${attributes}>${esc(text)}</span>`;
+}
+
+function card(p, editable = false) {
   const n = $('#tpl').content.cloneNode(true);
   const currentLicenseStatus = licenseStatus(p);
   n.querySelector('.card').classList.toggle('licensed', ['owned', 'subscription'].includes(currentLicenseStatus));
   fillPluginArt(n.querySelector('.art'), p);
-  const compare = n.querySelector('.compare-plugin');
-  if (detail) n.querySelector('.card-comparison').remove();
-  else {
-    compare.dataset.pluginId = p.id;
-    compare.setAttribute('aria-label', `Comparer ${p.name}`);
-    compare.setAttribute('aria-pressed', String(comparisonSelection.has(p.id)));
-    compare.addEventListener('click', () => {
-      if (comparisonSelection.has(p.id)) comparisonSelection.delete(p.id);
-      else comparisonSelection.set(p.id, p);
-      renderComparisonSelection();
-    });
-  }
-  const l = lat(p, st.rate);
-  n.querySelector('.ribbon').textContent = l?.zero ? `Zero latency · ${st.rate} kHz` : l?.zeroMode ? `ZL selon mode · ${st.rate} kHz` : '';
+  n.querySelector('.ribbon').textContent = documentedLatency(p)?.key === 0 ? `Zero latency · ${SORT_RATE} kHz` : '';
   n.querySelector('.maker').textContent = p.vendor;
   n.querySelector('.plugin').textContent = p.name;
   const description=n.querySelector('.description');
-  const text=document.createElement('p');text.className='description-text';text.id=`description-${detail ? 'comparison-' : ''}${p.id}`;text.textContent=p.summary;
+  const text=document.createElement('p');text.className='description-text';text.id=`description-${editable ? 'fiche-' : 'comparison-'}${p.id}`;text.textContent=p.summary;
   const toggle=document.createElement('button');toggle.type='button';toggle.className='description-toggle';toggle.textContent='Lire la suite';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',text.id);toggle.hidden=true;
   toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Réduire':'Lire la suite';description.classList.toggle('expanded',expanded);});
   description.append(text,toggle);
@@ -230,19 +317,35 @@ function card(p, detail = false) {
   descriptionObserver.observe(text);
   const tagLabel = (tag) => { const [f, v] = tag.split(':'); return f === 'opt' ? LBL.common[v] : LBL.facets[f]?.values[v]; };
   const tags = p.tags.map((id) => ({ id, label: tagLabel(id) })).filter((t) => t.label);
-  const familyEvidence = p.categoryEvidence;
-  const familyLabel = esc(LBL.categories[p.category] || p.category);
-  const familyBadge = p.category !== 'other' && familyEvidence?.url
-    ? `<a class="badge fam" href="${esc(familyEvidence.url)}" target="_blank" rel="noopener" title="${esc(familyEvidence.excerpt || 'Fonction principale documentée')}">${familyLabel} ↗</a>`
-    : `<span class="badge fam" title="Fonction principale non confirmée">${familyLabel}</span>`;
+  const treatments = p.classification?.treatments || [];
+  const treatmentBadges = classifiedTreatments(p).map(fact => factBadge(TREATMENTS[fact.type].label, fact, 'fam'));
+  const formatBadges = (p.classification?.formats || []).filter(fact => fact.state === 'present')
+    .map(fact => factBadge(FORMATS[fact.id], fact));
   const discontinuedBadge = p.catalogStatus === 'discontinued'
     ? `<span class="badge discontinued"${p.statusEvidence?.url ? ` title="${esc(p.statusEvidence.url)}"` : ''}>${CATALOG_STATUSES.discontinued}</span>`
     : '';
-  n.querySelector('.badges').innerHTML = discontinuedBadge + familyBadge + tags.map(({id,label}) => {
-    const proof = p.featureEvidence?.[id];
-    const level = proof?.method === 'reviewed-source' ? 'Source vérifiée' : proof?.method === 'latency-table' ? 'Tableau officiel' : 'Annoncé dans le nom ou la description éditeur';
-    return proof?.url ? `<a class="badge" href="${esc(proof.url)}" target="_blank" rel="noopener" title="${esc(`${level} · ${proof.excerpt || 'Source propre au produit'}`)}">${esc(label)} ↗</a>` : `<span class="badge">${esc(label)}</span>`;
-  }).join('') + (familyEvidence?.method === 'reviewed-source' ? '<span class="badge ok">Famille vérifiée</span>' : '');
+  const badges = n.querySelector('.badges');
+  badges.innerHTML = discontinuedBadge +
+    (treatmentBadges.join('') || '<span class="badge unknown">À classer</span>') + formatBadges.join('');
+  const shared = sharedClassificationDetails(p);
+  if (treatments.length || tags.length || shared.length || p.classification?.formats?.some(fact => fact.state !== 'present')) {
+    const technical = document.createElement('details'); technical.className = 'technical-details';
+    const rows = details => `<ul>${details.map(({ label, value, fact }) =>
+      `<li>${esc(label)} ${factBadge(value || factStateLabel(fact), fact, '', Boolean(value))}</li>`).join('')}</ul>`;
+    technical.innerHTML = '<summary>Caractéristiques</summary>' + treatments.map(treatment => `<section>
+      <h3>${esc(TREATMENTS[treatment.type].label)} <small>${esc(factStateLabel(treatment))}</small></h3>
+      ${rows(treatmentDetails(p, treatment))}
+    </section>`).join('') +
+      (shared.length ? `<section><h3>Caractéristiques communes</h3>${rows(shared)}</section>` : '') +
+      (p.classification?.formats || []).filter(fact => fact.state !== 'present')
+        .map(fact => factBadge(FORMATS[fact.id], fact, '', true)).join('') +
+      (tags.length ? `<section><h3>Critères historiques</h3><div class="badges">${tags.map(({id,label}) => {
+        const proof = p.featureEvidence?.[id];
+        return factBadge(label, { state: 'present', confidence: ['reviewed-source', 'latency-table'].includes(proof?.method)
+          ? 'verified' : 'reported', evidence: proof ? [proof] : [] });
+      }).join('')}</div></section>` : '');
+    badges.after(technical);
+  }
   if (p.unverifiedTags?.length) {
     const review = document.createElement('details'); review.className = 'feature-review';
     const summary = document.createElement('summary'); summary.textContent = `${p.unverifiedTags.length} critère${p.unverifiedTags.length > 1 ? 's' : ''} à vérifier`;
@@ -297,7 +400,7 @@ function card(p, detail = false) {
   sel.value = currentLicenseStatus;
   sel.classList.toggle('set', sel.value !== 'unknown');
   sel.dataset.id = p.id;
-  sel.disabled = detail;
+  sel.disabled = !editable;
   if(licenseDetails[p.id]&&['owned','subscription','former'].includes(sel.value)){
     const details=document.createElement('small');details.className='license-detail';details.textContent=`Licence importée : ${licenseDetails[p.id].name}`;n.querySelector('.own').after(details);
   }
@@ -402,7 +505,7 @@ function renderComparison() {
   }).join('');
   const empty = `<tbody><tr><td colspan="${plugins.length + 1}">Aucune différence documentée.</td></tr></tbody>`;
   container.innerHTML = `<table aria-labelledby="comparisonTitle" style="--plugin-count: ${plugins.length}"><colgroup><col class="comparison-criterion-column"><col span="${plugins.length}"></colgroup><thead><tr><th scope="col" class="comparison-criterion">Critère</th>${headers}</tr></thead>${bodies || empty}</table>`;
-  container.querySelectorAll('.art').forEach((art, index) => fillPluginArt(art, plugins[index]));
+  container.querySelectorAll('.art').forEach((art, index) => fillPluginArt(art, plugins[index], true));
   container.scrollLeft = scrollLeft;
   container.scrollTop = scrollTop;
   updateComparisonScroll();
@@ -410,7 +513,7 @@ function renderComparison() {
 
 function showComparisonTable() {
   $('#comparisonDetail').hidden = true;
-  $('#comparisonDetail').replaceChildren();
+  clearPluginDetail($('#comparisonDetail'));
   $('#comparisonBack').hidden = true;
   $('#comparisonTable').hidden = false;
   $('#comparisonDifferencesLabel').hidden = false;
@@ -457,7 +560,8 @@ $('#comparisonTable').addEventListener('click', event => {
   const plugin = comparisonSelection.get(button?.dataset.detail);
   if (!plugin) return;
   const detail = $('#comparisonDetail');
-  detail.replaceChildren(card(plugin, true));
+  clearPluginDetail(detail);
+  detail.append(card(plugin));
   detail.hidden = false;
   $('#comparisonTable').hidden = true;
   updateComparisonScroll();
@@ -471,13 +575,98 @@ $('#comparisonBack').addEventListener('click', () => {
   $('#comparisonTable').focus();
 });
 
+function clearPluginDetail(root) {
+  const description = root.querySelector('.description-text');
+  if (description) descriptionObserver.unobserve(description);
+  root.replaceChildren();
+}
+
+$('#pluginDetail').addEventListener('close', () => clearPluginDetail($('#pluginDetailContent')));
+comparisonDialog.addEventListener('close', () => clearPluginDetail($('#comparisonDetail')));
+
+const RESULT_VIEW_KEY = 'pluginlib.result-view.v1';
+function setResultView(view, remember = false) {
+  const grid = view === 'grid';
+  $('#cards').dataset.view = grid ? 'grid' : 'list';
+  $('#viewList').setAttribute('aria-pressed', String(!grid));
+  $('#viewGrid').setAttribute('aria-pressed', String(grid));
+  if (remember) {
+    try { localStorage.setItem(RESULT_VIEW_KEY, grid ? 'grid' : 'list'); } catch { /* stockage indisponible */ }
+  }
+}
+let storedResultView;
+try { storedResultView = localStorage.getItem(RESULT_VIEW_KEY); } catch { /* stockage indisponible */ }
+setResultView(storedResultView);
+$('#viewList').addEventListener('click', () => setResultView('list', true));
+$('#viewGrid').addEventListener('click', () => setResultView('grid', true));
+
+function resultRow({ plugin, value }) {
+  const row = $('#resultTpl').content.cloneNode(true);
+  row.querySelector('.result-row').classList.toggle('licensed', ['owned', 'subscription'].includes(licenseStatus(plugin)));
+  fillPluginArt(row.querySelector('.art'), plugin);
+  row.querySelector('.plugin').textContent = plugin.name;
+  row.querySelector('.maker').textContent = plugin.vendor;
+  const metric = row.querySelector('.result-value');
+  metric.hidden = st.sort === 'name';
+  if (value?.url && /^https?:\/\//i.test(value.url)) {
+    const source = document.createElement('a');
+    source.href = value.url;
+    source.target = '_blank';
+    source.rel = 'noopener';
+    source.textContent = value.text;
+    metric.append(source);
+  } else metric.textContent = value?.text || '—';
+  metric.title = value?.title || 'Valeur comparable non renseignée';
+  const open = row.querySelector('.open-plugin');
+  open.setAttribute('aria-label', `Ouvrir la fiche ${plugin.name}`);
+  open.addEventListener('click', () => {
+    const detail = $('#pluginDetailContent');
+    clearPluginDetail(detail);
+    detail.append(card(plugin, true));
+    $('#pluginDetail').showModal();
+  });
+  const compare = row.querySelector('.compare-plugin');
+  compare.dataset.pluginId = plugin.id;
+  compare.setAttribute('aria-label', `Comparer ${plugin.name}`);
+  compare.setAttribute('aria-pressed', String(comparisonSelection.has(plugin.id)));
+  compare.addEventListener('click', () => {
+    if (comparisonSelection.has(plugin.id)) comparisonSelection.delete(plugin.id);
+    else comparisonSelection.set(plugin.id, plugin);
+    renderComparisonSelection();
+  });
+  return row;
+}
+
+function refreshSorting(plugins) {
+  const [type] = selections.treatment.include;
+  const now = Date.now();
+  const options = sortOptions(type, plugins, now);
+  if (!options.some(([id, , enabled]) => id === st.sort && enabled)) st.sort = 'name';
+  $('#sort').replaceChildren(...options.map(([id, label, enabled]) => {
+    const option = document.createElement('option');
+    option.value = id;
+    option.textContent = enabled || id === 'cpu' ? label : `${label} · données insuffisantes`;
+    option.disabled = !enabled;
+    return option;
+  }));
+  $('#sort').value = st.sort;
+  const direction = $('#sortDirection');
+  direction.textContent = st.direction === 1 ? '↑' : '↓';
+  direction.setAttribute('aria-label', `Tri ${st.direction === 1 ? 'croissant' : 'décroissant'}. Inverser le sens du tri.`);
+  const basis = {
+    latency: `${SORT_RATE} kHz · valeurs globales en échantillons, avec source`,
+    attack: 'Minimum des plages documentées en millisecondes',
+    release: 'Minimum des plages documentées en millisecondes',
+    price: 'Achat du plugin · prix normal récent en euros, hors abonnement'
+  }[st.sort];
+  $('#sortBasis').hidden = !basis;
+  $('#sortBasis').textContent = basis || '';
+  return rankResults(plugins, st.sort, st.direction, type, now);
+}
+
 function render() {
-  descriptionObserver.disconnect();
   refreshContextualFilters();
-  const list = filtered();
-  const latKey = (p) => { const l = lat(p, st.rate); return l?.samples ?? (l?.variants ? Math.min(...l.variants.map((v) => v.samples)) : 1e9); };
-  const by = { az: (a, b) => a.name.localeCompare(b.name), brand: (a, b) => a.vendor.localeCompare(b.vendor) || a.name.localeCompare(b.name), images: (a, b) => (!!b.image - !!a.image) || a.name.localeCompare(b.name), latency: (a, b) => latKey(a) - latKey(b) || a.name.localeCompare(b.name) };
-  list.sort(by[st.sort]);
+  const list = refreshSorting(filtered());
   $('#matched').textContent = fmt(list.length);
   const activeScope = $('#scope').querySelector('.active');
   $('#resultScope').textContent = activeScope.textContent;
@@ -487,7 +676,7 @@ function render() {
   $('#archiveHelp').hidden = st.scope !== 'archives';
   $('#hint').hidden = availabilityGroup(st.scope) === 'collection' || !!st.q.trim();
   const frag = document.createDocumentFragment();
-  list.slice(0, shown).forEach((p) => frag.append(card(p)));
+  list.slice(0, shown).forEach(result => frag.append(resultRow(result)));
   if (!list.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'Aucun plugin ne correspond à ces filtres.'; frag.append(e); }
   $('#cards').replaceChildren(frag);
   $('#more').hidden = list.length <= shown;
@@ -496,7 +685,6 @@ function render() {
     $('#unmatchedSummary').textContent=[products?`${products} licences importées sans fiche correspondante`:'',groups?`${groups} groupes d’abonnement importés`:''].filter(Boolean).join(' · ');
     $('#unmatchedList').replaceChildren(...unmatchedLicenses.map(license=>{const li=document.createElement('li');li.textContent=`${license.publisher} — ${license.name} · ${STATUS[license.status]||'À vérifier'}${license.kind==='group'?' · Groupe de licences':''}`;return li;}));
   }
-  document.querySelectorAll('.field').forEach((f) => { const s = f.querySelector('select'); if (s) f.classList.toggle('active', !!s.value && !['all', 'Tous', ''].includes(s.value) && s.id !== 'rate'); });
 }
 
 // ---------- Événements ----------
@@ -507,9 +695,11 @@ $('#query').addEventListener('input', (e) => {
   clearTimeout(t);
   t = setTimeout(rerender, 120);
 });
-for (const k of ['zl', 'rate', 'links', 'visual', 'sort']) {
-  $('#' + k).addEventListener('change', (e) => { st[k] = e.target.value; rerender(); });
+for (const key of ['zl', 'missingVisual', 'needsReview']) {
+  $('#' + key).addEventListener('change', event => { st[key] = event.target.checked; rerender(); });
 }
+$('#sort').addEventListener('change', event => { st.sort = event.target.value; rerender(); });
+$('#sortDirection').addEventListener('click', () => { st.direction *= -1; rerender(); });
 document.addEventListener('click', (event) => document.querySelectorAll('.multi-select[open]').forEach((details) => { if (!details.contains(event.target)) details.open = false; }));
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') document.querySelectorAll('.multi-select[open]').forEach((details) => { details.open = false; details.querySelector('summary').focus(); }); });
 function selectScope(scope) {
@@ -529,17 +719,24 @@ $('#scope').addEventListener('click', (e) => {
   if (button) selectScope(button.dataset.scope);
 });
 $('#searchScope').addEventListener('click', () => selectScope(st.scope === 'owned' ? 'all' : 'owned'));
-$('#cards').addEventListener('change', (e) => {
+$('#pluginDetailContent').addEventListener('change', (e) => {
   const s = e.target.closest('.own select'); if (!s) return;
   if (s.value === 'unknown') delete status[s.dataset.id]; else status[s.dataset.id] = s.value;
-  s.classList.toggle('set', s.value !== 'unknown'); save();
+  save();
+  const plugin = DATA.find(entry => entry.id === s.dataset.id);
+  if (plugin) {
+    const detail = $('#pluginDetailContent');
+    clearPluginDetail(detail);
+    detail.append(card(plugin, true));
+    detail.querySelector('.own select').focus();
+  }
   rerender();
 });
 $('#more').addEventListener('click', () => { shown += PAGE; render(); });
 $('#reset').addEventListener('click', () => {
   clearTimeout(t);
-  Object.assign(st, { q: '', zl: 'all', links: 'all', visual: 'all' });
-  selections = defaultSelections(Object.keys(LBL.facets), st.scope);
+  Object.assign(st, { q: '', zl: false, missingVisual: false, needsReview: false, sort: 'name', direction: 1 });
+  selections = navigationSelections(st.scope);
   $('#query').value = '';
   $('#filterNotice').hidden = true;
   document.querySelectorAll('.multi-select').forEach((details) => {
@@ -548,7 +745,8 @@ $('#reset').addEventListener('click', () => {
     if (search) { search.value = ''; search.dispatchEvent(new Event('input')); }
     details.querySelector('.multi-options').scrollTop = 0;
   });
-  for (const k of ['zl', 'links', 'visual']) $('#' + k).value = 'all';
+  for (const key of ['zl', 'missingVisual', 'needsReview']) $('#' + key).checked = false;
+  refreshTreatmentNavigation();
   filterControls.forEach((refresh) => refresh());
   renderActiveFilters(); rerender();
 });

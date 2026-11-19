@@ -1,0 +1,57 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { LPrepUIController } from '../lprep/lprep-ui-controller.mjs';
+import { dlGroupNumbers } from '../lprep/lprep-constructor-services.mjs';
+import { MemoryRevisionStore } from '../lprep/lprep-persistence.mjs';
+import { loadReferencePatchFixture } from './fixtures/lprep-patch-fixture.mjs';
+
+test('CLEAR PATCH retire les affectations modifiables en une révision et conserve le routage protégé', async () => {
+  const controller = new LPrepUIController({ revisionStore: new MemoryRevisionStore() });
+  const project = await loadReferencePatchFixture();
+  const protectedAssignment = project.sessions[0].patchAssignments.find(item => item.chainId === 'chain:drum' && item.direction === 'output');
+  protectedAssignment.locked = true;
+  controller.openProject(project);
+  const before = controller.activeSession;
+  const plan = controller.previewClearPatch();
+  assert.ok(plan.removable.length > 0);
+  assert.ok(protectedAssignment.connectionRefs.every(id => plan.kept.some(link => link.id === id)));
+  const ids = plan.removable.map(item => item.id);
+  assert.equal(controller.clearPatch(ids.slice(1)).status, 'error');
+  assert.deepEqual(controller.activeSession, before);
+  assert.equal(controller.clearPatch(ids).status, 'committed');
+  const after = controller.activeSession;
+  assert.deepEqual(after.chains, before.chains);
+  assert.deepEqual(after.pluginInstances, before.pluginInstances);
+  assert.deepEqual(after.compensationGroups, before.compensationGroups);
+  assert.deepEqual(after.audioGraph.connections, before.audioGraph.connections.filter(edge => !ids.includes(edge.connectionId)));
+  assert.deepEqual(controller.project.sessions.slice(1), project.sessions.slice(1));
+  controller.undo();
+  assert.deepEqual(controller.activeSession, before);
+  controller.redo();
+  assert.deepEqual(controller.activeSession, after);
+  const { revisionId } = await controller.save();
+  await controller.openRevision(revisionId);
+  assert.deepEqual(controller.activeSession, after);
+});
+
+test('DL12 peut être créé, partagé, quitté et restauré sans renuméroter les groupes existants', async () => {
+  const controller = new LPrepUIController({ revisionStore: new MemoryRevisionStore() });
+  controller.openProject(await loadReferencePatchFixture());
+  const [first, second] = controller.activeSession.chains;
+  const existing = dlGroupNumbers(controller.activeSession.compensationGroups);
+  const change = (chain, dlNumber) => controller.updateChainSettings(chain.chainId, { dlNumber });
+  assert.equal(change(first, 12).status, 'committed');
+  assert.equal(change(second, 12).status, 'committed');
+  assert.equal(change(second, 1.5).status, 'error');
+  const group = controller.activeSession.compensationGroups.find(item => item.metadata?.dlNumber === 12);
+  assert.deepEqual(group.memberChainRefs, [first.chainId, second.chainId]);
+  assert.equal(change(second, null).status, 'committed');
+  assert.equal(controller.activeSession.chains[1].compensationGroupId, null);
+  controller.undo();
+  assert.equal(controller.activeSession.chains[1].compensationGroupId, group.compensationGroupId);
+  const { revisionId } = await controller.save();
+  await controller.openRevision(revisionId);
+  const numbers = dlGroupNumbers(controller.activeSession.compensationGroups);
+  assert.equal(numbers.get(group.compensationGroupId), 12);
+  for (const [id, number] of existing) assert.equal(numbers.get(id), number);
+});

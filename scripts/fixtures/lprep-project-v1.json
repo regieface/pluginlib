@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "projectId": "project:reference",
+  "name": "DRUM / BASS / FX / INSTRUS",
+  "metadata": {
+    "createdAt": "2026-11-18T00:00:00.000Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "session:main",
+      "projectId": "project:reference",
+      "name": "Session principale",
+      "metadata": {},
+      "targetMachineRef": {
+        "machineId": "machine:studio",
+        "fallback": { "name": "Mac Studio" }
+      },
+      "pluginInstances": [
+        {
+          "instanceId": "instance:drum-a",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--compressor", "fallback": { "name": "Compressor", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-compressor-au-stereo", "revision": 1, "fallback": { "name": "AU stéréo" } },
+          "displayName": "DRUM Compressor A",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        },
+        {
+          "instanceId": "instance:drum-b",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--compressor", "fallback": { "name": "Compressor", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-compressor-au-stereo", "revision": 1, "fallback": { "name": "AU stéréo" } },
+          "displayName": "DRUM Compressor B",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        },
+        {
+          "instanceId": "instance:bass",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--bass-eq", "fallback": { "name": "Bass EQ", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-bass-eq-au-mono", "revision": 1, "fallback": { "name": "AU mono" } },
+          "displayName": "BASS EQ",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        },
+        {
+          "instanceId": "instance:fx",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--reverb", "fallback": { "name": "Reverb", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-reverb-au-stereo", "revision": 1, "fallback": { "name": "AU stéréo" } },
+          "displayName": "FX Reverb",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        },
+        {
+          "instanceId": "instance:instrus",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--equalizer", "fallback": { "name": "Equalizer", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-equalizer-au-stereo", "revision": 1, "fallback": { "name": "AU stéréo" } },
+          "displayName": "INSTRUS EQ",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        },
+        {
+          "instanceId": "instance:independent",
+          "sessionId": "session:main",
+          "catalogRef": { "pluginId": "example--dynamic-eq", "fallback": { "name": "Dynamic EQ", "vendor": "Example" } },
+          "variantRef": { "variantId": "variant:example-dynamic-eq-au-stereo", "revision": 1, "fallback": { "name": "AU stéréo" } },
+          "displayName": "INSTRUS Dynamic EQ indépendant",
+          "resolutionStatus": "resolved",
+          "midiProfileRef": null,
+          "opaqueStateRefs": [],
+          "metadata": {},
+          "extensions": {}
+        }
+      ],
+      "audioGraph": {
+        "graphId": "graph:main",
+        "sessionId": "session:main",
+        "sampleRate": 48000,
+        "nodes": [
+          { "nodeId": "node:drum-in", "graphId": "graph:main", "type": "audio-input", "label": "DRUM In 1–2", "instanceRef": null, "externalResourceRef": "session:main/virtual-input:1", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:drum-a", "graphId": "graph:main", "type": "plugin-instance", "label": "DRUM A", "instanceRef": "instance:drum-a", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:drum-b", "graphId": "graph:main", "type": "plugin-instance", "label": "DRUM B", "instanceRef": "instance:drum-b", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:drum-out", "graphId": "graph:main", "type": "audio-output", "label": "DRUM Out 1–2", "instanceRef": null, "externalResourceRef": "session:main/virtual-output:1", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:drum-meter", "graphId": "graph:main", "type": "bus", "label": "Branche secondaire DRUM", "instanceRef": null, "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:bass-in", "graphId": "graph:main", "type": "audio-input", "label": "BASS In 3", "instanceRef": null, "externalResourceRef": "session:main/virtual-input:3", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:bass", "graphId": "graph:main", "type": "plugin-instance", "label": "BASS", "instanceRef": "instance:bass", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:bass-out", "graphId": "graph:main", "type": "audio-output", "label": "BASS Out 3", "instanceRef": null, "externalResourceRef": "session:main/virtual-output:3", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:fx-in", "graphId": "graph:main", "type": "audio-input", "label": "FX In 17", "instanceRef": null, "externalResourceRef": "session:main/virtual-input:17", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:fx", "graphId": "graph:main", "type": "plugin-instance", "label": "FX", "instanceRef": "instance:fx", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:fx-out", "graphId": "graph:main", "type": "audio-output", "label": "FX Out 17–18", "instanceRef": null, "externalResourceRef": "session:main/virtual-output:17", "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:instrus-in", "graphId": "graph:main", "type": "audio-input", "label": "INSTRUS In", "instanceRef": null, "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:instrus", "graphId": "graph:main", "type": "plugin-instance", "label": "INSTRUS", "instanceRef": "instance:instrus", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:independent", "graphId": "graph:main", "type": "plugin-instance", "label": "Plugin indépendant", "instanceRef": "instance:independent", "externalResourceRef": null, "hostBindingRef": null, "metadata": {}, "extensions": {} },
+          { "nodeId": "node:instrus-out", "graphId": "graph:main", "type": "audio-output", "label": "INSTRUS Out 5–6", "instanceRef": null, "externalResourceRef": "session:main/virtual-output:5", "hostBindingRef": null, "metadata": {}, "extensions": {} }
+        ],
+        "ports": [
+          { "portId": "port:drum-source", "nodeId": "node:drum-in", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-a-in", "nodeId": "node:drum-a", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-a-out", "nodeId": "node:drum-a", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-b-in", "nodeId": "node:drum-b", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-b-out", "nodeId": "node:drum-b", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-sink", "nodeId": "node:drum-out", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:drum-meter-in", "nodeId": "node:drum-meter", "direction": "input", "role": "auxiliary", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": false, "fanInPolicy": "multiple", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:bass-source", "nodeId": "node:bass-in", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "mono", "channelCount": 1, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:bass-in", "nodeId": "node:bass", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "mono", "channelCount": 1, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:bass-out", "nodeId": "node:bass", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "mono", "channelCount": 1, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:bass-sink", "nodeId": "node:bass-out", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "mono", "channelCount": 1, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:fx-source", "nodeId": "node:fx-in", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "mono", "channelCount": 1, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:fx-in", "nodeId": "node:fx", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:fx-out", "nodeId": "node:fx", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:fx-sink", "nodeId": "node:fx-out", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:instrus-source", "nodeId": "node:instrus-in", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:instrus-in", "nodeId": "node:instrus", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:instrus-out", "nodeId": "node:instrus", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:independent-in", "nodeId": "node:independent", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:independent-sidechain", "nodeId": "node:independent", "direction": "input", "role": "sidechain", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Sidechain", "required": false, "fanInPolicy": "multiple", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:independent-out", "nodeId": "node:independent", "direction": "output", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "Out", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} },
+          { "portId": "port:instrus-sink", "nodeId": "node:instrus-out", "direction": "input", "role": "main", "mediaType": "audio", "channelLayout": "stereo", "channelCount": 2, "label": "In", "required": true, "fanInPolicy": "single", "hostBindingRef": null, "extensions": {} }
+        ],
+        "connections": [
+          { "connectionId": "connection:drum-entry", "graphId": "graph:main", "sourcePortId": "port:drum-source", "destinationPortId": "port:drum-a-in", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 2, "destinationChannel": 2 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:drum-main", "graphId": "graph:main", "sourcePortId": "port:drum-a-out", "destinationPortId": "port:drum-b-in", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 2, "destinationChannel": 2 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:drum-exit", "graphId": "graph:main", "sourcePortId": "port:drum-b-out", "destinationPortId": "port:drum-sink", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 2, "destinationChannel": 2 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:drum-secondary", "graphId": "graph:main", "sourcePortId": "port:drum-a-out", "destinationPortId": "port:drum-meter-in", "channelMap": null, "routingRole": "secondary", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:bass-entry", "graphId": "graph:main", "sourcePortId": "port:bass-source", "destinationPortId": "port:bass-in", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:bass-exit", "graphId": "graph:main", "sourcePortId": "port:bass-out", "destinationPortId": "port:bass-sink", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:fx-entry", "graphId": "graph:main", "sourcePortId": "port:fx-source", "destinationPortId": "port:fx-in", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 1, "destinationChannel": 2 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:fx-exit", "graphId": "graph:main", "sourcePortId": "port:fx-out", "destinationPortId": "port:fx-sink", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 2, "destinationChannel": 2 }], "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:instrus-entry", "graphId": "graph:main", "sourcePortId": "port:instrus-source", "destinationPortId": "port:instrus-in", "channelMap": null, "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:instrus-independent", "graphId": "graph:main", "sourcePortId": "port:instrus-out", "destinationPortId": "port:independent-in", "channelMap": null, "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:instrus-exit", "graphId": "graph:main", "sourcePortId": "port:independent-out", "destinationPortId": "port:instrus-sink", "channelMap": null, "routingRole": "main", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:bass-sidechain", "graphId": "graph:main", "sourcePortId": "port:bass-out", "destinationPortId": "port:independent-sidechain", "channelMap": [{ "sourceChannel": 1, "destinationChannel": 1 }, { "sourceChannel": 1, "destinationChannel": 2 }], "routingRole": "sidechain", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} },
+          { "connectionId": "connection:drum-sidechain", "graphId": "graph:main", "sourcePortId": "port:drum-b-out", "destinationPortId": "port:independent-sidechain", "channelMap": null, "routingRole": "sidechain", "gain": null, "polarity": "unknown", "enabledState": "enabled", "provenance": { "kind": "fixture" }, "originAssignmentId": null, "hostBindingRef": null, "extensions": {} }
+        ],
+        "externalBindings": [],
+        "extensions": { "futureGraphField": { "preserve": true } }
+      },
+      "chains": [
+        { "chainId": "chain:drum", "sessionId": "session:main", "name": "DRUM", "role": "insert", "audioFormat": "stereo", "color": "#E25D3A", "compensationGroupId": "compensation-group:1", "pluginOrder": ["instance:drum-a", "instance:drum-b"], "mainPath": { "inputBoundaryPortRef": "port:drum-a-in", "outputBoundaryPortRef": "port:drum-b-out", "connectionRefs": ["connection:drum-main"] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:bass", "sessionId": "session:main", "name": "BASS", "role": "insert", "audioFormat": "mono", "color": "#D8A23C", "compensationGroupId": null, "pluginOrder": ["instance:bass"], "mainPath": { "inputBoundaryPortRef": "port:bass-in", "outputBoundaryPortRef": "port:bass-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:fx", "sessionId": "session:main", "name": "FX", "role": "fx", "audioFormat": "stereo", "color": "#35A8A3", "compensationGroupId": null, "pluginOrder": ["instance:fx"], "mainPath": { "inputBoundaryPortRef": "port:fx-in", "outputBoundaryPortRef": "port:fx-out", "connectionRefs": [] }, "presentationLinks": [], "allocationEligibility": true, "metadata": {}, "extensions": {} },
+        { "chainId": "chain:instrus", "sessionId": "session:main", "name": "INSTRUS", "role": "insert", "audioFormat": "stereo", "color": "#6574D8", "compensationGroupId": null, "pluginOrder": ["instance:instrus"], "mainPath": { "inputBoundaryPortRef": "port:instrus-in", "outputBoundaryPortRef": "port:instrus-out", "connectionRefs": [] }, "presentationLinks": ["instance:independent"], "allocationEligibility": true, "metadata": {}, "extensions": {} }
+      ],
+      "chainOrder": ["chain:drum", "chain:bass", "chain:fx", "chain:instrus"],
+      "compensationGroups": [
+        { "compensationGroupId": "compensation-group:1", "sessionId": "session:main", "name": "Groupe 1", "memberChainRefs": ["chain:drum"], "policy": "declarative", "metadata": {}, "extensions": {} }
+      ],
+      "extensions": { "futureSessionState": "unknown-preserved" }
+    },
+    {
+      "sessionId": "session:alternate",
+      "projectId": "project:reference",
+      "name": "Session indépendante",
+      "metadata": {},
+      "targetMachineRef": null,
+      "pluginInstances": [],
+      "audioGraph": {
+        "graphId": "graph:alternate",
+        "sessionId": "session:alternate",
+        "sampleRate": null,
+        "nodes": [],
+        "ports": [],
+        "connections": [],
+        "externalBindings": [],
+        "extensions": {}
+      },
+      "chains": [],
+      "chainOrder": [],
+      "compensationGroups": [],
+      "extensions": {}
+    }
+  ],
+  "projectPreferences": {},
+  "sourceTemplateRef": null,
+  "extensions": { "futureProjectField": ["preserve"] }
+}

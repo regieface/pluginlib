@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>L-Prep — Constructeur de sessions</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1><img class="header-logo" src="logo-lprep.png" alt="L-Prep" width="420" height="140"></h1>
+    <details class="project-menu">
+      <summary title="Menu Projet"><span class="header-name" id="project-name">Projet</span></summary>
+      <div class="project-actions">
+        <button id="new-project">Nouveau projet</button>
+        <button id="rename-project">Renommer le projet</button>
+        <h2>Ouvrir un projet enregistré</h2>
+        <div id="saved-projects" class="saved-list"></div>
+        <h2>Importer / Exporter</h2>
+        <button id="open-project">Importer un JSON</button>
+        <button id="export-project">Exporter JSON</button>
+        <button id="demo-project">Charger la démonstration</button>
+      </div>
+    </details>
+    <details id="session-menu" class="project-menu">
+      <summary title="Menu Session"><span class="header-name" id="header-session-name">Session</span></summary>
+      <div class="project-actions">
+        <label>Session active<select id="session-list" aria-label="Session active"></select></label>
+        <button id="rename-session">Renommer</button>
+        <button id="add-session">Nouvelle session</button>
+        <button id="duplicate-session">Dupliquer</button>
+      </div>
+    </details>
+    <button id="save-project" class="save-icon" type="button" data-state="dirty" aria-label="Sauvegarder" title="Modifications non sauvegardées">
+      <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+        <path d="M4 3h13l4 4v14H3V4zM7 3v7h10V3M7 21v-7h10v7M14 5v3"/>
+      </svg>
+    </button>
+    <div class="toolbar-scroll" role="group" aria-label="Session et commandes">
+      <button id="target-machine" class="header-status" type="button">Machine non définie</button>
+      <button id="sample-rate" class="header-status" type="button">— kHz</button>
+      <span id="routing-status" class="header-status">Patch —</span>
+      <button id="builder-orientation" type="button" title="Passer en vue verticale" aria-label="Passer en vue verticale">☰</button>
+      <div class="toolbar-group">
+        <button id="undo" aria-label="Annuler" title="Annuler">↶</button>
+        <button id="redo" aria-label="Rétablir" title="Rétablir">↷</button>
+      </div>
+    </div>
+    <details id="secondary-menu" class="project-menu">
+      <summary aria-label="Fonctions secondaires" title="Fonctions secondaires">⋯</summary>
+      <div class="project-actions">
+        <button id="open-presets">Presets</button>
+        <button data-view="diagnostics">Diagnostics <span id="diagnostic-count">0</span></button>
+      </div>
+    </details>
+  </header>
+  <div id="notice" role="status" aria-live="polite"></div>
+  <main class="workspace">
+    <section id="builder-view" class="view active">
+      <div class="editor">
+        <button id="toggle-settings" class="panel-tab" aria-controls="chain-settings" aria-expanded="false">Chaîne</button>
+        <aside id="chain-settings" class="panel settings" hidden>
+          <h2>Réglages de la chaîne</h2>
+          <div id="settings-content"></div>
+          <div class="resize-handle right-edge" data-resize="settings" role="separator" aria-label="Largeur des réglages" aria-orientation="vertical" tabindex="0"></div>
+        </aside>
+        <section class="center" aria-labelledby="session-name">
+          <div id="builder-content">
+            <div class="session-header">
+              <h2 id="session-name">—</h2>
+              <p id="session-meta"></p>
+            </div>
+            <div class="chain-scroll" role="region" aria-label="Chaînes de la session" tabindex="0">
+              <div id="chain-list"></div>
+            </div>
+            <div class="chain-actions">
+              <details id="add-chain-menu">
+                <summary id="add-chain" aria-label="Créer une chaîne">＋</summary>
+                <div class="chain-roles"></div>
+              </details>
+              <select id="preset-list" aria-label="Insérer un preset structurel" hidden></select>
+            </div>
+          </div>
+          <section id="patch-view" inert aria-label="Patch rapide">
+            <button id="return-builder" type="button" title="Revenir au constructeur">
+              <span class="return-icon" aria-hidden="true"><span>←</span><span class="return-chain-lines"><i></i><i></i><i></i></span></span>
+              <span>Retour aux chaînes</span>
+            </button>
+            <div class="patch-workspace">
+              <div class="patch-header"><button id="propose-patch" type="button"
+                title="Calculer une proposition d’affectation, à confirmer avant de l’appliquer">AUTOPATCH</button>
+                <button id="clear-patch" type="button">CLEAR PATCH</button></div>
+              <div id="patch-proposal"></div>
+              <div class="patch-table-container">
+                <table class="patch-table" aria-label="Patch de la session">
+                  <colgroup><col><col class="patch-name-col"><col></colgroup>
+                  <thead><tr><th scope="col">IN</th><th scope="col">Chaînes</th><th scope="col">OUT</th></tr></thead>
+                </table>
+              </div>
+              <details id="patch-resources" class="patch-resources">
+                <summary>Ressources virtuelles</summary>
+                <div class="io-grid"><section><h3>32 entrées virtuelles</h3><div id="input-grid" class="channel-grid"></div></section><section><h3>32 sorties virtuelles</h3><div id="output-grid" class="channel-grid"></div></section></div>
+              </details>
+            </div>
+          </section>
+        </section>
+        <aside id="plugin-library" class="panel library" hidden>
+          <h2>Plugins</h2>
+          <div class="library-tabs" role="group" aria-label="Périmètre des plugins">
+            <button data-scope="owned" aria-pressed="true">Ma collection</button>
+            <button data-scope="all" aria-pressed="false">Catalogue</button>
+          </div>
+          <input type="search" id="plugin-search" placeholder="Rechercher…" aria-label="Rechercher un plugin">
+          <div class="library-filters">
+            <select id="plugin-treatment" aria-label="Type de traitement">
+              <option value="">Tous les traitements</option>
+            </select>
+            <select id="plugin-family" aria-label="Famille ou sous-type"></select>
+          </div>
+          <div id="library-results"></div>
+          <div class="resize-handle left-edge" data-resize="library" role="separator" aria-label="Largeur des plugins" aria-orientation="vertical" tabindex="0"></div>
+        </aside>
+        <button id="toggle-library" class="panel-tab" aria-controls="plugin-library" aria-expanded="false">Plugins</button>
+      </div>
+    </section>
+    <section id="diagnostics-view" class="view"><h2>Diagnostics structurels</h2><div id="diagnostic-list"></div></section>
+  </main>
+  <div id="builder-context-menu" class="builder-context-menu" hidden><button type="button"></button></div>
+  <dialog id="create-chain-dialog" aria-labelledby="create-chain-title">
+    <form class="chain-settings-form">
+      <h2 id="create-chain-title"></h2>
+      <label>Nom<input name="name" value="Nouvelle chaîne" required autofocus></label>
+      <label>Entrées Sidechain (SC)<input type="number" name="sidechainCount" min="0" max="32" step="1" value="0" required></label>
+      <div class="proposal-actions">
+        <button type="submit" class="primary">Créer</button>
+        <button type="button" id="cancel-create-chain">Annuler</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="plugin-details" aria-labelledby="plugin-details-title">
+    <h2 id="plugin-details-title"></h2>
+    <div id="plugin-details-content"></div>
+  </dialog>
+  <dialog id="machine-dialog" class="audio-dialog" aria-labelledby="machine-title">
+    <form class="chain-settings-form">
+      <h2 id="machine-title">Machine cible</h2>
+      <label>Machine<select name="machine"></select></label>
+      <label class="settings-check" id="machine-rates-toggle"><input type="checkbox" name="editRates"> Renseigner les fréquences prises en charge</label>
+      <div class="chain-settings-form" id="machine-definition" hidden>
+        <label id="machine-new-name">Nom<input name="machineName"></label>
+        <fieldset class="chain-colors"><legend>Fréquences prises en charge, à déclarer</legend>
+          <div id="machine-rates"></div>
+        </fieldset>
+      </div>
+      <p id="machine-note" role="status"></p>
+      <div class="proposal-actions"><button class="primary" type="submit">Appliquer</button>
+        <button type="button" data-close-audio>Annuler</button></div>
+    </form>
+  </dialog>
+  <dialog id="rate-dialog" class="audio-dialog" aria-labelledby="rate-title">
+    <form class="chain-settings-form">
+      <h2 id="rate-title">Fréquence audio</h2>
+      <label>Fréquence de la session<select name="rate"></select></label>
+      <p id="rate-note" role="status"></p>
+      <div class="proposal-actions"><button class="primary" type="submit">Appliquer</button>
+        <button type="button" data-close-audio>Annuler</button></div>
+    </form>
+  </dialog>
+  <dialog id="patch-info" aria-labelledby="patch-info-title">
+    <h2 id="patch-info-title"></h2>
+    <div id="patch-info-content"></div>
+    <button id="close-patch-info" type="button" autofocus>Fermer</button>
+  </dialog>
+  <dialog id="patch-edit-dialog" aria-labelledby="patch-edit-title">
+    <form class="chain-settings-form">
+      <h2 id="patch-edit-title"></h2>
+      <label>Ressource<select name="choice" required></select></label>
+      <p id="patch-edit-note"></p>
+      <div class="proposal-actions"><button type="submit" class="primary">Appliquer</button>
+        <button type="button" id="cancel-patch-edit">Annuler</button></div>
+    </form>
+  </dialog>
+  <input id="open-file" type="file" accept="application/json" hidden>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
