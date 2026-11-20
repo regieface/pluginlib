@@ -1,7 +1,7 @@
 const ID_PREFIXES = new Set([
   'project', 'session', 'machine', 'graph', 'instance', 'node', 'port', 'connection',
   'chain', 'compensation-group', 'assignment', 'reservation',
-  'transaction', 'revision', 'replacement', 'preset'
+  'transaction', 'revision', 'replacement', 'preset', 'draft-chain'
 ]);
 
 export function createStableId(kind) {

@@ -78,7 +78,12 @@
             <div class="chain-actions">
               <details id="add-chain-menu">
                 <summary id="add-chain" aria-label="Créer une chaîne">＋</summary>
-                <div class="chain-roles"></div>
+                <form class="chain-create-menu">
+                  <label>Type<select name="role"></select></label>
+                  <label>Entrée<select name="inputFormat"><option value="mono">Mono</option><option value="stereo" selected>Stéréo</option></select></label>
+                  <label>Sortie<select name="outputFormat"><option value="mono">Mono</option><option value="stereo" selected>Stéréo</option></select></label>
+                  <button type="submit" class="primary">Créer</button>
+                </form>
               </details>
               <select id="preset-list" aria-label="Insérer un preset structurel" hidden></select>
             </div>
@@ -187,18 +192,6 @@
       <div class="proposal-actions">
         <button type="submit" class="primary">Ajouter</button>
         <button type="button" id="cancel-plugin-variant">Annuler</button>
-      </div>
-    </form>
-  </dialog>
-  <dialog id="create-chain-dialog" aria-labelledby="create-chain-title">
-    <form class="chain-settings-form">
-      <h2 id="create-chain-title"></h2>
-      <label>Nom<input name="name" value="Nouvelle chaîne" required autofocus></label>
-      <label>Format<select name="audioFormat"></select></label>
-      <label>Entrées Sidechain (SC)<input type="number" name="sidechainCount" min="0" max="32" step="1" value="0" required></label>
-      <div class="proposal-actions">
-        <button type="submit" class="primary">Créer</button>
-        <button type="button" id="cancel-create-chain">Annuler</button>
       </div>
     </form>
   </dialog>

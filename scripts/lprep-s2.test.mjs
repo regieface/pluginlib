@@ -101,6 +101,18 @@ test('AUTOPATCH complet et partiel sont appliqués sans confirmation supplément
   assert.equal(partial.controller.lastSessionCreation.allocation.status, 'partial');
 });
 
+test('5 Inserts, 3 FX et 1 Monitoring renseignés sont tous créés', () => {
+  const { controller, profile } = setup('counts-531');
+  const draft = draftFor(controller, profile, { insert: 5, fx: 3, monitoring: 1 });
+  draft.chains[0].inputFormat = 'mono'; draft.chains[0].outputFormat = 'stereo';
+  const result = controller.createSessionFromDraft(draft, { profiles: [profile] });
+  assert.equal(result.status, 'committed');
+  assert.deepEqual(controller.activeSession.chains.map(chain => chain.role),
+    ['insert', 'insert', 'insert', 'insert', 'insert', 'fx', 'fx', 'fx', 'monitoring']);
+  assert.deepEqual([controller.activeSession.chains[0].inputFormat, controller.activeSession.chains[0].outputFormat],
+    ['mono', 'stereo']);
+});
+
 test('une session sans allocation possible reste valide et sans routing inventé', () => {
   const { controller, profile } = setup('impossible');
   profile.virtualResources.forEach(resource => { resource.availability = 'unavailable'; });

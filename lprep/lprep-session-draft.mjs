@@ -66,6 +66,11 @@ export function validateSessionDraft(draft, { machines = [], profiles = [], pres
   }
   if (!SESSION_SAMPLE_RATES.includes(draft.sampleRate)) add('sampleRate', 'session-draft.sample-rate', 'Fréquence invalide.');
   const presetKeys = new Set(presets.map(preset => `${preset.presetId}@${preset.revision}`));
+  for (const role of SESSION_CHAIN_ROLES) {
+    const actual = draft.chains.filter(chain => chain.role === role).length;
+    if (draft.counts[role] !== actual) add(`counts.${role}`, 'session-draft.count-mismatch',
+      `Le compteur ${role} ne correspond pas aux chaînes préparées.`);
+  }
   draft.chains.forEach((chain, index) => {
     const at = `chains.${chain.draftChainId}`;
     if (!chain.name.trim()) add(`${at}.name`, 'session-draft.chain-name', `Le nom de la chaîne ${index + 1} est obligatoire.`);

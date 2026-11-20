@@ -2,11 +2,11 @@ import { planClearPatch } from './lprep-patch-edit.mjs';
 import { setSessionMachine, setSessionSampleRate } from './lprep-audio-settings.mjs';
 import { chainFormatPortProperties, createAudioGraph, createAudioNode, createAudioPort, legacyChainFormats } from './lprep-audio-graph.mjs';
 import { BrowserRevisionEngine } from './lprep-browser-persistence.mjs';
-import { LPrepConstructorService } from './lprep-constructor-services.mjs';
+import { dlGroupNumbers, LPrepConstructorService } from './lprep-constructor-services.mjs';
 import { createDefaultEnvironmentProfile, instantiateEnvironmentProfile } from './lprep-environment.mjs';
 import { createStableId } from './lprep-identifiers.mjs';
 import { applyPatchProposal } from './lprep-patch.mjs';
-import { createChain, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
+import { createChain, createCompensationGroup, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
 import { createChainPresetFromSession, MemoryPresetStore } from './lprep-presets.mjs';
 import { deserializeProject, serializeProject } from './lprep-serialization.mjs';
 import { prepareSessionCreation } from './lprep-session-creation.mjs';
@@ -114,8 +114,9 @@ export class LPrepUIController {
     return result;
   }
   createChain({ name = 'Nouvelle chaîne', role = 'insert', audioFormat, inputFormat, outputFormat,
-    color = '#6574d8', sidechainCount = 0 } = {}) {
+    color = '#6574d8', sidechainCount = 0, dlNumber } = {}) {
     const formats = audioFormat === undefined ? { inputFormat: inputFormat ?? 'stereo', outputFormat: outputFormat ?? 'stereo' } : legacyChainFormats(audioFormat);
+    const requestedDl = dlNumber === undefined ? (role === 'insert' ? 1 : null) : dlNumber;
     const sessionId = this.activeSessionId, graphId = this.activeSession.audioGraph.graphId;
     const nodeId = this.idFactory('node'), inputId = this.idFactory('port'), outputId = this.idFactory('port'), chainId = this.idFactory('chain');
     return this.commit(new ProjectTransaction({ baseRevisionId: this.service.history.revisionId, apply: project => {
@@ -125,6 +126,17 @@ export class LPrepUIController {
         createAudioPort({ portId, nodeId, direction, role: 'main', ...chainFormatPortProperties(formats, direction) })));
       const chain = createChain({ chainId, sessionId, name, role, ...formats, color, pluginOrder: [],
         mainPath: { inputBoundaryPortRef: inputId, outputBoundaryPortRef: outputId, connectionRefs: [] } });
+      if (requestedDl !== null) {
+        if (!Number.isSafeInteger(requestedDl) || requestedDl < 1) throw new Error('Numéro DLY invalide.');
+        let group = [...dlGroupNumbers(session.compensationGroups)].find(([, number]) => number === requestedDl)?.[0];
+        if (!group) {
+          group = this.idFactory('compensation-group');
+          session.compensationGroups.push(createCompensationGroup({ compensationGroupId: group, sessionId,
+            name: `DL${requestedDl}`, metadata: { dlNumber: requestedDl } }));
+        }
+        chain.compensationGroupId = group;
+        session.compensationGroups.find(value => value.compensationGroupId === group).memberChainRefs.push(chainId);
+      }
       setChainSidechainCount(session, chain, sidechainCount, this.idFactory);
       session.chains.push(chain);
       session.chainOrder.push(chainId); return project;

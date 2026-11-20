@@ -336,11 +336,15 @@ button:disabled { cursor: default; opacity: .55; }
   font-size: 10px;
   pointer-events: none;
 }
-.chain-actions, .chain-roles, .library-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.chain-actions, .library-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
 .chain-actions { margin-top: 4px; }
-#add-chain-menu[open] { display: flex; align-items: center; gap: 4px; }
+#add-chain-menu { position: relative; }
 #add-chain { display: inline-block; color: var(--blue); font-weight: 700; }
-.chain-roles { display: inline-flex; }
+.chain-create-menu { position: absolute; z-index: 5; bottom: calc(100% + 4px); left: 0; display: grid;
+  grid-template-columns: repeat(3, minmax(90px, 1fr)) auto; align-items: end; gap: 5px; width: max-content;
+  padding: 8px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); box-shadow: 0 4px 14px #17203324; }
+.chain-create-menu label { display: grid; gap: 2px; font-size: 11px; color: var(--muted); }
+.chain-create-menu select { min-width: 90px; }
 .resize-handle { position: absolute; z-index: 2; top: 0; bottom: 0; width: 7px; cursor: col-resize; touch-action: none; }
 .right-edge { right: 0; }
 .left-edge { left: 0; }
@@ -432,7 +436,7 @@ button:disabled { cursor: default; opacity: .55; }
   }
   .editor { --settings-effective: min(var(--settings-width), 22vw); --library-effective: min(var(--library-width), 28vw); }
   .panel { padding: 6px; }
-  #add-chain-menu[open] { flex-wrap: wrap; }
+  .chain-create-menu { grid-template-columns: 1fr; width: min(180px, calc(100vw - 24px)); }
 }
 
 body:has(#builder-view.active) {
@@ -700,3 +704,13 @@ body:has(#builder-view.active) .workspace {
   border-bottom: 1px solid var(--line);
 }
 #full-library-frame { flex: 1; width: 100%; min-height: 0; border: 0; }
+
+/* Correctif lisibilite patch stereo */
+.editor[data-orientation="horizontal"] {
+  --chain-patch-width: 210px;
+}
+
+.editor[data-orientation="horizontal"] .patch-indicator-sides > span > span:not(.patch-indicator-sc) {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}

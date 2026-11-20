@@ -23,9 +23,8 @@ test('la fenêtre S1 est modale, stable et sépare en-tête, tableau défilant e
   assert.match(html, /Créer la session/);
   assert.match(css, /#create-session-form[^}]*grid-template-rows: auto minmax\(0, 1fr\) auto/);
   assert.match(css, /\.session-chain-table-wrap[^}]*overflow-y: auto/);
-  assert.match(app, /elements\[fieldName\]\.oninput = updateCount/);
-  assert.match(app, /elements\[fieldName\]\.onchange = updateCount/);
-  assert.match(app, /elements\[fieldName\]\.onblur = updateCount/);
+  assert.match(app, /createSessionForm\.addEventListener\('input', event => updateSessionChainCount\(event\.target\)\)/);
+  assert.match(app, /for \(const fieldName of sessionCountRoles\.keys\(\)\) updateSessionChainCount/);
 });
 
 test('les trois compteurs ajoutent des lignes groupées avec des identifiants temporaires stables', () => {
@@ -37,6 +36,19 @@ test('les trois compteurs ajoutent des lignes groupées avec des identifiants te
   assert.deepEqual(draft.counts, { insert: 2, fx: 1, monitoring: 1 });
   assert.deepEqual(draft.chains.slice(0, 2).map(chain => chain.draftChainId), firstIds);
   assert.deepEqual(draft.chains.map(chain => chain.role), ['insert', 'insert', 'fx', 'monitoring']);
+});
+
+test('le scénario 5 Inserts, 3 FX et 1 Monitoring synchronise lignes et capacité', () => {
+  let draft = fresh();
+  for (const [role, count] of [['insert', 5], ['fx', 3], ['monitoring', 1]]) {
+    draft = applySessionChainCount(draft, planSessionChainCount(draft, role, count, idFactory));
+  }
+  assert.deepEqual(draft.counts, { insert: 5, fx: 3, monitoring: 1 });
+  assert.deepEqual(draft.chains.map(chain => chain.role),
+    ['insert', 'insert', 'insert', 'insert', 'insert', 'fx', 'fx', 'fx', 'monitoring']);
+  assert.deepEqual(sessionDraftNeeds(draft), { inputs: 18, outputs: 18 });
+  const broken = structuredClone(draft); broken.chains = [];
+  assert.ok(validateSessionDraft(broken, context).some(issue => issue.code === 'session-draft.count-mismatch'));
 });
 
 test('une réduction vierge est directe et une ligne renseignée exige confirmation', () => {

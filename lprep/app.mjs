@@ -9,7 +9,7 @@ import { catalogEntries, existingVariants, filterCatalog, importCatalogRights, i
 import { bindBuilderDrag, bindContextMenu } from './lprep-builder-interactions.mjs';
 import { createThumbnailView } from './lprep-thumbnails.mjs';
 import { classifiedTreatments, factStateLabel, navigationFacets, sharedClassificationDetails, treatmentDetails, TREATMENT_OPTIONS } from '../treatment-navigation.mjs';
-import { CHAIN_FORMAT_PORTS, chainFormatKey, chainSidechainPorts } from './lprep-audio-graph.mjs';
+import { chainFormatKey, chainSidechainPorts } from './lprep-audio-graph.mjs';
 import { graphPatchChannels } from './lprep-patch.mjs';
 import { virtualPatchOptions } from './lprep-patch-edit.mjs';
 import { patchChannelName as channelName, patchDisplayCells, patchRows } from './lprep-patch-view.mjs';
@@ -290,12 +290,12 @@ function renderSelection() {
   const editFormat = Boolean(editableFormatPorts(session, chain));
   const options = (entries, selected) => entries.map(([value, text]) =>
     `<option value="${escapeHtml(value)}"${value === selected ? ' selected' : ''}>${escapeHtml(text)}</option>`).join('');
-  const formats = Object.entries(formatLabels).filter(([value]) =>
-    value === chainAudioFormat(chain) || (editFormat && Object.hasOwn(CHAIN_FORMAT_PORTS, value)));
+  const mainFormats = [['mono', 'Mono'], ['stereo', 'Stéréo']];
   content.innerHTML = `<form class="chain-settings-form">
       <label>Nom<input name="name" value="${escapeHtml(chain.name)}" required></label>
       <label>Type<select name="role">${options(Object.entries(roleLabels), chain.role)}</select></label>
-      <label>Format<select name="audioFormat"${editFormat ? '' : ' disabled'}>${options(formats, chainAudioFormat(chain))}</select></label>
+      <label>Format d’entrée<select name="inputFormat"${editFormat ? '' : ' disabled'}>${options(mainFormats, chain.inputFormat)}</select></label>
+      <label>Format de sortie<select name="outputFormat"${editFormat ? '' : ' disabled'}>${options(mainFormats, chain.outputFormat)}</select></label>
       ${editFormat ? '' : '<small>Modifiable sur une chaîne vide et sans routing.</small>'}
       <label>Entrées Sidechain (SC)<input type="number" name="sidechainCount" min="0" max="32" step="1" required
         value="${chainSidechainPorts(session.audioGraph, chain).length}"></label>
@@ -313,7 +313,8 @@ function renderSelection() {
     const fields = form.elements;
     resultNotice(controller.updateChainSettings(chain.chainId, {
       name: fields.name.value, role: fields.role.value, sidechainCount: fields.sidechainCount.valueAsNumber,
-      audioFormat: fields.audioFormat.value, dlNumber: fields.dlNumber.value === '' ? null : fields.dlNumber.valueAsNumber,
+      inputFormat: fields.inputFormat.value, outputFormat: fields.outputFormat.value,
+      dlNumber: fields.dlNumber.value === '' ? null : fields.dlNumber.valueAsNumber,
       allocationEligibility: fields.allocationEligibility.checked
     }), 'Réglages de chaîne mis à jour.');
   };
@@ -1159,24 +1160,23 @@ function openSessionDraft() {
 
 $('#add-session').onclick = openSessionDraft;
 $('#cancel-create-session').onclick = () => createSessionDialog.close();
-for (const [role, fieldName] of [['insert', 'insertCount'], ['fx', 'fxCount'], ['monitoring', 'monitoringCount']]) {
-  const updateCount = event => {
-    const previous = sessionDraft.counts[role];
-    const count = Math.max(0, event.target.valueAsNumber || 0);
-    if (count === previous) return;
-    const plan = planSessionChainCount(sessionDraft, role, count, controller.idFactory);
-    if (plan.confirmationRequired && !confirm('Supprimer les chaînes renseignées situées à la fin de ce groupe ?')) {
-      event.target.value = String(previous);
-      return;
-    }
-    sessionDraft = applySessionChainCount(sessionDraft, plan);
-    event.target.value = String(count);
-    renderSessionDraftRows();
-  };
-  createSessionForm.elements[fieldName].oninput = updateCount;
-  createSessionForm.elements[fieldName].onchange = updateCount;
-  createSessionForm.elements[fieldName].onblur = updateCount;
+const sessionCountRoles = new Map([['insertCount', 'insert'], ['fxCount', 'fx'], ['monitoringCount', 'monitoring']]);
+function updateSessionChainCount(field) {
+  const role = sessionCountRoles.get(field.name);
+  const count = field.valueAsNumber;
+  if (!role || !Number.isSafeInteger(count) || count < 0 || count === sessionDraft.counts[role]) return false;
+  const previous = sessionDraft.counts[role];
+  const plan = planSessionChainCount(sessionDraft, role, count, controller.idFactory);
+  if (plan.confirmationRequired && !confirm('Supprimer les chaînes renseignées situées à la fin de ce groupe ?')) {
+    field.value = String(previous);
+    return false;
+  }
+  sessionDraft = applySessionChainCount(sessionDraft, plan);
+  renderSessionDraftRows();
+  return true;
 }
+createSessionForm.addEventListener('input', event => updateSessionChainCount(event.target));
+createSessionForm.addEventListener('change', event => updateSessionChainCount(event.target));
 for (const field of ['sessionName', 'machine', 'environment', 'sampleRate']) {
   createSessionForm.elements[field].oninput = event => {
     const key = { sessionName: 'name', machine: 'machineId', environment: 'environmentProfileId' }[field] || field;
@@ -1186,6 +1186,7 @@ for (const field of ['sessionName', 'machine', 'environment', 'sampleRate']) {
 }
 createSessionForm.onsubmit = event => {
   event.preventDefault();
+  for (const fieldName of sessionCountRoles.keys()) updateSessionChainCount(createSessionForm.elements[fieldName]);
   const { issues } = updateSessionDraftStatus();
   if (issues.length) return;
   const result = controller.createSessionFromDraft(sessionDraft, { profiles: sessionEnvironmentProfiles });
@@ -1273,35 +1274,23 @@ $('#open-presets').onclick = () => {
 };
 $('#duplicate-session').onclick = () => resultNotice(controller.duplicateActiveSession(), 'Session dupliquée.');
 $('#session-list').onchange = event => { controller.selectSession(event.target.value); render(); };
-const createChainDialog = $('#create-chain-dialog');
-const createChainForm = createChainDialog.querySelector('form');
-createChainForm.elements.audioFormat.append(...Object.keys(CHAIN_FORMAT_PORTS).map(format =>
-  new Option(formatLabels[format], format, format === 'stereo')));
-let pendingChainRole;
-for (const role of CHAIN_ROLES) {
-  const button = document.createElement('button');
-  button.textContent = roleLabels[role];
-  button.onclick = () => {
-    $('#add-chain-menu').open = false;
-    pendingChainRole = role;
-    createChainForm.reset();
-    $('#create-chain-title').textContent = `Nouvelle chaîne ${roleLabels[role]}`;
-    createChainDialog.showModal();
-    createChainForm.elements.name.select();
-  };
-  $('.chain-roles').append(button);
-}
-$('#cancel-create-chain').onclick = () => createChainDialog.close();
+const createChainForm = $('#add-chain-menu .chain-create-menu');
+createChainForm.elements.role.append(...[...CHAIN_ROLES].map(role => new Option(roleLabels[role], role)));
 createChainForm.onsubmit = event => {
   event.preventDefault();
-  const { name, sidechainCount, audioFormat } = createChainForm.elements;
-  if (!name.value.trim()) return;
-  const result = controller.createChain({ name: name.value.trim(), role: pendingChainRole, audioFormat: audioFormat.value, sidechainCount: sidechainCount.valueAsNumber });
+  const { role, inputFormat, outputFormat } = createChainForm.elements;
+  const result = controller.createChain({ name: 'Nouvelle chaîne', role: role.value,
+    inputFormat: inputFormat.value, outputFormat: outputFormat.value });
   if (result.status === 'committed') {
     selectedChainId = controller.activeSession.chainOrder.at(-1);
-    createChainDialog.close();
+    $('#add-chain-menu').open = false;
   }
   resultNotice(result, 'Chaîne créée.');
+  if (result.status === 'committed') {
+    const chain = controller.activeSession.chains.find(value => value.chainId === selectedChainId);
+    const button = $(`.chain-row[data-chain="${CSS.escape(selectedChainId)}"] .chain-label button`);
+    if (button && chain) editChainName(button, chain);
+  }
 };
 for (const button of $$('.panel-tab')) {
   const panel = document.getElementById(button.getAttribute('aria-controls'));
