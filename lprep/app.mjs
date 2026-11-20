@@ -13,13 +13,15 @@ import { chainFormatKey, chainSidechainPorts } from './lprep-audio-graph.mjs';
 import { graphPatchChannels } from './lprep-patch.mjs';
 import { virtualPatchOptions } from './lprep-patch-edit.mjs';
 import { patchChannelName as channelName, patchDisplayCells, patchRows } from './lprep-patch-view.mjs';
-import { editableFormatPorts } from './lprep-chain-edits.mjs';
+import { editableFormatPorts, editableAutomaticPatchFormatPorts } from './lprep-chain-edits.mjs';
 import { CHAIN_ROLES } from './lprep-project.mjs';
 import { prepareDemoProject } from './lprep-demo.mjs';
 import { createDefaultEnvironmentProfile, virtualResourceId } from './lprep-environment.mjs';
 import { applySessionChainCount, createSessionDraft, planSessionChainCount, sessionDraftCapacity,
   sessionDraftNeeds, validateSessionDraft } from './lprep-session-draft.mjs';
 import { LPrepUIController } from './lprep-ui-controller.mjs';
+import { CHAIN_COLOR_PRESETS, COLOR_CATEGORIES, categoryForColor,
+  suggestChainColor, validateColorAliases } from './lprep-chain-colors.mjs';
 
 const controller = new LPrepUIController({ revisionStore: new IndexedDBRevisionStore() });
 const $ = selector => document.querySelector(selector);
@@ -32,41 +34,104 @@ const formatLabels = { mono: 'Mono', stereo: 'Stéréo', 'mono-to-stereo': 'Mono
   'stereo-to-mono': 'Stéréo vers Mono', multichannel: 'Multicanal', unknown: 'Inconnu' };
 const chainPalette = [
   ['Corail', '#e25d3a'], ['Ocre', '#d8a23c'], ['Turquoise', '#35a8a3'], ['Indigo', '#6574d8'],
-  ['Vert', '#66a357'], ['Bleu', '#3887c7'], ['Prune', '#9564b4'], ['Rose', '#cf668d']
+  ['Vert', '#52cb69'], ['Bleu', '#3887c7'], ['Prune', '#9564b4'], ['Rose FX', '#f95ad8']
 ];
-const familyColors = [
-  ['DRUM', '#d74f44'], ['PERCUS', '#a83d4b'], ['BASS', '#e79036'],
-  ['KEYS', '#79badd'], ['SPD', '#39c1e8'], ['GTR', '#e6c244'],
-  ['INSTRU', '#66a357'], ['BV', '#3657bc'], ['LEAD', '#ffffff'],
-  ['FX', '#cf668d'], ['CUIVRES', '#8a4054']
-];
-const familyColorByName = Object.fromEntries(familyColors);
-const chainColorPresets = [...familyColors,
-  ...chainPalette.filter(([, color]) => !familyColors.some(([, candidate]) => color === candidate))];
-const roleDefaultColor = { insert: '#6574d8', fx: '#35a8a3', monitoring: '#66a357' };
-function suggestChainColor(name, role) {
-  const normalized = String(name ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .toUpperCase().replace(/[^A-Z0-9]+/g, ' ');
-  const has = pattern => pattern.test(normalized);
-  if (has(/\b(PERC|PERCU|PERCUS|PERCUSSION|PERCUSSIONS)\b/)) return familyColorByName.PERCUS;
-  if (has(/\b(SPD|SPD-SX|SAMPLEPAD)\b/)) return familyColorByName.SPD;
-  if (has(/\b(DRUM|DRUMS|BATTERIE|KICK|SNARE)\b/)) return familyColorByName.DRUM;
-  if (has(/\b(BASS|BASSE|BASSES)\b/)) return familyColorByName.BASS;
-  if (has(/\b(KEY|KEYS|KEYBOARD|SYNTH|SYNTHS|SPL)\b/)) return familyColorByName.KEYS;
-  if (has(/\b(GTR|GTRS|GUITAR|GUITARS|GUITARE|GUITARES)\b/)) return familyColorByName.GTR;
-  if (has(/\b(CUIVRE|CUIVRES|BRASS|HORNS|HORN|SAX|TROMPETTE|TROMBONE|VENTS)\b/)) return familyColorByName.CUIVRES;
-  if (has(/\b(BV|BACKS|BACKING|CHOEURS|CHOEUR|CHORUS)\b/)) return familyColorByName.BV;
-  if (has(/\b(LEAD|LEADVX|VOCAL|VOCALS|VOIX|CHANT)\b/)) return familyColorByName.LEAD;
-  if (has(/\b(FX|REVERB|REVERBE|VERB|DELAY|ECHO)\b/)) return familyColorByName.FX;
-  if (has(/\b(INSTRU|INSTRUS|INSTRUMENT|INSTRUMENTS)\b/)) return familyColorByName.INSTRU;
-  return roleDefaultColor[role] ?? roleDefaultColor.insert;
+const chainColorPresets = [...CHAIN_COLOR_PRESETS, ...chainPalette.filter(([, color]) =>
+  !CHAIN_COLOR_PRESETS.some(([, candidate]) => candidate.toLowerCase() === color.toLowerCase()))];
+// Gestion locale des noms appris ; un copier-coller JSON permet de synchroniser navigateur et Alpha.
+function renderColorRules() {
+  const list = $('#color-rules-list');
+  list.replaceChildren();
+  for (const rule of colorAliases) {
+    const entry = COLOR_CATEGORIES.find(item => item.key === rule.category);
+    const line = document.createElement('div');
+    line.className = 'color-rule-entry';
+    const swatch = document.createElement('span');
+    swatch.className = 'color-rule-chip';
+    swatch.style.background = entry.color;
+    const text = document.createElement('span');
+    text.textContent = `${rule.alias} → ${entry.label}`;
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = 'Retirer';
+    remove.setAttribute('aria-label', `Oublier ${rule.alias}`);
+    remove.onclick = () => {
+      colorAliases = colorAliases.filter(item => item.alias !== rule.alias);
+      saveColorAliases();
+      renderColorRules();
+    };
+    line.append(swatch, text, remove);
+    list.append(line);
+  }
+  if (!colorAliases.length) list.textContent = 'Aucune correspondance personnalisée.';
 }
+function colorRulesStatus(message, error = false) {
+  const status = $('#color-rules-status');
+  status.textContent = message;
+  status.classList.toggle('error', error);
+}
+function openColorRules({ name = '', color = '' } = {}) {
+  const dialog = $('#color-rules-dialog');
+  const form = $('#color-rules-form');
+  form.elements.alias.value = name;
+  form.elements.category.value = categoryForColor(color) || '';
+  $('#color-rules-json').value = '';
+  colorRulesStatus('');
+  renderColorRules();
+  if (!dialog.open) dialog.showModal();
+  form.elements.alias.focus();
+}
+const colorRuleSelect = $('#color-rules-form').elements.category;
+colorRuleSelect.append(new Option('Choisir une sous-famille', ''));
+for (const item of COLOR_CATEGORIES) {
+  colorRuleSelect.append(new Option(`${item.family} · ${item.label}`, item.key));
+}
+$('#open-color-rules').onclick = () => openColorRules();
+$('#close-color-rules').onclick = () => $('#color-rules-dialog').close();
+$('#color-rules-form').onsubmit = event => {
+  event.preventDefault();
+  const fields = event.currentTarget.elements;
+  try {
+    const rule = validateColorAliases([{ alias: fields.alias.value, category: fields.category.value }])[0];
+    colorAliases = validateColorAliases([...colorAliases.filter(item => item.alias !== rule.alias), rule]);
+    const persisted = saveColorAliases();
+    renderColorRules();
+    colorRulesStatus(persisted ? `« ${rule.alias} » mémorisé.` : 'Règle valable ici, mais le stockage local est indisponible.', !persisted);
+  } catch (error) { colorRulesStatus(error.message, true); }
+};
+$('#export-color-rules').onclick = () => {
+  const text = $('#color-rules-json');
+  text.value = JSON.stringify(colorAliases, null, 2);
+  text.focus();
+  text.select();
+  colorRulesStatus('Copie ce JSON pour l’importer dans l’autre version de L-Prep.');
+};
+$('#import-color-rules').onclick = () => {
+  try {
+    const rules = validateColorAliases(JSON.parse($('#color-rules-json').value));
+    // Fusionne les règles, sans effacer les correspondances existantes.
+    colorAliases = validateColorAliases([...colorAliases.filter(item => !rules.some(r => r.alias === item.alias)), ...rules]);
+    const persisted = saveColorAliases();
+    renderColorRules();
+    colorRulesStatus(persisted ? 'Correspondances importées.' : 'Import effectué, mais impossible de sauvegarder localement.', !persisted);
+  } catch (error) { colorRulesStatus(`Import refusé : ${error.message}`, true); }
+};
 const thumbnails = createThumbnailView(new URL('../', import.meta.url));
 const revisionKey = 'lprep.last-opened-revision';
 const orientationKey = 'lprep.builder-orientation';
 const panelsKey = 'lprep.builder-panels';
 let storage;
 try { storage = window.localStorage; } catch { /* Le stockage peut être désactivé. */ }
+const colorAliasesKey = 'lprep.color-aliases.v1';
+let colorAliases = [];
+try { colorAliases = validateColorAliases(JSON.parse(storage?.getItem(colorAliasesKey) || '[]')); }
+catch { colorAliases = []; }
+function suggestColor(name, role) { return suggestChainColor(name, role, colorAliases); }
+function saveColorAliases() {
+  try { storage?.setItem(colorAliasesKey, JSON.stringify(colorAliases)); return true; }
+  catch { return false; }
+}
+const freshChainIds = new Set();
 let catalog, catalogError, catalogById = new Map();
 let selectedChainId = null, patchFocus = null;
 let libraryScope = 'owned', libraryLimit = 40;
@@ -103,13 +168,15 @@ let savedPanels;
 try { savedPanels = JSON.parse(storage?.getItem(panelsKey) || '{}'); }
 catch { savedPanels = {}; }
 const panelPreferences = {
-  settings: { open: true, width: 135, min: 125, max: 420, direction: 1 },
+  settings: { open: true, width: 169, min: 125, max: 420, direction: 1 },
   library: { open: true, width: 240, min: 180, max: 560, direction: -1 }
 };
 for (const [id, preferences] of Object.entries(panelPreferences)) {
   const saved = savedPanels?.[id];
   if (typeof saved?.open === 'boolean') preferences.open = saved.open;
-  if (Number.isFinite(saved?.width) && (saved.explicitWidth || saved.width !== (id === 'settings' ? 180 : 320))) {
+  if (Number.isFinite(saved?.width) && (saved.explicitWidth ||
+      (saved.width !== (id === 'settings' ? 135 : 240) &&
+       saved.width !== (id === 'settings' ? 180 : 320)))) {
     preferences.explicitWidth = true;
     preferences.width = Math.min(preferences.max, Math.max(preferences.min, saved.width));
   }
@@ -211,7 +278,9 @@ function editChainName(button, chain) {
     field.remove();
     button.inert = false;
     if (save && name && name !== chain.name) {
-      resultNotice(controller.renameChain(chain.chainId, name), 'Chaîne renommée.');
+      const changes = { name };
+      if (freshChainIds.has(chain.chainId)) changes.color = suggestColor(name, chain.role);
+      resultNotice(controller.updateChainSettings(chain.chainId, changes), 'Chaîne renommée.');
     } else if (button.isConnected) button.focus({ preventScroll: true });
   }
   field.onblur = () => finish(true);
@@ -291,6 +360,7 @@ function renderChainColors(root, chain) {
   function apply(color) {
     if (color === current) return;
     const result = controller.updateChainSettings(chain.chainId, { color });
+    if (result.status === 'committed') freshChainIds.delete(chain.chainId);
     if (result.status !== 'committed') {
       resultNotice(result, 'Couleur mise à jour.');
       return;
@@ -305,6 +375,13 @@ function renderChainColors(root, chain) {
   }
   for (const button of root.querySelectorAll('button')) button.onclick = () => apply(button.value || null);
   root.querySelector('input').onchange = event => apply(event.target.value);
+  const learnButton = document.createElement('button');
+  learnButton.type = 'button';
+  learnButton.className = 'color-rule-open';
+  learnButton.textContent = 'Mémoriser ce nom…';
+  learnButton.title = 'Apprendre un synonyme de famille musicale';
+  learnButton.onclick = () => openColorRules({ name: chain.name, color: chain.color });
+  root.append(learnButton);
 }
 
 function renderSelection() {
@@ -320,7 +397,7 @@ function renderSelection() {
     content.textContent = 'Sélectionnez une chaîne.';
     return;
   }
-  const editFormat = Boolean(editableFormatPorts(session, chain));
+  const editFormat = Boolean(editableFormatPorts(session, chain) || editableAutomaticPatchFormatPorts(session, chain));
   const options = (entries, selected) => entries.map(([value, text]) =>
     `<option value="${escapeHtml(value)}"${value === selected ? ' selected' : ''}>${escapeHtml(text)}</option>`).join('');
   const mainFormats = [['mono', 'Mono'], ['stereo', 'Stéréo']];
@@ -329,22 +406,36 @@ function renderSelection() {
       <label>Type<select name="role">${options(Object.entries(roleLabels), chain.role)}</select></label>
       <label>Format d’entrée<select name="inputFormat"${editFormat ? '' : ' disabled'}>${options(mainFormats, chain.inputFormat)}</select></label>
       <label>Format de sortie<select name="outputFormat"${editFormat ? '' : ' disabled'}>${options(mainFormats, chain.outputFormat)}</select></label>
-      ${editFormat ? '' : '<small>Modifiable sur une chaîne vide et sans routing.</small>'}
+      ${editFormat ? '' : '<small>Modifiable sur une chaîne vide, sans routing personnalisé ou verrouillé.</small>'}
       <label>Entrées Sidechain (SC)<input type="number" name="sidechainCount" min="0" max="32" step="1" required
         value="${chainSidechainPorts(session.audioGraph, chain).length}"></label>
       <fieldset class="chain-colors"></fieldset>
       <label>Groupe DL<input type="number" name="dlNumber" min="1" step="1" inputmode="numeric"
         placeholder="Sans DL" value="${dlGroupNumbers(session.compensationGroups).get(chain.compensationGroupId) ?? ''}"></label>
       <label class="settings-check"><input type="checkbox" name="allocationEligibility"${chain.allocationEligibility === false ? '' : ' checked'}> Inclure dans le Patch rapide</label>
+      <fieldset class="chain-settings-patch"><legend>Patch de la chaîne</legend>
+        <div class="settings-patch-sides"></div>
+        <small>Cliquer sur un canal IN/OUT pour modifier sa liaison. Effet immédiat.</small>
+      </fieldset>
       <button type="submit" class="primary">Appliquer</button>
     </form>
     <button type="button" id="save-preset">Créer un preset</button>`;
   const form = content.querySelector('form');
   renderChainColors(form.querySelector('.chain-colors'), chain);
+  const patchRow = patchRows(session).find(row => row.chain.chainId === chain.chainId);
+  const patchRoot = form.querySelector('.settings-patch-sides');
+  if (patchRow) {
+    patchRoot.innerHTML = `<section><b>IN</b>${patchSide(patchRow.input, 'input')}${patchSidechains(patchRow.sidechains)}</section>
+      <section><b>OUT</b>${patchSide(patchRow.output, 'output')}</section>`;
+    for (const button of patchRoot.querySelectorAll('.patch-slot')) {
+      button.onclick = () => openPatchEditor(chain, button);
+    }
+  }
   form.onsubmit = event => {
     event.preventDefault();
     const fields = form.elements;
     resultNotice(controller.updateChainSettings(chain.chainId, {
+      ...(freshChainIds.has(chain.chainId) ? { color: suggestColor(fields.name.value, fields.role.value) } : {}),
       name: fields.name.value, role: fields.role.value, sidechainCount: fields.sidechainCount.valueAsNumber,
       inputFormat: fields.inputFormat.value, outputFormat: fields.outputFormat.value,
       dlNumber: fields.dlNumber.value === '' ? null : fields.dlNumber.valueAsNumber,
@@ -382,12 +473,12 @@ function patchIndicator(chain, row) {
   entry.className = 'chain-patch';
   const sides = ['input', 'output'].map(direction => patchLanes(row[direction], direction).map(cell => ({
     port: patchPortLabel(cell), compactPort: patchNumber(cell.position), ambiguous: cell.ambiguous,
-    resource: cell.label
+    compactResource: cell.label.replace(/^(IN|OUT)(?=\d)/, ''), resource: cell.label
   })));
   const labels = sides.map(channels => channels.map(({ port, resource, ambiguous }) => `${port} — ${escapeHtml(resource)}${ambiguous ? ' (position indicative)' : ''}`).join(', '));
   entry.innerHTML = `<span class="patch-indicator-sides">${sides.map((channels, index) =>
-    `<span><b>${index ? 'OUT' : 'IN'}</b>${channels.map(({ port, compactPort, resource, ambiguous }) => `<span>
-      <span class="routing-full">${port} — </span><span class="routing-compact">${compactPort} </span>${escapeHtml(resource)}${ambiguous ? '*' : ''}</span>`).join('')}
+    `<span><b>${index ? 'OUT' : 'IN'}</b>${channels.map(({ port, compactPort, compactResource, resource, ambiguous }) => `<span class="patch-indicator-route" title="${escapeHtml(`${port} — ${resource}${ambiguous ? ' (ordre indicatif)' : ''}`)}">
+      <span class="routing-full">${port} — ${escapeHtml(resource)}${ambiguous ? '*' : ''}</span><span class="routing-compact">${compactPort}·${escapeHtml(compactResource)}${ambiguous ? '*' : ''}</span></span>`).join('')}
     ${!index ? row.sidechains.map(port =>
       `<span class="patch-indicator-sc">${sidechainName(port.label)}<span class="routing-full"> —</span> ${escapeHtml(scSourceLabel(port))}</span>`).join('') : ''}</span>`).join('')}</span>
     ${sides.some(channels => channels.some(cell => cell.ambiguous)) ? '<small>* Ordre indicatif</small>' : ''}`;
@@ -416,7 +507,7 @@ function renderChains() {
   const dlNumbers = dlGroupNumbers(session?.compensationGroups || []);
   const patch = new Map(patchRows(session).map(row => [row.chain.chainId, row]));
   const list = $('#chain-list');
-  if (!rows.some(({ chain }) => chain.chainId === selectedChainId)) selectedChainId = null;
+  if (!rows.some(({ chain }) => chain.chainId === selectedChainId)) selectedChainId = rows[0]?.chain.chainId ?? null;
   thumbnails.clear(list);
   list.replaceChildren();
   $('#add-chain-menu').hidden = !controller.activeSession;
@@ -761,7 +852,7 @@ function patchSide(side, direction) {
       data-routes="${escapeHtml(JSON.stringify(cell.routes))}" data-local-lane="${cell.localLane ?? cell.lane ?? cell.position}">
       <strong>${patchPortLabel(cell)}</strong><span>${escapeHtml(cell.label)}</span>
     </button>`).join('')}
-    ${cells.some(cell => cell.ambiguous) ? '<small>Positions indicatives · correspondance non documentée</small>' : ''}
+    ${cells.some(cell => cell.ambiguous) ? '<small title="Les numéros IN/OUT sont connus, mais le projet ne précise pas explicitement quel canal est gauche ou droit.">* L/R supposés</small>' : ''}
     ${connectionIds.length > 1 ? `<small>${connectionIds.length} liaisons</small>` : ''}
   </div>`;
 }
@@ -1193,7 +1284,7 @@ function renderSessionDraftRows() {
       } else if (field.name === 'dlNumber') chain.dlNumber = field.value === '' ? null : field.valueAsNumber;
       else chain[field.name] = field.value;
       if (field.name === 'name' && !manualDraftColors.has(chain.draftChainId)) {
-        chain.color = suggestChainColor(field.value, chain.role);
+        chain.color = suggestColor(field.value, chain.role);
         refreshDraftColor(row, chain);
       }
       updateSessionDraftStatus();
@@ -1215,6 +1306,20 @@ function renderSessionDraftRows() {
   }
   updateSessionDraftStatus();
 }
+
+// La touche Tab parcourt une même colonne de la table de préparation.
+sessionDraftRows.addEventListener('keydown', event => {
+  if (event.key !== 'Tab' || event.altKey || event.ctrlKey || event.metaKey) return;
+  const field = event.target.closest('[name]');
+  const row = field?.closest('tr');
+  if (!row || !['name', 'inputFormat', 'outputFormat', 'presetRef', 'dlNumber'].includes(field.name)) return;
+  const targetRow = event.shiftKey ? row.previousElementSibling : row.nextElementSibling;
+  const next = targetRow?.querySelector(`[name="${field.name}"]`);
+  if (!next) return;
+  event.preventDefault();
+  next.focus();
+  if (next instanceof HTMLInputElement && next.type === 'text') next.select();
+});
 
 function openSessionDraft() {
   manualDraftColors.clear();
@@ -1364,6 +1469,7 @@ createChainForm.onsubmit = event => {
     inputFormat: inputFormat.value, outputFormat: outputFormat.value });
   if (result.status === 'committed') {
     selectedChainId = controller.activeSession.chainOrder.find(id => !previousChainIds.has(id));
+    freshChainIds.add(selectedChainId);
     $('#add-chain-menu').open = false;
   }
   resultNotice(result, 'Chaîne créée.');
@@ -1455,6 +1561,42 @@ $('#clear-patch').onclick = () => {
 };
 $('#propose-patch').onclick = () => { controller.proposePatch(); renderPatch(); };
 $('#undo').onclick = () => resultNotice(controller.undo(), 'Modification annulée.'); $('#redo').onclick = () => resultNotice(controller.redo(), 'Modification rétablie.');
+// L-Prep : navigation globale des chaînes (V2.2)
+// Les flèches fonctionnent dans le constructeur, quel que soit le dernier clic.
+// On les laisse au navigateur dans les champs, menus et fenêtres de dialogue.
+document.addEventListener('keydown', event => {
+  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key) ||
+      event.defaultPrevented || event.isComposing || event.ctrlKey ||
+      event.metaKey || event.altKey || event.shiftKey ||
+      !$('#builder-view').classList.contains('active') ||
+      $('.center').classList.contains('patch-open') ||
+      !$('#full-library-view').hidden ||
+      document.querySelector('dialog[open]') ||
+      document.querySelector('.topbar details[open]')) return;
+
+  if (event.target instanceof Element && event.target.closest(
+    'input, textarea, select, [contenteditable], [role="separator"], ' +
+    '[role="slider"], [role="spinbutton"], [role="combobox"], ' +
+    '[role="listbox"], [role="menu"]'
+  )) return;
+
+  const order = controller.activeSession?.chainOrder || [];
+  const index = order.indexOf(selectedChainId);
+  if (index < 0) return;
+  const delta = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
+  const nextId = order[index + delta];
+  if (!nextId) return;
+
+  event.preventDefault();
+  const headerHadFocus = document.activeElement?.matches('.chain-label button');
+  selectedChainId = nextId;
+  renderSelection();
+  const nextButton = [...document.querySelectorAll('.chain-row')]
+    .find(row => row.dataset.chain === nextId)?.querySelector('.chain-label button');
+  if (headerHadFocus) nextButton?.focus({ preventScroll: true });
+  nextButton?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+});
+
 // V3 : raccourcis Undo / Redo sur Mac, hors champs de saisie.
 document.addEventListener('keydown', event => {
   if (!event.metaKey || event.ctrlKey || event.altKey ||

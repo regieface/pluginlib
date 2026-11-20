@@ -62,8 +62,8 @@ test('les trois types de chaînes gardent les valeurs du moteur après sauvegard
   await reopened.openRevision(revisionId);
   const rows = sessionRows(reopened.activeSession, new Map());
   assert.deepEqual(rows.map(({ chain }) => chain.role), roles);
-  assert.ok(rows.every(({ chain }) => chain.color === '#6574d8' &&
-    chain.inputFormat === 'stereo' && chain.outputFormat === 'stereo'));
+  assert.deepEqual(rows.map(({ chain }) => chain.color), ['#6574d8', '#f95ad8', '#00c4a1']);
+  assert.ok(rows.every(({ chain }) => chain.inputFormat === 'stereo' && chain.outputFormat === 'stereo'));
   assert.equal(rows[0].chain.compensationGroupId, reopened.activeSession.compensationGroups[0].compensationGroupId);
   assert.ok(rows.slice(1).every(({ chain }) => chain.compensationGroupId === null));
 });

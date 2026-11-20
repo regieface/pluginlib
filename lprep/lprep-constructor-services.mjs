@@ -5,7 +5,7 @@ import { createPresetInsertionTransaction } from './lprep-presets.mjs';
 import { proposeQuickPatch } from './lprep-patch.mjs';
 import { editPatch } from './lprep-patch-edit.mjs';
 import { ProjectHistory, ProjectTransaction } from './lprep-transactions.mjs';
-import { editableFormatPorts, insertStage, moveBefore, removeChain, removePlugin, reorderPlugin, setChainSidechainCount, transferPlugin } from './lprep-chain-edits.mjs';
+import { editableFormatPorts, removeAutomaticPatchForFormatChange, insertStage, moveBefore, removeChain, removePlugin, reorderPlugin, setChainSidechainCount, transferPlugin } from './lprep-chain-edits.mjs';
 
 const clone = value => structuredClone(value);
 
@@ -104,7 +104,10 @@ export class LPrepConstructorService {
       const requestedFormats = audioFormat === undefined
         ? { inputFormat: changes.inputFormat ?? chain.inputFormat, outputFormat: changes.outputFormat ?? chain.outputFormat }
         : legacyChainFormats(audioFormat);
+      let rerouteAutomaticPatch = false;
       if (requestedFormats.inputFormat !== chain.inputFormat || requestedFormats.outputFormat !== chain.outputFormat) {
+        const wasAutoPatched = !editableFormatPorts(session, chain);
+        if (wasAutoPatched) removeAutomaticPatchForFormatChange(session, chain);
         const ports = editableFormatPorts(session, chain);
         if (!ports) {
           throw new Error('Le format peut être modifié sur une chaîne vide et sans routing.');
@@ -115,6 +118,7 @@ export class LPrepConstructorService {
         Object.assign(outputPort, chainFormatPortProperties(requestedFormats, 'output'));
         chain.inputFormat = requestedFormats.inputFormat;
         chain.outputFormat = requestedFormats.outputFormat;
+        rerouteAutomaticPatch = wasAutoPatched;
       }
       let { compensationGroupId } = changes;
       if (changes.dlNumber !== undefined) {
@@ -140,6 +144,15 @@ export class LPrepConstructorService {
         if (previous) previous.memberChainRefs = previous.memberChainRefs.filter(id => id !== chainId);
         if (group) group.memberChainRefs.push(chainId);
         chain.compensationGroupId = compensationGroupId;
+      }
+      if (rerouteAutomaticPatch) {
+        // Recalcule à la fin pour inclure les autres réglages dans la même transaction.
+        const proposal = proposeQuickPatch(session);
+        const missing = proposal.missingAssignments.filter(item => item.chainId === chain.chainId);
+        if (!proposal.valid || missing.length) {
+          throw new Error('Format non modifié : AutoPatch ne peut pas réaffecter tous les canaux de cette chaîne.');
+        }
+        Object.assign(session, proposal.candidate);
       }
     });
   }

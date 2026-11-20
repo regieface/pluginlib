@@ -26,7 +26,7 @@ test('un projet et ses sessions nommées restent indépendants des révisions du
   assert.deepEqual(controller.project.sessions.map(session => session.name), ['Session 1', 'Répétition', 'Concert']);
 });
 
-test('Mono vers Stéréo garde ses ports réels et ses deux affectations de sortie avec un plugin', async () => {
+test('Mono vers Stéréo conserve ses ports après un changement AutoPatch annulé et insertion de plugin', async () => {
   const controller = setup();
   controller.createProject();
   assert.equal(controller.createChain({ audioFormat: 'mono-to-stereo', sidechainCount: 1 }).status, 'committed');
@@ -38,7 +38,11 @@ test('Mono vers Stéréo garde ses ports réels et ses deux affectations de sort
   assert.equal(controller.applyPatch().status, 'committed');
   assert.deepEqual(patchDisplayCells(row().input).map(cell => [cell.position, cell.number]), [[1, 1]]);
   assert.deepEqual(patchDisplayCells(row().output).map(cell => [cell.side, cell.number]), [['L', 1], ['R', 2]]);
-  assert.equal(controller.updateChainSettings(chain.chainId, { audioFormat: 'mono' }).status, 'error');
+  const beforeFormat = controller.activeSession;
+  assert.equal(controller.updateChainSettings(chain.chainId, { audioFormat: 'mono' }).status, 'committed');
+  assert.deepEqual([row().input.width, row().output.width], [1, 1]);
+  assert.equal(controller.undo().status, 'undone');
+  assert.deepEqual(controller.activeSession, beforeFormat);
   const before = controller.activeSession;
   const added = controller.insertCatalogPlugin(chain.chainId, { id: 'test--plugin', name: 'Test', vendor: 'Test' }, null, null);
   assert.equal(added.status, 'committed');

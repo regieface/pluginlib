@@ -51,6 +51,7 @@
       <div class="project-actions">
         <button id="open-full-library" type="button" aria-controls="full-library-view" aria-expanded="false">Bibliothèque complète</button>
         <button id="open-presets">Presets</button>
+        <button id="open-color-rules" type="button">Dictionnaire de couleurs</button>
         <button data-view="diagnostics">Diagnostics <span id="diagnostic-count">0</span></button>
       </div>
     </details>
@@ -237,6 +238,27 @@
       <div class="proposal-actions"><button type="submit" class="primary">Appliquer</button>
         <button type="button" id="cancel-patch-edit">Annuler</button></div>
     </form>
+  </dialog>
+  <dialog id="color-rules-dialog" aria-labelledby="color-rules-title">
+    <h2 id="color-rules-title">Correspondances de couleurs</h2>
+    <p>Associer un nom ou une abréviation à une sous-famille. Les couleurs des chaînes déjà créées restent inchangées.</p>
+    <form id="color-rules-form" class="chain-settings-form">
+      <label>Nom à reconnaître<input name="alias" maxlength="64" autocomplete="off" required placeholder="Ex. TOP SN"></label>
+      <label>Sous-famille<select name="category" required></select></label>
+      <button type="submit" class="primary">Mémoriser</button>
+    </form>
+    <div id="color-rules-list" class="color-rules-list" aria-label="Correspondances mémorisées"></div>
+    <details>
+      <summary>Échanger les règles entre navigateur et application Alpha</summary>
+      <p>Exporter, copier le texte, puis le coller dans l’autre version pour l’importer.</p>
+      <textarea id="color-rules-json" rows="5" spellcheck="false" aria-label="Règles au format JSON"></textarea>
+      <div class="proposal-actions">
+        <button type="button" id="export-color-rules">Afficher mes règles</button>
+        <button type="button" id="import-color-rules">Importer ces règles</button>
+      </div>
+    </details>
+    <p id="color-rules-status" role="status"></p>
+    <button type="button" id="close-color-rules">Fermer</button>
   </dialog>
   <input id="open-file" type="file" accept="application/json" hidden>
   <script type="module" src="app.mjs"></script>

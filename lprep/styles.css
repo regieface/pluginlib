@@ -109,7 +109,7 @@ button:disabled { cursor: default; opacity: .55; }
 .view { display: none; }
 .view.active { display: block; }
 .editor {
-  --settings-width: 135px;
+  --settings-width: 169px;
   --library-width: 240px;
   --settings-effective: min(var(--settings-width), 28vw);
   --library-effective: min(var(--library-width), 36vw);
@@ -799,4 +799,110 @@ body:has(#builder-view.active) .workspace {
   padding: 0;
   opacity: 0;
   cursor: pointer;
+}
+
+
+/* L-Prep revue : patch compact vertical, édition directe et couleurs */
+.editor[data-orientation="vertical"] .chain-patch .patch-indicator-route {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: normal;
+  min-width: 0;
+}
+.editor[data-orientation="vertical"] .chain-patch .routing-compact {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.15px;
+}
+.editor[data-orientation="vertical"] .chain-patch > small {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chain-settings-patch {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px;
+}
+.chain-settings-patch legend { font-weight: 650; color: var(--muted); }
+.settings-patch-sides { display: grid; gap: 8px; min-width: 0; }
+.settings-patch-sides > section { min-width: 0; }
+.settings-patch-sides > section > b { display: block; color: #234872; margin-bottom: 3px; }
+.settings-patch-sides .patch-slot { width: 100%; text-align: left; }
+.settings-patch-sides .patch-slot:hover { border-color: var(--blue); background: var(--selection); }
+.settings-patch-sides .patch-slot span { overflow-wrap: anywhere; }
+.chain-settings-patch > small { display: block; margin-top: 5px; }
+
+/* L-Prep V2 : couleur conservée à la sélection, 25 % / 40 % dans les deux vues. */
+.chain-row,
+.chain-row:not(.selected),
+.editor[data-orientation="vertical"] .chain-row,
+.editor[data-orientation="vertical"] .chain-row:not(.selected) {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 25%, white);
+}
+.chain-row.selected,
+.editor[data-orientation="vertical"] .chain-row.selected {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 40%, white);
+  box-shadow: inset 0 0 0 3px var(--blue);
+}
+.chain-row .chain-label { background: transparent; }
+.chain-row .chain-label button,
+.chain-row .chain-label button:not([aria-pressed="true"]) {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 25%, white);
+}
+.chain-row.selected .chain-label button {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 40%, white);
+  border-block-color: var(--line);
+  border-right-color: var(--line);
+}
+.editor[data-orientation="vertical"] .chain-row.selected::after { border: 3px solid var(--blue); }
+.editor[data-orientation="vertical"] .chain-row.selected .chain-label button {
+  border-block-start-color: var(--chain-color, var(--blue));
+}
+/* Dictionnaire personnel : interface compacte. */
+.color-rule-open { width: 100%; margin-top: 5px; font-size: 11px; }
+#color-rules-dialog { width: min(480px, calc(100vw - 24px)); max-height: calc(100dvh - 24px);
+  overflow-y: auto; border: 1px solid var(--line); border-radius: 9px; padding: 16px; }
+#color-rules-dialog::backdrop { background: #13243b99; }
+#color-rules-dialog > * + * { margin-top: 10px; }
+#color-rules-dialog textarea { width: 100%; resize: vertical; font: 11px/1.3 ui-monospace, monospace; }
+#color-rules-dialog details p { margin: 6px 0; color: var(--muted); font-size: 12px; }
+.color-rules-list { max-height: 200px; overflow-y: auto; display: grid; gap: 4px; }
+.color-rule-entry { display: grid; grid-template-columns: 14px minmax(0,1fr) auto; align-items: center; gap: 7px;
+  padding: 4px 5px; border-bottom: 1px solid var(--line); font-size: 12px; }
+.color-rule-chip { width: 14px; height: 14px; border: 1px solid #999; border-radius: 3px; }
+#color-rules-status.error { color: #8d2820; }
+
+/* L-Prep V2.1 : contraste entete / plugins et cas LEAD blanc */
+/* Le fond de la ligne reste a 25 %, ou 40 % si selectionnee (regles V2). */
+/* L'en-tete est volontairement plus sature que l'espace plugins. */
+.chain-row .chain-label button,
+.chain-row .chain-label button:not([aria-pressed="true"]) {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 48%, white);
+}
+.chain-row.selected .chain-label button,
+.chain-row.selected .chain-label button:not([aria-pressed="true"]) {
+  background: color-mix(in srgb, var(--chain-color, #6574d8) 63%, white);
+}
+
+/* Une couleur blanche ne donne aucun contraste par melange avec du blanc.
+   Exception purement visuelle : la couleur de chaine stockee reste #ffffff. */
+.chain-row[style*="--chain-color: #ffffff" i],
+.editor[data-orientation="vertical"] .chain-row[style*="--chain-color: #ffffff" i] {
+  background: #f7f9fb;
+}
+.chain-row.selected[style*="--chain-color: #ffffff" i],
+.editor[data-orientation="vertical"] .chain-row.selected[style*="--chain-color: #ffffff" i] {
+  background: #eef2f7;
+}
+.chain-row[style*="--chain-color: #ffffff" i] .chain-label button,
+.chain-row[style*="--chain-color: #ffffff" i] .chain-label button:not([aria-pressed="true"]) {
+  background: #e7edf3;
+}
+.chain-row.selected[style*="--chain-color: #ffffff" i] .chain-label button,
+.chain-row.selected[style*="--chain-color: #ffffff" i] .chain-label button:not([aria-pressed="true"]) {
+  background: #dbe4ed;
 }

@@ -3,7 +3,8 @@ export const SESSION_FORMATS = Object.freeze(['mono', 'stereo']);
 export const SESSION_SAMPLE_RATES = Object.freeze([48000, 96000]);
 
 const clone = value => structuredClone(value);
-const DEFAULT_COLORS = Object.freeze({ insert: '#6574d8', fx: '#35a8a3', monitoring: '#66a357' });
+import { ROLE_DEFAULT_COLORS } from './lprep-chain-colors.mjs';
+const DEFAULT_COLORS = ROLE_DEFAULT_COLORS;
 
 function newChain(role, idFactory) {
   return { draftChainId: idFactory('draft-chain'), role, name: '', inputFormat: 'stereo', outputFormat: 'stereo',

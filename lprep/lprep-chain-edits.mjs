@@ -84,6 +84,75 @@ export function editableFormatPorts(session, chain) {
   return boundaries;
 }
 
+
+// N'autorise la réédition des formats que si le routage en place est un
+// AutoPatch simple, traçable et sans liaison partagée ou verrouillée.
+export function editableAutomaticPatchFormatPorts(session, chain) {
+  if (chain.pluginOrder.length || chain.interfaces?.length) return null;
+  const graph = session.audioGraph;
+  const assignments = (session.patchAssignments || []).filter(item => item.chainId === chain.chainId);
+  if (!assignments.length || assignments.length > 2) return null;
+  const targets = {
+    input: chain.mainPath.inputBoundaryPortRef,
+    output: chain.mainPath.outputBoundaryPortRef
+  };
+  const removals = [];
+  for (const assignment of assignments) {
+    if (assignment.origin !== 'automatic' || assignment.locked || assignment.purpose !== 'chain' ||
+        !['input', 'output'].includes(assignment.direction) ||
+        assignment.targetPortRefs.length !== 1 ||
+        assignment.targetPortRefs[0] !== targets[assignment.direction] ||
+        assignment.connectionRefs.length !== 1 || assignment.channelMap) return null;
+    const edge = graph.connections.find(item => item.connectionId === assignment.connectionRefs[0]);
+    if (!edge || edge.originAssignmentId !== assignment.assignmentId || edge.routingRole !== 'main' ||
+        edge.channelMap || edge.hostBindingRef || edge.enabledState === 'disabled') return null;
+    const remoteId = assignment.direction === 'input' ? edge.sourcePortId : edge.destinationPortId;
+    const targetId = assignment.direction === 'input' ? edge.destinationPortId : edge.sourcePortId;
+    if (targetId !== targets[assignment.direction]) return null;
+    const remote = graph.ports.find(port => port.portId === remoteId);
+    const node = graph.nodes.find(item => item.nodeId === remote?.nodeId);
+    if (!remote || !node || remote.hostBindingRef || node.hostBindingRef ||
+        node.type !== `audio-${assignment.direction}` ||
+        node.metadata?.originAssignmentId !== assignment.assignmentId ||
+        graph.ports.filter(port => port.nodeId === node.nodeId).length !== 1 ||
+        graph.connections.filter(item => item.sourcePortId === remoteId ||
+          item.destinationPortId === remoteId).length !== 1 ||
+        JSON.stringify(node.externalResourceRefs) !== JSON.stringify(assignment.resourceRefs)) return null;
+    removals.push({ assignmentId: assignment.assignmentId, connectionId: edge.connectionId,
+      nodeId: node.nodeId, portId: remote.portId });
+  }
+  // Aucune liaison supplémentaire aux limites de la chaîne n'est autorisée.
+  const connections = new Set(removals.map(item => item.connectionId));
+  if (graph.connections.some(edge => !connections.has(edge.connectionId) &&
+      [edge.sourcePortId, edge.destinationPortId].some(id =>
+        id === targets.input || id === targets.output))) return null;
+  // Les frontières doivent rester structurellement simples après retrait.
+  const copy = structuredClone(session);
+  const removedAssignments = new Set(removals.map(item => item.assignmentId));
+  const removedConnections = new Set(removals.map(item => item.connectionId));
+  const removedNodes = new Set(removals.map(item => item.nodeId));
+  const removedPorts = new Set(removals.map(item => item.portId));
+  copy.patchAssignments = copy.patchAssignments.filter(item => !removedAssignments.has(item.assignmentId));
+  copy.audioGraph.connections = copy.audioGraph.connections.filter(item => !removedConnections.has(item.connectionId));
+  copy.audioGraph.ports = copy.audioGraph.ports.filter(item => !removedPorts.has(item.portId));
+  copy.audioGraph.nodes = copy.audioGraph.nodes.filter(item => !removedNodes.has(item.nodeId));
+  const fresh = copy.chains.find(item => item.chainId === chain.chainId);
+  return editableFormatPorts(copy, fresh) ? removals : null;
+}
+
+export function removeAutomaticPatchForFormatChange(session, chain) {
+  const removals = editableAutomaticPatchFormatPorts(session, chain);
+  if (!removals) throw new Error('Ce format ne peut être modifié : le patch contient une liaison manuelle, partagée ou protégée.');
+  const assignments = new Set(removals.map(item => item.assignmentId));
+  const connections = new Set(removals.map(item => item.connectionId));
+  const nodes = new Set(removals.map(item => item.nodeId));
+  const ports = new Set(removals.map(item => item.portId));
+  session.patchAssignments = session.patchAssignments.filter(item => !assignments.has(item.assignmentId));
+  session.audioGraph.connections = session.audioGraph.connections.filter(item => !connections.has(item.connectionId));
+  session.audioGraph.nodes = session.audioGraph.nodes.filter(item => !nodes.has(item.nodeId));
+  session.audioGraph.ports = session.audioGraph.ports.filter(item => !ports.has(item.portId));
+}
+
 function assertExclusivePath(session, chain, path) {
   const ownNodes = new Set(pathNodeIds(path));
   if (ownNodes.size !== path.stages.length) throw new Error('Ce chemin repasse par un même nœud.');

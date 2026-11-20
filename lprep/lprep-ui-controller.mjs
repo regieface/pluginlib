@@ -5,6 +5,7 @@ import { BrowserRevisionEngine } from './lprep-browser-persistence.mjs';
 import { dlGroupNumbers, LPrepConstructorService } from './lprep-constructor-services.mjs';
 import { createDefaultEnvironmentProfile, instantiateEnvironmentProfile } from './lprep-environment.mjs';
 import { createStableId } from './lprep-identifiers.mjs';
+import { suggestChainColor } from './lprep-chain-colors.mjs';
 import { applyPatchProposal } from './lprep-patch.mjs';
 import { createChain, createCompensationGroup, createProject, createSession, duplicateSession, validateProject } from './lprep-project.mjs';
 import { createChainPresetFromSession, MemoryPresetStore } from './lprep-presets.mjs';
@@ -114,7 +115,8 @@ export class LPrepUIController {
     return result;
   }
   createChain({ name = 'Nouvelle chaîne', role = 'insert', audioFormat, inputFormat, outputFormat,
-    color = '#6574d8', sidechainCount = 0, dlNumber } = {}) {
+    color, sidechainCount = 0, dlNumber } = {}) {
+    if (color === undefined) color = suggestChainColor(name, role);
     const formats = audioFormat === undefined ? { inputFormat: inputFormat ?? 'stereo', outputFormat: outputFormat ?? 'stereo' } : legacyChainFormats(audioFormat);
     const requestedDl = dlNumber === undefined ? (role === 'insert' ? 1 : null) : dlNumber;
     const sessionId = this.activeSessionId, graphId = this.activeSession.audioGraph.graphId;

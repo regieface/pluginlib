@@ -72,7 +72,7 @@ test('les réglages préservent les connexions, mettent à jour le groupe et gar
   assert.deepEqual(controller.activeSession, after);
 });
 
-test('le changement de format adapte les ports d’une chaîne vide et refuse une chaîne déjà routée', () => {
+test('le changement de format adapte les ports avant et après AutoPatch automatique non verrouillé', () => {
   const controller = new LPrepUIController();
   controller.createProject();
   controller.createChain();
@@ -82,6 +82,8 @@ test('le changement de format adapte les ports d’une chaîne vide et refuse un
   controller.proposePatch();
   assert.equal(controller.applyPatch().status, 'committed');
   const before = controller.project;
-  assert.equal(controller.updateChainSettings(chainId, { audioFormat: 'stereo' }).status, 'error');
+  assert.equal(controller.updateChainSettings(chainId, { audioFormat: 'stereo' }).status, 'committed');
+  assert.deepEqual(graphPatchChannels(controller.activeSession).get(chainId), { input: [1, 2], output: [1, 2] });
+  assert.equal(controller.undo().status, 'undone');
   assert.deepEqual(controller.project, before);
 });
