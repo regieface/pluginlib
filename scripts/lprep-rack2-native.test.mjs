@@ -184,3 +184,63 @@ test('glisser-déposer dans le constructeur natif : ordre visuel et retour exact
   assert.equal(ws.dirty, false);
   assert.deepEqual(ws.toRack2Copy(), original);
 });
+
+test('S2 patch : rerouter une destination existante puis restaurer tous les octets', async () => {
+  const { rewriteRack2PatchDestinations } = await import('../lprep/lprep-rack2-native.mjs');
+  const original = fixture(), preserved = original.slice();
+  assert.deepEqual(rewriteRack2PatchDestinations(original), original);
+  const change = {
+    fromId: ids[0], fromChannel: 1,
+    toId: '0200000000000000', toChannel: 1,
+    nextToId: '0200000000000000', nextToChannel: 2
+  };
+  const updated = rewriteRack2PatchDestinations(original, [change]);
+  assert.equal(updated.length, original.length);
+  assert.deepEqual(readRack2Project(updated).connections[1], {
+    fromId: ids[0], fromChannel: 1, toId: '0200000000000000', toChannel: 2
+  });
+  assert.deepEqual(readRack2Project(updated).chains[0].plugins,
+    readRack2Project(original).chains[0].plugins);
+  assert.deepEqual(original, preserved, 'le tampon source reste intact');
+  const restored = rewriteRack2PatchDestinations(updated, [{
+    ...change, toChannel: 2, nextToChannel: 1
+  }]);
+  assert.deepEqual(restored, original, 'aller-retour octet par octet');
+});
+
+test('S2 patch : changer le destinataire d’une connexion existante sans toucher aux plugins', async () => {
+  const { rewriteRack2PatchDestinations } = await import('../lprep/lprep-rack2-native.mjs');
+  const original = fixture();
+  const changed = rewriteRack2PatchDestinations(original, [{
+    fromId: '0100000000000000', fromChannel: 1,
+    toId: ids[0], toChannel: 1,
+    nextToId: ids[1], nextToChannel: 2
+  }]);
+  const read = readRack2Project(changed);
+  assert.deepEqual(read.connections[0], {
+    fromId: '0100000000000000', fromChannel: 1, toId: ids[1], toChannel: 2
+  });
+  assert.deepEqual(read.chains.find(c => c.id === ids[0]).plugins,
+    readRack2Project(original).chains.find(c => c.id === ids[0]).plugins);
+  assert.deepEqual(readRack2Project(original).connections[0], {
+    fromId: '0100000000000000', fromChannel: 1, toId: ids[0], toChannel: 1
+  });
+});
+
+test('S2 patch : versions, canaux, destinations inconnues et reroutages ambigus bloqués', async () => {
+  const { rewriteRack2PatchDestinations } = await import('../lprep/lprep-rack2-native.mjs');
+  const original = fixture(), intact = original.slice();
+  const change = {
+    fromId: ids[0], fromChannel: 1,
+    toId: '0200000000000000', toChannel: 1,
+    nextToId: '0200000000000000', nextToChannel: 2
+  };
+  assert.throws(() => rewriteRack2PatchDestinations(original, [{ ...change, nextToChannel: 33 }]), /limites/);
+  assert.throws(() => rewriteRack2PatchDestinations(original, [{ ...change, nextToChannel: 0 }]), /mal formé/);
+  assert.throws(() => rewriteRack2PatchDestinations(original, [{ ...change, nextToId: 'ffffffffffffffff' }]), /destination/);
+  assert.throws(() => rewriteRack2PatchDestinations(original, [{ ...change, toChannel: 9 }]), /introuvable/);
+  assert.throws(() => rewriteRack2PatchDestinations(original, [change, change]), /plusieurs fois/);
+  assert.throws(() => rewriteRack2PatchDestinations(original, [{ ...change, unexpected: true }]), /mal formé/);
+  assert.throws(() => rewriteRack2PatchDestinations(fixture({ version: '2027.1.0' }), [change]), /version/);
+  assert.deepEqual(original, intact);
+});

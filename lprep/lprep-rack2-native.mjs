@@ -242,3 +242,132 @@ export function rewriteRack2Metadata(source, updates = []) {
     fail('la vérification du snapshot global a échoué.');
   return result;
 }
+
+/**
+ * S2 (expérimental) : reroute UNIQUEMENT la destination de connexions audio existantes.
+ * Les propriétés du nœud source et les groupes `outputs` restent inchangés.
+ * Aucune création/suppression de point, aucune écriture disque ni mutation du tampon source.
+ * Les numéros de canaux de l'API sont 1-based ; ceux de .rack2 sont 0-based.
+ */
+export function rewriteRack2PatchDestinations(source, updates = []) {
+  // Réutilise le garde-fou existant : LP 2026.1.0, chaînes et snapshots cohérents.
+  rewriteRack2Metadata(source);
+  const scanner = new Scanner(source);
+  const root = scanner.scan();
+  const before = readRack2Project(scanner.bytes);
+  if (!Array.isArray(updates)) fail('liste de reroutages invalide.');
+  if (!updates.length) return scanner.bytes.slice();
+  if (updates.length > before.totalConnections) fail('trop de reroutages demandés.');
+
+  const inputId = '0100000000000000';
+  const outputId = '0200000000000000';
+  const byId = new Map(before.chains.map(chain => [chain.id, chain]));
+  const audioPatch = child(child(root, 'GlobalSnapshot'), 'AudioPatch');
+  if (!audioPatch) fail('AudioPatch natif absent.');
+  const edges = [];
+  for (const group of audioPatch.children.filter(n => n.name === 'outputs')) {
+    for (const point of group.children.filter(n => n.name === 'point')) {
+      const midi = point.properties.get('isMidi');
+      if (!midi || midi.size !== 1 || (midi.kind !== 2 && midi.kind !== 3))
+        fail('type MIDI/audio du point inconnu.');
+      if (midi.kind === 2) continue;
+      const fromId = scanner.id(point, 'outputNodeId');
+      const fromChannel = scanner.integer(point, 'outputChannelId') + 1;
+      const toId = scanner.id(point, 'inputNodeId');
+      const toChannel = scanner.integer(point, 'inputChannelId') + 1;
+      const parentId = group.properties.get('nodeId');
+      const parentChannel = group.properties.get('channelId');
+      if (Boolean(parentId) !== Boolean(parentChannel))
+        fail('groupement de source incomplet.');
+      if (parentId && (scanner.id(group, 'nodeId') !== fromId ||
+          scanner.integer(group, 'channelId') + 1 !== fromChannel))
+        fail('groupement de source incohérent.');
+      edges.push({ fromId, fromChannel, toId, toChannel, point });
+    }
+  }
+  if (edges.length !== before.totalConnections) fail('nombre de connexions incohérent entre lecteurs.');
+  const key = edge => `${edge.fromId}:${edge.fromChannel}>${edge.toId}:${edge.toChannel}`;
+  const originalKeys = new Set(edges.map(key));
+  if (originalKeys.size !== edges.length) fail('connexions identiques ambiguës.');
+  const changes = new Map();
+  const fields = ['fromId', 'fromChannel', 'toId', 'toChannel', 'nextToId', 'nextToChannel'];
+  const validChannel = n => Number.isSafeInteger(n) && n >= 1;
+
+  for (const update of updates) {
+    if (!update || typeof update !== 'object' || Array.isArray(update) ||
+        Object.keys(update).some(field => !fields.includes(field)) ||
+        !HEX_ID.test(update.fromId) || !HEX_ID.test(update.toId) ||
+        !HEX_ID.test(update.nextToId) ||
+        !validChannel(update.fromChannel) || !validChannel(update.toChannel) ||
+        !validChannel(update.nextToChannel)) fail('reroutage mal formé.');
+    const oldKey = key(update);
+    const edge = edges.find(item => key(item) === oldKey);
+    if (!edge) fail('connexion à modifier introuvable.');
+    if (changes.has(edge)) fail('connexion modifiée plusieurs fois.');
+    // Le numéro de source n'est jamais modifié dans cette première étape.
+    if (edge.fromId === inputId) {
+      if (edge.fromChannel > before.inputCount) fail('source matérielle hors limites.');
+    } else if (byId.has(edge.fromId)) {
+      if (edge.fromChannel > byId.get(edge.fromId).outputCount)
+        fail('canal de sortie de chaîne hors limites.');
+    } else fail('source audio non reconnue pour une modification.');
+    if (update.nextToId === outputId) {
+      if (update.nextToChannel > before.outputCount) fail('sortie matérielle hors limites.');
+    } else if (byId.has(update.nextToId)) {
+      if (update.nextToChannel > byId.get(update.nextToId).inputCount)
+        fail('entrée de chaîne hors limites.');
+    } else fail('destination audio inconnue.');
+    changes.set(edge, { ...edge, toId: update.nextToId, toChannel: update.nextToChannel });
+  }
+
+  const expected = edges.map(edge => {
+    const { fromId, fromChannel, toId, toChannel } = changes.get(edge) || edge;
+    return { fromId, fromChannel, toId, toChannel };
+  });
+  if (new Set(expected.map(key)).size !== expected.length)
+    fail('le reroutage créerait des connexions identiques.');
+  const patches = [];
+  for (const [edge, next] of changes) {
+    if (edge.toId !== next.toId) {
+      const data = Uint8Array.from(next.toId.match(/../g).map(part => Number.parseInt(part, 16)));
+      const prop = scanner.get(edge.point, 'inputNodeId', 6, 9);
+      patches.push({ start: prop.start, end: prop.end,
+        bytes: concat(compact(9), Uint8Array.of(6), data) });
+    }
+    if (edge.toChannel !== next.toChannel) {
+      const prop = scanner.get(edge.point, 'inputChannelId', 1, 5);
+      patches.push({ start: prop.start, end: prop.end, bytes: intVariant(next.toChannel - 1) });
+    }
+  }
+  if (!patches.length) return scanner.bytes.slice();
+  patches.sort((a, b) => a.start - b.start);
+  const pieces = [];
+  let at = 0;
+  for (const patch of patches) {
+    if (patch.start < at || patch.bytes.length !== patch.end - patch.start)
+      fail('réécriture binaire non conservatrice.');
+    pieces.push(scanner.bytes.subarray(at, patch.start), patch.bytes);
+    at = patch.end;
+  }
+  pieces.push(scanner.bytes.subarray(at));
+  const result = concat(...pieces);
+  const after = readRack2Project(result);
+  // Comparer les valeurs, pas l'ordre d'insertion des propriétés JSON.
+  const connectionsMatch = after.connections.length === expected.length &&
+    after.connections.every((actual, index) => {
+      const wanted = expected[index];
+      return actual.fromId === wanted.fromId &&
+        actual.fromChannel === wanted.fromChannel &&
+        actual.toId === wanted.toId &&
+        actual.toChannel === wanted.toChannel;
+    });
+  if (result.length !== scanner.bytes.length ||
+      !connectionsMatch ||
+      after.pluginCount !== before.pluginCount ||
+      after.inputCount !== before.inputCount || after.outputCount !== before.outputCount ||
+      JSON.stringify(after.chains.map(({ inputs, outputs, ...unchanged }) => unchanged)) !==
+      JSON.stringify(before.chains.map(({ inputs, outputs, ...unchanged }) => unchanged)))
+    fail('le fichier rerouté ne respecte pas les invariants natifs.');
+  rewriteRack2Metadata(result); // Revalide les snapshots / métadonnées.
+  return result;
+}
