@@ -1,5 +1,7 @@
 # Consignes de développement
 
+> **Sources de vérité actuelles :** lire d’abord [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md) (décisions) et [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md) (état/reprise), puis les documents historiques et les sources pertinents. **Toutes les consignes techniques ci-dessous restent applicables** (inspection ciblée, sécurité du contrôleur, tests, environnement, exclusions, préservation des modifications locales). En cas de contradiction sur la vision ou la prochaine tâche, les deux documents canoniques priment ; ne pas supprimer d’instruction de sécurité.
+
 Ce dépôt contient deux composants liés mais exécutés séparément : le catalogue web PluginLib à la racine et l’application macOS dans `controller/`. Toute intervention doit préserver cette séparation et rester entièrement hors ligne à l’exécution.
 
 ## Inspection ciblée

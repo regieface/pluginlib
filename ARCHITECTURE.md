@@ -1,5 +1,7 @@
 # Architecture
 
+> **Référence d’architecture historique, à conserver.** Voir [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md) pour les décisions récentes et [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md) pour l’implémentation et la reprise. Le « hors périmètre » lié au routage audio dans les sections Controller ne s’applique pas au constructeur L-Prep. Aucune architecture existante n’est effacée par ce renvoi.
+
 ## Vue d’ensemble
 
 PluginLib et PluginLib Controller partagent le même dépôt et pourront partager des descriptions de contrôles, mais restent deux exécutables indépendants.

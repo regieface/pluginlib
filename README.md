@@ -1,5 +1,7 @@
 # PluginLib
 
+> **L-Prep / LPC — références canoniques :** [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md) (conception) et [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md) (état et passation). Le catalogue décrit ci-dessous est **historique et encore présent pendant la migration** ; la cible validée est une bibliothèque personnelle, **sans catalogue général caché permanent** après migration sûre. Aucune donnée n’est supprimée par cette mise à jour documentaire.
+
 Bibliothèque personnelle de plugins **mix & mastering** (pas d'instruments ni de synthés), consultable dans le navigateur, avec des données mises à jour à la demande.
 
 Le catalogue couvre Windows, macOS et Linux. Par défaut, **Toutes les plateformes**

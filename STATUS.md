@@ -1,5 +1,7 @@
 # État du projet
 
+> **Historique technique conservé.** Pour l’état courant et la reprise, voir [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md) ; pour les décisions applicables, voir [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md). Les validations et tâches F6 ci-dessous demeurent utiles pour LPC mais ne remplacent pas le chantier actif `RACK2-PATCH-01`.
+
 ## PluginLib — « Ma collection », chantiers 1A à 1C validés
 
 - **1A** — L’import JSON affiche les ajouts, les changements de droits et le nombre de plugins inchangés. La confirmation applique la fusion. L’annulation et les fichiers invalides laissent la collection intacte.

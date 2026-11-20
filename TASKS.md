@@ -1,5 +1,7 @@
 # Tâches
 
+> **Backlog historique non supprimé.** La prochaine action L-Prep est dans [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md) ; les décisions produit sont dans [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md). Les anciennes rubriques « Prochaine tâche » relatives à F6 continuent de documenter LPC, sans redéfinir la priorité du Patch natif `.rack2`.
+
 ## PluginLib — « Ma collection », chantiers terminés
 
 - **1A** — Aperçu et confirmation avant import JSON.

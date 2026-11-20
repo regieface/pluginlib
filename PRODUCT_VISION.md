@@ -1,5 +1,7 @@
 # PRODUCT_VISION — PluginLib & PluginLib Controller (PLC)
 
+> **Document historique (17/11/2026).** Les décisions applicables pour L-Prep, LPC et la bibliothèque personnelle se trouvent dans [`docs/L-PREP-VISION.md`](docs/L-PREP-VISION.md) ; l’état réel et le point de reprise dans [`docs/L-PREP-STATE.md`](docs/L-PREP-STATE.md). Conserver l’intégralité des détails historiques ci-dessous, mais ne pas réactiver les décisions remplacées.
+
 > **Version :** 0.1 — Première synthèse de conception  
 > **Date :** 17 novembre 2026  
 > **Statut :** document de travail évolutif, **pas** un cahier des charges technique figé  
