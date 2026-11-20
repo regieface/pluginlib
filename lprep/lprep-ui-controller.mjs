@@ -139,7 +139,17 @@ export class LPrepUIController {
       }
       setChainSidechainCount(session, chain, sidechainCount, this.idFactory);
       session.chains.push(chain);
-      session.chainOrder.push(chainId); return project;
+      // Insert a new chain after the last chain of its role without moving existing chains.
+      const priority = { insert: 0, fx: 1, monitoring: 2 };
+      const roles = new Map(session.chains.map(item => [item.chainId, item.role]));
+      const lastSame = session.chainOrder.reduce((last, id, index) =>
+        roles.get(id) === role ? index : last, -1);
+      const firstLater = session.chainOrder.findIndex(id =>
+        (priority[roles.get(id)] ?? 3) > (priority[role] ?? 3));
+      const at = lastSame >= 0 ? lastSame + 1 :
+        firstLater >= 0 ? firstLater : session.chainOrder.length;
+      session.chainOrder.splice(at, 0, chainId);
+      return project;
     } }));
   }
   saveActiveChainAsPreset(chainId) {

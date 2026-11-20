@@ -34,6 +34,33 @@ const chainPalette = [
   ['Corail', '#e25d3a'], ['Ocre', '#d8a23c'], ['Turquoise', '#35a8a3'], ['Indigo', '#6574d8'],
   ['Vert', '#66a357'], ['Bleu', '#3887c7'], ['Prune', '#9564b4'], ['Rose', '#cf668d']
 ];
+const familyColors = [
+  ['DRUM', '#d74f44'], ['PERCUS', '#a83d4b'], ['BASS', '#e79036'],
+  ['KEYS', '#79badd'], ['SPD', '#39c1e8'], ['GTR', '#e6c244'],
+  ['INSTRU', '#66a357'], ['BV', '#3657bc'], ['LEAD', '#ffffff'],
+  ['FX', '#cf668d'], ['CUIVRES', '#8a4054']
+];
+const familyColorByName = Object.fromEntries(familyColors);
+const chainColorPresets = [...familyColors,
+  ...chainPalette.filter(([, color]) => !familyColors.some(([, candidate]) => color === candidate))];
+const roleDefaultColor = { insert: '#6574d8', fx: '#35a8a3', monitoring: '#66a357' };
+function suggestChainColor(name, role) {
+  const normalized = String(name ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase().replace(/[^A-Z0-9]+/g, ' ');
+  const has = pattern => pattern.test(normalized);
+  if (has(/\b(PERC|PERCU|PERCUS|PERCUSSION|PERCUSSIONS)\b/)) return familyColorByName.PERCUS;
+  if (has(/\b(SPD|SPD-SX|SAMPLEPAD)\b/)) return familyColorByName.SPD;
+  if (has(/\b(DRUM|DRUMS|BATTERIE|KICK|SNARE)\b/)) return familyColorByName.DRUM;
+  if (has(/\b(BASS|BASSE|BASSES)\b/)) return familyColorByName.BASS;
+  if (has(/\b(KEY|KEYS|KEYBOARD|SYNTH|SYNTHS|SPL)\b/)) return familyColorByName.KEYS;
+  if (has(/\b(GTR|GTRS|GUITAR|GUITARS|GUITARE|GUITARES)\b/)) return familyColorByName.GTR;
+  if (has(/\b(CUIVRE|CUIVRES|BRASS|HORNS|HORN|SAX|TROMPETTE|TROMBONE|VENTS)\b/)) return familyColorByName.CUIVRES;
+  if (has(/\b(BV|BACKS|BACKING|CHOEURS|CHOEUR|CHORUS)\b/)) return familyColorByName.BV;
+  if (has(/\b(LEAD|LEADVX|VOCAL|VOCALS|VOIX|CHANT)\b/)) return familyColorByName.LEAD;
+  if (has(/\b(FX|REVERB|REVERBE|VERB|DELAY|ECHO)\b/)) return familyColorByName.FX;
+  if (has(/\b(INSTRU|INSTRUS|INSTRUMENT|INSTRUMENTS)\b/)) return familyColorByName.INSTRU;
+  return roleDefaultColor[role] ?? roleDefaultColor.insert;
+}
 const thumbnails = createThumbnailView(new URL('../', import.meta.url));
 const revisionKey = 'lprep.last-opened-revision';
 const orientationKey = 'lprep.builder-orientation';
@@ -159,7 +186,13 @@ const startDrag = bindBuilderDrag({
     if (result.status === 'committed') selectedChainId = targetChainId;
     resultNotice(result, 'Plugin déplacé.');
   },
-  insertPlugin: addLibraryPlugin
+  insertPlugin: addLibraryPlugin,
+  removePlugin(chainId, instanceId) {
+    resultNotice(
+      controller.removePlugin(chainId, instanceId),
+      'Plugin retiré de la chaîne.'
+    );
+  }
 });
 
 function editChainName(button, chain) {
@@ -241,9 +274,9 @@ function renderChainColors(root, chain) {
   const context = document.createElement('canvas').getContext('2d');
   if (context && chain.color && CSS.supports('color', chain.color)) context.fillStyle = chain.color;
   const current = chain.color ? context?.fillStyle : null;
-  const custom = Boolean(chain.color && !chainPalette.some(([, color]) => color === current));
+  const custom = Boolean(chain.color && !chainColorPresets.some(([, color]) => color === current));
   root.innerHTML = `<legend>Couleur</legend><div class="chain-color-options">
-    ${[['Sans couleur', null], ...chainPalette].map(([name, color]) => `
+    ${[['Sans couleur', null], ...chainColorPresets].map(([name, color]) => `
       <button type="button" class="chain-color-swatch" title="${name}" aria-label="${name}"
         aria-pressed="${color === current}" value="${color || ''}"
         ${color ? `style="--swatch:${color}"` : ''}>${color ? '' : '∕'}</button>`).join('')}
@@ -948,7 +981,7 @@ function renderPatch({ preserveRows = false } = {}) {
   const proposal = controller.patchProposal, root = $('#patch-proposal');
   if (!proposal) root.innerHTML = '';
   else if (!proposal.valid) root.innerHTML = `<div class="proposal error"><strong>Proposition impossible</strong><div>${proposal.issues.map(value => escapeHtml(value.message)).join('<br>')}</div><div class="proposal-actions"><button id="cancel-proposal">Fermer</button></div></div>`;
-  else root.innerHTML = `<div class="proposal"><strong>${proposal.status === 'partial' ? 'Proposition partielle' : 'Proposition prête'}</strong><div>${proposal.diff.addedAssignmentRefs.length} affectations et ${proposal.diff.addedConnectionRefs.length} connexions à créer.</div>${proposal.missingAssignments.length ? `<div>${proposal.issues.filter(value => value.code === 'patch.capacity').map(value => escapeHtml(value.message)).join('<br>')}</div>` : ''}<div class="proposal-actions"><button id="apply-proposal" class="primary">Confirmer l’application</button><button id="cancel-proposal">Annuler</button></div></div>`;
+  else root.innerHTML = `<div class="proposal"><strong>${proposal.status === 'partial' ? 'Proposition partielle' : 'Proposition prête'}</strong><div>${proposal.diff.addedAssignmentRefs.length} nouvelles affectations, ${(proposal.diff.reallocatedAssignments || []).length} réaffectations proposées.</div>${(proposal.diff.reallocatedAssignments || []).length ? `<details><summary>Voir les nouvelles affectations</summary><ul>${proposal.diff.reallocatedAssignments.map(change => `<li>${escapeHtml(change.chainName)} — ${change.direction === 'input' ? 'IN' : 'OUT'} : ${escapeHtml(change.before.map(ref => ref.split(':').at(-1)).join('/'))} → ${escapeHtml(change.after.map(ref => ref.split(':').at(-1)).join('/'))}</li>`).join('')}</ul></details>` : ''}${proposal.missingAssignments.length ? `<div>${proposal.issues.filter(value => value.code === 'patch.capacity').map(value => escapeHtml(value.message)).join('<br>')}</div>` : ''}<div class="proposal-actions"><button id="apply-proposal" class="primary">Confirmer l’application</button><button id="cancel-proposal">Annuler</button></div></div>`;
   $('#apply-proposal')?.addEventListener('click', () => resultNotice(controller.applyPatch(), 'Patch appliqué atomiquement.'));
   $('#cancel-proposal')?.addEventListener('click', () => { controller.cancelPatch(); renderPatch(); });
 }
@@ -1070,6 +1103,7 @@ const createSessionForm = $('#create-session-form');
 const sessionDraftRows = $('#session-draft-rows');
 const sessionEnvironmentProfiles = [createDefaultEnvironmentProfile()];
 let sessionDraft;
+const manualDraftColors = new Set();
 
 function sessionDraftContext() {
   return { machines: projectMachines(controller.project), profiles: sessionEnvironmentProfiles,
@@ -1105,6 +1139,33 @@ function updateSessionDraftStatus() {
   return { issues, capacity, needs, exceeded };
 }
 
+function draftColorHtml(chain) {
+  const current = chain.color || '';
+  const custom = Boolean(current && !chainColorPresets.some(([, color]) => color === current));
+  return `<div class="chain-color-options session-draft-palette" role="group" aria-label="Couleur ${escapeHtml(chain.name || roleLabels[chain.role])}">
+    ${[['Sans couleur', null], ...chainColorPresets].map(([label, color]) => `
+      <button type="button" class="chain-color-swatch" title="${label}" aria-label="${label}"
+        aria-pressed="${(color || '') === current}" value="${color || ''}"
+        ${color ? `style="--swatch:${color}"` : ''}>${color ? '' : '∕'}</button>`).join('')}
+    <label class="chain-color-custom${custom ? ' current' : ''}" title="Choisir une couleur personnalisée">
+      <span aria-hidden="true">＋</span>
+      <input type="color" aria-label="Roue de couleur" value="${/^#[0-9a-f]{6}$/i.test(current) ? current : '#6574d8'}">
+    </label></div>`;
+}
+function refreshDraftColor(row, chain) {
+  const color = chain.color || '';
+  for (const button of row.querySelectorAll('.session-draft-palette button')) {
+    button.setAttribute('aria-pressed', String(button.value === color));
+  }
+  const label = row.querySelector('.session-draft-palette .chain-color-custom');
+  const custom = Boolean(color && !chainColorPresets.some(([, value]) => value === color));
+  label.classList.toggle('current', custom);
+  if (custom) label.style.setProperty('--swatch', color);
+  else label.style.removeProperty('--swatch');
+  const picker = label.querySelector('input[type="color"]');
+  if (/^#[0-9a-f]{6}$/i.test(color)) picker.value = color;
+}
+
 function renderSessionDraftRows() {
   const presets = controller.presets.list();
   const presetOptions = ['<option value="">Aucun</option>', ...presets.map(preset => {
@@ -1119,7 +1180,7 @@ function renderSessionDraftRows() {
       <td><select name="inputFormat"><option value="mono"${chain.inputFormat === 'mono' ? ' selected' : ''}>Mono</option><option value="stereo"${chain.inputFormat === 'stereo' ? ' selected' : ''}>Stéréo</option></select></td>
       <td><select name="outputFormat"><option value="mono"${chain.outputFormat === 'mono' ? ' selected' : ''}>Mono</option><option value="stereo"${chain.outputFormat === 'stereo' ? ' selected' : ''}>Stéréo</option></select></td>
       <td><select name="presetRef">${options}</select></td>
-      <td><input name="color" type="color" value="${escapeHtml(chain.color)}" aria-label="Couleur ${escapeHtml(chain.name || roleLabels[chain.role])}"></td>
+      <td>${draftColorHtml(chain)}</td>
       <td><input name="dlNumber" type="number" min="1" step="1" value="${chain.dlNumber ?? ''}" placeholder="—" aria-label="Groupe DLY"></td></tr>`;
   }).join('');
   $('#session-draft-empty').hidden = sessionDraft.chains.length > 0;
@@ -1131,6 +1192,24 @@ function renderSessionDraftRows() {
         chain.presetRef = preset ? { presetId: preset.presetId, revision: preset.revision } : null;
       } else if (field.name === 'dlNumber') chain.dlNumber = field.value === '' ? null : field.valueAsNumber;
       else chain[field.name] = field.value;
+      if (field.name === 'name' && !manualDraftColors.has(chain.draftChainId)) {
+        chain.color = suggestChainColor(field.value, chain.role);
+        refreshDraftColor(row, chain);
+      }
+      updateSessionDraftStatus();
+    };
+    for (const button of row.querySelectorAll('.session-draft-palette button')) {
+      button.onclick = () => {
+        chain.color = button.value || null;
+        manualDraftColors.add(chain.draftChainId);
+        refreshDraftColor(row, chain);
+        updateSessionDraftStatus();
+      };
+    }
+    row.querySelector('.session-draft-palette input[type="color"]').oninput = event => {
+      chain.color = event.target.value;
+      manualDraftColors.add(chain.draftChainId);
+      refreshDraftColor(row, chain);
       updateSessionDraftStatus();
     };
   }
@@ -1138,6 +1217,7 @@ function renderSessionDraftRows() {
 }
 
 function openSessionDraft() {
+  manualDraftColors.clear();
   const machines = projectMachines(controller.project);
   const current = controller.activeSession;
   const machineId = current?.targetMachineRef?.machineId || machines[0]?.machineId || null;
@@ -1279,10 +1359,11 @@ createChainForm.elements.role.append(...[...CHAIN_ROLES].map(role => new Option(
 createChainForm.onsubmit = event => {
   event.preventDefault();
   const { role, inputFormat, outputFormat } = createChainForm.elements;
+  const previousChainIds = new Set(controller.activeSession.chainOrder);
   const result = controller.createChain({ name: 'Nouvelle chaîne', role: role.value,
     inputFormat: inputFormat.value, outputFormat: outputFormat.value });
   if (result.status === 'committed') {
-    selectedChainId = controller.activeSession.chainOrder.at(-1);
+    selectedChainId = controller.activeSession.chainOrder.find(id => !previousChainIds.has(id));
     $('#add-chain-menu').open = false;
   }
   resultNotice(result, 'Chaîne créée.');
@@ -1374,6 +1455,22 @@ $('#clear-patch').onclick = () => {
 };
 $('#propose-patch').onclick = () => { controller.proposePatch(); renderPatch(); };
 $('#undo').onclick = () => resultNotice(controller.undo(), 'Modification annulée.'); $('#redo').onclick = () => resultNotice(controller.redo(), 'Modification rétablie.');
+// V3 : raccourcis Undo / Redo sur Mac, hors champs de saisie.
+document.addEventListener('keydown', event => {
+  if (!event.metaKey || event.ctrlKey || event.altKey ||
+      event.key.toLowerCase() !== 'z' || event.defaultPrevented ||
+      event.isComposing) return;
+
+  if (!$('#builder-view').classList.contains('active') ||
+      document.querySelector('dialog[open]')) return;
+
+  if (event.target instanceof Element &&
+      event.target.closest('input, textarea, select, [contenteditable]')) return;
+
+  event.preventDefault();
+  (event.shiftKey ? $('#redo') : $('#undo')).click();
+});
+
 let saveRequest;
 function renderSaveStatus() {
   const button = $('#save-project');

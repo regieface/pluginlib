@@ -6,7 +6,7 @@ export function dropGeometry(orientation, kind, event, bounds) {
   return { after: position >= (start + end) / 2, inside: position >= start && position <= end };
 }
 
-export function bindBuilderDrag({ list, orientation, revision, moveChain, movePlugin, insertPlugin }) {
+export function bindBuilderDrag({ list, orientation, revision, moveChain, movePlugin, insertPlugin, removePlugin }) {
   let source = null, target = null;
   const slot = document.createElement('div');
   slot.className = 'plugin-drop-slot';
@@ -35,6 +35,32 @@ export function bindBuilderDrag({ list, orientation, revision, moveChain, movePl
     };
     element.ondragend = finish;
   }
+  function validPluginSource() {
+    return source?.kind === 'plugin' &&
+      source.revision === revision() &&
+      source.orientation === orientation() &&
+      source.element.isConnected;
+  }
+
+  // Déposer un plugin hors de l'espace des chaînes le supprime.
+  // Les déplacements entre chaînes et le catalogue restent inchangés.
+  const chainSpace = list.closest('.chain-scroll') || list;
+
+  document.addEventListener('dragover', event => {
+    if (!validPluginSource() || chainSpace.contains(event.target)) return;
+    event.preventDefault();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = 'move';
+    clearTarget();
+  }, true);
+
+  document.addEventListener('drop', event => {
+    if (!validPluginSource() || chainSpace.contains(event.target)) return;
+    event.preventDefault();
+    const { chainId, instanceId } = source;
+    finish();
+    removePlugin(chainId, instanceId);
+  }, true);
+
   function current(event) {
     if (!source || source.revision !== revision() || source.orientation !== orientation() || !source.element.isConnected) return null;
     const row = event.target.closest('.chain-row');
