@@ -17,6 +17,7 @@
         <h2>Ouvrir un projet enregistré</h2>
         <div id="saved-projects" class="saved-list"></div>
         <h2>Importer / Exporter</h2>
+        <button id="inspect-rack2" type="button">Lire un projet LiveProfessor (.rack2)</button>
         <button id="open-project">Importer un JSON</button>
         <button id="export-project">Exporter JSON</button>
         <button id="demo-project">Charger la démonstration</button>
@@ -73,6 +74,23 @@
               <p id="session-meta"></p>
               <p id="session-creation-warning" class="session-creation-warning" role="status" hidden></p>
             </div>
+          <section id="rack2-workspace" class="rack2-workspace rack2-integrated" hidden aria-label="Projet LiveProfessor ouvert dans le constructeur">
+            <div class="rack2-workspace-header">
+              <div>
+                <h2 id="rack2-workspace-title">Projet LiveProfessor</h2>
+                <p id="rack2-workspace-summary"></p>
+              </div>
+              <button id="rack2-workspace-close" type="button">← Revenir au projet L-Prep</button>
+            </div>
+            <p class="rack2-workspace-safety"><strong>Édition native sécurisée :</strong> seuls les noms, couleurs et ordres des chaînes sont modifiables.
+              Formats, plugins, états AU/VST3, snapshots et Patch restent en lecture seule.
+              L’enregistrement télécharge uniquement une nouvelle copie .rack2, jamais l’original.</p>
+            <p id="rack2-workspace-error" role="alert"></p>
+            <div class="rack2-workspace-actions">
+              <button id="rack2-workspace-reset" type="button">Annuler les changements</button>
+              <button id="rack2-workspace-download" type="button" class="primary">Enregistrer une nouvelle copie .rack2</button>
+            </div>
+          </section>
             <div class="chain-scroll" role="region" aria-label="Chaînes de la session" tabindex="0">
               <div id="chain-list"></div>
             </div>
@@ -261,6 +279,40 @@
     <button type="button" id="close-color-rules">Fermer</button>
   </dialog>
   <input id="open-file" type="file" accept="application/json" hidden>
+  <input id="open-rack2-file" type="file" accept=".rack2,application/octet-stream" hidden>
+  <dialog id="rack2-preview-dialog" aria-labelledby="rack2-preview-title">
+    <h2 id="rack2-preview-title">Projet LiveProfessor — lecture seule</h2>
+    <p id="rack2-preview-name"></p>
+    <p id="rack2-preview-summary"></p>
+    <div class="rack2-preview-scroll">
+      <table class="rack2-preview-table">
+        <thead><tr><th>Chaîne</th><th>Entrée</th><th>Sortie</th><th>Patch IN</th><th>Patch OUT</th><th>Plugins</th></tr></thead>
+        <tbody id="rack2-preview-body"></tbody>
+      </table>
+    </div>
+    <div id="rack2-preview-warnings" role="status"></div>
+    <p class="rack2-preview-explanation">Prévisualisation uniquement : le projet ouvert dans L-Prep reste inchangé.
+       Pour l’instant, vous pouvez créer une <strong>copie native .rack2</strong> en modifiant
+       les noms, les couleurs et l’ordre des chaînes ; les autres données restent intactes.
+       L’ouverture dans le constructeur permet d’éditer ces trois propriétés sans conversion destructive.</p>
+    <button id="open-rack2-workspace" type="button" class="primary">Ouvrir dans le constructeur (édition sécurisée)</button>
+    <button id="edit-rack2-native" type="button">Ancien éditeur rapide</button>
+    <button id="close-rack2-preview" type="button">Fermer</button>
+  </dialog>
+  <dialog id="rack2-native-dialog" aria-labelledby="rack2-native-title">
+    <h2 id="rack2-native-title">Créer une copie LiveProfessor .rack2</h2>
+    <p id="rack2-native-source"></p>
+    <p>Vous pouvez modifier <strong>uniquement les noms, les couleurs et l'ordre des chaînes</strong>.
+      Les plugins (AU/VST3), leurs réglages, les snapshots, les formats et le patch restent strictement conservés.</p>
+    <div id="rack2-native-rows" role="group" aria-label="Édition des chaînes LiveProfessor"></div>
+    <p class="rack2-native-warning"><strong>Protection du mix :</strong> aucun fichier existant ne peut être remplacé depuis cet éditeur.
+       « Enregistrer une copie » télécharge un nouveau .rack2 horodaté. Ouvrez-le dans LiveProfessor pour le valider.</p>
+    <p id="rack2-native-error" role="alert"></p>
+    <div class="rack2-native-actions">
+      <button id="rack2-native-cancel" type="button">Annuler</button>
+      <button id="rack2-native-download" type="button">Enregistrer une copie .rack2</button>
+    </div>
+  </dialog>
   <script type="module" src="app.mjs"></script>
 </body>
 </html>

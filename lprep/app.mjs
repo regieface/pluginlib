@@ -15,6 +15,9 @@ import { virtualPatchOptions } from './lprep-patch-edit.mjs';
 import { patchChannelName as channelName, patchDisplayCells, patchRows } from './lprep-patch-view.mjs';
 import { editableFormatPorts, editableAutomaticPatchFormatPorts } from './lprep-chain-edits.mjs';
 import { CHAIN_ROLES } from './lprep-project.mjs';
+import { readRack2Project } from './lprep-rack2-reader.mjs';
+import { rewriteRack2Metadata } from './lprep-rack2-native.mjs';
+import { Rack2Workspace } from './lprep-rack2-workspace.mjs';
 import { prepareDemoProject } from './lprep-demo.mjs';
 import { createDefaultEnvironmentProfile, virtualResourceId } from './lprep-environment.mjs';
 import { applySessionChainCount, createSessionDraft, planSessionChainCount, sessionDraftCapacity,
@@ -134,6 +137,7 @@ function saveColorAliases() {
 const freshChainIds = new Set();
 let catalog, catalogError, catalogById = new Map();
 let selectedChainId = null, patchFocus = null;
+let rack2Workspace = null; // Le vrai .rack2 demeure en mémoire ; aucun passage par JSON.
 let libraryScope = 'owned', libraryLimit = 40;
 const librarySort = $('#plugin-sort');
 const librarySortKey = 'lprep.library-sort';
@@ -238,13 +242,20 @@ const contextMenu = bindContextMenu($('#builder-context-menu'));
 const startDrag = bindBuilderDrag({
   list: $('#chain-list'),
   orientation: () => editor.dataset.orientation,
-  revision: () => `${controller.activeSessionId}/${controller.service?.history.revisionId}`,
+  revision: () => rack2Workspace
+    ? `rack2/${rack2Workspace.fileName}/${rack2Workspace.chains.map(chain => `${chain.id}:${chain.name}:${chain.color}`).join('/')}`
+    : `${controller.activeSessionId}/${controller.service?.history.revisionId}`,
   moveChain(chainId, beforeId) {
+    if (rack2Workspace) {
+      nativeApplyChange(() => rack2Workspace.moveBefore(chainId, beforeId));
+      return;
+    }
     const order = controller.activeSession.chainOrder;
     if (beforeId === chainId || beforeId === (order[order.indexOf(chainId) + 1] ?? null)) return;
     resultNotice(controller.moveChain(chainId, beforeId), 'Chaîne déplacée.');
   },
   movePlugin(chainId, instanceId, beforeId, targetChainId) {
+    if (rack2Workspace) return;
     if (chainId === targetChainId) {
       const order = controller.activeSession.chains.find(chain => chain.chainId === chainId).pluginOrder;
       if (beforeId === instanceId || beforeId === (order[order.indexOf(instanceId) + 1] ?? null)) return;
@@ -253,8 +264,9 @@ const startDrag = bindBuilderDrag({
     if (result.status === 'committed') selectedChainId = targetChainId;
     resultNotice(result, 'Plugin déplacé.');
   },
-  insertPlugin: addLibraryPlugin,
+  insertPlugin(...args) { if (!rack2Workspace) addLibraryPlugin(...args); },
   removePlugin(chainId, instanceId) {
+    if (rack2Workspace) return;
     resultNotice(
       controller.removePlugin(chainId, instanceId),
       'Plugin retiré de la chaîne.'
@@ -278,9 +290,14 @@ function editChainName(button, chain) {
     field.remove();
     button.inert = false;
     if (save && name && name !== chain.name) {
-      const changes = { name };
-      if (freshChainIds.has(chain.chainId)) changes.color = suggestColor(name, chain.role);
-      resultNotice(controller.updateChainSettings(chain.chainId, changes), 'Chaîne renommée.');
+      if (rack2Workspace) {
+        // Le renommage natif utilise le même éditeur inline, mais jamais le contrôleur JSON.
+        nativeApplyChange(() => rack2Workspace.rename(chain.id, name));
+      } else {
+        const changes = { name };
+        if (freshChainIds.has(chain.chainId)) changes.color = suggestColor(name, chain.role);
+        resultNotice(controller.updateChainSettings(chain.chainId, changes), 'Chaîne renommée.');
+      }
     } else if (button.isConnected) button.focus({ preventScroll: true });
   }
   field.onblur = () => finish(true);
@@ -385,6 +402,7 @@ function renderChainColors(root, chain) {
 }
 
 function renderSelection() {
+  if (rack2Workspace) { renderNativeSelection(); return; }
   const session = controller.activeSession;
   const chain = session?.chains.find(value => value.chainId === selectedChainId);
   const content = $('#settings-content');
@@ -502,6 +520,7 @@ function patchIndicator(chain, row) {
 }
 
 function renderChains() {
+  if (rack2Workspace) { renderRack2Workspace(); return; }
   const session = controller.activeSession;
   const rows = sessionRows(session, catalogById);
   const dlNumbers = dlGroupNumbers(session?.compensationGroups || []);
@@ -1105,6 +1124,7 @@ async function renderSaved() {
 }
 
 function render() {
+  if (rack2Workspace) { renderRack2Workspace(); return; }
   const project = controller.project, session = controller.activeSession;
   $('#project-name').textContent = project?.name || 'Projet';
   $('#project-name').title = project?.name || 'Projet';
@@ -1411,6 +1431,7 @@ const renameFields = [
 for (const { name, action, commit, message } of renameFields) {
   const label = $(name);
   function startRename() {
+    if (rack2Workspace) { notify('Revenez au projet L-Prep pour le modifier. Le .rack2 natif reste indépendant.', true); return; }
     const menu = label.closest('details');
     const summary = label.parentElement;
     if (summary.querySelector('input')) return;
@@ -1580,7 +1601,8 @@ document.addEventListener('keydown', event => {
     '[role="listbox"], [role="menu"]'
   )) return;
 
-  const order = controller.activeSession?.chainOrder || [];
+  const order = rack2Workspace ? rack2Workspace.chains.map(chain => chain.id) :
+    (controller.activeSession?.chainOrder || []);
   const index = order.indexOf(selectedChainId);
   if (index < 0) return;
   const delta = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : -1;
@@ -1603,7 +1625,7 @@ document.addEventListener('keydown', event => {
       event.key.toLowerCase() !== 'z' || event.defaultPrevented ||
       event.isComposing) return;
 
-  if (!$('#builder-view').classList.contains('active') ||
+  if (!$('#builder-view').classList.contains('active') || rack2Workspace ||
       document.querySelector('dialog[open]')) return;
 
   if (event.target instanceof Element &&
@@ -1616,6 +1638,13 @@ document.addEventListener('keydown', event => {
 let saveRequest;
 function renderSaveStatus() {
   const button = $('#save-project');
+  if (rack2Workspace) {
+    button.disabled = false;
+    button.dataset.state = rack2Workspace.dirty ? 'dirty' : 'saved';
+    button.title = 'Télécharger une nouvelle copie native .rack2 (original intact)';
+    button.setAttribute('aria-label', button.title);
+    return;
+  }
   const request = saveRequest?.service === controller.service ? saveRequest : null;
   const state = request?.state || (!controller.lastRevisionId || controller.hasUnsavedChanges ? 'dirty' : 'saved');
   const descriptions = { dirty: 'Modifications non sauvegardées', saved: 'Projet enregistré',
@@ -1626,6 +1655,7 @@ function renderSaveStatus() {
   button.disabled = state === 'pending';
 }
 $('#save-project').onclick = async () => {
+  if (rack2Workspace) { saveRack2WorkspaceCopy(); return; }
   const request = { service: controller.service, state: 'pending' };
   saveRequest = request;
   renderSaveStatus();
@@ -1641,6 +1671,411 @@ $('#save-project').onclick = async () => {
   } finally { renderSaveStatus(); }
 };
 $('#export-project').onclick = () => download(`${controller.project.name.replace(/\W+/g, '-')}.lprep.json`, controller.exportJSON());
+// L-Prep / LiveProfessor : inspection binaire indépendante du modèle éditable.
+// Les fichiers sont lus localement, sans modifier une session ni sauvegarder de données.
+$('#inspect-rack2').onclick = () => {
+  $('.project-menu[open]')?.removeAttribute('open');
+  $('#open-rack2-file').click();
+};
+$('#close-rack2-preview').onclick = () => $('#rack2-preview-dialog').close();
+let rack2Native = null; // Session source en mémoire uniquement : jamais dans le stockage L-Prep.
+function copyRack2Name(sourceName) {
+  const now = new Date();
+  const stamp = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'),
+    String(now.getDate()).padStart(2, '0')].join('') + '-' +
+    [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join('');
+  const unique = String(now.getMilliseconds()).padStart(3, '0') + '-' +
+    (typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID().slice(0, 6) : String(Math.random()).slice(2, 8));
+  return sourceName.replace(/\.rack2$/i, '').replace(/[^a-zA-Z0-9À-ÿ._-]+/g, '_').slice(0, 100) +
+    '-LPrep-COPIE-' + stamp + '-' + unique + '.rack2';
+}
+function downloadRack2Copy(name, bytes) {
+  const url = URL.createObjectURL(new Blob([bytes], { type: 'application/octet-stream' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = name;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+// Mode constructeur natif .rack2 : n'utilise JAMAIS le contrôleur JSON de L-Prep.
+// Les opérations non prises en charge sont inertes plutôt que simulées.
+function rack2NativeChrome(open) {
+  // Les deux moteurs de données partagent désormais le constructeur original.
+  // Ce mode interdit les opérations qui pourraient modifier le projet JSON ou un état LP opaque.
+  editor.classList.toggle('rack2-workspace-active', open);
+  $('#builder-content').hidden = false;
+  $('#patch-view').hidden = open;
+  $('#patch-view').inert = open;
+  $('#rack2-workspace').hidden = !open;
+  $('#session-menu').inert = open;
+  $('#saved-projects').inert = open;
+  $('#secondary-menu').inert = open;
+  $('#plugin-library').inert = open;
+  $('#plugin-library').setAttribute('aria-disabled', String(open));
+  for (const id of ['new-project', 'rename-project', 'open-project', 'export-project',
+    'demo-project', 'target-machine', 'sample-rate', 'undo', 'redo']) {
+    const node = document.getElementById(id);
+    if (node) node.disabled = open;
+  }
+  $('#add-chain-menu').hidden = open;
+  $('#preset-list').hidden = open;
+  $('#session-creation-warning').hidden = open;
+  if (!open) {
+    $('#target-machine').disabled = !controller.activeSession;
+    $('#sample-rate').disabled = !controller.activeSession;
+    $('#patch-view').inert = true;
+  }
+}
+function showRack2Workspace() {
+  if (!rack2Native) return;
+  try {
+    // Prévalidation binaire intégrale : refus avant toute modification visuelle.
+    const candidate = new Rack2Workspace(rack2Native.source, rack2Native.fileName);
+    if (rack2Workspace?.dirty && !confirm('Abandonner les modifications non enregistrées du projet .rack2 ouvert ?')) return;
+    rack2Workspace = candidate;
+    selectedChainId = candidate.chains[0]?.id || null;
+    $('#rack2-preview-dialog').close();
+    $('#rack2-native-dialog').close();
+    showView('builder');
+    if (!$('#full-library-view').hidden) setFullLibraryOpen(false);
+    for (const menu of headerMenus) menu.open = false;
+    rack2NativeChrome(true);
+    renderRack2Workspace();
+  } catch (error) { notify(`Ouverture dans le constructeur refusée : ${error.message}`, true); }
+}
+function closeRack2Workspace() {
+  if (!rack2Workspace) return;
+  if (rack2Workspace.dirty && !confirm('Quitter sans enregistrer une copie .rack2 de ces modifications ?')) return;
+  rack2Workspace = null;
+  selectedChainId = null;
+  rack2NativeChrome(false);
+  render();
+}
+function saveRack2WorkspaceCopy() {
+  if (!rack2Workspace) return;
+  try {
+    const bytes = rack2Workspace.toRack2Copy();
+    downloadRack2Copy(copyRack2Name(rack2Workspace.fileName), bytes);
+    $('#rack2-workspace-error').textContent = '';
+    notify('Nouvelle copie native .rack2 téléchargée. Original intact ; à vérifier dans LiveProfessor.');
+  } catch (error) {
+    $('#rack2-workspace-error').textContent = error.message;
+    notify(error.message, true);
+  }
+}
+function nativeText(tag, className, value) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  el.textContent = value;
+  return el;
+}
+function nativeApplyChange(action) {
+  try { action(); renderRack2Workspace(); }
+  catch (error) { notify(error.message, true); renderNativeSelection(); }
+}
+function nativeColorOptions(root, chain) {
+  root.replaceChildren();
+  const legend = nativeText('legend', '', 'Couleur');
+  const options = document.createElement('div');
+  options.className = 'chain-color-options';
+  for (const [title, color] of chainColorPresets) {
+    if (!/^#[0-9a-f]{6}$/i.test(color)) continue;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'chain-color-swatch';
+    button.title = title;
+    button.setAttribute('aria-label', title);
+    button.setAttribute('aria-pressed', String(color.toLowerCase() === chain.color?.toLowerCase()));
+    button.style.setProperty('--swatch', color);
+    button.onclick = () => nativeApplyChange(() => rack2Workspace.recolor(chain.id, color));
+    options.append(button);
+  }
+  const custom = document.createElement('label');
+  custom.className = 'chain-color-custom';
+  custom.title = 'Couleur personnalisée';
+  const input = document.createElement('input');
+  input.type = 'color';
+  input.setAttribute('aria-label', 'Couleur personnalisée');
+  input.value = /^#[0-9a-f]{6}$/i.test(chain.color || '') ? chain.color : '#6574d8';
+  input.onchange = () => nativeApplyChange(() => rack2Workspace.recolor(chain.id, input.value));
+  custom.append(nativeText('span', '', '＋'), input);
+  if (!chainColorPresets.some(([, color]) => color.toLowerCase() === chain.color?.toLowerCase())) {
+    custom.classList.add('current');
+    custom.style.setProperty('--swatch', input.value);
+  }
+  options.append(custom);
+  root.append(legend, options);
+}
+function renderNativeSelection() {
+  if (!rack2Workspace) return;
+  const chains = rack2Workspace.chains;
+  const chain = chains.find(value => value.id === selectedChainId);
+  for (const row of $$('#chain-list .chain-row')) {
+    const active = row.dataset.chain === chain?.id;
+    row.classList.toggle('selected', active);
+    row.querySelector('.chain-label button').setAttribute('aria-pressed', String(active));
+  }
+  const container = $('#settings-content');
+  if (!chain) { container.textContent = 'Sélectionnez une chaîne.'; return; }
+  // Le panneau standard des réglages conserve sa place et sa largeur d'origine.
+  // Seuls nom, couleur et ordre peuvent appeler l'éditeur binaire sûr.
+  container.innerHTML = `<form class="chain-settings-form rack2-native-settings">
+    <label>Nom<input name="name" type="text" value="${escapeHtml(chain.name)}" required maxlength="128"></label>
+    <label>Format d’entrée<input value="${escapeHtml(chain.inputFormat)}" disabled></label>
+    <label>Format de sortie<input value="${escapeHtml(chain.outputFormat)}" disabled></label>
+    <fieldset class="chain-colors"></fieldset>
+    <fieldset class="chain-settings-patch"><legend>Patch de la chaîne · lecture seule</legend>
+      <div class="settings-patch-sides">
+        <section><b>IN</b><p>${chain.inputs.length ? chain.inputs.map(n => `IN${String(n).padStart(2, '0')}`).join(', ') : '—'}</p></section>
+        <section><b>OUT</b><p>${chain.outputs.length ? chain.outputs.map(n => `OUT${String(n).padStart(2, '0')}`).join(', ') : '—'}</p></section>
+      </div>
+    </fieldset>
+    <div class="rack2-native-reorder" role="group" aria-label="Ordre de la chaîne">
+      <button type="button" data-direction="-1"${chain.order === 0 ? ' disabled' : ''}>↑ Monter</button>
+      <button type="button" data-direction="1"${chain.order === chains.length - 1 ? ' disabled' : ''}>↓ Descendre</button>
+    </div>
+    <button type="submit" class="primary">Appliquer le nom</button>
+    <small>Plugins, formats, snapshots et routage préservés. Seule une nouvelle copie .rack2 peut être enregistrée.</small>
+  </form>`;
+  const form = container.querySelector('form');
+  nativeColorOptions(form.querySelector('.chain-colors'), chain);
+  form.onsubmit = event => {
+    event.preventDefault();
+    nativeApplyChange(() => rack2Workspace.rename(chain.id, form.elements.name.value));
+  };
+  for (const button of form.querySelectorAll('[data-direction]')) {
+    button.onclick = () => nativeApplyChange(() => rack2Workspace.move(chain.id, Number(button.dataset.direction)));
+  }
+}
+function nativePatchIndicator(chain) {
+  const indicator = document.createElement('div');
+  indicator.className = 'chain-patch rack2-patch-readonly';
+  indicator.title = 'Patch LiveProfessor préservé, non modifiable dans cette version';
+  indicator.setAttribute('aria-label', `Patch de ${chain.name}, lecture seule`);
+  const sides = document.createElement('span');
+  sides.className = 'patch-indicator-sides';
+  for (const [direction, numbers] of [['IN', chain.inputs], ['OUT', chain.outputs]]) {
+    const column = document.createElement('span');
+    column.append(nativeText('b', '', direction));
+    if (!numbers.length) column.append(nativeText('span', 'routing-full', '—'));
+    for (const number of numbers) {
+      const slot = nativeText('span', 'patch-indicator-route', `${direction}${String(number).padStart(2, '0')}`);
+      column.append(slot);
+    }
+    sides.append(column);
+  }
+  indicator.append(sides);
+  return indicator;
+}
+function nativePluginTile(plugin) {
+  // Même structure visuelle que les plugins du constructeur, jamais d'événement
+  // d'édition/drag tant que les états AU/VST3 ne peuvent pas être traités sans perte.
+  const tile = document.createElement('figure');
+  tile.className = 'plugin-tile rack2-native-plugin-tile';
+  tile.title = `${plugin.name} · ${plugin.format} · état préservé (lecture seule)`;
+  const art = document.createElement('div');
+  art.className = 'plugin-art';
+  art.append(nativeText('span', '', `${plugin.format}\npréservé`));
+  const caption = nativeText('figcaption', '', plugin.name);
+  tile.append(art, caption);
+  return tile;
+}
+function renderRack2Workspace() {
+  if (!rack2Workspace) return;
+  const chains = rack2Workspace.chains;
+  const info = rack2Workspace.summary;
+  if (!chains.some(chain => chain.id === selectedChainId)) selectedChainId = chains[0]?.id || null;
+  $('#project-name').textContent = rack2Workspace.fileName;
+  $('#project-name').title = rack2Workspace.fileName;
+  $('#header-session-name').textContent = 'LiveProfessor (.rack2)';
+  $('#target-machine').textContent = 'Projet natif';
+  $('#sample-rate').textContent = '— kHz';
+  $('#routing-status').textContent = `Patch ${info.totalConnections} liaisons`;
+  $('#session-name').textContent = rack2Workspace.fileName;
+  $('#session-meta').textContent = `LiveProfessor ${info.appVersion} · ${chains.length} chaînes · ${info.pluginCount} plugin(s) · ${info.inputCount} IN / ${info.outputCount} OUT`;
+  $('#rack2-workspace-title').textContent = 'Édition native .rack2 · lecture/écriture limitée';
+  $('#rack2-workspace-summary').textContent = rack2Workspace.dirty ?
+    'Modifications non enregistrées · enregistrement dans une nouvelle copie uniquement' :
+    'Fichier source intact · enregistrement dans une nouvelle copie uniquement';
+  const list = $('#chain-list'); // EXACTEMENT la zone du constructeur L-Prep classique.
+  thumbnails.clear(list);
+  list.replaceChildren();
+  for (const chain of chains) {
+    const row = document.createElement('article');
+    row.className = 'chain-row';
+    row.dataset.chain = chain.id;
+    if (chain.color && CSS.supports('color', chain.color)) row.style.setProperty('--chain-color', chain.color);
+    const heading = document.createElement('div');
+    heading.className = 'chain-heading';
+    const label = document.createElement('div');
+    label.className = 'chain-label';
+    const select = document.createElement('button');
+    select.type = 'button';
+    if (chain.color && CSS.supports('color', chain.color)) select.style.setProperty('--chain-color', chain.color);
+    select.innerHTML = `<strong>${escapeHtml(chain.name)}</strong><small>${escapeHtml(formatLabels[chain.inputFormat === chain.outputFormat ? chain.inputFormat : `${chain.inputFormat}-to-${chain.outputFormat}`] || `${chain.inputFormat} → ${chain.outputFormat}`)}</small><small>LiveProfessor · natif</small>`;
+    select.title = `${chain.name} · Glisser pour déplacer · Double-clic pour renommer`;
+    startDrag(select, { kind: 'chain', chainId: chain.id, label: chain.name });
+    select.ondblclick = () => editChainName(select, chain);
+    select.onkeydown = event => {
+      if (event.key === 'F2') { event.preventDefault(); editChainName(select, chain); }
+    };
+    label.append(select);
+    heading.append(nativePatchIndicator(chain), label);
+    const strip = document.createElement('div');
+    strip.className = 'plugin-strip';
+    if (!chain.plugins.length) strip.textContent = 'Aucun plugin';
+    else strip.append(...chain.plugins.map(nativePluginTile));
+    row.append(heading, strip);
+    row.onclick = () => { selectedChainId = chain.id; renderNativeSelection(); };
+    list.append(row);
+  }
+  if (!chains.length) list.textContent = 'Aucune chaîne';
+  $('#add-chain-menu').hidden = true;
+  $('#preset-list').hidden = true;
+  $('#rack2-workspace-error').textContent = info.otherConnections ?
+    `Attention : ${info.otherConnections} liaison(s) complexes conservées, mais non représentées individuellement.` : '';
+  $('#rack2-workspace-reset').disabled = !rack2Workspace.dirty;
+  renderNativeSelection();
+  renderSaveStatus();
+  scheduleRoutingHeight();
+}
+$('#open-rack2-workspace').onclick = showRack2Workspace;
+$('#rack2-workspace-close').onclick = closeRack2Workspace;
+$('#rack2-workspace-download').onclick = saveRack2WorkspaceCopy;
+$('#rack2-workspace-reset').onclick = () => {
+  if (!rack2Workspace?.dirty) return;
+  if (!confirm('Annuler tous les changements de noms, couleurs et ordre non enregistrés ?')) return;
+  rack2Workspace.reset();
+  renderRack2Workspace();
+};
+
+$('#rack2-native-cancel').onclick = () => $('#rack2-native-dialog').close();
+$('#edit-rack2-native').onclick = () => {
+  if (!rack2Native) return;
+  const container = $('#rack2-native-rows');
+  container.replaceChildren();
+  const { snapshot, fileName } = rack2Native;
+  $('#rack2-native-source').textContent = `Source : ${fileName} · ${snapshot.chains.length} chaînes · ${snapshot.pluginCount} plugin(s)`;
+  $('#rack2-native-error').textContent = '';
+  for (const chain of snapshot.chains) {
+    const line = document.createElement('div');
+    line.className = 'rack2-native-row';
+    line.dataset.chainId = chain.id;
+    const movement = document.createElement('div');
+    movement.className = 'rack2-native-movement';
+    for (const [title, direction] of [['Monter', -1], ['Descendre', 1]]) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = direction === -1 ? '↑' : '↓';
+      button.setAttribute('aria-label', `${title} ${chain.name}`);
+      button.onclick = () => {
+        const sibling = direction === -1 ? line.previousElementSibling : line.nextElementSibling;
+        if (sibling) { if (direction === -1) sibling.before(line); else sibling.after(line); }
+      };
+      movement.append(button);
+    }
+    const nameLabel = document.createElement('label');
+    nameLabel.textContent = 'Nom';
+    const name = document.createElement('input');
+    name.className = 'rack2-native-name';
+    name.type = 'text'; name.maxLength = 128; name.required = true; name.value = chain.name;
+    nameLabel.append(name);
+    const colorLabel = document.createElement('label');
+    colorLabel.textContent = 'Couleur';
+    const color = document.createElement('input');
+    color.className = 'rack2-native-color';
+    color.type = 'color'; color.value = chain.color || '#6574d8';
+    colorLabel.append(color);
+    const detail = document.createElement('small');
+    detail.textContent = `${chain.inputFormat} → ${chain.outputFormat} · ${chain.plugins.length} plugin(s)`;
+    line.append(movement, nameLabel, colorLabel, detail);
+    container.append(line);
+  }
+  $('#rack2-preview-dialog').close();
+  $('#rack2-native-dialog').showModal();
+};
+$('#rack2-native-download').onclick = () => {
+  if (!rack2Native) return;
+  try {
+    const updates = [...$('#rack2-native-rows').children].map((line, order) => ({
+      id: line.dataset.chainId,
+      name: line.querySelector('.rack2-native-name').value.trim(),
+      color: line.querySelector('.rack2-native-color').value,
+      order
+    }));
+    const bytes = rewriteRack2Metadata(rack2Native.source, updates);
+    downloadRack2Copy(copyRack2Name(rack2Native.fileName), bytes);
+    $('#rack2-native-error').textContent = '';
+    notify('Copie .rack2 téléchargée. Original intact ; vérifier la copie dans LiveProfessor.');
+  } catch (error) {
+    $('#rack2-native-error').textContent = error.message;
+    notify(error.message, true);
+  }
+};
+$('#open-rack2-file').onchange = async event => {
+  const file = event.target.files?.[0];
+  event.target.value = ''; // permet de rouvrir le même fichier.
+  if (!file) return;
+  try {
+    rack2Native = null;
+    const source = new Uint8Array(await file.arrayBuffer());
+    const project = readRack2Project(source);
+    rack2Native = { source, snapshot: project, fileName: file.name };
+    $('#rack2-preview-name').textContent = file.name;
+    $('#rack2-preview-summary').textContent =
+      `LiveProfessor ${project.appVersion} · ${project.chains.length} chaînes · ` +
+      `${project.pluginCount} plugin(s) · ${project.inputCount} IN / ${project.outputCount} OUT virtuels · ` +
+      `${project.totalConnections} connexions audio`;
+    const body = $('#rack2-preview-body');
+    body.replaceChildren();
+    for (const chain of project.chains) {
+      const row = document.createElement('tr');
+      const nameCell = document.createElement('td');
+      const nameRow = document.createElement('span');
+      nameRow.className = 'rack2-preview-chain';
+      const swatch = document.createElement('i');
+      swatch.className = 'rack2-preview-color';
+      swatch.style.backgroundColor = chain.color || '#d5dde6';
+      const name = document.createElement('strong');
+      name.textContent = chain.name;
+      nameRow.append(swatch, name);
+      nameCell.append(nameRow);
+      row.append(nameCell);
+      for (const value of [
+        chain.inputFormat, chain.outputFormat,
+        chain.inputs.length ? chain.inputs.join(', ') : '—',
+        chain.outputs.length ? chain.outputs.join(', ') : '—',
+        chain.plugins.length ? chain.plugins.map(p => `${p.name} (${p.format})`).join(' · ') : '—'
+      ]) {
+        const cell = document.createElement('td');
+        cell.textContent = value;
+        row.append(cell);
+      }
+      body.append(row);
+    }
+    if (!project.chains.length) {
+      const row = document.createElement('tr');
+      const empty = document.createElement('td');
+      empty.colSpan = 6;
+      empty.textContent = 'Aucune chaîne dans ce projet.';
+      row.append(empty);
+      body.append(row);
+    }
+    const warnings = $('#rack2-preview-warnings');
+    warnings.replaceChildren();
+    for (const warning of project.warnings) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = `Attention : ${warning}`;
+      warnings.append(paragraph);
+    }
+    const dialog = $('#rack2-preview-dialog');
+    if (!dialog.open) dialog.showModal();
+    notify(`Projet .rack2 analysé en lecture seule : ${project.chains.length} chaînes.`);
+  } catch (error) {
+    rack2Native = null;
+    notify(`Lecture .rack2 impossible : ${error.message}`, true);
+  }
+};
 $('#open-project').onclick = () => $('#open-file').click();
 $('#open-file').onchange = async event => {
   const file = event.target.files[0];

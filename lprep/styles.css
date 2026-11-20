@@ -906,3 +906,72 @@ body:has(#builder-view.active) .workspace {
 .chain-row.selected[style*="--chain-color: #ffffff" i] .chain-label button:not([aria-pressed="true"]) {
   background: #dbe4ed;
 }
+
+
+/* Inspecteur LiveProfessor .rack2 : lecture seule, aucun impact sur l'éditeur. */
+#rack2-preview-dialog {
+  width: min(880px, calc(100vw - 28px));
+  max-height: calc(100dvh - 28px);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px;
+}
+#rack2-preview-dialog::backdrop { background: #13243b99; }
+#rack2-preview-dialog > * + * { margin-top: 10px; }
+#rack2-preview-name { font-weight: 650; overflow-wrap: anywhere; }
+#rack2-preview-summary, .rack2-preview-explanation { color: var(--muted); }
+.rack2-preview-scroll { max-height: min(52vh, 480px); overflow: auto; border: 1px solid var(--line); border-radius: 6px; }
+.rack2-preview-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.rack2-preview-table th, .rack2-preview-table td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); }
+.rack2-preview-table th { position: sticky; top: 0; background: var(--canvas); white-space: nowrap; }
+.rack2-preview-chain { display: inline-flex; gap: 8px; align-items: center; white-space: nowrap; }
+.rack2-preview-color { display: inline-block; width: 15px; height: 15px; border: 1px solid #8893a1; border-radius: 3px; flex: none; }
+#rack2-preview-warnings { color: #835623; }
+#rack2-preview-warnings > p + p { margin-top: 4px; }
+
+/* Éditeur natif .rack2 limité : fichier source en lecture seule, nouvelle copie obligatoire. */
+#rack2-native-dialog { width: min(820px, calc(100vw - 28px)); max-height: calc(100dvh - 28px);
+  overflow-y: auto; border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+#rack2-native-dialog::backdrop { background: #13243b99; }
+#rack2-native-dialog > * + * { margin-top: 12px; }
+#rack2-native-source { font-weight: 650; overflow-wrap: anywhere; }
+#rack2-native-rows { max-height: 48vh; overflow-y: auto; display: grid; gap: 6px; }
+.rack2-native-row { display: grid; grid-template-columns: 72px minmax(130px, 1fr) 92px minmax(110px, 1fr);
+  gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 6px; padding: 7px; }
+.rack2-native-movement { display: flex; gap: 3px; }
+.rack2-native-movement button { min-width: 29px; }
+.rack2-native-row label { display: grid; gap: 3px; font-size: 11px; color: var(--muted); }
+.rack2-native-row input[type="text"] { min-width: 0; width: 100%; font-size: 13px; }
+.rack2-native-row input[type="color"] { width: 52px; height: 30px; border: 1px solid var(--line); background: white; }
+.rack2-native-row small { color: var(--muted); }
+.rack2-native-warning { color: #7d4d1c; background: #fff7e9; border-radius: 6px; padding: 10px; }
+#rack2-native-error { color: #a02222; }
+.rack2-native-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 680px) { .rack2-native-row { grid-template-columns: 68px minmax(100px, 1fr) 80px; }
+ .rack2-native-row small { grid-column: 2 / -1; } }
+
+/* .rack2 utilise le constructeur ET les panneaux déjà existants. Pas de seconde grille. */
+.editor.rack2-workspace-active #builder-content { display: contents !important; }
+.editor.rack2-workspace-active #patch-view { display: none !important; }
+.editor.rack2-workspace-active #add-chain-menu,
+.editor.rack2-workspace-active #preset-list { display: none !important; }
+.editor.rack2-workspace-active .library { opacity: .55; }
+.editor.rack2-workspace-active .chain-patch { cursor: default; }
+.editor.rack2-workspace-active .chain-row { cursor: pointer; }
+.rack2-workspace.rack2-integrated {
+  display: grid; gap: 7px; padding: 6px 8px;
+  border: 1px solid var(--line); border-radius: 6px; background: var(--surface);
+}
+.rack2-workspace.rack2-integrated[hidden] { display: none !important; }
+.rack2-workspace-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.rack2-workspace-header h2 { font-size: 12px; }
+.rack2-workspace-header p { color: var(--muted); font-size: 11px; }
+.rack2-workspace-safety { font-size: 11px; padding: 5px 8px; border: 1px solid #e0c67d; border-radius: 5px; background: #fff8e8; }
+.rack2-workspace-actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+#rack2-workspace-error { color: #802222; font-size: 11px; }
+.rack2-native-settings .rack2-native-reorder { display: flex; flex-wrap: wrap; gap: 4px; }
+.rack2-native-settings .settings-patch-sides p { margin-top: 4px; overflow-wrap: anywhere; }
+.rack2-native-plugin-tile .plugin-art { white-space: pre-line; font-weight: 600; }
+.rack2-native-plugin-tile .plugin-art span { white-space: pre-line; }
+.rack2-native-plugin-tile { cursor: default; }
