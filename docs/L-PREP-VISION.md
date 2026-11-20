@@ -1,6 +1,6 @@
 # L-Prep — Vision fonctionnelle et décisions de conception
 
-> **Référence canonique de la conception** — v1.1, 20 novembre 2026
+> **Référence canonique de la conception** — v1.2, 20 novembre 2026
 > **Dépôt :** `regieface/pluginlib` — **Périmètre :** L-Prep, LPC et bibliothèque personnelle PluginLib
 > **État du développement :** voir [`L-PREP-STATE.md`](L-PREP-STATE.md). Une décision validée ici ne prouve ni son implémentation ni ses tests.
 
@@ -130,6 +130,7 @@ Le module historique de couleurs fait déjà de la reconnaissance d'alias et dis
 - **Validé :** les entrées/sorties, formats mono/stéréo et ressources sont configurables **par session**. Ni famille ni label ne déterminent la largeur audio.
 - **Validé :** les modèles de chaînes / ensembles de chaînes et routages sont réutilisables ; préserver ce qui est techniquement récupérable. Le détail d'un rappel partiel des états reste **à concevoir/tester**, non promis en V1.
 - **Validé :** le Patch natif `.rack2` et l'import/export sûr sont **prioritaires immédiatement** ; construire d'abord des opérations minimales prouvées par tests, puis les relier à l'UI.
+- **Sécurité historique à conserver pour un éventuel remplacement futur, non autorisé aujourd'hui :** si un jour un remplacement de fichier `.rack2` existant est explicitement décidé, il devra exiger **une confirmation explicite**, une **sauvegarde horodatée vérifiée**, une **validation préalable de l'intégrité**, une **écriture atomique** et un **refus complet** lorsque la conservation des plugins, snapshots, routages ou données inconnues n'est pas démontrée. **Cela n'introduit aucune fonctionnalité d'écrasement** : pour la V1 et pour `RACK2-PATCH-01`, l'original reste intouchable et l'export se fait uniquement vers une copie distincte. Les détails et l'opportunité même d'un remplacement restent à concevoir.
 - **À concevoir :** gestion des connexions complexes/multicanaux, sidechains, différences entre snapshots, représentation des ambiguïtés, règles de création/suppression de points ; les fichiers incompatibles restent en lecture seule.
 
 ## 5. Priorités et frontière V1
@@ -193,6 +194,7 @@ Les règles historiques compatibles (fiabilité live, ciblage d'une instance, ni
 - **2026-11-17** — Ancienne vision `PRODUCT_VISION.md` v0.1 : catalogue global et PLC ; certaines orientations sont désormais remplacées.
 - **2026-11-20** — Consolidation des décisions de « Vision & Conception » : L-Prep hors ligne `.rack2`, LPC autonome, bibliothèque personnelle, neuf familles et reconnaissance gauche→droite, ajout groupé, formats explicites, suppression des orientations écartées.
 - **2026-11-20 (révision v1.1)** — Sous-familles vérifiées dans la palette existante, rôles distincts, clarification de la reconnaissance des noms, création groupée transactionnelle, héritage LPC préservé, gestion prudente des droits iLok et retrait futur du catalogue général actif. **Aucun changement fonctionnel dans cette révision documentaire.**
+- **2026-11-20 (révision v1.2 préparée)** — Conservation des exigences de double sécurité pour un **hypothétique** remplacement de `.rack2`, sans l'autoriser ni modifier l'export actuel en copie distincte ; `STATE` mis à jour d'après la sortie des tests **18/20** et la référence Git `0f2440c`. **Aucun changement fonctionnel.**
 - **2026-11-20** — Création de deux références canoniques séparées (vision / état). Cette mise à jour **ne modifie pas le code** et ne prouve pas l'intégration des nouvelles décisions.
 
 **Entretien :** mettre à jour ce document à chaque décision validée/abandonnée importante et avant passation ; reporter dans `STATE` toute décision reçue mais encore non intégrée. Les documents historiques ne doivent pas être effacés ni servir de deuxième source de vérité active.

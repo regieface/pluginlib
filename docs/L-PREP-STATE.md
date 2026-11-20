@@ -1,36 +1,36 @@
 # L-Prep — État technique et passation
 
-> **Référence canonique du développement** — v1.1, 20 novembre 2026
-> **Vision applicable :** [`L-PREP-VISION.md`](L-PREP-VISION.md), version **1.1 du 20/11/2026**
+> **Référence canonique du développement** — v1.2, 20 novembre 2026
+> **Vision applicable :** [`L-PREP-VISION.md`](L-PREP-VISION.md), version **1.2 du 20/11/2026**
 > **Périmètre :** dépôt `regieface/pluginlib` (L-Prep, LPC, bibliothèque PluginLib). Ce document enregistre des **faits observés**, des **résultats rapportés** et des **points inconnus** séparément.
 
 ## 0. Synthèse de reprise — à lire en premier
 
 - **Chantier actif :** `RACK2-PATCH-01` — **édition conservatrice des connexions audio existantes** dans un `.rack2` natif. **Ce n'est pas** l'ancien jalon « S2 — création de sessions ».
-- **Référence GitHub contrôlée le 20/11/2026 :** `main`, dernier commit public **`db35382`** — `L-Prep: add rack2 session reader and native workspace`. Point de restauration connu, confirmé par l'historique GitHub et le `git push` communiqué par l'utilisateur.
-- **Modifications locales rapportées par le Terminal utilisateur le 20/11/2026, non vérifiées directement par Dev :** `lprep/lprep-rack2-native.mjs` (**modifié, +117 lignes**), `scripts/lprep-rack2-native.test.mjs` (**modifié, +60 lignes**) et `note.md` (**modifié, +2 lignes**) ; **3 fichiers modifiés, 179 insertions rapportées**. Ces chiffres proviennent de l'utilisateur, **pas d'une inspection locale directe** ; ne pas supposer la teneur exacte du diff ni qu'il n'existe aucun autre état local plus récent.
-- **Correctif non confirmé :** un patch correctif du `ReferenceError` a été fourni, mais **sa présence dans `lprep-rack2-native.mjs`, son application et l'absence de nouvelles erreurs ne sont pas confirmées**. `note.md` reste hors du périmètre documentaire et ne doit pas être indexé par inadvertance.
+- **Références Git confirmées le 20/11/2026 :** branche `main`, **`HEAD = origin/main = 0f2440c`** (`docs: establish L-Prep vision and state references`), d'après le Terminal utilisateur et le dépôt GitHub ; **dernier commit fonctionnel `db35382`** (`L-Prep: add rack2 session reader and native workspace`). Le commit `0f2440c` ajoute uniquement la documentation et ses redirections ; il ne contient **pas** le Patch natif expérimental.
+- **Modifications locales au dernier relevé du Terminal utilisateur le 20/11/2026 :** `lprep/lprep-rack2-native.mjs` (**+117 lignes**), `scripts/lprep-rack2-native.test.mjs` (**+60 lignes**) et `note.md` (**+2 lignes**) : **3 fichiers modifiés, 179 insertions, aucune suppression rapportée**. `git diff --check` n'a émis aucune erreur. Ces informations sont **vérifiées par sortie du Terminal transmise**, **non inspectées directement sur le Mac par Dev** ; les deux fichiers `.mjs` et `note.md` doivent être préservés.
+- **Bug toujours reproduit :** les deux tests de reroutage échouent encore avec `ReferenceError: connection is not defined` dans `rewriteRack2PatchDestinations`, `lprep/lprep-rack2-native.mjs:323`. Un correctif avait été proposé, mais **il n'est pas opérationnel dans l'état testé** ; sa présence exacte dans le fichier local n'est pas établie par le diff partiel communiqué. Ne pas annoncer sa résolution. `note.md` est exclu des futurs commits documentaires.
 - **Derniers tests réellement exécutés et communiqués par l'utilisateur :** `node --test scripts/lprep-rack2-*.test.mjs`, **20 tests, 18 réussis, 2 échoués**, le 20/11/2026. **Ne pas annoncer 20/20.** Voir §4.
-- **Prochaine action exacte :** **vérifier l'état du dépôt local et la présence du correctif**, puis relancer les 20 tests avant de toucher au Patch natif. Commandes sûres au §9 ; **aucun commit, aucun push**, aucune réinitialisation.
+- **Prochaine action exacte :** reprendre **uniquement `RACK2-PATCH-01`** : examiner la fonction locale autour de la ligne 323, corriger la référence indéfinie sans élargir la mutation native, réexécuter les **20 tests ciblés**, puis la régression et une validation réelle sur **copies** `.rack2`. Voir §9. **Aucun commit/push sans autorisation, aucune réinitialisation.**
 - **Nouvelles décisions produit non intégrées :** neuf familles/sous-familles configurables, première correspondance gauche→droite, validation immédiate des noms inconnus, formats explicites, **lots transactionnels**, retrait futur du catalogue général après migration, collection iLok à droits multiples, LPC indépendant avec ciblage GUI/profils sécurisés. Voir §7 et la Vision.
 
 ## 1. Sources examinées et degré de preuve
 
 ### A. Dépôt distant réellement consulté
 
-- Historique des commits GitHub `main` du 20/11/2026 (dernier : `db35382`) : <https://github.com/regieface/pluginlib/commits>.
+- Historique GitHub `main` du 20/11/2026 : commit documentaire [`0f2440c`](https://github.com/regieface/pluginlib/commit/0f2440c), dont le parent est le dernier commit fonctionnel [`db35382`](https://github.com/regieface/pluginlib/commit/db35382). Deux références canoniques et six bannières de renvoi publiées, sans suppression des documents racine.
 - Documents racine examinés : `PRODUCT_VISION.md` (v0.1 du 17/11), `STATUS.md`, `TASKS.md`, `ARCHITECTURE.md`, `AGENTS.md`, `CLASSIFICATION_MODEL.md`, `README.md`.
 - Code source du dépôt distant consulté : `lprep/app.mjs`, `lprep/lprep-rack2-reader.mjs`, `lprep/lprep-rack2-native.mjs`, `lprep/lprep-rack2-workspace.mjs`, `lprep/lprep-chain-colors.mjs`, `lprep/lprep-session-draft.mjs`, `lprep/lprep-audio-graph.mjs`, `lprep/lprep-patch-edit.mjs`, `lprep/lprep-patch.mjs`, et tests `.rack2` publiés.
 - **Limite** : une consultation GitHub ne donne **ni le `git status` Mac, ni l'arbre non commité**, ni les fichiers de session réels. Les éléments locaux proviennent de messages de l'utilisateur. Aucun test n'a été exécuté par l'assistant sur le dépôt local dans cette opération documentaire.
 
 ### B. Éléments rapportés par l'utilisateur, non revérifiés dans son arbre actuel
 
-- `git commit` et `git push` réussis de `db35382` sur `main`, le 20/11/2026.
+- `git commit` et `git push` réussis de `db35382` puis `0f2440c` sur `main` ; sortie récente `git log -1 --oneline` : `0f2440c (HEAD -> main, origin/main, origin/HEAD)` ; **état Git communiqué par l'utilisateur**, non accès direct à son disque.
 - Installation locale de Node `v26.13.1`, npm `11.20.0` (ancienne documentation `AGENTS.md` parlant d'un Node absent du PATH au 16/11 désormais obsolète pour ce Mac, **à recontrôler si environnement différent**).
 - Avant le patch expérimental : **17/17 tests natifs réussis**.
 - Après le premier patch local : **18/20**, avec deux échecs identiques (voir §4).
-- **Dernier relevé d'état local fourni par l'utilisateur** : 3 fichiers modifiés (`lprep/lprep-rack2-native.mjs` +117 lignes, `scripts/lprep-rack2-native.test.mjs` +60 lignes, `note.md` +2 lignes), soit **179 insertions annoncées**. Information **rapportée par le terminal utilisateur, non vérifiée directement par Dev**. Aucun résultat de tests postérieur à 18/20 n'a été communiqué ; **la présence du correctif `connection is not defined` reste inconnue**.
-- L'utilisateur a été invité à appliquer un second correctif et des documents de passation ; **aucune sortie de terminal n'en confirme encore l'application**.
+- **Dernière inspection locale communiquée :** `git status --short`, `git diff --stat`, `git diff --check` et `git log -1 --oneline` confirment **3 fichiers modifiés / 179 insertions**, `main` à `0f2440c` et aucune erreur de whitespace rapportée. Cette preuve vient du **Terminal utilisateur**, non d'une inspection directe par Dev. Le `git diff` des deux modules a été transmis seulement en **extrait** : il ne prouve pas la présence ou l'absence de toutes les lignes du correctif.
+- **Nouvelle exécution ciblée communiquée après l'installation documentaire :** toujours **18/20** ; les mêmes deux tests échouent à `lprep-rack2-native.mjs:323` avec `connection is not defined`. Le correctif proposé auparavant **n'a donc pas corrigé l'état testé** ; ne pas spéculer sur sa présence dans le fichier.
 
 ## 2. Topologie du dépôt et responsabilité des composants
 
@@ -47,7 +47,7 @@
 - **`PRODUCT_VISION.md`** : **archive de conception v0.1** ; sa synchronisation LP et son catalogue global sont remplacés par la Vision canonique. Conserver pour la traçabilité, éviter de le supprimer.
 - **`STATUS.md` / `TASKS.md`** : historique technique et backlog général (notamment **F6 de LPC**) ; leurs phrases « Prochaine tâche » datées du 17/11 ne déterminent **plus** le point de reprise de L-Prep. Ne pas perdre le chantier F6.
 - **`ARCHITECTURE.md`** : description de l'architecture historique catalogue/controller et du codec Python. Son « Hors périmètre : traitement ou routage audio » concerne **le contrôleur**, pas le constructeur L-Prep. La section L-Prep devra être actualisée lors d'une révision d'architecture, sans renommer les répertoires.
-- **`AGENTS.md`** : consignes techniques existantes toujours utiles ; son renvoi vers `PRODUCT_VISION.md` devient secondaire. Prévoir un en-tête court vers les deux nouveaux documents (patch documentaire proposé séparément).
+- **`AGENTS.md`** : consignes techniques existantes toujours utiles ; la bannière vers les deux références canoniques a **été publiée dans `0f2440c`**, sans supprimer les consignes historiques.
 - **`CLASSIFICATION_MODEL.md`** : classification **des traitements/plugins** distincte des **neuf familles musicales de chaînes** ; conserver, sans les fusionner.
 
 ## 3. Jalons vérifiés sans mélange de numérotation
@@ -62,12 +62,14 @@ L'ancienne série **S0/S1/S2/S3** nommait des étapes **de création de session*
 | **SESSION-S3** — cohérence du constructeur | **Ancien jalon annoncé finalisé** par le commit `038365d` du 20/11/2026 | Contredit l'ancienne passation « S3 pas commencé » ; conserver la preuve Git et vérifier les cas d'usage avant fermeture fonctionnelle définitive |
 | **RACK2-READ-01** — lecture / workspace natif | **Présent sur `main` ; 17 tests verts avant expérimentation, rapportés** | Commit `db35382`, lecture, protections, panneaux natifs ; validation d'ouverture de copies modifiées en vrai LP restant à établir selon cas |
 | **RACK2-META-01** — noms, couleurs, ordre natifs | **Présent sur `main`, tests synthétiques verts rapportés** | Préservation testée octet par octet, rejets de valeurs incohérentes ; ne pas extrapoler au patch audio |
-| **RACK2-PATCH-01** — reroutage de destinations de connexions audio existantes | **En cours localement, non validé** | Modifications rapportées : moteur **+117**, tests **+60** (non vérifiées) ; **18/20**, correctif `connection` non confirmé |
+| **RACK2-PATCH-01** — reroutage de destinations de connexions audio existantes | **En cours localement, non validé** | Moteur **+117** et tests **+60** selon Terminal utilisateur ; **18/20**, `ReferenceError` **encore reproduit** ligne 323 |
 | **RACK2-PATCH-02** — UI du patch natif | **Non entamé / non démontré** | À commencer **après** `RACK2-PATCH-01` validé ; réutiliser l'UI, sans modélisation parallèle |
 | **RACK2-PATCH-03** — ajout/suppression de connexions | **Futur** | Nécessite formats et invariants prouvés ; pas de mutation silencieuse |
 | **LPC-F6-NEXT** — Low Cut / High Cut | **Chantier antérieur à reprendre, pas supprimé** | `STATUS.md`, `TASKS.md`, `controller/F6_VALIDATION.md` ; validations B16 historiques, suite à tester séparément |
 | **LIB-MIGRATION-01** — collection personnelle uniquement | **Décision reçue, pas intégrée** | Audit de dépendances puis migration non destructive |
 | **FAMILY-01 / BATCH-01** — familles et ajout groupé | **Décisions reçues, non validées en code** | Compatibilités partielles existantes (palette, session draft), nouveau comportement non implémenté dans sa totalité |
+
+**Correctif historique à ne pas perdre :** l’ancienne discussion de développement mentionne un correctif `draft-chain` lié à l’affichage du Patch stéréo. **Statut : antécédent rapporté, non revalidé sur le dépôt local dans cet audit** ; conserver sa traçabilité et vérifier l’état actuel du rendu uniquement si une régression apparaît. Cela ne constitue pas le chantier actif.
 
 ## 4. Derniers tests, bugs et risques
 
@@ -76,7 +78,8 @@ L'ancienne série **S0/S1/S2/S3** nommait des étapes **de création de session*
 | Date | Commande / portée | Résultat | Fiabilité de l'assertion |
 | --- | --- | --- | --- |
 | 20/11/2026, avant patch local | `node --test scripts/lprep-rack2-*.test.mjs` | **17/17, 0 échec** | Sortie utilisateur : tests natifs du commit `db35382` |
-| 20/11/2026, après premier patch `RACK2-PATCH-01` | Même commande | **20 tests, 18 réussis, 2 échoués** | Sortie utilisateur ; aucun test vert après correctif communiqué |
+| 20/11/2026, après premier patch `RACK2-PATCH-01` | Même commande | **20 tests, 18 réussis, 2 échoués** | Sortie utilisateur avant passation |
+| 20/11/2026, **après commit documentaire `0f2440c`** | Même commande | **20 tests, 18 réussis, 2 échoués : mêmes erreurs ligne 323** | Nouvelle sortie Terminal utilisateur ; correction **non opérationnelle** |
 | Phases antérieures | Suite plus large Node (jusqu'à **181** tests selon passation conversationnelle antérieure) | **Historique uniquement** | Ni commande ni résultat actuel vérifiés ici ; **ne pas présenter comme bilan de cette branche modifiée** |
 
 **Deux échecs actuellement documentés :**
@@ -84,14 +87,14 @@ L'ancienne série **S0/S1/S2/S3** nommait des étapes **de création de session*
 1. `S2 patch : rerouter une destination existante puis restaurer tous les octets` — **ReferenceError** `connection is not defined`.
 2. `S2 patch : changer le destinataire d’une connexion existante sans toucher aux plugins` — même erreur.
 
-Point commun : `lprep/lprep-rack2-native.mjs:323`, dans `rewriteRack2PatchDestinations`, patch **local non commité**. Un correctif ciblé a été préparé et envoyé, **mais son application/résultat n'ont pas été reçus**. Le troisième test ajouté (« versions, canaux, destinations inconnues et reroutages ambigus bloqués ») est vert ; ceci **ne valide pas** la réécriture effective. Le relevé de fichiers locaux communiqué ensuite **ne constitue pas** une nouvelle exécution des tests : le dernier verdict demeure **18/20**.
+Point commun : `lprep/lprep-rack2-native.mjs:323`, dans `rewriteRack2PatchDestinations`, patch **local non commité**. Un correctif ciblé avait été proposé, mais **la nouvelle exécution confirme que l'erreur demeure**. Le troisième test ajouté (« versions, canaux, destinations inconnues et reroutages ambigus bloqués ») est vert ; ceci **ne valide pas** la réécriture effective. L'extrait du diff ne suffit pas à établir le texte exact de la ligne 323. Le dernier relevé local est **accompagné d'une nouvelle exécution des tests** ; le verdict reste **18/20**. Les résultats ne prouvent pas encore la sécurité de l'écriture de destinations.
 
 **Risques à maintenir ouverts :**
 
 - Recomposer ou modifier un ValueTree avec données opaques peut altérer des chunks/snapshots/MIDI ; inspecter les octets et valider dans le vrai LiveProfessor, jamais sur l'original.
 - Les tests UI du natif sont en partie **structurels/statistiques** (lecture du code HTML/JS) ; ne remplacent pas une recette manuelle.
 - Nœuds inconnus, routages audio complexes, entrées/sorties multicanaux et versions LP nouvelles : **refuser l'écriture** quand les invariants ne sont pas démontrés.
-- Aucune mesure de résultats après l'application du correctif ; bug potentiellement multiple une fois l'exception réparée.
+- La nouvelle exécution montre que le correctif n'a pas résolu l'exception ; d'autres bugs peuvent être masqués tant que cette erreur interrompt les deux tests.
 - Une modification de la palette/familles peut casser les couleurs manuelles ou modifier silencieusement le routing ; **ne pas introduire ces changements pendant le Patch natif**.
 
 ## 5. Protections et règles de travail
@@ -101,7 +104,7 @@ Point commun : `lprep/lprep-rack2-native.mjs:323`, dans `rewriteRack2PatchDestin
 3. Sans modification, la sortie doit être **strictement identique** ; refus atomique des paramètres invalides/versions non testées.
 4. Ne jamais supprimer ou écraser des changements locaux, y compris `note.md`, fichiers tests, correctifs et fixtures privées.
 5. **Aucun commit ou push sans autorisation** ; ignorer normalement `note.md`, builds, caches, copies `.rack2`, données privées.
-6. Les tâches de documentation ne doivent changer **aucun code fonctionnel** ; les correctifs `.rack2` sont un chantier séparé et reprennent seulement après l'installation des documents.
+6. Les tâches de documentation ne doivent changer **aucun code fonctionnel** ; les correctifs `.rack2` restent un chantier distinct. L'installation des documents canoniques a été publiée en `0f2440c`. Toute sécurité de remplacement éventuel doit rester inactive tant qu'une décision et des tests spécifiques n'existent pas.
 7. Une **décision de Vision** ≠ une fonction développée ; un test synthétique vert ≠ une validation manuelle LP.
 8. Adapter la méthode aux quotas Codex/Work disponibles : patchs minimaux et vérifiables si ces outils ne sont pas accessibles, jamais laisser supposer une modification du Mac depuis le cloud.
 
@@ -109,7 +112,7 @@ Point commun : `lprep/lprep-rack2-native.mjs:323`, dans `rewriteRack2PatchDestin
 
 ### Actif maintenant — `RACK2-PATCH-01`
 
-Vérifier le correctif `connection is not defined`, l'écriture ciblée des destinations existantes, la restauration exacte après aller-retour et la conservation des parties opaques ; **ne pas encore créer/supprimer de connexions ni ouvrir un chantier famille/migration**.
+**Reprendre à l'échec déjà observé** : inspecter la ligne 323 et la variable `connection` non définie, puis vérifier l'écriture ciblée des destinations existantes, la restauration exacte après aller-retour et la conservation des parties opaques ; **ne pas encore créer/supprimer de connexions ni ouvrir de chantier famille/migration**.
 
 ### Interrompus mais conservés
 
@@ -130,7 +133,7 @@ Vérifier le correctif `connection is not defined`, l'écriture ciblée des dest
 
 | Source | Décision | Impact probable / contrôle nécessaire |
 | --- | --- | --- |
-| `L-PREP-VISION.md` v1.1, 20/11 | L-Prep et LPC indépendants ; PLC renommé LPC | Préserver `controller/` et profils ; changement de noms public/UI plus tard, pas de renommage brutal de fichiers |
+| `L-PREP-VISION.md` v1.2, 20/11 | L-Prep et LPC indépendants ; PLC renommé LPC | Préserver `controller/` et profils ; changement de noms public/UI plus tard, pas de renommage brutal de fichiers |
 | Idem | L-Prep hors ligne `.rack2`, pas de sync temps réel ni conversion AU/VST3 | Compatible en partie avec natif actuel ; recenser d'éventuelles anciennes promesses d'intégration |
 | Idem | Pas d'inventaires par machine ; E/S définies **par session** | **Écart explicite** : `lprep-session-draft.mjs` expose `machineId` et les modules d'environnement ; audit de dépendances avant migration |
 | Idem | Bibliothèque personnelle seulement, **validation groupée CSV iLok**, revue individuelle des ambiguïtés, plusieurs droits indépendants, pas d'expiration présumée | Le site/catalogue et la navigation historique existent ; auditer les dépendances, puis **retirer l'ancien catalogue du périmètre actif après migration sûre**, pas de bibliothèque cachée pérenne ; aucune suppression maintenant |
@@ -144,39 +147,32 @@ Vérifier le correctif `connection is not defined`, l'écriture ciblée des dest
 
 ## 8. Questions techniques ouvertes / contradictions
 
-1. **État local exact** : le Terminal utilisateur annonce **trois fichiers modifiés et +179 lignes**, mais leurs contenus précis, ainsi que la **présence du correctif** `connection is not defined`, demeurent inconnus côté Dev ; impossible de les inférer du commit `db35382`.
+1. **État local exact** : la **liste** des trois fichiers modifiés et les **+179 insertions** sont confirmées par la sortie du Terminal utilisateur à `0f2440c` ; le contenu intégral de la fonction expérimentale et la présence matérielle du correctif restent **non inspectés directement**. Son **inefficacité dans le test actuel** est toutefois confirmée par l'erreur persistante à la ligne 323.
 2. **Évolution S3** : l'ancienne passation affirmait « pas commencé », mais GitHub porte `feat: finalize S3` au commit `038365d` ; le document présent retient le **commit** comme fait, pas une validation de tous les scénarios.
 3. **Couleurs et rôles** : les neuf familles et leurs sous-familles sont bien dans `lprep-chain-colors.mjs` (palette numérique vérifiée sur `db35382`), mais la priorité de reconnaissance actuelle ne suit pas encore la nouvelle règle ; les rôles techniques Insert/FX/Monitoring restent distincts des familles musicales. Décision applicable ≠ implémentation.
 4. **Machines** : l'ancien modèle `machineId` et les environnements sont présents, contrairement à la nouvelle vision ; **migration à concevoir**, pas remplacement immédiat.
 5. **Catalogue** : le site et la navigation catalogue restent fonctionnels ; la nouvelle vision vise la bibliothèque personnelle dans L-Prep, **sans catalogue général caché permanent après migration** ; ne pas supprimer le catalogue existant sans audit, migration vérifiée et décision explicite.
-6. **Documentation racine** : `PRODUCT_VISION.md` annonce encore une sync LP ; `STATUS.md`/`TASKS.md` pointent vers F6 ; `AGENTS.md` recommande l'ancienne vision. Ajouter seulement des **bannières de renvoi documentaires** ; **toutes les consignes techniques de `AGENTS.md` (sécurité, tests, environnement, interdits) restent applicables**. Aucune ligne ancienne retirée par le patch documentaire.
+6. **Documentation racine** : `PRODUCT_VISION.md` annonce encore une sync LP ; `STATUS.md`/`TASKS.md` pointent vers F6. Les **bannières de renvoi vers Vision et State sont déjà publiées** en `0f2440c`, sans supprimer les anciennes lignes ; **toutes les consignes techniques de `AGENTS.md` restent applicables**.
 7. **Vérifications LiveProfessor réelles** de l'édition native du Patch après correction : **non démontrées**.
 8. **Cohérence du modèle mémoire/JSON et natif** : `lprep-patch-edit.mjs` édite le modèle de session interne, mais ne constitue pas une preuve que la même mutation est sûre dans le ValueTree `.rack2`.
+9. **Remplacement futur éventuel d'un `.rack2`** : la Vision v1.2 conserve des exigences historiques de sauvegarde et d'atomicité, **sans autoriser actuellement** l'écrasement de l'original. Cette fonction n'est pas développée et n'est pas une étape de `RACK2-PATCH-01`.
 
 ## 9. Action exacte à la prochaine reprise
 
-**Dans le Terminal de VS Code du vrai Mac, sans modifier aucun fichier :**
+**État de départ déjà vérifié par la sortie Terminal utilisateur** : `main` local et `origin/main` à `0f2440c` ; trois fichiers modifiés (`lprep-rack2-native.mjs`, son test, `note.md`) ; **18/20 tests**, même `ReferenceError` ligne 323. **Ne pas refaire le chantier depuis `db35382`** ; ne toucher ni aux modifications non commitées ni aux `.rack2` originaux.
 
-```sh
-cd ~/Documents/pluginlib
-git status --short
-git log -1 --oneline
-git diff --stat
-git diff --check
-node --test scripts/lprep-rack2-*.test.mjs
-```
+**Prochain geste de développement — `RACK2-PATCH-01` seulement :**
 
-**Interprétation :**
-
-1. Comparer `git log` au commit de référence `db35382`; toute divergence doit être examinée avant de poursuivre.
-2. Examiner les modifications `lprep/lprep-rack2-native.mjs` et `scripts/lprep-rack2-native.test.mjs` sans les effacer et vérifier si le correctif du `ReferenceError` a été appliqué.
-3. Si **20/20** : exécuter ensuite `node --test scripts/lprep*.test.mjs`, puis la suite générale pertinente. Si échec : corriger le premier problème **dans un chantier séparé** et retester ; **ne pas certifier le moteur natif avant réussite**.
-4. Vérifier les exports `.rack2` sur **des copies de test** dans le vrai LP, en comparant chaînes, connexions, états et snapshots. **Aucun `.rack2` original écrasé**.
-5. Quand le moteur est confirmé : planifier le raccordement à l'interface ; les choix familles/catalogue restent en attente dans Vision.
+1. Lire **sans écriture** l'extrait local autour de la ligne 323, par exemple `nl -ba lprep/lprep-rack2-native.mjs | sed -n '305,340p'`, et le comparer aux appels de `rewriteRack2PatchDestinations` des tests lignes 188–220. Ne pas inférer l'instruction fautive du seul message d'erreur.
+2. Corriger **uniquement** la référence à `connection` non définie, après identification de la variable attendue, sans étendre les opérations autorisées et **sans écraser le travail local**.
+3. Relancer `node --test scripts/lprep-rack2-*.test.mjs` ; tant que **20/20** n'est pas obtenu, rester sur cette erreur. Après réussite, lancer `node --test scripts/lprep*.test.mjs`, puis les tests de régression généraux pertinents. Ne pas transformer un succès de tests synthétiques en validation LiveProfessor.
+4. Tester l'export et le réimport dans le **vrai LiveProfessor** sur des **copies distinctes**, en comparant chaînes, connexions, snapshots, états AU/VST3, MIDI et sections opaques. Refuser toute version ou mutation non démontrée.
+5. **Après** validation du moteur, envisager `RACK2-PATCH-02` (raccordement de l'interface) ; les sujets familles, catalogue et lots restent séparés. **Aucun commit ni push sans accord explicite.**
 
 ## 10. Procédure documentaire et passation
 
 - **Ce fichier = état technique canonique ;** [`L-PREP-VISION.md`](L-PREP-VISION.md) = décisions fonctionnelles canoniques. `STATUS.md`/`TASKS.md`/`PRODUCT_VISION.md` restent historiques et compatibles avec des bannières de renvoi.
 - Après un jalon ou avant de changer de discussion : mettre à jour **date, branche/commit, modifications locales, commandes/résultats, risques, prochaine action, version de Vision applicable**. Ne jamais écrire « validé » sans preuve.
 - Actualiser les fichiers référencés dans le projet ChatGPT après une mise à jour versionnée. En cas d'écart entre une copie ChatGPT et Git, **privilégier la version Git vérifiée**, puis signaler la divergence.
-- **Journal :** 20/11/2026 — révision documentaire v1.1 après relecture « Vision & Conception », avec état local **rapporté** (+117/+60/+2), maintien du résultat **18/20**, correctif non confirmé. Vision v1.1 intègre sous-familles, LPC, CSV iLok, transaction des lots, retrait futur du catalogue actif. **Aucun code fonctionnel, commit ni push dans ce chantier documentaire.**
+- **Journal :** 20/11/2026 — v1.1 publiée dans le commit documentaire `0f2440c`, à partir de `db35382` (dernier commit fonctionnel), avec six redirections historiques.
+- **Journal :** 20/11/2026 — **v1.2 préparée à partir de `0f2440c`** : confirmation par le Terminal utilisateur de `HEAD = origin/main = 0f2440c`, trois fichiers modifiés (+117/+60/+2), `git diff --check` propre, **20 tests dont 18 réussis et 2 échoués**, même `ReferenceError` ligne 323. Vision v1.2 précise les conditions de sécurité d'un remplacement futur éventuel, sans modifier la règle actuelle de **copie distincte**. **Aucun code fonctionnel modifié par cette révision.** Le SHA d’un éventuel commit de publication v1.2 était inconnu à la rédaction ; le vérifier lors de la prochaine passation.
